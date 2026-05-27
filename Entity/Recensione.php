@@ -6,4 +6,4 @@ class Recensione {
     private $descrizione;
 }
 
-?>
+

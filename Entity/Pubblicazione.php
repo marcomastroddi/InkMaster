@@ -5,5 +5,3 @@ class Pubblicazione {
     private $descrizione;
     private $titolo;
 }
-
-?>
