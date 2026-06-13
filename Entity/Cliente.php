@@ -2,13 +2,13 @@
 require_once 'Persona.php';
 
 class Cliente extends Persona{
-    private $Username;
-    private $Data_di_nascita;
-    private $Posizione;
-    private $Numero_di_telefono;
-    private $Email;
+    private string $Username;
+    private DateTime $Data_di_nascita;
+    private string $Posizione;
+    private ?string $Numero_di_telefono;
+    private string $Email;
 
-    public function __construct(string $Nome, string $Cognome, string $Password, string $Username, DateTime $Data_di_nascita, string $Posizione, string $Numero_di_telefono, string $Email) {
+    public function __construct(string $Nome, string $Cognome, string $Password, string $Username, DateTime $Data_di_nascita, string $Posizione, ?string $Numero_di_telefono, string $Email) {
         parent::__construct($Nome, $Cognome, $Password);
         $this->Username = $Username;
         $this->Data_di_nascita = $Data_di_nascita;
