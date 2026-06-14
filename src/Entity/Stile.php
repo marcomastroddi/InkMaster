@@ -3,53 +3,85 @@
 namespace InkMaster\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity]
-#[ORM\Table(name: "stile")]
-class Stile
+#[ORM\Table(name: 'stili')]
+class Stile 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
-    private ?int $id;
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    #[ORM\Column(type: "string", length: 100)]
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
     private string $nome;
 
-    #[ORM\Column(type: "text")]
-    private string $descrizione;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $descrizione = null;
 
-    public function __construct(?int $id, string $nome, string $descrizione)
+    // Relazione 1 (Inversa): I tatuatori che possiedono questo stile
+    // Nota: 'stili' è il nome dell'attributo dentro la classe Tatuatore
+    #[ORM\ManyToMany(targetEntity: Tatuatore::class, mappedBy: 'stili')]
+    private Collection $tatuatori;
+
+    // Relazione 2 (Inversa): I tatuaggi caratterizzati da questo stile
+    // Nota: 'stili' è il nome dell'attributo dentro la classe Tatuaggio
+    #[ORM\ManyToMany(targetEntity: Tatuaggio::class, mappedBy: 'stili')]
+    private Collection $tatuaggi;
+
+
+    // Costruttore
+    public function __construct(string $nome, ?string $descrizione = null) 
     {
-        $this->id = $id;
         $this->nome = $nome;
         $this->descrizione = $descrizione;
+        
+        // Inizializzazione obbligatoria delle collezioni per le relazioni ManyToMany
+        $this->tatuatori = new ArrayCollection();
+        $this->tatuaggi = new ArrayCollection();
     }
 
-    // Getter
-    public function getId(): ?int
+    // Metodi getter
+    public function getId(): ?int 
     {
         return $this->id;
     }
-    public function getNome(): string
+
+    public function getNome(): string 
     {
         return $this->nome;
     }
-    public function getDescrizione(): string
+
+    public function getDescrizione(): ?string 
     {
         return $this->descrizione;
     }
 
-    // Setter
-    public function setId(?int $id): void
+    /**
+     * @return Collection<int, Tatuatore>
+     */
+    public function getTatuatori(): Collection 
     {
-        $this->id = $id;
+        return $this->tatuatori;
     }
-    public function setNome(string $nome): void
+
+    /**
+     * @return Collection<int, Tatuaggio>
+     */
+    public function getTatuaggi(): Collection 
+    {
+        return $this->tatuaggi;
+    }
+
+    // Metodi setter
+    public function setNome(string $nome): void 
     {
         $this->nome = $nome;
     }
-    public function setDescrizione(string $descrizione): void
+
+    public function setDescrizione(?string $descrizione): void 
     {
         $this->descrizione = $descrizione;
     }
