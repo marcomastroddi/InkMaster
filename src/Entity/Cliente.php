@@ -1,54 +1,113 @@
 <?php
+
 namespace InkMaster\Entity;
-require_once 'Persona.php';
 
-class Cliente extends Persona{
-    private string $Username;
-    private DateTime $Data_di_nascita;
-    private string $Posizione;
-    private ?string $Numero_di_telefono;
-    private string $Email;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 
-    public function __construct(string $Nome, string $Cognome, string $Password, string $Username, DateTime $Data_di_nascita, string $Posizione, ?string $Numero_di_telefono, string $Email) {
-        parent::__construct($Nome, $Cognome, $Password);
-        $this->Username = $Username;
-        $this->Data_di_nascita = $Data_di_nascita;
-        $this->Posizione = $Posizione;
-        $this->Numero_di_telefono = $Numero_di_telefono;
-        $this->Email = $Email;
+#[ORM\Entity]
+#[ORM\Table(name: 'clienti')]
+class Cliente extends Persona 
+{
+    #[ORM\Column(type: 'date')]
+    private DateTime $dataNascita;
+
+    #[ORM\Column(type: 'string', length: 180, unique: true)] //unique=true per evitare email duplicate
+    private string $email;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $posizione = null;
+
+    // Relazione 1: Un cliente partecipa a molti appuntamenti
+    #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Appuntamento::class)]
+    private Collection $appuntamenti;
+
+    // Relazione 2: Un cliente scrive molte recensioni
+    #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Recensione::class)]
+    private Collection $recensioni;
+
+    // Relazione 3: Un cliente effettua molte segnalazioni
+    #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Segnalazione::class)]
+    private Collection $segnalazioni;
+
+
+    // Costruttore
+    public function __construct(
+        string $nome, 
+        string $cognome, 
+        string $password, 
+        DateTime $dataNascita, 
+        string $email, 
+        ?string $posizione = null
+    ) {
+        // Invochiamo il costruttore del padre (Persona) per nome, cognome e password
+        parent::__construct($nome, $cognome, $password);
+        
+        $this->dataNascita = $dataNascita;
+        $this->email = $email;
+        $this->posizione = $posizione;
+
+        // Inizializzazione delle collezioni di Doctrine
+        $this->appuntamenti = new ArrayCollection();
+        $this->recensioni = new ArrayCollection();
+        $this->segnalazioni = new ArrayCollection();
     }
 
-    // Getter
-    public function getUsername(): string {
-        return $this->Username;
-    }
-    public function getDataDiNascita(): DateTime {
-        return $this->Data_di_nascita;
-    }
-    public function getPosizione(): string {
-        return $this->Posizione;
-    }
-    public function getNumeroDiTelefono(): string {
-        return $this->Numero_di_telefono;
-    }
-    public function getEmail(): string {
-        return $this->Email;
+    // Metodi getter
+    public function getDataNascita(): DateTime 
+    {
+        return $this->dataNascita;
     }
 
-    // Setter
-    public function setUsername(string $Username): void {
-        $this->Username = $Username;
+    public function getEmail(): string 
+    {
+        return $this->email;
     }
-    public function setDataDiNascita(DateTime $Data_di_nascita): void {
-        $this->Data_di_nascita = $Data_di_nascita;
+
+    public function getPosizione(): ?string 
+    {
+        return $this->posizione;
     }
-    public function setPosizione(string $Posizione): void {
-        $this->Posizione = $Posizione;
+
+    /**
+     * @return Collection<int, Appuntamento>
+     */
+    public function getAppuntamenti(): Collection 
+    {
+        return $this->appuntamenti;
     }
-    public function setNumeroDiTelefono(string $Numero_di_telefono): void {
-        $this->Numero_di_telefono = $Numero_di_telefono;
+
+    /**
+     * @return Collection<int, Recensione>
+     */
+    public function getRecensioni(): Collection 
+    {
+        return $this->recensioni;
     }
-    public function setEmail(string $Email): void {
-        $this->Email = $Email;
+
+    /**
+     * @return Collection<int, Segnalazione>
+     */
+    public function getSegnalazioni(): Collection 
+    {
+        return $this->segnalazioni;
+    }
+
+    // Metodi setter
+    public function setDataNascita(DateTime $dataNascita): void 
+    {
+        $this->dataNascita = $dataNascita;
+    }
+
+    public function setEmail(string $email): void 
+    {
+        $this->email = $email;
+    }
+
+    public function setPosizione(?string $posizione): void 
+    {
+        $this->posizione = $posizione;
     }
 }

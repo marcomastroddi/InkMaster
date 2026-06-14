@@ -2,84 +2,166 @@
 
 namespace InkMaster\Entity;
 
-class Messaggio { 
-    private ?int $id;  
-    private ?int $mittente_id;
-    private string $mittente_tipo; //può essere "Cliente" o "Tatuatore"
-    private ?int $destinatario_id;
-    private string $destinatario_tipo; //può essere "Cliente" o "Tatuatore"
-    private string $testo;
-    private string $data_invio;
-    private string $ora_invio;
-    private ?string $immagine;
-    
-    public function __construct(?int $id, ?int $mittente_id, string $mittente_tipo, ?int $destinatario_id, string $destinatario_tipo, string $testo, string $data_invio, string $ora_invio, ?string $immagine) {
-        $this->id = $id;
-        $this->mittente_id = $mittente_id;
-        $this->mittente_tipo = $mittente_tipo;
-        $this->destinatario_id = $destinatario_id;
-        $this->destinatario_tipo = $destinatario_tipo;
+use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'messaggi')]
+class Messaggio 
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
+
+    // Il testo può essere nullable se l'utente invia solo un'immagine
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $testo = null;
+
+    #[ORM\Column(type: 'date')]
+    private DateTime $dataInvio;
+
+    #[ORM\Column(type: 'time')]
+    private DateTime $oraInvio;
+
+    // L'attributo dell'immagine lo esprimiamo come stringa che conterrà il percorso o URL dell'immagine. Può essere nullable se l'utente invia solo testo.
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $immagine = null;
+
+    #[ORM\Column(type: 'integer')]
+    private int $mittenteId;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $mittenteTipo; // es. 'CLIENTE', 'STUDIO', 'TATUATORE'
+
+    #[ORM\Column(type: 'integer')]
+    private int $destinatarioId;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $destinatarioTipo;
+
+    // Relazione bidirezionale: Molti messaggi appartengono a un Appuntamento
+    #[ORM\ManyToOne(targetEntity: Appuntamento::class, inversedBy: 'messaggi')]
+    #[ORM\JoinColumn(name: 'appuntamento_id', referencedColumnName: 'id', nullable: false)]
+    private Appuntamento $appuntamento;
+
+    // Costruttore
+    public function __construct(
+        int $mittenteId,
+        string $mittenteTipo,
+        int $destinatarioId,
+        string $destinatarioTipo,
+        Appuntamento $appuntamento,
+        ?string $testo = null,
+        ?string $immagine = null
+    ) {
+        $this->mittenteId = $mittenteId;
+        $this->mittenteTipo = $mittenteTipo;
+        $this->destinatarioId = $destinatarioId;
+        $this->destinatarioTipo = $destinatarioTipo;
+        $this->appuntamento = $appuntamento;
         $this->testo = $testo;
-        $this->data_invio = $data_invio;
-        $this->ora_invio = $ora_invio;
         $this->immagine = $immagine;
+        
+        // Data e ora vengono impostate automaticamente al momento dell'invio
+        $this->dataInvio = new DateTime();
+        $this->oraInvio = new DateTime();
     }
 
-    // Getter
-    public function getId(): ?int {
+    // Metodi getter
+    public function getId(): ?int 
+    {
         return $this->id;
     }
-    public function getMittenteId(): ?int {
-        return $this->mittente_id;
-    }
-    public function getMittenteTipo(): string {
-        return $this->mittente_tipo;
-    }
-    public function getDestinatarioId(): ?int {
-        return $this->destinatario_id;
-    }
-    public function getDestinatarioTipo(): string {
-        return $this->destinatario_tipo;
-    }
-    public function getTesto(): string {
+
+    public function getTesto(): ?string 
+    {
         return $this->testo;
     }
-    public function getDataInvio(): string {
-        return $this->data_invio;
+
+    public function getDataInvio(): DateTime 
+    {
+        return $this->dataInvio;
     }
-    public function getOraInvio(): string {
-        return $this->ora_invio;
+
+    public function getOraInvio(): DateTime 
+    {
+        return $this->oraInvio;
     }
-    public function getImmagine(): ?string {
+
+    public function getImmagine(): ?string 
+    {
         return $this->immagine;
     }
 
-    // Setter
-    public function setId(?int $id): void {
-        $this->id = $id;
+    public function getMittenteId(): int 
+    {
+        return $this->mittenteId;
     }
-    public function setMittenteId(?int $mittente_id): void {
-        $this->mittente_id = $mittente_id;
+
+    public function getMittenteTipo(): string 
+    {
+        return $this->mittenteTipo;
     }
-    public function setMittenteTipo(string $mittente_tipo): void {
-        $this->mittente_tipo = $mittente_tipo;
+
+    public function getDestinatarioId(): int 
+    {
+        return $this->destinatarioId;
     }
-    public function setDestinatarioId(?int $destinatario_id): void {
-        $this->destinatario_id = $destinatario_id;
+
+    public function getDestinatarioTipo(): string 
+    {
+        return $this->destinatarioTipo;
     }
-    public function setDestinatarioTipo(string $destinatario_tipo): void {
-        $this->destinatario_tipo = $destinatario_tipo;
+
+    public function getAppuntamento(): Appuntamento 
+    {
+        return $this->appuntamento;
     }
-    public function setTesto(string $testo): void {
+
+    // Metodi setter
+    public function setTesto(?string $testo): void 
+    {
         $this->testo = $testo;
     }
-    public function setDataInvio(string $data_invio): void {
-        $this->data_invio = $data_invio;
+
+    public function setDataInvio(DateTime $dataInvio): void 
+    {
+        $this->dataInvio = $dataInvio;
     }
-    public function setOraInvio(string $ora_invio): void {
-        $this->ora_invio = $ora_invio;
+
+    public function setOraInvio(DateTime $oraInvio): void 
+    {
+        $this->oraInvio = $oraInvio;
     }
-    public function setImmagine(?string $immagine): void {
+
+    public function setImmagine(?string $immagine): void 
+    {
         $this->immagine = $immagine;
+    }
+
+    public function setMittenteId(int $mittenteId): void 
+    {
+        $this->mittenteId = $mittenteId;
+    }
+
+    public function setMittenteTipo(string $mittenteTipo): void 
+    {
+        $this->mittenteTipo = $mittenteTipo;
+    }
+
+    public function setDestinatarioId(int $destinatarioId): void 
+    {
+        $this->destinatarioId = $destinatarioId;
+    }
+
+    public function setDestinatarioTipo(string $destinatarioTipo): void 
+    {
+        $this->destinatarioTipo = $destinatarioTipo;
+    }
+
+    public function setAppuntamento(Appuntamento $appuntamento): void 
+    {
+        $this->appuntamento = $appuntamento;
     }
 }

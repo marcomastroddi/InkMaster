@@ -1,21 +1,91 @@
 <?php
-require_once 'Persona.php';
 
-class Tatuatore extends Persona{
-    private DateTime $Data_di_nascita;
+namespace InkMaster\Entity;
 
-    public function __construct(string $Nome, string $Cognome, string $Password, DateTime $Data_di_nascita) {
-        parent::__construct($Nome, $Cognome, $Password);
-        $this->Data_di_nascita = $Data_di_nascita;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'tatuatori')]
+class Tatuatore extends Persona 
+{
+    #[ORM\Column(type: 'date')]
+    private DateTime $dataNascita;
+
+    // Relazione 1: Il tatuatore lavora in un SOLO studio
+    #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'tatuatori')]
+    #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
+    private Studio $studio;
+
+    // Relazione 2: Il tatuatore possiede uno o più stili
+    #[ORM\ManyToMany(targetEntity: Stile::class)]
+    #[ORM\JoinTable(name: 'tatuatori_stili')]
+    private Collection $stili;
+
+
+    // Costruttore
+    public function __construct(
+        string $nome, 
+        string $cognome, 
+        string $password, 
+        DateTime $dataNascita, 
+        Studio $studio
+    ) {
+        // Invochiamo il costruttore del padre (Persona)
+        parent::__construct($nome, $cognome, $password);
+        
+        $this->dataNascita = $dataNascita;
+        $this->studio = $studio;
+        
+        // Inizializzazione obbligatoria della collezione degli stili
+        $this->stili = new ArrayCollection();
     }
 
-    // Getter
-    public function getDataDiNascita(): DateTime {
-        return $this->Data_di_nascita;
+    // Metodi getter
+    public function getDataNascita(): DateTime 
+    {
+        return $this->dataNascita;
     }
 
-    // Setter
-    public function setDataDiNascita(DateTime $Data_di_nascita): void {
-        $this->Data_di_nascita = $Data_di_nascita;
+    public function getStudio(): Studio 
+    {
+        return $this->studio;
+    }
+
+    /**
+     * @return Collection<int, Stile>
+     */
+    public function getStili(): Collection 
+    {
+        return $this->stili;
+    }
+
+    // Metodi setter
+    public function setDataNascita(DateTime $dataNascita): void 
+    {
+        $this->dataNascita = $dataNascita;
+    }
+
+    public function setStudio(Studio $studio): void 
+    {
+        $this->studio = $studio;
+    }
+
+    // ==========================================
+    //          METODI UTILI PER LA COLLEZIONE (messi da gemini, per adesso li ho lasciati)
+    // ==========================================
+
+    public function addStile(Stile $stile): void 
+    {
+        if (!$this->stili->contains($stile)) {
+            $this->stili->add($stile);
+        }
+    }
+
+    public function removeStile(Stile $stile): void 
+    {
+        $this->stili->removeElement($stile);
     }
 }
