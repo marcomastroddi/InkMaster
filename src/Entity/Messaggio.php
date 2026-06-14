@@ -1,4 +1,7 @@
 <?php
+
+namespace InkMaster\Entity;
+
 class Messaggio { 
     private ?int $id;  
     private ?int $mittente_id;

@@ -1,4 +1,6 @@
 <?php
+
+namespace InkMaster\Entity;
 class Persona{
     protected string $Nome;
     protected string $Cognome;

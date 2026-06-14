@@ -1,4 +1,5 @@
 <?php
+namespace InkMaster\Entity;
 require_once 'Persona.php';
 
 class Cliente extends Persona{
