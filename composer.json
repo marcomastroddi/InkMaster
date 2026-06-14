@@ -1,0 +1,17 @@
+{
+    "name": "loren/ink-master",
+    "autoload": {
+        "psr-4": {
+            "Loren\\InkMaster\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lorenzolika29",
+            "email": "lorenzolika29@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^3.6"
+    }
+}
