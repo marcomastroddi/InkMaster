@@ -14,7 +14,7 @@ class Tatuatore extends Persona
     #[ORM\Column(type: 'date')]
     private DateTime $dataNascita;
 
-    // Relazione 1: Il tatuatore lavora in un SOLO studio
+    // Relazione 1: Il tatuatore lavora in un SOLO studio (Molti a uno)
     #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'tatuatori')]
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;

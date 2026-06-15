@@ -20,15 +20,15 @@ class Cliente extends Persona
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $posizione = null;
 
-    // Relazione 1: Un cliente partecipa a molti appuntamenti
+    // Relazione 1: Un cliente partecipa a molti appuntamenti (1 a molti)
     #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Appuntamento::class)]
     private Collection $appuntamenti;
 
-    // Relazione 2: Un cliente scrive molte recensioni
+    // Relazione 2: Un cliente scrive molte recensioni (1 a molti)
     #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Recensione::class)]
     private Collection $recensioni;
 
-    // Relazione 3: Un cliente effettua molte segnalazioni
+    // Relazione 3: Un cliente effettua molte segnalazioni (1 a molti)
     #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Segnalazione::class)]
     private Collection $segnalazioni;
 

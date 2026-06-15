@@ -27,20 +27,19 @@ class Pagamento
      * RELAZIONE CON APPUNTAMENTO (1 a 1)
      * indica che la tabella 'pagamenti' conterrà una colonna 'appuntamento_id' (chiave esterna)
      */
-    #[ORM\OneToOne(targetEntity: Appuntamento::class)]
-    #[ORM\JoinColumn(name: 'appuntamento_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\OneToOne(targetEntity: Appuntamento::class, mappedBy: 'pagamento')]
     private Appuntamento $appuntamento;
 
     /**
-     * RELAZIONE CON CARTA DI CREDITO (1 a 1)
+     * RELAZIONE CON CARTA DI CREDITO (Molti a 1)
      */
-    #[ORM\OneToOne(targetEntity: Carta_di_credito::class)]
+    #[ORM\ManyToOne(targetEntity: Cartadicredito::class)]
     #[ORM\JoinColumn(name: 'carta_credito_id', referencedColumnName: 'id', nullable: false)]
-    private Carta_di_credito $cartaDiCredito;
+    private Cartadicredito $cartaDiCredito;
 
     // COSTRUTTORE
     // Nota: L'ID non va nel costruttore perché lo genera automaticamente il database
-    public function __construct(float $importo, string $stato, Appuntamento $appuntamento, Carta_di_credito $cartaDiCredito) 
+    public function __construct(float $importo, string $stato, Appuntamento $appuntamento, Cartadicredito $cartaDiCredito) 
     {
         $this->importo = $importo;
         $this->stato = $stato;
@@ -76,7 +75,7 @@ class Pagamento
         return $this->appuntamento;
     }
 
-    public function getCartaDiCredito(): Carta_di_credito 
+    public function getCartaDiCredito(): Cartadicredito 
     {
         return $this->cartaDiCredito;
     }
@@ -102,7 +101,7 @@ class Pagamento
         $this->appuntamento = $appuntamento;
     }
 
-    public function setCartaDiCredito(Carta_di_credito $cartaDiCredito): void 
+    public function setCartaDiCredito(Cartadicredito $cartaDiCredito): void 
     {
         $this->cartaDiCredito = $cartaDiCredito;
     }

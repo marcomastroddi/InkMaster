@@ -28,7 +28,7 @@ class Recensione
     #[ORM\JoinColumn(name: 'cliente_id', referencedColumnName: 'id', nullable: false)]
     private Cliente $cliente;
 
-    // Relazione 2: La recensione è legata a uno studio specifico
+    // Relazione 2: La recensione è legata a uno studio specifico(Molti a uno)
     #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'recensioni')]
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;

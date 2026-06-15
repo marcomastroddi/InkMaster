@@ -33,19 +33,21 @@ class Studio
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private ?string $telefono = null;
 
-    // RELAZIONI
+    // 1. Relazione con Tatuatore (Uno studio ha molti tatuatori, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Tatuatore::class)]
     private Collection $tatuatori;
 
+    // 2. Relazione con Appuntamento (Uno studio ha molti appuntamenti, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Appuntamento::class)]
     private Collection $appuntamenti;
 
+    // 3. Relazione con Recensione (Uno studio ha molte recensioni, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Recensione::class)]
     private Collection $recensioni;
 
+    // 4. Relazione con Pubblicazione (Un studio ha molte pubblicazioni, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Pubblicazione::class)]
     private Collection $pubblicazioni;
-
 
     // Costruttore
     public function __construct(

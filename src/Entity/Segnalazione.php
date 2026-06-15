@@ -36,7 +36,7 @@ class Segnalazione
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: true)]
     private ?Studio $studio = null;
 
-    // Relazione3. Chi gestisce: L'amministratore incaricato (unidirezionale, nullable all'inizio)
+    // Relazione3. Chi gestisce: L'amministratore incaricato (Molti a 1, nullable all'inizio)
     #[ORM\ManyToOne(targetEntity: Amministratore::class)]
     #[ORM\JoinColumn(name: 'amministratore_id', referencedColumnName: 'id', nullable: true)]
     private ?Amministratore $amministratore = null;
