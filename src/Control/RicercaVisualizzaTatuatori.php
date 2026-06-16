@@ -1,9 +1,9 @@
 <?php
-namespace App\Control;
+namespace InkMaster\Control;
 
 use App\Presentation\SmartyBoot;
 // Se avete già impostato Doctrine e i modelli (Entity/Foundation), importerai qui le classi:
-// use App\Foundation\FTatuatore; 
+// use InkMaster\Foundation\FTatuatore; 
 
 class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua classe
 {
