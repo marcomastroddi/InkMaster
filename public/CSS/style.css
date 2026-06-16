@@ -26,12 +26,20 @@ body {
    2. HEADER (La barra di navigazione superiore)
    ========================================================================== */
 
+/* HEADER CSS - AGGIORNATO PER RIMANERE FISSO */
 .main-header {
-    display: flex;               /* Attiva Flexbox: allinea gli elementi interni in riga */
-    justify-content: space-between; /* Spinge il Logo a sinistra e i Link a destra */
-    align-items: center;         /* Centra perfettamente gli elementi in verticale */
-    padding: 20px 40px;          /* Spazio interno: 20px sopra/sotto, 40px destra/sinistra */
-    border-bottom: 1px solid #000; /* Sottile linea nera di divisione inferiore */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #000;
+
+    /* --- AGGIUNGI QUESTE RIGHE DA QUI --- */
+    position: sticky;      /* Dice all'header di "incollarsi" quando si scorre */
+    top: 0;                /* Lo incolla esattamente al limite superiore (0 pixel dall'alto) */
+    background-color: #f4ede2; /* Forza lo sfondo beige, altrimenti scorrendo diventerebbe trasparente */
+    z-index: 9999;         /* Lo tiene sopra a tutti gli elementi della home (ma sotto al popup) */
+    /* ------------------------------------ */
 }
 
 /* Il rettangolo del Logo */
