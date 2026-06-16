@@ -3,11 +3,10 @@
 // 1. Inclusione dell'Autoloader di Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// 2. Inclusione e cattura dell'EntityManager di Doctrine
-// Poiché bootstrap.php fa il "return" della variabile, la catturiamo direttamente così:
+// 2. Inclusione e cattura dell'EntityManager di Doctrine dal file bootstrap
 $entityManager = require_once __DIR__ . '/../src/Foundation/bootstrap.php';
 
-// Importazione dei namespace corretti secondo la struttura delle cartelle
+// Importazione esplicita delle classi con i loro namespace corretti
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 use App\Presentation\SmartyBoot;
 
@@ -35,7 +34,7 @@ $smarty->assign('citta_corrente', $datiHome['citta_corrente']);
 $smarty->assign('recensione', $datiHome['recensione']);
 $smarty->assign('tatuatori', $datiHome['tatuatori']); 
 
-// Mostriamo la pagina home.tpl (il percorso parte da src/templates/ grazie a SmartyBoot)
+// Mostriamo la pagina home.tpl
 $smarty->display('pages/home.tpl');
 
 
