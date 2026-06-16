@@ -4,7 +4,7 @@
 
 {block name="content"}
     <section class="search-section">
-        <h1>Cerca il tuo tatuatore a <span class="citta-selezionata">Roma ▾</span></h1>
+        <h1>Cerca il tuo tatuatore a <a href="#popup-posizione" class="citta-selezionata">Roma ▾</a></h1>
         
         <div class="search-container">
             <input type="text" placeholder="es. DanInk" class="search-input">
@@ -78,5 +78,28 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>  
+{/block}
+
+{block name="modals"}
+    <!-- Popup Posizione -->
+ <div id="popup-posizione" class="modal-overlay">  
+        <div class="modal-body">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-left">
+                <h2>Imposta la tua posizione</h2>
+                <div class="popup-search-container">
+                    <input type="text" placeholder="es. Roma RM, Via del corso, Italy" class="search-input">
+                    <button class="popup-search-btn">🔍</button>
+                </div>
+                <div class="current-pos">
+                    <span class="geo-icon">🎯</span> <a href="#">Usa Posizione Attuale</a>
+                </div>
+                <button class="btn-conferma">Conferma Posizione</button>
+            </div>
+            <div class="modal-right">
+                <img src="https://placehold.co/500x500?text=Mappa+Roma" alt="Mappa Posizione" class="map-img">
+            </div>
+        </div>
+    </div>
 {/block}
