@@ -33,7 +33,7 @@ class Appuntamento
     private ?string $note = null;
 
     // 1. Relazione con Cliente (Molti appuntamenti a un Cliente)
-    #[ORM\ManyToOne(targetEntity: Cliente::class)]
+    #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: 'appuntamenti')]
     #[ORM\JoinColumn(name: 'cliente_id', referencedColumnName: 'id', nullable: false)]
     private Cliente $cliente;
 
@@ -42,11 +42,12 @@ class Appuntamento
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;
 
-    // 3. Relazione con Pagamento (Bidirezionale rispetto a Pagamento.php)
-    #[ORM\OneToOne(mappedBy: 'appuntamento', targetEntity: Pagamento::class)]
+    // 3. Relazione con Pagamento (Bidirezionale rispetto a Pagamento.php, 1 a 1)
+    #[ORM\OneToOne(inversedBy: 'appuntamento', targetEntity: Pagamento::class)]
+    #[ORM\JoinColumn(name: 'pagamento_id', referencedColumnName: 'id', nullable: false)]
     private ?Pagamento $pagamento = null;
 
-    // 4. Relazione con Messaggi (Un appuntamento ha molti messaggi)
+    // 4. Relazione con Messaggi (Un appuntamento ha molti messaggi, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'appuntamento', targetEntity: Messaggio::class)]
     private Collection $messaggi;
 
@@ -69,7 +70,7 @@ class Appuntamento
         $this->studio = $studio;
         $this->note = $note;
         
-        // In Doctrine Le relazioni "OneToMany" (collezioni) 
+        // In Doctrine Le relazioni "OneToMany" o "ManyToMany"
         // vanno sempre inizializzate nel costruttore come ArrayCollection vuote.
         $this->messaggi = new ArrayCollection();
     }

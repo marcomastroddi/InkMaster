@@ -21,8 +21,7 @@ class Stile
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $descrizione = null;
 
-    // Relazione 1 (Inversa): I tatuatori che possiedono questo stile
-    // Nota: 'stili' è il nome dell'attributo dentro la classe Tatuatore
+    // Relazione 1: Un tatuatore può avere più stili (Molti a Molti)
     #[ORM\ManyToMany(targetEntity: Tatuatore::class, mappedBy: 'stili')]
     private Collection $tatuatori;
 

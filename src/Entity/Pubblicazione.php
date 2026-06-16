@@ -26,13 +26,13 @@ class Pubblicazione
     #[ORM\Column(type: 'time')]
     private DateTime $ora;
 
-    // Relazione 1: La pubblicazione appartiene a uno specifico studio
+    // Relazione 1: La pubblicazione appartiene a uno specifico studio (Molti a uno)
     #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'pubblicazioni')]
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;
 
-    // Relazione 2: La pubblicazione riguarda uno ed un solo tatuaggio (Owning Side)
-    #[ORM\OneToOne(inversedBy: 'pubblicazione', targetEntity: Tatuaggio::class)]
+    // Relazione 2: La pubblicazione riguarda uno ed un solo tatuaggio (Molti a uno)
+    #[ORM\ManyToOne(targetEntity: Tatuaggio::class)]
     #[ORM\JoinColumn(name: 'tatuaggio_id', referencedColumnName: 'id', nullable: false)]
     private Tatuaggio $tatuaggio;
 

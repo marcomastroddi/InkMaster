@@ -24,16 +24,12 @@ class Tatuaggio
     #[ORM\Column(type: 'string', length: 50)]
     private string $grandezza; // Es. "10x10 cm", "Piccolo", "Schiena intera" ecc...
 
-    // Relazione 1: Un tatuaggio ha uno o più stili (Owning Side della relazione)
+    // Relazione 1: Un tatuaggio ha uno o più stili (Molti a Molti)
     #[ORM\ManyToMany(targetEntity: Stile::class, inversedBy: 'tatuaggi')]
     #[ORM\JoinTable(name: 'tatuaggi_stili')]
     private Collection $stili;
 
-    // Relazione 2 (Inversa): Il tatuaggio è collegato a una sola pubblicazione
-    #[ORM\OneToOne(mappedBy: 'tatuaggio', targetEntity: Pubblicazione::class)]
-    private ?Pubblicazione $pubblicazione = null;
-
-
+    
     // Costruttore
     public function __construct(float $costo, string $posizione, string $grandezza) 
     {
@@ -74,11 +70,6 @@ class Tatuaggio
         return $this->stili;
     }
 
-    public function getPubblicazione(): ?Pubblicazione 
-    {
-        return $this->pubblicazione;
-    }
-
     // Metodi setter
     public function setCosto(float $costo): void 
     {
@@ -93,11 +84,6 @@ class Tatuaggio
     public function setGrandezza(string $grandezza): void 
     {
         $this->grandezza = $grandezza;
-    }
-
-    public function setPubblicazione(?Pubblicazione $pubblicazione): void 
-    {
-        $this->pubblicazione = $pubblicazione;
     }
 
     // ==========================================

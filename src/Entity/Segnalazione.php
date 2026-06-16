@@ -26,8 +26,8 @@ class Segnalazione
     #[ORM\Column(type: 'string', length: 30)]
     private string $stato = 'APERTA'; // Impostiamo un valore predefinito
 
-    // Relazione 1. Chi segnala: Può essere un Cliente (bidirezionale, nullable)
-    #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: 'segnalazioni')]
+    // Relazione 1. Chi segnala: Può essere un Cliente (unidirezionale e molti a uno, nullable)
+    #[ORM\ManyToOne(targetEntity: Cliente::class)]
     #[ORM\JoinColumn(name: 'cliente_id', referencedColumnName: 'id', nullable: true)]
     private ?Cliente $cliente = null;
 
@@ -36,7 +36,7 @@ class Segnalazione
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: true)]
     private ?Studio $studio = null;
 
-    // Relazione3. Chi gestisce: L'amministratore incaricato (unidirezionale, nullable all'inizio)
+    // Relazione3. Chi gestisce: L'amministratore incaricato (Molti a 1, nullable all'inizio)
     #[ORM\ManyToOne(targetEntity: Amministratore::class)]
     #[ORM\JoinColumn(name: 'amministratore_id', referencedColumnName: 'id', nullable: true)]
     private ?Amministratore $amministratore = null;
