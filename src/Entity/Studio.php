@@ -47,11 +47,7 @@ class Studio
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Appuntamento::class)]
     private Collection $appuntamenti;
 
-    // 3. Relazione con Recensione (Uno studio ha molte recensioni, 1 a molti)
-    #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Recensione::class)]
-    private Collection $recensioni;
-
-    // 4. Relazione con Pubblicazione (Un studio ha molte pubblicazioni, 1 a molti)
+    // 3. Relazione con Pubblicazione (Un studio ha molte pubblicazioni, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Pubblicazione::class)]
     private Collection $pubblicazioni;
 
@@ -78,7 +74,6 @@ class Studio
         // Inizializzazione delle collezioni
         $this->tatuatori = new ArrayCollection();
         $this->appuntamenti = new ArrayCollection();
-        $this->recensioni = new ArrayCollection();
         $this->pubblicazioni = new ArrayCollection();
     }
 
@@ -143,15 +138,7 @@ class Studio
     {
         return $this->appuntamenti;
     }
-
-    /**
-     * @return Collection<int, Recensione>
-     */
-    public function getRecensioni(): Collection 
-    {
-        return $this->recensioni;
-    }
-
+    
     /**
      * @return Collection<int, Pubblicazione>
      */

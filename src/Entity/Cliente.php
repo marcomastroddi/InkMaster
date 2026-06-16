@@ -24,11 +24,7 @@ class Cliente extends Persona
     #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Appuntamento::class)]
     private Collection $appuntamenti;
 
-    // Relazione 2: Un cliente scrive molte recensioni (1 a molti)
-    #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Recensione::class)]
-    private Collection $recensioni;
-
-    // Relazione 3: Un cliente effettua molte segnalazioni (1 a molti)
+    // Relazione 2: Un cliente effettua molte segnalazioni (1 a molti)
     #[ORM\OneToMany(mappedBy: 'cliente', targetEntity: Segnalazione::class)]
     private Collection $segnalazioni;
 
@@ -51,7 +47,6 @@ class Cliente extends Persona
 
         // Inizializzazione delle collezioni di Doctrine
         $this->appuntamenti = new ArrayCollection();
-        $this->recensioni = new ArrayCollection();
         $this->segnalazioni = new ArrayCollection();
     }
 
@@ -77,14 +72,6 @@ class Cliente extends Persona
     public function getAppuntamenti(): Collection 
     {
         return $this->appuntamenti;
-    }
-
-    /**
-     * @return Collection<int, Recensione>
-     */
-    public function getRecensioni(): Collection 
-    {
-        return $this->recensioni;
     }
 
     /**

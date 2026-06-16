@@ -20,7 +20,7 @@ class Tatuatore extends Persona
     private Studio $studio;
 
     // Relazione 2: Il tatuatore possiede uno o più stili
-    #[ORM\ManyToMany(targetEntity: Stile::class)]
+    #[ORM\ManyToMany(targetEntity: Stile::class, inversedBy: 'tatuatori')]
     #[ORM\JoinTable(name: 'tatuatori_stili')]
     private Collection $stili;
 
