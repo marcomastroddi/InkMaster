@@ -44,7 +44,7 @@ class Appuntamento
 
     // 3. Relazione con Pagamento (Bidirezionale rispetto a Pagamento.php, 1 a 1)
     #[ORM\OneToOne(inversedBy: 'appuntamento', targetEntity: Pagamento::class)]
-    #[ORM\JoinColumn(name: 'pagamento_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\JoinColumn(name: 'pagamento_id', referencedColumnName: 'id', nullable: true)]
     private ?Pagamento $pagamento = null;
 
     // 4. Relazione con Messaggi (Un appuntamento ha molti messaggi, 1 a molti)
