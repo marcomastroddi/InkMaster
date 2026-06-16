@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-16 18:51:07
+/* Smarty version 5.8.0, created on 2026-06-16 23:04:07
   from 'file:pages/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a319b1b6b7695_88078004',
+  'unifunc' => 'content_6a31d6673c22c9_35447834',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20333e9b27eda4709ca2ea824e21033ca0252a0d' => 
     array (
       0 => 'pages/home.tpl',
-      1 => 1781635863,
+      1 => 1781651043,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a319b1b6b7695_88078004 (\Smarty\Template $_smarty_tpl) {
+function content_6a31d6673c22c9_35447834 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19111265796a319b1b69c0d6_37172183', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_874287896a31d6673af392_01636492', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17148648156a319b1b6a0dc8_08316675', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15574550026a31d6673b2cc8_18822403', "content");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10948582916a319b1b6b6ee7_01948057', "modals");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5864742176a31d6673c0a25_95840187', "modals");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_19111265796a319b1b69c0d6_37172183 extends \Smarty\Runtime\Block
+class Block_874287896a31d6673af392_01636492 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages';
@@ -53,7 +53,7 @@ Home - Cerca il tuo Tatuatore<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_17148648156a319b1b6a0dc8_08316675 extends \Smarty\Runtime\Block
+class Block_15574550026a31d6673b2cc8_18822403 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages';
@@ -163,7 +163,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 }
 /* {/block "content"} */
 /* {block "modals"} */
-class Block_10948582916a319b1b6b6ee7_01948057 extends \Smarty\Runtime\Block
+class Block_5864742176a31d6673c0a25_95840187 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages';
