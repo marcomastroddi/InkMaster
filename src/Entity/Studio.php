@@ -33,6 +33,12 @@ class Studio
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private ?string $telefono = null;
 
+    #[ORM\Column(type: 'json')]
+    private array $orariApertura = [];
+
+    #[ORM\Column(type: 'json')]
+    private array $orariChiusura = [];
+
     // 1. Relazione con Tatuatore (Uno studio ha molti tatuatori, 1 a molti)
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Tatuatore::class)]
     private Collection $tatuatori;
@@ -56,7 +62,9 @@ class Studio
         string $posizione, 
         string $email,
         ?string $descrizione = null,
-        ?string $telefono = null
+        ?string $telefono = null,
+        array $orariApertura = [],
+        array $orariChiusura = []
     ) {
         $this->nome = $nome;
         $this->partitaIva = $partitaIva;
@@ -64,6 +72,8 @@ class Studio
         $this->email = $email;
         $this->descrizione = $descrizione;
         $this->telefono = $telefono;
+        $this->orariApertura = $orariApertura;
+        $this->orariChiusura = $orariChiusura;
 
         // Inizializzazione delle collezioni
         $this->tatuatori = new ArrayCollection();
@@ -106,6 +116,16 @@ class Studio
     public function getTelefono(): ?string 
     {
         return $this->telefono;
+    }
+
+    public function getOrariApertura(): array 
+    {
+        return $this->orariApertura;
+    }
+
+    public function getOrariChiusura(): array 
+    {
+        return $this->orariChiusura;
     }
 
     /**
@@ -169,5 +189,15 @@ class Studio
     public function setTelefono(?string $telefono): void 
     {
         $this->telefono = $telefono;
+    }
+
+    public function setOrariApertura(array $orariApertura): void 
+    {
+        $this->orariApertura = $orariApertura;
+    }
+
+    public function setOrariChiusura(array $orariChiusura): void 
+    {
+        $this->orariChiusura = $orariChiusura;
     }
 }
