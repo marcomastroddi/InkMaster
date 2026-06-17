@@ -9,6 +9,7 @@
 namespace InkMaster\Foundation;
 
 use Doctrine\ORM\EntityManager;
+use InkMaster\Entity\Stile;
 
 class PersistentManager
 {
@@ -71,5 +72,14 @@ class PersistentManager
     public function getEntityManager(): EntityManager
     {
         return $this->entityManager;
+    }
+
+    /**
+     * Summary of findAvailableStyles
+     * @return Stile[]
+     */
+    public function findAvailableStyles(): array
+    {
+        return $this->entityManager->getRepository(Stile::class)->findAll();
     }
 }
