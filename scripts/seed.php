@@ -36,18 +36,18 @@ echo "Avvio popolamento database InkMaster...\n";
 // 1. STILI (nessuna dipendenza da altre entità)
 // ------------------------------------------------------------
 
-$stileRealistico    = new Stile('Tatuaggio che riproduce soggetti (volti, animali, oggetti) con dettagli, ombreggiature e proporzioni fedeli alla realtà, quasi fotografici.');
-$stileTradizionale  = new Stile('Stile classico americano con contorni neri marcati, colori pieni e a contrasto, e soggetti iconici come rose, ancore e rondini.');
-$stileLettering      = new Stile('Tatuaggio composto da scritte, frasi o nomi, realizzato con font calligrafici, corsivi o personalizzati.');
-$stileNeotradizionale  = new Stile('Evoluzione dello stile tradizionale con forme esagerate, prospettive dinamiche e una palette di colori più ampia e vivace.');
-$stileBlackwork      = new Stile('Tatuaggio realizzato esclusivamente con inchiostro nero, spesso con grandi campiture piene, pattern geometrici o ornamentali.');
-$stileDotwork        = new Stile('Tecnica basata sulla composizione di punti che, accostati con densità variabile, creano ombreggiature, texture e disegni geometrici o mandala.');
-$stileGiapponese     = new Stile('Stile tradizionale giapponese con soggetti iconici come draghi, fiori di ciliegio, samurai e onde, spesso in grandi composizioni che coprono ampie aree del corpo.');
-$stileTribale       = new Stile('isegni a campiture nere piene con linee curve e angolari, ispirati alle tradizioni tribali polinesiane, maori e di altre culture indigene.');
-$stileWatercolor    = new Stile('Tatuaggio che imita l\'effetto dell\'acquerello, con colori sfumati, spruzzi e contorni spesso assenti o minimi.');
-$stileFineline       = new Stile('Stile essenziale basato su linee sottili e disegni di piccole dimensioni, spesso senza ombreggiature o colore.');
+$stileRealistico    = new Stile('Realistico','Tatuaggio che riproduce soggetti (volti, animali, oggetti) con dettagli, ombreggiature e proporzioni fedeli alla realtà, quasi fotografici.');
+$stileTradizionale  = new Stile('Tradizionale','Stile classico americano con contorni neri marcati, colori pieni e a contrasto, e soggetti iconici come rose, ancore e rondini.');
+$stileLettering      = new Stile('Lettering', 'Tatuaggio composto da scritte, frasi o nomi, realizzato con font calligrafici, corsivi o personalizzati.');
+$stileNeotradizionale  = new Stile('Neotradizionale', 'Evoluzione dello stile tradizionale con forme esagerate, prospettive dinamiche e una palette di colori più ampia e vivace.');
+$stileBlackwork      = new Stile('Blackwork', 'Tatuaggio realizzato esclusivamente con inchiostro nero, spesso con grandi campiture piene, pattern geometrici o ornamentali.');
+$stileDotwork        = new Stile('Dotwork', 'Tecnica basata sulla composizione di punti che, accostati con densità variabile, creano ombreggiature, texture e disegni geometrici o mandala.');
+$stileGiapponese     = new Stile('Giapponese', 'Stile tradizionale giapponese con soggetti iconici come draghi, fiori di ciliegio, samurai e onde, spesso in grandi composizioni che coprono ampie aree del corpo.');
+$stileTribale       = new Stile('Tribale', 'isegni a campiture nere piene con linee curve e angolari, ispirati alle tradizioni tribali polinesiane, maori e di altre culture indigene.');
+$stileWatercolor    = new Stile('Watercolor', 'Tatuaggio che imita l\'effetto dell\'acquerello, con colori sfumati, spruzzi e contorni spesso assenti o minimi.');
+$stileFineline       = new Stile('Fineline', 'Stile essenziale basato su linee sottili e disegni di piccole dimensioni, spesso senza ombreggiature o colore.');
 
-foreach ([$stileRealistico] as $stile) {
+foreach ([$stileRealistico, $stileTradizionale, $stileLettering, $stileNeotradizionale, $stileBlackwork, $stileDotwork, $stileGiapponese, $stileTribale, $stileWatercolor, $stileFineline] as $stile) {
     $entityManager->persist($stile);
 }
 
@@ -291,7 +291,7 @@ $entityManager->persist($segnalazione1);
 $entityManager->flush();
 
 echo "Seed completato con successo.\n";
-echo " - " . 4 . " stili\n";
+echo " - " . 10 . " stili\n";
 echo " - " . 2 . " studi\n";
 echo " - " . 2 . " tatuatori\n";
 echo " - " . 2 . " clienti\n";
