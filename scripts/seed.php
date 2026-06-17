@@ -35,12 +35,19 @@ echo "Avvio popolamento database InkMaster...\n";
 // ------------------------------------------------------------
 // 1. STILI (nessuna dipendenza da altre entità)
 // ------------------------------------------------------------
-$stileTradizionale = new Stile('Traditional', 'Stile classico americano, colori pieni e contorni marcati');
-$stileRealistico    = new Stile('Realistico', 'Riproduzione fotografica di soggetti reali');
-$stileGiapponese     = new Stile('Giapponese', 'Irezumi: draghi, koi, fiori di ciliegio');
-$stileBlackwork      = new Stile('Blackwork', 'Solo inchiostro nero, forme geometriche o tribali');
 
-foreach ([$stileTradizionale, $stileRealistico, $stileGiapponese, $stileBlackwork] as $stile) {
+$stileRealistico    = new Stile('Tatuaggio che riproduce soggetti (volti, animali, oggetti) con dettagli, ombreggiature e proporzioni fedeli alla realtà, quasi fotografici.');
+$stileTradizionale  = new Stile('Stile classico americano con contorni neri marcati, colori pieni e a contrasto, e soggetti iconici come rose, ancore e rondini.');
+$stileLettering      = new Stile('Tatuaggio composto da scritte, frasi o nomi, realizzato con font calligrafici, corsivi o personalizzati.');
+$stileNeotradizionale  = new Stile('Evoluzione dello stile tradizionale con forme esagerate, prospettive dinamiche e una palette di colori più ampia e vivace.');
+$stileBlackwork      = new Stile('Tatuaggio realizzato esclusivamente con inchiostro nero, spesso con grandi campiture piene, pattern geometrici o ornamentali.');
+$stileDotwork        = new Stile('Tecnica basata sulla composizione di punti che, accostati con densità variabile, creano ombreggiature, texture e disegni geometrici o mandala.');
+$stileGiapponese     = new Stile('Stile tradizionale giapponese con soggetti iconici come draghi, fiori di ciliegio, samurai e onde, spesso in grandi composizioni che coprono ampie aree del corpo.');
+$stileTribale       = new Stile('isegni a campiture nere piene con linee curve e angolari, ispirati alle tradizioni tribali polinesiane, maori e di altre culture indigene.');
+$stileWatercolor    = new Stile('Tatuaggio che imita l\'effetto dell\'acquerello, con colori sfumati, spruzzi e contorni spesso assenti o minimi.');
+$stileFineline       = new Stile('Stile essenziale basato su linee sottili e disegni di piccole dimensioni, spesso senza ombreggiature o colore.');
+
+foreach ([$stileRealistico] as $stile) {
     $entityManager->persist($stile);
 }
 
