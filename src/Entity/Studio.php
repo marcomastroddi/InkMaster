@@ -5,6 +5,7 @@ namespace InkMaster\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use InkMaster\Enum\Citta\Citta;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'studi')]
@@ -21,8 +22,8 @@ class Studio
     #[ORM\Column(type: 'string', length: 11, unique: true)]
     private string $partitaIva;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $posizione;
+    #[ORM\Column(type: 'string', enumType: Citta::class)]
+    private Citta $posizione;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $descrizione = null;
@@ -55,7 +56,7 @@ class Studio
     public function __construct(
         string $nome, 
         string $partitaIva, 
-        string $posizione, 
+        Citta $posizione, 
         string $email,
         ?string $descrizione = null,
         ?string $telefono = null,
@@ -93,7 +94,7 @@ class Studio
         return $this->partitaIva;
     }
 
-    public function getPosizione(): string 
+    public function getPosizione(): Citta 
     {
         return $this->posizione;
     }
@@ -158,7 +159,7 @@ class Studio
         $this->partitaIva = $partitaIva;
     }
 
-    public function setPosizione(string $posizione): void 
+    public function setPosizione(Citta $posizione): void 
     {
         $this->posizione = $posizione;
     }

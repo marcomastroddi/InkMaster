@@ -4,6 +4,7 @@ namespace InkMaster\Control;
 use App\Presentation\SmartyBoot;
 use Doctrine\ORM\EntityManager; //serve come punto di partenza per interagire con il database tramite Doctrine
 use InkMaster\Entity\Tatuatore; // Importa l'entità Tatuatore che rappresenta la tabella dei tatuatori nel database
+use InkMaster\Enum\Citta\Citta;
 
 class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua classe
 {   
@@ -57,18 +58,20 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 
 
     public function clicca_catch_phrase(): array
-    {
+{
+    // Recuperiamo tutte le città disponibili dall'enumerazione Citta
+    $cittaEnum = Citta::cases(); 
 
-        $repository = $this->em->getRepository(Tatuatore::class); 
+    // Trasformiamo l'array di oggetti Enum in un array di stringhe semplici (i nomi delle città)
+    $cittaDisponibili = array_map(fn($citta) => $citta->value, $cittaEnum);
 
-        $cittaDisponibili = $repository->findDistinctCitta(); //metodo personalizzato che devi implementare nel repository per ottenere le città uniche dei tatuatori
-
-        return [
-            'status' => 'success',
-            'interfaccia' => 'Menù città dinamico', // Corrisponde alla freccia tratteggiata del diagramma [cite: 7]
-            'data' => $cittaDisponibili            // L'elenco delle città estratte dal DB
-        ];
-    }
+    // Restituiamo l'elenco delle città disponibili al Presentation Layer
+    return [
+        'status' => 'success',
+        'interfaccia' => 'Menù città dinamico', 
+        'data' => $cittaDisponibili            // L'elenco pulito delle 20 stringhe (es. ["Roma", "Milano", ...])
+    ];
+}
 
     public function seleziona_posizione(string $citta): array
     {
