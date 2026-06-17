@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // 2. Inclusione e cattura dell'EntityManager di Doctrine dal file bootstrap
-$entityManager = require_once __DIR__ . '/../src/Foundation/bootstrap.php';
+$entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
 
 // Importazione esplicita delle classi con i loro namespace corretti
 use InkMaster\Control\RicercaVisualizzaTatuatori;
