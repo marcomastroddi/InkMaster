@@ -1,5 +1,5 @@
 <?php 
-namespace Controll;
+namespace InkMaster\Control;
 
 class PrenotazionePagamento {
     /*

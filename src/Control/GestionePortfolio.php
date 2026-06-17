@@ -1,5 +1,5 @@
 <?php 
-namespace control; //namespace per evitare conflitti con altre classi
+namespace InkMaster\Control; //namespace per evitare conflitti con altre classi
 class GestionePortfolio {
     /*
     private $tatuaggi = array(); //array per memorizzare i tatuaggi del portfolio

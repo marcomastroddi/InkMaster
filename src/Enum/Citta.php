@@ -1,6 +1,6 @@
 <?php
 
-namespace InkMaster\Enum\Citta;
+namespace InkMaster\Enum; 
 
 enum Citta: string
 {

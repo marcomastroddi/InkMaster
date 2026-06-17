@@ -4,7 +4,8 @@ namespace InkMaster\Control;
 use App\Presentation\SmartyBoot;
 use Doctrine\ORM\EntityManager; //serve come punto di partenza per interagire con il database tramite Doctrine
 use InkMaster\Entity\Tatuatore; // Importa l'entità Tatuatore che rappresenta la tabella dei tatuatori nel database
-use InkMaster\Enum\Citta\Citta;
+use InkMaster\Entity\Stile; // Importa l'entità Recensione che rappresenta la tabella delle recensioni nel database
+use InkMaster\Enum\Citta;
 
 class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua classe
 {
@@ -27,7 +28,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
     public function mostra_home(): array
     {
         // Recuperiamo il Repository (Foundation Layer)
-        $repository = $this->em->getRepository(Tatuatore::class);
+        $repository = $this->em->getRepository(Stile::class);
 
         // 1. Prendiamo gli stili REALI dal database tramite Doctrine
         $stiliTatuaggi = $repository->findAvailableStyles();
@@ -58,7 +59,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 
 
     public function clicca_catch_phrase(): array
-{
+    {
     // Recuperiamo tutte le città disponibili dall'enumerazione Citta
     $cittaEnum = Citta::cases();
 
@@ -71,24 +72,21 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
         'interfaccia' => 'Menù città dinamico',
         'data' => $cittaDisponibili            // L'elenco pulito delle 20 stringhe (es. ["Roma", "Milano", ...])
     ];
-}
+    }
 
     public function seleziona_posizione(string $citta): array
     {
-        // se la stringa è vuota, blocchiamo l'esecuzione segnalando l'errore.
-        if (empty($citta)) {
-            return ['status' => 'error', 'message' => 'Città non valida'];
-        }
+    if (empty($citta) || !Citta::tryFrom($citta)) {                         // Verifica se la città è vuota o non VALIDA attraverso Enum::tryFrom
+        return ['status' => 'error', 'message' => 'Città non valida'];
+    }
 
-        // Orchestrazione dello stato: memorizziamo la città nella sessione PHP ($_SESSION).
-        // Questo permetterà al metodo di ricerca (più avanti) di sapere quale città avevamo scelto.
-        $_SESSION['ricerca_citta'] = $citta;
+    $_SESSION['ricerca_citta'] = $citta;
 
-        return [
-            'status' => 'success',
-            'interfaccia' => 'Catch phrase aggiornata', // Destinazione sul diagramma [cite: 9]
-            'catch_phrase' => "I migliori tatuatori a " . htmlspecialchars($citta) // Stringa dinamica pronta per la UI
-        ];
+    return [
+        'status' => 'success',
+        'interfaccia' => 'Catch phrase aggiornata',
+        'catch_phrase' => "I migliori tatuatori a " . htmlspecialchars($citta)
+    ];
     }
 
     public function seleziona_filtro(string $tipoFiltro): array
@@ -96,7 +94,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
         // Verifichiamo che il filtro richiesto sia effettivamente quello gestito ("Stile") [cite: 10]
         if ($tipoFiltro === "Stile") {
             // Otteniamo il Repository (Foundation) per accedere ai dati dei tatuatori.
-            $repository = $this->em->getRepository(Tatuatore::class);
+            $repository = $this->em->getRepository(Stile::class);
 
             // Chiamiamo il metodo del repository per estrarre gli stili di tatuaggio censiti a sistema.
             $stili = $repository->findAvailableStyles();
@@ -123,8 +121,8 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
     public function aggiungi_filtri(string $stile): array
     {
         // Salviamo lo stile nella sessione sotto la chiave dei filtri di ricerca.
+        $_SESSION['filtri_ricerca'] = $_SESSION['filtri_ricerca'] ?? [];
         $_SESSION['filtri_ricerca']['stile'] = $stile;
-
         return [
             'status' => 'success',
             'interfaccia' => 'Home page filtri aggiornati' // Destinazione sul diagramma [cite: 15]
@@ -149,6 +147,9 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 
         // Recuperiamo i dati che avevamo precedentemente "memorizzato" nelle interazioni 2, 5 e 6.
         $citta = $_SESSION['ricerca_citta'] ?? null;
+        if ($citta === null) {
+            return ['status' => 'error', 'message' => 'Nessuna città selezionata'];   //VERIFUCA PARAMETRO TESTO
+        }
         $filtri = $_SESSION['filtri_ricerca'] ?? [];
 
         // Chiediamo il nostro Foundation Layer (il Repository di Tatuatore).
@@ -162,24 +163,6 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
             'status' => 'success',
             'interfaccia' => 'Lista tatuatori', // Destinazione sul diagramma [cite: 20]
             'data' => $tatuatori               // Passiamo l'array di Entity al Presentation layer che le ciclerà a schermo
-        ];
-    }
-
-    public function ordina_risultati(string $parametro): array
-    {
-        // Recuperiamo nuovamente la città e i filtri correnti dalla sessione per non perdere la ricerca attuale.
-        $citta = $_SESSION['ricerca_citta'] ?? null;
-        $filtri = $_SESSION['filtri_ricerca'] ?? [];
-
-        $repository = $this->em->getRepository(Tatuatore::class);
-
-        // Rieseguiamo la ricerca passando come terzo argomento il parametro di ordinamento richiesto.
-        $tatuatoriOrdinati = $repository->searchByCittaAndFiltri($citta, $filtri, $parametro);
-
-        return [
-            'status' => 'success',
-            'interfaccia' => 'Interfaccia risultati aggiornata', // Destinazione sul diagramma [cite: 22]
-            'data' => $tatuatoriOrdinati                          // I dati ordinati pronti per essere renderizzati
         ];
     }
 }
