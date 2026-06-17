@@ -141,7 +141,9 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
     }
 
     public function avvia_ricerca(): array
-    {
+    {   //VERIFUCA PARAMETRO TESTO
+
+
         // Recuperiamo i dati che avevamo precedentemente "memorizzato" nelle interazioni 2, 5 e 6.
         $citta = $_SESSION['ricerca_citta'] ?? null;
         $filtri = $_SESSION['filtri_ricerca'] ?? [];

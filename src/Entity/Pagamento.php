@@ -33,13 +33,13 @@ class Pagamento
     /**
      * RELAZIONE CON CARTA DI CREDITO (Molti a 1)
      */
-    #[ORM\ManyToOne(targetEntity: Cartadicredito::class)]
+    #[ORM\ManyToOne(targetEntity: CartaDiCredito::class)]
     #[ORM\JoinColumn(name: 'carta_credito_id', referencedColumnName: 'id', nullable: false)]
-    private Cartadicredito $cartaDiCredito;
+    private CartaDiCredito $cartaDiCredito;
 
     // COSTRUTTORE
     // Nota: L'ID non va nel costruttore perché lo genera automaticamente il database
-    public function __construct(float $importo, string $stato, Appuntamento $appuntamento, Cartadicredito $cartaDiCredito) 
+    public function __construct(float $importo, string $stato, Appuntamento $appuntamento, CartaDiCredito $cartaDiCredito) 
     {
         $this->importo = $importo;
         $this->stato = $stato;
@@ -75,7 +75,7 @@ class Pagamento
         return $this->appuntamento;
     }
 
-    public function getCartaDiCredito(): Cartadicredito 
+    public function getCartaDiCredito(): CartaDiCredito 
     {
         return $this->cartaDiCredito;
     }
@@ -101,7 +101,7 @@ class Pagamento
         $this->appuntamento = $appuntamento;
     }
 
-    public function setCartaDiCredito(Cartadicredito $cartaDiCredito): void 
+    public function setCartaDiCredito(CartaDiCredito $cartaDiCredito): void 
     {
         $this->cartaDiCredito = $cartaDiCredito;
     }
