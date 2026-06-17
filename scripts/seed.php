@@ -25,6 +25,7 @@ use InkMaster\Entity\Recensione;
 use InkMaster\Entity\Pubblicazione;
 use InkMaster\Entity\Segnalazione;
 use InkMaster\Entity\Messaggio;
+use InkMaster\Enum\Citta\Citta;
 
 // Recuperiamo l'EntityManager già configurato (stessa connessione usata dal resto dell'app)
 /** @var \Doctrine\ORM\EntityManager $entityManager */
@@ -57,7 +58,7 @@ foreach ([$stileRealistico, $stileTradizionale, $stileLettering, $stileNeotradiz
 $studioRoma = new Studio(
     nome: 'Black Needle Studio',
     partitaIva: '12345678901',
-    posizione: 'Via Roma 10, Roma',
+    posizione: Citta::Roma,
     email: 'info@blackneedle.it',
     descrizione: 'Studio specializzato in stili tradizionali e blackwork',
     telefono: '0612345678',
@@ -68,7 +69,7 @@ $studioRoma = new Studio(
 $studioMilano = new Studio(
     nome: 'InkSpire Tattoo',
     partitaIva: '98765432109',
-    posizione: 'Corso Buenos Aires 50, Milano',
+    posizione: Citta::Milano,
     email: 'contatti@inkspire.it',
     descrizione: 'Studio moderno con focus su realismo e giapponese',
     telefono: '0298765432',
