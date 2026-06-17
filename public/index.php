@@ -32,7 +32,7 @@ $smarty = SmartyBoot::getSmarty();
 $smarty->assign('stili', $datiHome['stili']);
 $smarty->assign('citta_corrente', $datiHome['citta_corrente']);
 $smarty->assign('recensione', $datiHome['recensione']);
-$smarty->assign('tatuatori', $datiHome['tatuatori']); 
+$smarty->assign('tatuatori', $datiHome['tatuatori']);
 
 // Mostriamo la pagina home.tpl
 $smarty->display('pages/home.tpl');

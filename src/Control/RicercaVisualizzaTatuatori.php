@@ -7,7 +7,7 @@ use InkMaster\Entity\Tatuatore; // Importa l'entità Tatuatore che rappresenta l
 use InkMaster\Enum\Citta\Citta;
 
 class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua classe
-{   
+{
     private EntityManager $em;
 
     /**
@@ -23,12 +23,12 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 
 
 
-    
+
     public function mostra_home(): array
     {
         // Recuperiamo il Repository (Foundation Layer)
         $repository = $this->em->getRepository(Tatuatore::class);
-        
+
         // 1. Prendiamo gli stili REALI dal database tramite Doctrine
         $stiliTatuaggi = $repository->findAvailableStyles();
 
@@ -60,7 +60,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
     public function clicca_catch_phrase(): array
 {
     // Recuperiamo tutte le città disponibili dall'enumerazione Citta
-    $cittaEnum = Citta::cases(); 
+    $cittaEnum = Citta::cases();
 
     // Trasformiamo l'array di oggetti Enum in un array di stringhe semplici (i nomi delle città)
     $cittaDisponibili = array_map(fn($citta) => $citta->value, $cittaEnum);
@@ -68,7 +68,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
     // Restituiamo l'elenco delle città disponibili al Presentation Layer
     return [
         'status' => 'success',
-        'interfaccia' => 'Menù città dinamico', 
+        'interfaccia' => 'Menù città dinamico',
         'data' => $cittaDisponibili            // L'elenco pulito delle 20 stringhe (es. ["Roma", "Milano", ...])
     ];
 }
@@ -97,9 +97,9 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
         if ($tipoFiltro === "Stile") {
             // Otteniamo il Repository (Foundation) per accedere ai dati dei tatuatori.
             $repository = $this->em->getRepository(Tatuatore::class);
-            
+
             // Chiamiamo il metodo del repository per estrarre gli stili di tatuaggio censiti a sistema.
-            $stili = $repository->findAvailableStyles(); 
+            $stili = $repository->findAvailableStyles();
 
             return [
                 'status' => 'success',
@@ -153,8 +153,8 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 
         // Chiediamo il nostro Foundation Layer (il Repository di Tatuatore).
         $repository = $this->em->getRepository(Tatuatore::class);
-        
-        // Deleghiamo la query complessa al Repository. Doctrine interrogherà il DB e ci restituirà 
+
+        // Deleghiamo la query complessa al Repository. Doctrine interrogherà il DB e ci restituirà
         // direttamente un array composto da veri e propri oggetti di classe Entity (Tatuatore).
         $tatuatori = $repository->searchByCittaAndFiltri($citta, $filtri);
 
@@ -172,7 +172,7 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
         $filtri = $_SESSION['filtri_ricerca'] ?? [];
 
         $repository = $this->em->getRepository(Tatuatore::class);
-        
+
         // Rieseguiamo la ricerca passando come terzo argomento il parametro di ordinamento richiesto.
         $tatuatoriOrdinati = $repository->searchByCittaAndFiltri($citta, $filtri, $parametro);
 
