@@ -103,6 +103,9 @@ class RicercaVisualizzaTatuatori
         ];
     }
 
+
+    // Funzione privata per preparare i criteri di ricerca in base ai parametri forniti
+    //metdo da usare con avvia_ricerca per determinare i criteri di ricerca in base ai parametri forniti (città, stile e testo). Restituisce un array con i criteri di ricerca.
     private function prepara_criteri_ricerca(string $citta, string $stile, string $testo): array
     {
         // priorità 1: se c'è testo, vince su tutto il resto

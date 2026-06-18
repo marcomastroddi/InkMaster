@@ -44,7 +44,11 @@ echo '<pre>';
 print_r($datiTesto);
 echo '</pre>';
 
-
+$datiRicerca = $controller->avvia_ricerca();
+echo '<h2>avvia_ricerca</h2>';
+echo '<pre>';
+print_r($datiRicerca);
+echo '</pre>';
 
 
 
@@ -97,6 +101,11 @@ switch ($page) {
     $dati = $controller->inserisci_testo_ricerca($testo);
     header('Content-Type: application/json');
     echo json_encode($dati);
+    break;
+
+    case 'avvia_ricerca':
+    $dati = $controller->avvia_ricerca();
+    View::render('risultati', $dati);
     break;
 
     default:
