@@ -39,7 +39,7 @@ class RicercaVisualizzaTatuatori
         ];
     }
 
-    public function clicca_catch_phrase(): array
+    public function scegli_citta(): array
         {
             $cittaEnum = Citta::cases();
             $cittaDisponibili = array_map(fn($citta) => $citta->value, $cittaEnum);
@@ -62,7 +62,10 @@ class RicercaVisualizzaTatuatori
         'interfaccia' => 'Catch phrase aggiornata',
         'catch_phrase' => "I migliori tatuatori a " . $citta
     ];
+
+    
     }
+    
 }
 
 
