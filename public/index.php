@@ -26,16 +26,11 @@ echo '<pre>';
 print_r($datiPosizione);
 echo '</pre>';
 
-
-
 $datiStili = $controller->apri_stili_disponibili();
 echo '<h2>apri_stili_disponibili</h2>';
 echo '<pre>';
 print_r($datiStili);
 echo '</pre>';
-
-
-
 
 
 
@@ -67,6 +62,13 @@ switch ($page) {
         $dati = $controller->scegli_citta();
         View::render('cerca', $dati);
         break;
+
+    case 'seleziona_posizione':
+    $citta = $_GET['citta'] ?? '';
+    $dati = $controller->seleziona_posizione($citta);
+    header('Content-Type: application/json');
+    echo json_encode($dati);
+    break;
 
     case 'stili':
     $dati = $controller->apri_stili_disponibili();
