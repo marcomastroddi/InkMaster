@@ -129,7 +129,7 @@ class RicercaVisualizzaTatuatori
 
         $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
 
-        $tatuatori = $this->pm->cercaStudio($criteri);
+        $tatuatori = $this->pm->findAvailableStudios($criteri);
 
         return [
             'status'      => 'success',

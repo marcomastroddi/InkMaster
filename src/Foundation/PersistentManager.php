@@ -2,17 +2,19 @@
 namespace InkMaster\Foundation;
 
 use InkMaster\Foundation\StileRepository;
+use InkMaster\Foundation\StudioRepository;
 
 class PersistentManager
 {
     private static ?PersistentManager $instance = null;
     private $em;
     private StileRepository $stileRepository;
-
+    private StudioRepository $studioRepository;
     private function __construct($entityManager = null)
     {
         $this->em = $entityManager;
         $this->stileRepository = new StileRepository($entityManager);
+        $this->studioRepository = new StudioRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -26,6 +28,11 @@ class PersistentManager
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
+    }
+
+    public function findAvailableStudios($criteri): array
+    {
+        return $this->studioRepository->findAvailableStudios($criteri);
     }
 }
 

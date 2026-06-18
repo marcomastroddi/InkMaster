@@ -5,7 +5,7 @@ namespace InkMaster\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use InkMaster\Enum\Citta\Citta;
+use InkMaster\Enum\Citta;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'studi')]
