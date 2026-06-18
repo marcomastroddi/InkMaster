@@ -5,6 +5,7 @@ use InkMaster\Foundation\PersistentManager;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
 use InkMaster\Enum\Citta;
+use InkMaster\Foundation\SessionManager;
 
 class RicercaVisualizzaTatuatori
 {
@@ -53,17 +54,30 @@ class RicercaVisualizzaTatuatori
     
     public function seleziona_posizione(string $citta): array
     {
-    if (empty($citta) ) {                         // Verifica se la città è vuota o non VALIDA attraverso Enum::tryFrom
+    if (empty($citta)) {
         return ['status' => 'error', 'message' => 'Città non valida'];
     }
+
+    $filtri = SessionManager::get('filtri_ricerca', []);
+    $filtri['citta'] = $citta;
+    SessionManager::set('filtri_ricerca', $filtri);
 
     return [
         'status' => 'success',
         'interfaccia' => 'Catch phrase aggiornata',
         'catch_phrase' => "I migliori tatuatori a " . $citta
     ];
+    }
 
-    
+    public function apri_stili_disponibili(): array
+    {
+        $stili = $this->pm->findAvailableStyles();
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'sezione "TatooStyles"',
+            'data' => $stili
+        ];
     }
     
 }

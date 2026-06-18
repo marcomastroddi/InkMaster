@@ -2,6 +2,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use InkMaster\Control\RicercaVisualizzaTatuatori;
+use InkMaster\Foundation\SessionManager;
+
+SessionManager::start();
 
 $controller = new RicercaVisualizzaTatuatori();
 
