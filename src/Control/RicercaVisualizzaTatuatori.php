@@ -51,6 +51,18 @@ class RicercaVisualizzaTatuatori
             ];
         }
     
+    public function seleziona_posizione(string $citta): array
+    {
+    if (empty($citta) ) {                         // Verifica se la città è vuota o non VALIDA attraverso Enum::tryFrom
+        return ['status' => 'error', 'message' => 'Città non valida'];
+    }
+
+    return [
+        'status' => 'success',
+        'interfaccia' => 'Catch phrase aggiornata',
+        'catch_phrase' => "I migliori tatuatori a " . $citta
+    ];
+    }
 }
 
 

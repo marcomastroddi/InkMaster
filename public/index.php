@@ -4,14 +4,24 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 
 $controller = new RicercaVisualizzaTatuatori();
-$dati = $controller->mostra_home();
 
+$datiHome = $controller->mostra_home();
+echo '<h2>mostra_home</h2>';
 echo '<pre>';
-print_r($dati);
+print_r($datiHome);
 echo '</pre>';
 
+$datiCitta = $controller->clicca_catch_phrase();
+echo '<h2>clicca_catch_phrase</h2>';
+echo '<pre>';
+print_r($datiCitta);
+echo '</pre>';
 
-
+$datiPosizione = $controller->seleziona_posizione('Roma');
+echo '<h2>seleziona_posizione</h2>';
+echo '<pre>';
+print_r($datiPosizione);
+echo '</pre>';
 
 
 
