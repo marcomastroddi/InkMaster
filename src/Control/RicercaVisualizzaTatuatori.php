@@ -2,9 +2,6 @@
 namespace InkMaster\Control;
 
 use InkMaster\Foundation\PersistentManager;
-use InkMaster\Foundation\StileRepository;
-use InkMaster\Entity\Tatuatore;
-use InkMaster\Entity\Stile;
 use InkMaster\Enum\Citta;
 use InkMaster\Foundation\SessionManager;
 
