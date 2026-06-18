@@ -103,6 +103,41 @@ class RicercaVisualizzaTatuatori
         ];
     }
 
+    private function prepara_criteri_ricerca(string $citta, string $stile, string $testo): array
+    {
+        // priorità 1: se c'è testo, vince su tutto il resto
+        if (!empty($testo)) {
+            return [
+                'tipo'  => 'testo',
+                'testo' => $testo
+            ];
+        }
+
+        // priorità 2: nessun testo -> usiamo città + eventuale stile
+        return [
+            'tipo'  => 'posizione',
+            'citta' => $citta,
+            'stile' => $stile !== '' ? $stile : null
+        ];
+    }
+
+    public function avvia_ricerca(): array
+    {
+        $citta = SessionManager::get('citta', 'Roma'); // c'è sempre un default
+        $stile = SessionManager::get('stile', '');
+        $testo = SessionManager::get('testo', '');
+
+        $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
+
+        $tatuatori = $this->pm->cercaStudio($criteri);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Lista tatuatori',
+            'data'        => $tatuatori
+        ];
+    }
+
 
     
 }
