@@ -1,18 +1,38 @@
 <?php 
 namespace InkMaster\Control;
 
+use InkMaster\Foundation\PersistentManager;
+use InkMaster\Enum\Citta;
+use InkMaster\Entity\Studio;
+use InkMaster\Foundation\SessionManager;
+
 class PrenotazionePagamento {
-    /*
-    private $prenotazioni = array(); //array per memorizzare le prenotazioni
-    
-    public function aggiungiPrenotazione($prenotazione) {
-        $this->prenotazioni[] = $prenotazione; //aggiunge una prenotazione
+
+    private PersistentManager $pm;
+
+    public function __construct()
+    {
+        $this->pm = PersistentManager::getInstance();
+    }
+
+    public function scegli_studio(int $studioId): array
+    {
+        // Usiamo il metodo find() già pronto in PersistentManager
+        $studio = $this->pm->find(Studio::class, $studioId);
+
+        // Controllo difensivo: se l'id non corrisponde a nessuno studio
+        if ($studio === null) {
+            return [
+                'status' => 'error',
+                'message' => 'Studio non trovato'
+            ];
+        }
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Interfaccia studio',
+            'data' => $studio
+        ];
     }
     
-    public function visualizzaPrenotazioni() {
-        foreach($this->prenotazioni as $prenotazione) {
-            //visualizza le informazioni della prenotazione (utente, data, costo)
-            echo "Utente: " . $prenotazione->getUtente() . " - Data: " . $prenotazione->getData() . " - Costo: " . $prenotazione->getCosto() . "<br>";
-        }
-    }*/
 }

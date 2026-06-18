@@ -34,6 +34,12 @@ class PersistentManager
     {
         return $this->studioRepository->findAvailableStudios($criteri);
     }
+
+    // Cerca per ID — es: find(Studio::class, 5)
+    public function find(string $class, int $id): ?object
+    {
+        return $this->em->find($class, $id);
+    }
 }
 
 
@@ -133,11 +139,7 @@ class PersistentManager
         $this->entityManager->flush();
     }
 
-    // Cerca per ID — es: find(Studio::class, 5)
-    public function find(string $class, int $id): ?object
-    {
-        return $this->entityManager->find($class, $id);
-    }
+    
 
     // Restituisce tutti i record di una classe — es: findAll(Studio::class)
     public function findAll(string $class): array
