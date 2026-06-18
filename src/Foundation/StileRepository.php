@@ -5,6 +5,13 @@ use InkMaster\Entity\Stile;
 
 class StileRepository
 {
+    private $em;
+
+    public function __construct($entityManager = null)
+    {
+        $this->em = $entityManager;
+    }
+
     /**
      * @return Stile[]
      */

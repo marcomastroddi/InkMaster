@@ -1,24 +1,32 @@
 <?php
 namespace InkMaster\Foundation;
 
+use InkMaster\Foundation\StileRepository;
+
 class PersistentManager
 {
     private static ?PersistentManager $instance = null;
+    private $em;
+    private StileRepository $stileRepository;
 
-    private function __construct()
+    private function __construct($entityManager = null)
     {
-        // connessione al DB rimossa per il test
+        $this->em = $entityManager;
+        $this->stileRepository = new StileRepository($entityManager);
     }
 
-    public static function getInstance(): static
+    public static function getInstance($entityManager = null): PersistentManager
     {
         if (self::$instance === null) {
-            self::$instance = new static();
+            self::$instance = new self($entityManager);
         }
         return self::$instance;
     }
 
-    
+    public function findAvailableStyles(): array
+    {
+        return $this->stileRepository->findAvailableStyles();
+    }
 }
 
 
