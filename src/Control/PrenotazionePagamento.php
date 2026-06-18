@@ -31,7 +31,7 @@ class PrenotazionePagamento {
         return [
             'status' => 'success',
             'interfaccia' => 'Interfaccia studio',
-            'data' => $studio
+            'data' => 'pagina studio'                                       //'data' => $studio (da implementare con il db.)
         ];
     }
     

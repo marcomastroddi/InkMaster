@@ -2,11 +2,13 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use InkMaster\Control\RicercaVisualizzaTatuatori;
+use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Foundation\SessionManager;
 
 SessionManager::start();
 
 $controller = new RicercaVisualizzaTatuatori();
+$controller2 = new PrenotazionePagamento();
 
 $datiHome = $controller->mostra_home();
 echo '<h2>mostra_home</h2>';
@@ -50,7 +52,11 @@ echo '<pre>';
 print_r($datiRicerca);
 echo '</pre>';
 
-
+$datistudio = $controller2->scegli_studio(1);
+echo '<h2>scegli_studio</h2>';
+echo '<pre>';
+print_r($datistudio);
+echo '</pre>';
 
 
 
@@ -64,6 +70,8 @@ use InkMaster\Presentation\View;
 $page = $_GET['page'] ?? 'home';
 
 $controller = new RicercaVisualizzaTatuatori();
+$controller2 = new PrenotazionePagamento();
+
 
 switch ($page) {
 
@@ -107,6 +115,12 @@ switch ($page) {
     $dati = $controller->avvia_ricerca();
     View::render('risultati', $dati);
     break;
+
+    case 'scegli_studio':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller2->scegli_studio($id);
+        View::render('studio', $dati);
+        break;
 
     default:
         View::render('404', []);
