@@ -38,6 +38,11 @@ echo '<pre>';
 print_r($datiStile);
 echo '</pre>';
 
+$datiTesto = $controller->inserisci_testo_ricerca('Mario Rossi');
+echo '<h2>inserisci_testo_ricerca</h2>';
+echo '<pre>';
+print_r($datiTesto);
+echo '</pre>';
 
 
 
@@ -83,6 +88,13 @@ switch ($page) {
     case 'seleziona_stile':
     $stile = $_GET['stile'] ?? '';
     $dati = $controller->seleziona_stile($stile);
+    header('Content-Type: application/json');
+    echo json_encode($dati);
+    break;
+
+    case 'inserisci_testo_ricerca':
+    $testo = $_POST['testo'] ?? '';
+    $dati = $controller->inserisci_testo_ricerca($testo);
     header('Content-Type: application/json');
     echo json_encode($dati);
     break;
