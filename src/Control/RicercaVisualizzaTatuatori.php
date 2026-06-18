@@ -1,4 +1,77 @@
 <?php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 namespace InkMaster\Control;
 
 use App\Presentation\SmartyBoot;
@@ -11,11 +84,11 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
 {
     private EntityManager $em;
 
-    /**
+    
      * IL COSTRUTTORE
      * Serve a inizializzare il servizio inserendo la dipendenza obbligatoria (Dependency Injection).
      * Chiunque istanzi questo Control deve passargli l'EntityManager già pronto dal bootstrap dell'app.
-     */
+    
     public function __construct(EntityManager $em)
     {
         // Salviamo l'EntityManager nell'attributo privato della classe per renderlo disponibile a tutti i metodi.
@@ -166,3 +239,4 @@ class RicercaVisualizzaTatuatori // Sostituisci con il nome reale della tua clas
         ];
     }
 }
+*/ 
