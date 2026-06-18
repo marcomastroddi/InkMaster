@@ -77,6 +77,20 @@ class RicercaVisualizzaTatuatori
             'data' => $stili
         ];
     }
+
+    public function seleziona_stile(string $stile): array
+    {
+        $filtri = SessionManager::get('filtri_ricerca', []);
+        $filtri['stile'] = $stile;
+        SessionManager::set('filtri_ricerca', $filtri);
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Home page filtri aggiornati'
+        ];
+    }
+
+
     
 }
 
