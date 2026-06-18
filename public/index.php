@@ -28,6 +28,56 @@ echo '</pre>';
 
 
 
+$datiStili = $controller->apri_stili_disponibili();
+echo '<h2>apri_stili_disponibili</h2>';
+echo '<pre>';
+print_r($datiStili);
+echo '</pre>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use InkMaster\Control\RicercaVisualizzaTatuatori;
+use InkMaster\Presentation\View;
+
+$page = $_GET['page'] ?? 'home';
+
+$controller = new RicercaVisualizzaTatuatori();
+
+switch ($page) {
+
+    case 'home':
+        $dati = $controller->mostra_home();
+        View::render('home', $dati);
+        break;
+
+    case 'cerca':
+        $dati = $controller->scegli_citta();
+        View::render('cerca', $dati);
+        break;
+
+    case 'stili':
+    $dati = $controller->apri_stili_disponibili();
+    View::render('stili', $dati);
+    break;
+
+    default:
+        View::render('404', []);
+        break;
+}*/
+
 
 
 
