@@ -52,19 +52,21 @@ class RicercaVisualizzaTatuatori
     
     public function seleziona_posizione(string $citta): array
     {
-    if (empty($citta)) {
-        return ['status' => 'error', 'message' => 'Città non valida'];
-    }
+        $cittaEnum = Citta::tryFrom($citta);
 
-    $filtri = SessionManager::get('filtri_ricerca', []);
-    $filtri['citta'] = $citta;
-    SessionManager::set('filtri_ricerca', $filtri);
+        if ($cittaEnum === null) {
+            return ['status' => 'error', 'message' => 'Città non valida'];
+        }
 
-    return [
-        'status' => 'success',
-        'interfaccia' => 'Catch phrase aggiornata',
-        'catch_phrase' => "I migliori tatuatori a " . $citta
-    ];
+        $filtri = SessionManager::get('filtri_ricerca', []);
+        $filtri['citta'] = $cittaEnum->value; // o anche $cittaEnum, vedi sotto
+        SessionManager::set('filtri_ricerca', $filtri);
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Catch phrase aggiornata',
+            'catch_phrase' => "I migliori tatuatori a " . $cittaEnum->value
+        ];
     }
 
     public function apri_stili_disponibili(): array
