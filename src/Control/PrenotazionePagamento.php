@@ -34,5 +34,11 @@ class PrenotazionePagamento {
             'data' => 'pagina studio'                                       //'data' => $studio (da implementare con il db.)
         ];
     }
-    
+
+    /*
+    public function richiedi_appuntamento(int $studioId, string $data): array
+    {
+        //da finire 
+    }
+    */
 }
