@@ -18,16 +18,7 @@ class PersistentManager
         return self::$instance;
     }
 
-    public function findAvailableStyles(): array
-    {
-        return [
-            ['nome' => 'Realistico'],
-            ['nome' => 'Giapponese'],
-            ['nome' => 'Blackwork'],
-            ['nome' => 'Watercolor'],
-            ['nome' => 'Tradizionale'],
-        ];
-    }
+    
 }
 
 
