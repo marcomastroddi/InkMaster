@@ -11,8 +11,8 @@ echo '<pre>';
 print_r($datiHome);
 echo '</pre>';
 
-$datiCitta = $controller->clicca_catch_phrase();
-echo '<h2>clicca_catch_phrase</h2>';
+$datiCitta = $controller->scegli_citta();
+echo '<h2>scegli_città</h2>';
 echo '<pre>';
 print_r($datiCitta);
 echo '</pre>';
