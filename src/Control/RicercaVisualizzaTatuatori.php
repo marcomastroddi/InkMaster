@@ -90,6 +90,19 @@ class RicercaVisualizzaTatuatori
         ];
     }
 
+    public function inserisci_testo_ricerca(string $testo): array
+    {
+        $filtri = SessionManager::get('filtri_ricerca', []);
+        $filtri['testo'] = $testo;
+        SessionManager::set('filtri_ricerca', $filtri);
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Home page filtri aggiornati',
+            'data' => $testo
+        ];
+    }
+
 
     
 }
