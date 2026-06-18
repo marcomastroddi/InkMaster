@@ -1,12 +1,57 @@
 <?php
+namespace InkMaster\Control;
 
+use InkMaster\Foundation\PersistentManager;
+use InkMaster\Entity\Tatuatore;
+use InkMaster\Entity\Stile;
+use InkMaster\Enum\Citta;
 
+class RicercaVisualizzaTatuatori
+{
+    private PersistentManager $pm;
 
+    public function __construct()
+    {
+        $this->pm = PersistentManager::getInstance();
+    }
 
+    public function mostra_home(): array
+        {
+            $stiliTatuaggi = $this->pm->findAvailableStyles();
 
+            $cittaDefault = 'Roma';
 
+            $recensioneInEvidenza = [
+                'utente' => 'Lorenzo Rossi',
+                'intestazione' => 'Lavoro spettacolare!',
+                'descrizione' => 'Il tatuatore ha capito al volo la mia idea. Linee sottilissime.',
+                'foto_tatuaggio' => 'https://placehold.co/120x150?text=Tatuaggio',
+                'nome_tatuatore' => 'DanInk'
+            ];
 
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Home Page Iniziale',
+            'stili' => $stiliTatuaggi,
+            'citta_corrente' => $cittaDefault,
+            'recensione' => $recensioneInEvidenza,
+            'tatuatori' => []
+        ];
+    }
 
+    public function clicca_catch_phrase(): array
+        {
+            $cittaEnum = Citta::cases();
+            $cittaDisponibili = array_map(fn($citta) => $citta->value, $cittaEnum);
+
+            return [
+                'status' => 'success',
+                'interfaccia' => 'Menù città dinamico',
+                'data' => $cittaDisponibili
+            ];
+        }
+    
+}
 
 
 

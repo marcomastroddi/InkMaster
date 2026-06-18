@@ -1,4 +1,81 @@
 <?php
+namespace InkMaster\Foundation;
+
+class PersistentManager
+{
+    private static ?PersistentManager $instance = null;
+
+    private function __construct()
+    {
+        // connessione al DB rimossa per il test
+    }
+
+    public static function getInstance(): static
+    {
+        if (self::$instance === null) {
+            self::$instance = new static();
+        }
+        return self::$instance;
+    }
+
+    public function findAvailableStyles(): array
+    {
+        return [
+            ['nome' => 'Realistico'],
+            ['nome' => 'Giapponese'],
+            ['nome' => 'Blackwork'],
+            ['nome' => 'Watercolor'],
+            ['nome' => 'Tradizionale'],
+        ];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //Nota: questo file è stato creato per centralizzare tutte le operazioni di accesso al database tramite Doctrine ORM.
 //Nota: i controller non dovrebbero mai interagire direttamente con l'EntityManager di Doctrine, ma sempre tramite questa classe.
 //Nota: implementa il pattern Singleton per garantire che ci sia una sola istanza di EntityManager in tutta l'applicazione.
@@ -74,12 +151,12 @@ class PersistentManager
         return $this->entityManager;
     }
 
-    /**
+    
      * Summary of findAvailableStyles
      * @return Stile[]
-     */
+     
     public function findAvailableStyles(): array
     {
         return $this->entityManager->getRepository(Stile::class)->findAll();
     }
-}
+}*/
