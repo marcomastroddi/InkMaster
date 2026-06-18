@@ -32,6 +32,11 @@ echo '<pre>';
 print_r($datiStili);
 echo '</pre>';
 
+$datiStile = $controller->seleziona_stile('Realistico');
+echo '<h2>seleziona_stile</h2>';
+echo '<pre>';
+print_r($datiStile);
+echo '</pre>';
 
 
 
@@ -73,6 +78,13 @@ switch ($page) {
     case 'stili':
     $dati = $controller->apri_stili_disponibili();
     View::render('stili', $dati);
+    break;
+
+    case 'seleziona_stile':
+    $stile = $_GET['stile'] ?? '';
+    $dati = $controller->seleziona_stile($stile);
+    header('Content-Type: application/json');
+    echo json_encode($dati);
     break;
 
     default:
