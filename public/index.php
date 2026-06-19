@@ -58,6 +58,12 @@ echo '<pre>';
 print_r($datistudio);
 echo '</pre>';
 
+/*$datiappuntamento = $controller2->richiedi_appuntamento(1);
+echo '<h2>richiedi_appuntamento</h2>';
+echo '<pre>';
+print_r($datiappuntamento);
+echo '</pre>';
+*/
 
 
 
