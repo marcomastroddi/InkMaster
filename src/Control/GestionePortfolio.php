@@ -49,5 +49,20 @@ class GestionePortfolio {
             'nome_tatuatore' => $nomeTatuatore
         ];
     }
+
+    public function mostraFormPubblicazione(): array
+    {
+        $stili = $this->pm->findAvailableStyles();
+
+        return [
+            'status' => 'success',
+            'Inserisci titolo' => 'Inserisci titolo',
+            'Inserisci descrizione' => 'Inserisci descrizione',
+            'Inserisci foto' => 'Inserisci foto',
+            'data' => $stili
+        ];
+    }
+
+    
     
 }

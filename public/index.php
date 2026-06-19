@@ -84,6 +84,12 @@ echo '<pre>';
 print_r($datiPortfolio);
 echo '</pre>';
 
+$datiFormPubblicazione = $controller3->mostraFormPubblicazione();
+echo '<h2>mostraFormPubblicazione</h2>';
+echo '<pre>';
+print_r($datiFormPubblicazione);
+echo '</pre>';
+
 //INTERFACCIA 4 - GESTIONE RECENSIONI
 // da implementare scrivete qua sotto
 
