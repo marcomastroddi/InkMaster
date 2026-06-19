@@ -26,6 +26,9 @@ class Pubblicazione
     #[ORM\Column(type: 'time')]
     private DateTime $ora;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $percorsoImmagine; // Percorso dell'immagine associata alla pubblicazione 
+
     // Relazione 1: La pubblicazione appartiene a uno specifico studio (Molti a uno)
     #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'pubblicazioni')]
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
@@ -44,7 +47,8 @@ class Pubblicazione
         DateTime $ora, 
         Studio $studio, 
         Tatuaggio $tatuaggio,
-        ?string $descrizione = null
+        ?string $descrizione = null,
+        ?string $percorsoImmagine = null
     ) {
         $this->titolo = $titolo;
         $this->data = $data;
@@ -52,6 +56,7 @@ class Pubblicazione
         $this->studio = $studio;
         $this->tatuaggio = $tatuaggio;
         $this->descrizione = $descrizione;
+        $this->percorsoImmagine = $percorsoImmagine;
     }
 
     // Blocco getter
@@ -90,6 +95,11 @@ class Pubblicazione
         return $this->tatuaggio;
     }
 
+    public function getPercorsoImmagine(): string 
+    {
+        return $this->percorsoImmagine;
+    }
+
     // Blocco setter
     public function setTitolo(string $titolo): void 
     {
@@ -119,5 +129,10 @@ class Pubblicazione
     public function setTatuaggio(Tatuaggio $tatuaggio): void 
     {
         $this->tatuaggio = $tatuaggio;
+    }
+
+    public function setPercorsoImmagine(string $percorsoImmagine): void 
+    {
+        $this->percorsoImmagine = $percorsoImmagine;
     }
 }

@@ -63,6 +63,17 @@ class GestionePortfolio {
         ];
     }
 
-    
+    public function pubblicaTatuaggio(array $datiPubblicazione): array
+    {
+        // Qui andrebbe implementata la logica per salvare la nuova pubblicazione nel database
+        // Per ora restituiamo un messaggio di successo fittizio
+
+        return [
+            'status' => 'success',
+            'message' => 'Tatuaggio pubblicato con successo'
+        ];
+    }
+
+
     
 }
