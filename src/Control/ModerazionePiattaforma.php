@@ -1,18 +1,72 @@
-<?php 
+<?php
 namespace InkMaster\Control;
 
-class ModerazionePiattaforma {
-    /*
-    private $segnalazioni = array(); //array per memorizzare le segnalazioni
-    
-    public function aggiungiSegnalazione($segnalazione) {
-        $this->segnalazioni[] = $segnalazione; //aggiunge una segnalazione
+use InkMaster\Foundation\PersistentManager;
+use InkMaster\Entity\Segnalazione;
+use InkMaster\Entity\Persona;
+use InkMaster\Foundation\SessionManager;
+
+class ModerazionePiattaforma
+{
+    private PersistentManager $pm;
+
+    public function __construct()
+    {
+        $this->pm = PersistentManager::getInstance();
     }
-    
-    public function visualizzaSegnalazioni() {
-        foreach($this->segnalazioni as $segnalazione) {
-            //visualizza le informazioni della segnalazione (utente, motivo)
-            echo "Utente: " . $segnalazione->getUtente() . " - Motivo: " . $segnalazione->getMotivo() . "<br>";
+
+    public function accedi_segnalazioni(): array
+    {
+        $segnalazioni = $this->pm->findAll(Segnalazione::class);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Lista segnalazioni',
+            'data'        => $segnalazioni
+        ];
+    }
+
+    public function seleziona_utente(int $utenteId): array
+    {
+        $utente = $this->pm->find(Persona::class, $utenteId);
+
+        if ($utente === null) {
+            return [
+                'status'  => 'error',
+                'message' => 'Utente non trovato'
+            ];
         }
-    }*/
+
+        SessionManager::set('utente_selezionato', $utenteId);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Profilo utente',
+            'data'        => $utente
+        ];
+    }
+
+    public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione): array
+    {
+        $utenteId = SessionManager::get('utente_selezionato');
+
+        if ($utenteId === null) {
+            return ['status' => 'error', 'message' => 'Nessun utente selezionato'];
+        }
+
+        // da implementare con il db
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Ban confermato',
+            'data'        => [
+                'utente_id'   => $utenteId,
+                'tipo'        => $tipo,
+                'durata'      => $durata,
+                'motivazione' => $motivazione,
+                'gravita'     => $gravita,
+                'descrizione' => $descrizione
+            ]
+        ];
+    }
+
 }

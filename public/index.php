@@ -3,13 +3,20 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 use InkMaster\Control\PrenotazionePagamento;
+
+
+use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
+
 
 SessionManager::start();
 
 $controller = new RicercaVisualizzaTatuatori();
 $controller2 = new PrenotazionePagamento();
+$controller5 = new ModerazionePiattaforma();
 
+
+//INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
 $datiHome = $controller->mostra_home();
 echo '<h2>mostra_home</h2>';
 echo '<pre>';
@@ -52,18 +59,64 @@ echo '<pre>';
 print_r($datiRicerca);
 echo '</pre>';
 
+//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
 $datistudio = $controller2->scegli_studio(1);
 echo '<h2>scegli_studio</h2>';
 echo '<pre>';
 print_r($datistudio);
 echo '</pre>';
 
-/*$datiappuntamento = $controller2->richiedi_appuntamento(1);
+/*$datiappuntamento = $controller2->richiedi_appuntamento(1); da aggiungere nel caso duso 2
 echo '<h2>richiedi_appuntamento</h2>';
 echo '<pre>';
 print_r($datiappuntamento);
 echo '</pre>';
 */
+
+
+
+
+//INTERFACCIA 3 - GESTIONE PROFILO UTENTE
+// da implementare scrivete qua sotto
+
+
+
+//INTERFACCIA 4 - GESTIONE RECENSIONI
+// da implementare scrivete qua sotto
+
+
+
+//INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
+$datistudio = $controller2->scegli_studio(1);
+echo '<h2>scegli_studio</h2>';
+echo '<pre>';
+print_r($datistudio);
+echo '</pre>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,6 +134,7 @@ $controller2 = new PrenotazionePagamento();
 
 switch ($page) {
 
+//INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI(completa)
     case 'home':
         $dati = $controller->mostra_home();
         View::render('home', $dati);
@@ -122,11 +176,100 @@ switch ($page) {
     View::render('risultati', $dati);
     break;
 
+
+//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO(in corso)
     case 'scegli_studio':
         $id = (int)($_GET['id'] ?? 0);
         $dati = $controller2->scegli_studio($id);
         View::render('studio', $dati);
         break;
+    
+ 
+        
+//INTERFACCIA 3 - GESTIONE PROFILO UTENTE
+// da implementare scrivete qua sotto
+
+
+
+//INTERFACCIA 4 - GESTIONE RECENSIONI
+// da implementare scrivete qua sotto
+
+
+
+//INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     default:
         View::render('404', []);
