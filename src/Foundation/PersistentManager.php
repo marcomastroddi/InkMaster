@@ -71,6 +71,11 @@ class PersistentManager
         return $this->studioRepository->findPortfolioByStudioId($idStudio);
     }
 
+    public function savePubblicazione(int $idStudio, int $idTatuatore, array $infoPubblicazione)
+    {
+        return $this->studioRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+    }
+
     //Fab
     public function findAllSegnalazioni(): array
     {

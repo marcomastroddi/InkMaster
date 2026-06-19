@@ -90,6 +90,17 @@ echo '<pre>';
 print_r($datiFormPubblicazione);
 echo '</pre>';
 
+$datiPubblicazioneTatuaggio = $controller3->pubblicaTatuaggio([
+    'titolo' => 'Nuovo Tatuaggio',
+    'descrizione' => 'Descrizione del nuovo tatuaggio',
+    'percorso_immagine' => '/images/pubblicazioni/nuovo_tatuaggio.jpg',
+    'stile' => 'Realistico'
+]);
+echo '<h2>pubblicaTatuaggio</h2>';
+echo '<pre>';
+print_r($datiPubblicazioneTatuaggio);
+echo '</pre>';
+
 //INTERFACCIA 4 - GESTIONE RECENSIONI
 // da implementare scrivete qua sotto
 

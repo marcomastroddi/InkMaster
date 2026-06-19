@@ -63,15 +63,41 @@ class GestionePortfolio {
         ];
     }
 
-    public function pubblicaTatuaggio(array $datiPubblicazione): array
+    public function pubblicaTatuaggio(array $datiForm): array
     {
-        // Qui andrebbe implementata la logica per salvare la nuova pubblicazione nel database
-        // Per ora restituiamo un messaggio di successo fittizio
+        $idStudio = SessionManager::get('id_studio', 12345); // Recupera l'ID dello studio dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
+        $idTatuatore = SessionManager::get('id_tatuatore', 67890); // Recupera l'ID del tatuatore dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
 
+        // Generiamo in automatico data e ora correnti
+        $dataCorrente = new \DateTime();
+        $oraCorrente = new \DateTime();
+
+        // Impacchettiamo tutto il pacchetto di informazioni da dare al Foundation
+        $infoPubblicazione = [
+        'titolo'        => $datiForm['titolo'] ?? 'Senza Titolo',
+        'descrizione'   => $datiForm['descrizione'] ?? 'Senza Descrizione',
+        'percorso_foto' => $datiForm['percorso_foto'] ?? 'Senza Foto',
+        'stile_scelto'  => $datiForm['stile'], 
+        'data'          => $dataCorrente,
+        'ora'           => $oraCorrente
+        ];
+
+        // Chiamata al Foundation per salvare la pubblicazione nel database grazie al metodo savePubblicazione()
+        $esitoPubblicazione = $this->pm->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+
+        if ($esitoPubblicazione) {
         return [
             'status' => 'success',
-            'message' => 'Tatuaggio pubblicato con successo'
+            'message' => 'Tatuaggio pubblicato con successo nel portfolio dello studio!',
+            'interfaccia' => 'Visualizzazione Portfolio Studio aggiornato con la nuova pubblicazione',
         ];
+        }
+
+        return [
+            'status' => 'error',
+            'message' => 'Impossibile pubblicare il tatuaggio.'
+        ];
+
     }
 
 

@@ -123,4 +123,11 @@ class StudioRepository
         ),
     ];
     }
+
+    public function savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione)
+    {
+        // Implementazione del metodo per salvare la pubblicazione
+        //Per adesso, simulo il salvataggio e ritorno true per indicare successo
+        return true;
+    }
 }
