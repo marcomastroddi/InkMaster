@@ -17,7 +17,7 @@ class ModerazionePiattaforma
 
     public function accedi_segnalazioni(): array
     {
-        $segnalazioni = $this->pm->findAll(Segnalazione::class);
+        $segnalazioni = $this->pm->findAllSegnalazioni();
 
         return [
             'status'      => 'success',
@@ -28,7 +28,7 @@ class ModerazionePiattaforma
 
     public function seleziona_utente(int $utenteId): array
     {
-        $utente = $this->pm->find(Persona::class, $utenteId);
+        $utente = $this->pm->findPersonaById($utenteId);
 
         if ($utente === null) {
             return [

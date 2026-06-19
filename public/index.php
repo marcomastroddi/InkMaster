@@ -87,10 +87,22 @@ echo '</pre>';
 
 
 //INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
-$datistudio = $controller2->scegli_studio(1);
-echo '<h2>scegli_studio</h2>';
+$datiSegnalazioni = $controller5->accedi_segnalazioni();
+echo '<h2>accedi_segnalazioni</h2>';
 echo '<pre>';
-print_r($datistudio);
+print_r($datiSegnalazioni);
+echo '</pre>';
+
+$datiUtente = $controller5->seleziona_utente(1);
+echo '<h2>seleziona_utente</h2>';
+echo '<pre>';
+print_r($datiUtente);
+echo '</pre>';
+
+$datiBan = $controller5->conferma_ban('temporaneo', '7 giorni', 'spam', 'bassa', 'Utente ha inviato messaggi ripetuti');
+echo '<h2>conferma_ban</h2>';
+echo '<pre>';
+print_r($datiBan);
 echo '</pre>';
 
 
@@ -197,7 +209,28 @@ switch ($page) {
 
 
 //INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
+    case 'accedi_segnalazioni':
+        $dati = $controller5->accedi_segnalazioni();
+        View::render('segnalazioni', $dati);
+        break;
 
+    case 'seleziona_utente':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller5->seleziona_utente($id);
+        View::render('utente', $dati);
+        break;
+
+    case 'conferma_ban':
+        $dati = $controller5->conferma_ban(
+            $_POST['tipo']        ?? '',
+            $_POST['durata']      ?? '',
+            $_POST['motivazione'] ?? '',
+            $_POST['gravita']     ?? '',
+            $_POST['descrizione'] ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
 
 

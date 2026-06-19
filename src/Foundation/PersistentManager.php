@@ -3,8 +3,16 @@ namespace InkMaster\Foundation;
 
 use InkMaster\Foundation\StileRepository;
 use InkMaster\Foundation\StudioRepository;
+use InkMaster\Foundation\SegnalazioneRepository;//Fab 
+use InkMaster\Foundation\PersonaRepository;//Fab
 use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
+
+
+/*Nota Fab:Per conferma_ban non serve una repository — salva dati nel DB. Per ora con dati fittizi non c'è niente da salvare, 
+quindi nel controller lasciamo il metodo com'è già.
+Quando ci sarà il DB aggiungeremo save() in PersistentManager 
+*/
 
 class PersistentManager
 {
@@ -12,11 +20,15 @@ class PersistentManager
     private $em;
     private StileRepository $stileRepository;
     private StudioRepository $studioRepository;
+    private SegnalazioneRepository $segnalazioneRepository;//Fab
+    private PersonaRepository $personaRepository;//Fab
     private function __construct($entityManager = null)
     {
         $this->em = $entityManager;
         $this->stileRepository = new StileRepository($entityManager);
         $this->studioRepository = new StudioRepository($entityManager);
+        $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
+        $this->personaRepository = new PersonaRepository($entityManager);//Fab
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -52,6 +64,18 @@ class PersistentManager
         );
 
         // return $this->em->find($class, $id); PER ADESSO COMMENTATO PERCHÈ IL DB ANCORA NON C'È
+    }
+
+    
+    //Fab
+    public function findAllSegnalazioni(): array
+    {
+        return $this->segnalazioneRepository->findAllSegnalazioni();
+    }
+    //Fab
+    public function findPersonaById(int $id): ?object
+    {
+        return $this->personaRepository->findById($id);
     }
 
 }
