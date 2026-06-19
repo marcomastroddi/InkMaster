@@ -3,6 +3,8 @@ namespace InkMaster\Foundation;
 
 use InkMaster\Foundation\StileRepository;
 use InkMaster\Foundation\StudioRepository;
+use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
+use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
 
 class PersistentManager
 {
@@ -38,8 +40,20 @@ class PersistentManager
     // Cerca per ID — es: find(Studio::class, 5)
     public function find(string $class, int $id): ?object
     {
-        return $this->em->find($class, $id);
+        return new Studio(
+            'InkMaster Roma Centro',
+            '12345678901',
+            Citta::Roma,
+            'roma.centro@inkmaster.it',
+            'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
+            '0612345678',
+            ['lun-ven' => '10:00-19:00'],
+            ['lun-ven' => '19:00']
+        );
+
+        // return $this->em->find($class, $id); PER ADESSO COMMENTATO PERCHÈ IL DB ANCORA NON C'È
     }
+
 }
 
 
