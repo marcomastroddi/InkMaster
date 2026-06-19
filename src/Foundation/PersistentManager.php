@@ -87,6 +87,21 @@ class PersistentManager
         return $this->personaRepository->findById($id);
     }
 
+    public function findTatuatoriByStudioId(int $idStudio): array
+    {
+        return $this->studioRepository->findTatuatoriByStudioId($idStudio);
+    }
+
+    public function findStiliByStudioId(int $idStudio): array
+    {
+        return $this->studioRepository->findStiliByStudioId($idStudio);
+    }
+
+    public function findTatuatoreById(int $idTatuatore): ?object
+    {
+        return $this->studioRepository->findTatuatoreById($idTatuatore);
+    }
+
 }
 
 

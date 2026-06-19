@@ -55,6 +55,11 @@ abstract class Persona
 
     // Metodi setter
 
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function setNome(string $nome): void 
     {
         $this->nome = $nome;

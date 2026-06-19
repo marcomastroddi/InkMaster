@@ -4,7 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
-
+use InkMaster\Control\InserimentoRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
 
@@ -14,6 +14,7 @@ SessionManager::start();
 $controller = new RicercaVisualizzaTatuatori();
 $controller2 = new PrenotazionePagamento();
 $controller3 = new GestionePortfolio();
+$controller4 = new InserimentoRecensione();
 $controller5 = new ModerazionePiattaforma();
 
 
@@ -102,8 +103,33 @@ print_r($datiPubblicazioneTatuaggio);
 echo '</pre>';
 
 //INTERFACCIA 4 - GESTIONE RECENSIONI
-// da implementare scrivete qua sotto
 
+
+$datiAvvio = $controller4->avvia_recensione(1);
+echo '<h2>avvia_recensione</h2>';
+echo '<pre>';
+print_r($datiAvvio);
+echo '</pre>';
+
+
+$datiCompila = $controller4->compila_recensione(
+    5,
+    'Esperienza fantastica',
+    'Il tatuatore è stato professionale e molto preciso, super contento del risultato.',
+    'tatuaggio_drago.jpg',
+    1,
+    'Realistico'
+);
+echo '<h2>compila_recensione</h2>';
+echo '<pre>';
+print_r($datiCompila);
+echo '</pre>';
+
+$datiPubblica = $controller4->pubblica_recensione();
+echo '<h2>pubblica_recensione</h2>';
+echo '<pre>';
+print_r($datiPubblica);
+echo '</pre>';
 
 
 //INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
@@ -224,8 +250,29 @@ switch ($page) {
 
 
 //INTERFACCIA 4 - GESTIONE RECENSIONI
-// da implementare scrivete qua sotto
+    case 'avvia_recensione':
+            $idStudio = (int)($_GET['id'] ?? 0);
+            $dati = $controller4->avvia_recensione($idStudio);
+            View::render('form_recensione', $dati);
+            break;
 
+
+    case 'compila_recensione':
+        $dati = $controller4->compila_recensione(
+            (int)($_POST['voto'] ?? 0),
+            $_POST['titolo'] ?? '',
+            $_POST['descrizione'] ?? '',
+            $_FILES['foto']['name'] ?? '',
+            (int)($_POST['idTatuatore'] ?? 0),
+            $_POST['stile'] ?? ''
+        );
+        View::render('anteprima_recensione', $dati);
+        break;
+
+    case 'pubblica_recensione':
+        $dati = $controller4->pubblica_recensione();
+        View::render('conferma_recensione', $dati);
+        break;
 
 
 //INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
