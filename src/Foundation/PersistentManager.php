@@ -66,7 +66,11 @@ class PersistentManager
         // return $this->em->find($class, $id); PER ADESSO COMMENTATO PERCHÈ IL DB ANCORA NON C'È
     }
 
-    
+    public function findPortfolioByStudioId(int $idStudio): array
+    {
+        return $this->studioRepository->findPortfolioByStudioId($idStudio);
+    }
+
     //Fab
     public function findAllSegnalazioni(): array
     {

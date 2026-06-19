@@ -3,7 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 use InkMaster\Control\PrenotazionePagamento;
-
+use InkMaster\Control\GestionePortfolio;
 
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
@@ -13,6 +13,7 @@ SessionManager::start();
 
 $controller = new RicercaVisualizzaTatuatori();
 $controller2 = new PrenotazionePagamento();
+$controller3 = new GestionePortfolio();
 $controller5 = new ModerazionePiattaforma();
 
 
@@ -76,10 +77,12 @@ echo '</pre>';
 
 
 
-//INTERFACCIA 3 - GESTIONE PROFILO UTENTE
-// da implementare scrivete qua sotto
-
-
+//INTERFACCIA 3 - GESTIONE PORTFOLIO
+$datiPortfolio = $controller3->apriPortfolio();
+echo '<h2>apriPortfolio</h2>';
+echo '<pre>';
+print_r($datiPortfolio);
+echo '</pre>';
 
 //INTERFACCIA 4 - GESTIONE RECENSIONI
 // da implementare scrivete qua sotto
