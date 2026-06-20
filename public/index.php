@@ -111,14 +111,7 @@ print_r($datiAvvio);
 echo '</pre>';
 
 
-$datiCompila = $controller4->compila_recensione(
-    5,
-    'Esperienza fantastica',
-    'Il tatuatore è stato professionale e molto preciso, super contento del risultato.',
-    'tatuaggio_drago.jpg',
-    1,
-    'Realistico'
-);
+$datiCompila = $controller4->compila_recensione(5,'Esperienza fantastica','Il tatuatore è stato professionale e molto preciso, super contento del risultato.','tatuaggio_drago.jpg',1,'Realistico');
 echo '<h2>compila_recensione</h2>';
 echo '<pre>';
 print_r($datiCompila);
