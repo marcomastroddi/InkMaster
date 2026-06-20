@@ -5,10 +5,13 @@ use InkMaster\Foundation\StileRepository;
 use InkMaster\Foundation\StudioRepository;
 use InkMaster\Foundation\SegnalazioneRepository;//Fab 
 use InkMaster\Foundation\PersonaRepository;//Fab
+use InkMaster\Foundation\PubblicazioneRepository;
+
 use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Foundation\RecensioneRepository;
 use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Pubblicazione;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Recensione;
 
@@ -27,6 +30,7 @@ class PersistentManager
     private SegnalazioneRepository $segnalazioneRepository;//Fab
     private PersonaRepository $personaRepository;//Fab
     private RecensioneRepository $recensioneRepository;
+    private PubblicazioneRepository $pubblicazioneRepository;
     private function __construct($entityManager = null)
     {
         $this->em = $entityManager;
@@ -35,6 +39,7 @@ class PersistentManager
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
         $this->personaRepository = new PersonaRepository($entityManager);//Fab
         $this->recensioneRepository = new RecensioneRepository($entityManager);
+        $this->pubblicazioneRepository = new PubblicazioneRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -89,6 +94,11 @@ class PersistentManager
     public function savePubblicazione(int $idStudio, int $idTatuatore, array $infoPubblicazione)
     {
         return $this->studioRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+    }
+
+    public function findDettagliPubblicazione(int $idPubblicazione): ?Object
+    {
+        return $this->pubblicazioneRepository->findDettagliPubblicazione($idPubblicazione);
     }
 
     //Fab

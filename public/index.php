@@ -111,6 +111,12 @@ echo '<pre>';
 print_r($datiPortfolio);
 echo '</pre>';
 
+$datiDettagliPubblicazione = $controller4->visuaizzaDettagliPubblicazione(1);
+echo '<h2>findDettagliPubblicazione</h2>';
+echo '<pre>';
+print_r($datiDettagliPubblicazione);
+echo '</pre>';
+
 
 
 //INTERFACCIA 5 - GESTIONE RECENSIONI

@@ -32,4 +32,23 @@ class VisualizzaPortfolio
         ];
     }
 
+    public function visuaizzaDettagliPubblicazione(int $idPubblicazione): array
+    {
+        if(empty($idPubblicazione))
+        {
+            return [
+                'status' => 'error',
+                'message' => 'ID Pubblicazione mancante o non valido.'
+            ];
+        }
+
+        //Chiamata al layer foundation per recuperare i dettagli della pubblicazione
+        $dettagli = $this->pm->findDettagliPubblicazione($idPubblicazione);
+
+        return [
+            'status' => 'success',
+            'data' => $dettagli
+        ];
+    }
+
 }

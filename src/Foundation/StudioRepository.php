@@ -89,41 +89,41 @@ class StudioRepository
         '0612345678',
         ['lun-ven' => '10:00-19:00'],
         ['lun-ven' => '19:00']
-    );
+        );
 
-    $tatuaggio1 = new Tatuaggio(150.00, 'Avambraccio', '15x10 cm');
-    $tatuaggio2 = new Tatuaggio(300.00, 'Schiena', '30x20 cm');
-    $tatuaggio3 = new Tatuaggio(80.00, 'Polso', '5x5 cm');
+        $tatuaggio1 = new Tatuaggio(150.00, 'Avambraccio', '15x10 cm');
+        $tatuaggio2 = new Tatuaggio(300.00, 'Schiena', '30x20 cm');
+        $tatuaggio3 = new Tatuaggio(80.00, 'Polso', '5x5 cm');
 
-    return [
-        new Pubblicazione(
-            'Realismo in bianco e nero',
-            new DateTime('2026-05-12'),
-            new DateTime('15:30:00'),
-            $studio,
-            $tatuaggio1,
-            'Dettaglio di un ritratto realistico completato in tre sessioni.',
-            '/images/pubblicazioni/realismo_bn.jpg'
-        ),
-        new Pubblicazione(
-            'Drago giapponese full back',
-            new DateTime('2026-04-28'),
-            new DateTime('17:00:00'),
-            $studio,
-            $tatuaggio2,
-            'Lavoro completo in stile Giapponese, sessione finale di colore.',
-            '/images/pubblicazioni/drago_giapponese.jpg'
-        ),
-        new Pubblicazione(
-            'Piccolo blackwork minimal',
-            new DateTime('2026-06-02'),
-            new DateTime('11:15:00'),
-            $studio,
-            $tatuaggio3,
-            'Tatuaggio minimalista sul polso, perfetto per chi ama i dettagli sottili.',
-            '/images/pubblicazioni/blackwork_minimal.jpg'
-        ),
-    ];
+        return [
+            new Pubblicazione(
+                'Realismo in bianco e nero',
+                new DateTime('2026-05-12'),
+                new DateTime('15:30:00'),
+                $studio,
+                $tatuaggio1,
+                'Dettaglio di un ritratto realistico completato in tre sessioni.',
+                '/images/pubblicazioni/realismo_bn.jpg'
+            ),
+            new Pubblicazione(
+                'Drago giapponese full back',
+                new DateTime('2026-04-28'),
+                new DateTime('17:00:00'),
+                $studio,
+                $tatuaggio2,
+                'Lavoro completo in stile Giapponese, sessione finale di colore.',
+                '/images/pubblicazioni/drago_giapponese.jpg'
+            ),
+            new Pubblicazione(
+                'Piccolo blackwork minimal',
+                new DateTime('2026-06-02'),
+                new DateTime('11:15:00'),
+                $studio,
+                $tatuaggio3,
+                'Tatuaggio minimalista sul polso, perfetto per chi ama i dettagli sottili.',
+                '/images/pubblicazioni/blackwork_minimal.jpg'
+            ),
+        ];
     }
 
     public function savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione)
