@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use InkMaster\Control\RicercaVisualizzaTatuatori;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
+use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\InserimentoRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
@@ -14,8 +15,9 @@ SessionManager::start();
 $controller = new RicercaVisualizzaTatuatori();
 $controller2 = new PrenotazionePagamento();
 $controller3 = new GestionePortfolio();
-$controller4 = new InserimentoRecensione();
-$controller5 = new ModerazionePiattaforma();
+$controller4 = new VisualizzaPortfolio();
+$controller5 = new InserimentoRecensione();
+$controller6 = new ModerazionePiattaforma();
 
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
@@ -102,17 +104,24 @@ echo '<pre>';
 print_r($datiPubblicazioneTatuaggio);
 echo '</pre>';
 
+//INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO
+$datiPortfolio = $controller4->apriPortfolio(1);
+echo '<h2>apriPortfolio</h2>';
+echo '<pre>';
+print_r($datiPortfolio);
+echo '</pre>';
 
 
-//INTERFACCIA 4 - GESTIONE RECENSIONI
-$datiAvvio = $controller4->avvia_recensione(1, 1);
+
+//INTERFACCIA 5 - GESTIONE RECENSIONI
+$datiAvvio = $controller5->avvia_recensione(1, 1);
 echo '<h2>avvia_recensione</h2>';
 echo '<pre>';
 print_r($datiAvvio);
 echo '</pre>';
 
 
-$datiCompila = $controller4->compila_recensione(
+$datiCompila = $controller5->compila_recensione(
     5,
     'Esperienza fantastica',
     'Il tatuatore è stato professionale e molto preciso, super contento del risultato.',
@@ -125,27 +134,27 @@ echo '<pre>';
 print_r($datiCompila);
 echo '</pre>';
 
-$datiPubblica = $controller4->pubblica_recensione();
+$datiPubblica = $controller5->pubblica_recensione();
 echo '<h2>pubblica_recensione</h2>';
 echo '<pre>';
 print_r($datiPubblica);
 echo '</pre>';
 
 
-//INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
-$datiSegnalazioni = $controller5->accedi_segnalazioni();
+//INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
+$datiSegnalazioni = $controller6->accedi_segnalazioni();
 echo '<h2>accedi_segnalazioni</h2>';
 echo '<pre>';
 print_r($datiSegnalazioni);
 echo '</pre>';
 
-$datiUtente = $controller5->seleziona_utente(1);
+$datiUtente = $controller6->seleziona_utente(1);
 echo '<h2>seleziona_utente</h2>';
 echo '<pre>';
 print_r($datiUtente);
 echo '</pre>';
 
-$datiBan = $controller5->conferma_ban('temporaneo', '7 giorni', 'spam', 'bassa', 'Utente ha inviato messaggi ripetuti');
+$datiBan = $controller6->conferma_ban('temporaneo', '7 giorni', 'spam', 'bassa', 'Utente ha inviato messaggi ripetuti');
 echo '<h2>conferma_ban</h2>';
 echo '<pre>';
 print_r($datiBan);
