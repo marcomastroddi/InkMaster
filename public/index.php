@@ -103,6 +103,7 @@ print_r($datiPubblicazioneTatuaggio);
 echo '</pre>';
 
 
+
 //INTERFACCIA 4 - GESTIONE RECENSIONI
 $datiAvvio = $controller4->avvia_recensione(1, 1);
 echo '<h2>avvia_recensione</h2>';
@@ -111,7 +112,14 @@ print_r($datiAvvio);
 echo '</pre>';
 
 
-$datiCompila = $controller4->compila_recensione(5,'Esperienza fantastica','Il tatuatore è stato professionale e molto preciso, super contento del risultato.','tatuaggio_drago.jpg',1,'Realistico');
+$datiCompila = $controller4->compila_recensione(
+    5,
+    'Esperienza fantastica',
+    'Il tatuatore è stato professionale e molto preciso, super contento del risultato.',
+    'tatuaggio_drago.jpg',
+    1,
+    'Realistico'
+);
 echo '<h2>compila_recensione</h2>';
 echo '<pre>';
 print_r($datiCompila);
@@ -237,27 +245,8 @@ switch ($page) {
  
         
 //INTERFACCIA 3 - GESTIONE PROFILO UTENTE
-    case 'apriPortfolio':
-        $dati = $controller3->apriPortfolio();
-        View::render('portfolio', $dati);
-        break;
+// da implementare scrivete qua sotto
 
-    case 'mostraFormPubblicazione':
-        $dati = $controller3->mostraFormPubblicazione();
-        View::render('form_pubblicazione', $dati);
-        break;
-    
-    case 'pubblicaTatuaggio':
-        $datiForm = [
-            'titolo'        => $_POST['titolo']        ?? '',
-            'descrizione'   => $_POST['descrizione']   ?? '',
-            'percorso_foto' => $_POST['percorso_foto'] ?? '',
-            'stile'         => $_POST['stile']         ?? ''
-        ];
-        $dati = $controller3->pubblicaTatuaggio($datiForm);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
 
 
 //INTERFACCIA 4 - GESTIONE RECENSIONI
