@@ -93,7 +93,7 @@ class PersistentManager
 
     public function savePubblicazione(int $idStudio, int $idTatuatore, array $infoPubblicazione)
     {
-        return $this->studioRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+        return $this->pubblicazioneRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
     }
 
     public function findDettagliPubblicazione(int $idPubblicazione): ?Object
