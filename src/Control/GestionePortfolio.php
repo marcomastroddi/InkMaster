@@ -63,7 +63,7 @@ class GestionePortfolio {
         ];
     }
 
-    public function pubblicaTatuaggio(array $datiForm): array
+    public function pubblicaPubblicazione(array $datiForm): array
     {
         $idStudio = SessionManager::get('id_studio', 12345); // Recupera l'ID dello studio dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
         $idTatuatore = SessionManager::get('id_tatuatore', 67890); // Recupera l'ID del tatuatore dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
@@ -98,6 +98,24 @@ class GestionePortfolio {
             'message' => 'Impossibile pubblicare il tatuaggio.'
         ];
 
+    }
+
+    public function eliminaPubblicazione(int $idPubblicazione): array
+    {
+        $esitoEliminazione = $this->pm->deletePubblicazione($idPubblicazione);
+
+        if ($esitoEliminazione) {
+            return [
+                'status' => 'success',
+                'message' => 'Pubblicazione eliminata con successo dal portfolio dello studio',
+                'interfaccia' => 'Visualizzazione Portfolio Studio aggiornato senza la pubblicazione eliminata',
+            ];
+        }
+
+        return [
+            'status' => 'error',
+            'message' => 'Impossibile eliminare la pubblicazione.'
+        ];
     }
 
 

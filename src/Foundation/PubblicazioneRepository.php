@@ -51,4 +51,11 @@ class PubblicazioneRepository
         //Per adesso, simulo il salvataggio e ritorno true per indicare successo
         return true;
     }
+
+    public function deletePubblicazione(int $idPubblicazione): bool
+    {
+        // Implementazione del metodo per eliminare la pubblicazione
+        //Per adesso, simulo l'eliminazione e ritorno true per indicare successo
+        return true;
+    }
 }

@@ -106,6 +106,11 @@ class PersistentManager
         return $this->pubblicazioneRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
     }
 
+    public function deletePubblicazione(int $idPubblicazione): bool
+    {
+        return $this->pubblicazioneRepository->deletePubblicazione($idPubblicazione);
+    }
+
     public function findDettagliPubblicazione(int $idPubblicazione): ?Object
     {
         return $this->pubblicazioneRepository->findDettagliPubblicazione($idPubblicazione);

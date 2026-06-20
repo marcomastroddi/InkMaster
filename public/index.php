@@ -130,15 +130,21 @@ echo '<pre>';
 print_r($datiFormPubblicazione);
 echo '</pre>';
 
-$datiPubblicazioneTatuaggio = $controller3->pubblicaTatuaggio([
+$datiPubblicazioneTatuaggio = $controller3->pubblicaPubblicazione([
     'titolo' => 'Nuovo Tatuaggio',
     'descrizione' => 'Descrizione del nuovo tatuaggio',
     'percorso_immagine' => '/images/pubblicazioni/nuovo_tatuaggio.jpg',
     'stile' => 'Realistico'
 ]);
-echo '<h2>pubblicaTatuaggio</h2>';
+echo '<h2>pubblicaPubblicazione</h2>';
 echo '<pre>';
 print_r($datiPubblicazioneTatuaggio);
+echo '</pre>';
+
+$datiEliminaPubblicazione = $controller3->eliminaPubblicazione(1);
+echo '<h2>eliminaPubblicazione</h2>';  
+echo '<pre>';
+print_r($datiEliminaPubblicazione);
 echo '</pre>';
 
 //INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO
