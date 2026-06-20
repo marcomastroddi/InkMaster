@@ -45,6 +45,15 @@ class PersistentManager
         return self::$instance;
     }
 
+
+    // Salva un oggetto nuovo o aggiorna uno esistente
+    public function save(object $entity): void
+    {
+        $this->em->persist($entity);
+        $this->em->flush();
+    }
+
+
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();

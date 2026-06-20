@@ -42,6 +42,11 @@ class Appuntamento
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;
 
+    // 2.5 Relazione con Tatuatore (Molti appuntamenti a un Tatuatore)
+    #[ORM\ManyToOne(targetEntity: Tatuatore::class)]
+    #[ORM\JoinColumn(name: 'tatuatore_id', referencedColumnName: 'id', nullable: false)]
+    private Tatuatore $tatuatore;
+
     // 3. Relazione con Pagamento (Bidirezionale rispetto a Pagamento.php, 1 a 1)
     #[ORM\OneToOne(inversedBy: 'appuntamento', targetEntity: Pagamento::class)]
     #[ORM\JoinColumn(name: 'pagamento_id', referencedColumnName: 'id', nullable: true)]
@@ -60,6 +65,7 @@ class Appuntamento
         string $stato, 
         Cliente $cliente, 
         Studio $studio,
+        Tatuatore $tatuatore,      // ← NUOVO
         ?string $note = null
     ) {
         $this->data = $data;
@@ -68,10 +74,9 @@ class Appuntamento
         $this->stato = $stato;
         $this->cliente = $cliente;
         $this->studio = $studio;
+        $this->tatuatore = $tatuatore;   // ← NUOVO
         $this->note = $note;
-        
-        // In Doctrine Le relazioni "OneToMany" o "ManyToMany"
-        // vanno sempre inizializzate nel costruttore come ArrayCollection vuote.
+
         $this->messaggi = new ArrayCollection();
     }
 
@@ -126,6 +131,11 @@ class Appuntamento
         return $this->messaggi;
     }
 
+    public function getTatuatore(): Tatuatore 
+    {
+        return $this->tatuatore;
+    }
+
     // Blocco setter
     public function setData(DateTime $data): void 
     {
@@ -165,5 +175,10 @@ class Appuntamento
     public function setPagamento(?Pagamento $pagamento): void 
     {
         $this->pagamento = $pagamento;
+    }
+
+    public function setTatuatore(Tatuatore $tatuatore): void 
+    {
+        $this->tatuatore = $tatuatore;
     }
 }
