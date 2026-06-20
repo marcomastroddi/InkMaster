@@ -47,7 +47,7 @@ class ModerazionePiattaforma
     }
 
     public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione): array
-    {
+    { //va aggiunto un discorso sul db, per ora non serve perché non c'è niente da salvare. Quando ci sarà il db, aggiungeremo un metodo save() in PersistentManager e lo chiameremo qui.
         $utenteId = SessionManager::get('utente_selezionato');
 
         if ($utenteId === null) {

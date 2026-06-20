@@ -244,8 +244,27 @@ switch ($page) {
  
         
 //INTERFACCIA 3 - GESTIONE PROFILO UTENTE
-// da implementare scrivete qua sotto
+    case 'apriPortfolio':
+        $dati = $controller3->apriPortfolio();
+        View::render('portfolio', $dati);
+        break;
 
+    case 'mostraFormPubblicazione':
+        $dati = $controller3->mostraFormPubblicazione();
+        View::render('form_pubblicazione', $dati);
+        break;
+    
+    case 'pubblicaTatuaggio':
+        $datiForm = [
+            'titolo'        => $_POST['titolo']        ?? '',
+            'descrizione'   => $_POST['descrizione']   ?? '',
+            'percorso_foto' => $_POST['percorso_foto'] ?? '',
+            'stile'         => $_POST['stile']         ?? ''
+        ];
+        $dati = $controller3->pubblicaTatuaggio($datiForm);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
 
 //INTERFACCIA 4 - GESTIONE RECENSIONI
