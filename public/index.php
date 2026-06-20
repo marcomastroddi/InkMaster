@@ -102,9 +102,8 @@ echo '<pre>';
 print_r($datiPubblicazioneTatuaggio);
 echo '</pre>';
 
+
 //INTERFACCIA 4 - GESTIONE RECENSIONI
-
-
 $datiAvvio = $controller4->avvia_recensione(1);
 echo '<h2>avvia_recensione</h2>';
 echo '<pre>';
@@ -235,6 +234,7 @@ switch ($page) {
     break;
 
 
+    
 //INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO(in corso)
     case 'scegli_studio':
         $id = (int)($_GET['id'] ?? 0);
@@ -245,7 +245,27 @@ switch ($page) {
  
         
 //INTERFACCIA 3 - GESTIONE PROFILO UTENTE
-// da implementare scrivete qua sotto
+    case 'apriPortfolio':
+        $dati = $controller3->apriPortfolio();
+        View::render('portfolio', $dati);
+        break;
+
+    case 'mostraFormPubblicazione':
+        $dati = $controller3->mostraFormPubblicazione();
+        View::render('form_pubblicazione', $dati);
+        break;
+
+    case 'pubblicaTatuaggio':
+    $datiForm = [
+        'titolo'        => $_POST['titolo']        ?? '',
+        'descrizione'   => $_POST['descrizione']   ?? '',
+        'percorso_foto' => $_POST['percorso_foto'] ?? '',
+        'stile'         => $_POST['stile']         ?? ''
+    ];
+    $dati = $controller3->pubblicaTatuaggio($datiForm);
+    header('Content-Type: application/json');
+    echo json_encode($dati);
+    break;
 
 
 
@@ -255,7 +275,6 @@ switch ($page) {
             $dati = $controller4->avvia_recensione($idStudio);
             View::render('form_recensione', $dati);
             break;
-
 
     case 'compila_recensione':
         $dati = $controller4->compila_recensione(
@@ -273,6 +292,7 @@ switch ($page) {
         $dati = $controller4->pubblica_recensione();
         View::render('conferma_recensione', $dati);
         break;
+
 
 
 //INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
