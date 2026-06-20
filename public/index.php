@@ -64,20 +64,57 @@ print_r($datiRicerca);
 echo '</pre>';
 
 //INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
-$datistudio = $controller2->scegli_studio(1);
-echo '<h2>scegli_studio</h2>';
-echo '<pre>';
-print_r($datistudio);
-echo '</pre>';
+$datiStudio = $controller2->scegli_studio(1);
+echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); echo '</pre>';
 
-/*$datiappuntamento = $controller2->richiedi_appuntamento(1); da aggiungere nel caso duso 2
-echo '<h2>richiedi_appuntamento</h2>';
-echo '<pre>';
-print_r($datiappuntamento);
-echo '</pre>';
-*/
+$datiTatuatore = $controller2->scegli_tatuatore(1);
+echo '<h2>scegli_tatuatore</h2><pre>'; print_r($datiTatuatore); echo '</pre>';
 
+$datiStile = $controller2->scegli_stile(1);
+echo '<h2>scegli_stile</h2><pre>'; print_r($datiStile); echo '</pre>';
 
+$datiData = $controller2->scegli_data('2024-06-01');
+echo '<h2>scegli_data</h2><pre>'; print_r($datiData); echo '</pre>';
+
+// Popoliamo la sessione per simulare gli step precedenti
+$_SESSION['prenotazione'] = [
+    'studio_id'       => 1,
+    'tatuatore_id'    => 1,
+    'stile_id'        => 1,
+    'data'            => '2024-06-01',
+    'appuntamento_id' => 1
+];
+$datiAppuntamento = $controller2->richiedi_appuntamento(1, 'Voglio un drago sul braccio');
+echo '<h2>richiedi_appuntamento</h2><pre>'; print_r($datiAppuntamento); echo '</pre>';
+
+// forziamo l'id fittizio perché save() non usa il DB
+$_SESSION['prenotazione']['appuntamento_id'] = 1;
+
+$datiConferma = $controller2->confermaPrenotazione();
+echo '<h2>confermaPrenotazione</h2><pre>'; print_r($datiConferma); echo '</pre>';
+
+// ripristiniamo la sessione per i test successivi
+$_SESSION['prenotazione']['appuntamento_id'] = 1;
+
+$datiAccetta = $controller2->accetta_richiesta(1);
+echo '<h2>accetta_richiesta</h2><pre>'; print_r($datiAccetta); echo '</pre>';
+
+$datiRifiuta = $controller2->rifiuta_richiesta(1);
+echo '<h2>rifiuta_richiesta</h2><pre>'; print_r($datiRifiuta); echo '</pre>';
+
+$datiConcludi = $controller2->concludi_appuntamento('COMPLETATO', 150.00);
+echo '<h2>concludi_appuntamento</h2><pre>'; print_r($datiConcludi); echo '</pre>';
+
+$datiAvviaPagamento = $controller2->avvia_pagamento();
+echo '<h2>avvia_pagamento</h2><pre>'; print_r($datiAvviaPagamento); echo '</pre>';
+
+$datiPagamento = $controller2->inserisci_dati_pagamento([
+    'numero'       => '1234567890123456',
+    'scadenza'     => '12/26',
+    'cvv'          => '123',
+    'intestatario' => 'Mario Rossi'
+]);
+echo '<h2>inserisci_dati_pagamento</h2><pre>'; print_r($datiPagamento); echo '</pre>';
 
 
 //INTERFACCIA 3 - GESTIONE PORTFOLIO
@@ -251,12 +288,84 @@ switch ($page) {
 
 
 //INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO(in corso)
+
     case 'scegli_studio':
         $id = (int)($_GET['id'] ?? 0);
         $dati = $controller2->scegli_studio($id);
         View::render('studio', $dati);
         break;
-    
+
+    case 'scegli_tatuatore':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller2->scegli_tatuatore($id);
+        View::render('scelta_stile', $dati);
+        break;
+
+    case 'scegli_stile':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller2->scegli_stile($id);
+        View::render('scelta_data', $dati);
+        break;
+
+    case 'scegli_data':
+        $data = $_POST['data'] ?? '';
+        $dati = $controller2->scegli_data($data);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'richiedi_appuntamento':
+        $clienteId   = (int)($_POST['cliente_id'] ?? 0);
+        $descrizione = $_POST['descrizione'] ?? '';
+        $dati = $controller2->richiedi_appuntamento($clienteId, $descrizione);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'confermaPrenotazione':
+        $dati = $controller2->confermaPrenotazione();
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'accetta_richiesta':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller2->accetta_richiesta($id);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'rifiuta_richiesta':
+        $id = (int)($_GET['id'] ?? 0);
+        $dati = $controller2->rifiuta_richiesta($id);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'concludi_appuntamento':
+        $stato = $_POST['stato'] ?? '';
+        $costo = (float)($_POST['costo'] ?? 0);
+        $dati = $controller2->concludi_appuntamento($stato, $costo);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'avvia_pagamento':
+        $dati = $controller2->avvia_pagamento();
+        View::render('form_pagamento', $dati);
+        break;
+
+    case 'inserisci_dati_pagamento':
+        $datiCarta = [
+            'numero'       => $_POST['numero']       ?? '',
+            'scadenza'     => $_POST['scadenza']      ?? '',
+            'cvv'          => $_POST['cvv']           ?? '',
+            'intestatario' => $_POST['intestatario']  ?? ''
+        ];
+        $dati = $controller2->inserisci_dati_pagamento($datiCarta);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
  
         
 //INTERFACCIA 3 - GESTIONE PROFILO UTENTE

@@ -48,7 +48,7 @@ class PrenotazionePagamento {
 
         // Controllo di coerenza: il tatuatore deve appartenere allo studio scelto allo step 0
         $studioId = $_SESSION['prenotazione']['studio_id'] ?? null;
-        if ($tatuatore->getStudio()->getId() !== $studioId) {
+        if  ($tatuatore->getStudio()->getId() !== (int)$studioId){
             return ['status' => 'error', 'message' => 'Tatuatore non valido per questo studio'];
         }
 
@@ -142,13 +142,142 @@ class PrenotazionePagamento {
 
         $this->pm->save($appuntamento);
 
-        // La prenotazione è completata: puliamo la sessione
-        unset($_SESSION['prenotazione']);
+        // La prenotazione è completata, salviamo l'id dell'appuntamento in sessione per il passo successivo 
+        $_SESSION['prenotazione']['appuntamento_id'] = $appuntamento->getId();
 
         return [
             'status' => 'success',
             'interfaccia' => 'Conferma prenotazione',
             'message' => 'Appuntamento richiesto con successo'
+        ];
+    }
+
+    public function confermaPrenotazione(): array
+    {
+        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+
+        if ($appuntamentoId === null) {
+            return ['status' => 'error', 'message' => 'Nessuna prenotazione in corso'];
+        }
+
+        // TODO: quando ci sarà il DB
+        // $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+        // $appuntamento->setStato('CONFERMATO');
+        // $this->pm->save($appuntamento);
+
+        unset($_SESSION['prenotazione']);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Schermata conferma',
+            'message'     => 'Prenotazione confermata con successo'
+        ];
+    }
+
+
+    public function accetta_richiesta(int $appuntamentoId): array
+    {
+        $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
+        }
+
+        // TODO: quando ci sarà il DB
+        // $appuntamento->setStato('ACCETTATO');
+        // $this->pm->save($appuntamento);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Schermata conferma',
+            'message'     => 'Prenotazione accettata con successo'
+        ];
+    }
+
+
+    public function rifiuta_richiesta(int $appuntamentoId): array
+    {
+        $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
+        }
+
+        // TODO: quando ci sarà il DB
+        // $this->pm->delete($appuntamento);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Schermata conferma',
+            'message'     => 'Prenotazione rifiutata'
+        ];
+    }
+
+
+    public function concludi_appuntamento(string $stato, float $costo): array
+    {
+        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+
+        if ($appuntamentoId === null) {
+            return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
+        }
+
+        // TODO: quando ci sarà il DB
+        // $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+        // $appuntamento->setStato($stato);
+        // $appuntamento->setCosto($costo);
+        // $this->pm->save($appuntamento);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Bottone paga abilitato',
+            'message'     => 'Tatuaggio concluso, procedi al pagamento'
+        ];
+    }
+
+
+    public function avvia_pagamento(): array
+    {
+        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+
+        if ($appuntamentoId === null) {
+            return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
+        }
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Form dati pagamento',
+            'message'     => 'Inserisci i dati della carta per procedere al pagamento'
+        ];
+    }
+
+
+    public function inserisci_dati_pagamento(array $datiCarta): array
+    {
+        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+
+        if ($appuntamentoId === null) {
+            return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
+        }
+
+        if (
+            empty($datiCarta['numero']) ||
+            empty($datiCarta['scadenza']) ||
+            empty($datiCarta['cvv']) ||
+            empty($datiCarta['intestatario'])
+        ) {
+            return ['status' => 'error', 'message' => 'Dati carta incompleti'];
+        }
+
+        // TODO: quando ci sarà il DB
+        // chiamata al servizio di pagamento esterno
+
+        unset($_SESSION['prenotazione']);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Esito pagamento',
+            'message'     => 'Pagamento effettuato con successo'
         ];
     }
 }

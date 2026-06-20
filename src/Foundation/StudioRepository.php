@@ -172,4 +172,9 @@ class StudioRepository
 
         return null;
     }
+
+    public function findById(int $id): ?Studio
+    {
+        return $this->findAvailableStudios([])[0] ?? null;
+    }
 }
