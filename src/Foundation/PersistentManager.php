@@ -8,9 +8,15 @@ use InkMaster\Foundation\PersonaRepository;//Fab
 use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Foundation\RecensioneRepository;
-use InkMaster\Entity\Cliente;
-use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Recensione;
+use InkMaster\Foundation\TatuatoreRepository;
+use InkMaster\Foundation\ClienteRepository;
+use InkMaster\Foundation\AppuntamentoRepository;
+use InkMaster\Entity\Tatuatore;
+use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Appuntamento;
+use InkMaster\Entity\Stile;
+
 
 
 /*Nota Fab:Per conferma_ban non serve una repository — salva dati nel DB. Per ora con dati fittizi non c'è niente da salvare, 
@@ -27,6 +33,10 @@ class PersistentManager
     private SegnalazioneRepository $segnalazioneRepository;//Fab
     private PersonaRepository $personaRepository;//Fab
     private RecensioneRepository $recensioneRepository;
+    private TatuatoreRepository $tatuatoreRepository;
+    private ClienteRepository $clienteRepository;
+    private AppuntamentoRepository $appuntamentoRepository;
+
     private function __construct($entityManager = null)
     {
         $this->em = $entityManager;
@@ -35,6 +45,10 @@ class PersistentManager
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
         $this->personaRepository = new PersonaRepository($entityManager);//Fab
         $this->recensioneRepository = new RecensioneRepository($entityManager);
+        $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
+        $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
+        $this->clienteRepository = new ClienteRepository($entityManager);
+        $this->appuntamentoRepository = new AppuntamentoRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -49,10 +63,10 @@ class PersistentManager
     // Salva un oggetto nuovo o aggiorna uno esistente
     public function save(object $entity): void
     {
-        $this->em->persist($entity);
-        $this->em->flush();
+        // TODO: quando ci sarà il DB
+        // $this->em->persist($entity);
+        // $this->em->flush();
     }
-
 
     public function findAvailableStyles(): array
     {
@@ -67,18 +81,14 @@ class PersistentManager
     // Cerca per ID — es: find(Studio::class, 5)
     public function find(string $class, int $id): ?object
     {
-        return new Studio(
-            'InkMaster Roma Centro',
-            '12345678901',
-            Citta::Roma,
-            'roma.centro@inkmaster.it',
-            'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
-            '0612345678',
-            ['lun-ven' => '10:00-19:00'],
-            ['lun-ven' => '19:00']
-        );
-
-        // return $this->em->find($class, $id); PER ADESSO COMMENTATO PERCHÈ IL DB ANCORA NON C'È
+        return match($class) {
+            Studio::class       => $this->studioRepository->findById($id),
+            Tatuatore::class    => $this->tatuatoreRepository->findById($id),
+            Cliente::class      => $this->clienteRepository->findById($id),
+            Appuntamento::class => $this->appuntamentoRepository->findById($id),
+            Stile::class        => $this->stileRepository->findById($id),
+            default             => null
+        };
     }
 
     public function findPortfolioByStudioId(int $idStudio): array
@@ -128,6 +138,12 @@ class PersistentManager
         Tatuatore $tatuatore
     ): Recensione {
         return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
+    }
+
+    // Fab, per adesso restituisce sempre lo stesso studio fittizio, ma in futuro potrà fare query sul DB
+    public function findById(int $id): ?Studio
+    {
+        return $this->findAvailableStudios([])[0] ?? null;
     }
 
 }

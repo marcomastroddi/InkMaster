@@ -25,4 +25,10 @@ class StileRepository
             new Stile('Tradizionale', 'Conosciuto anche come Old School, con linee marcate, pochi colori netti e soggetti classici (ancore, rose).'),
         ];
     }
+    
+    // Fab, per adesso restituisce sempre lo stesso stile fittizio, ma in futuro potrà fare query sul DB
+    public function findById(int $id): ?Stile
+    {
+        return $this->findAvailableStyles()[0] ?? null;
+    }
 }
