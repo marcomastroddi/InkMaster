@@ -4,6 +4,8 @@ namespace InkMaster\Control;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
+use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Tatuatore;
 
 class InserimentoRecensione {
     private PersistentManager $pm;
@@ -13,9 +15,10 @@ class InserimentoRecensione {
         $this->pm = PersistentManager::getInstance();
     }
 
-    public function avvia_recensione(int $idStudio): array
+    public function avvia_recensione(int $idStudio, int $idCliente): array
     {
         SessionManager::set('studio_selezionato', $idStudio);
+        SessionManager::set('cliente_loggato', $idCliente);
 
         $studio = $this->pm->find(Studio::class, $idStudio);
 
@@ -85,33 +88,55 @@ class InserimentoRecensione {
         ];
     }
 
-    public function pubblica_recensione(): array
+   public function pubblica_recensione(): array
     {
         $idStudio = SessionManager::get('studio_selezionato');
+        $idCliente = SessionManager::get('cliente_loggato');
         $bozza = SessionManager::get('bozza_recensione');
 
-        if ($idStudio === null || $bozza === null) {
+        if ($idStudio === null || $idCliente === null || $bozza === null) {
             return [
                 'status'  => 'error',
                 'message' => 'Nessuna bozza di recensione da pubblicare'
             ];
         }
 
+        $cliente = $this->pm->findPersonaById($idCliente);
+        $studio = $this->pm->find(Studio::class, $idStudio);
         $tatuatore = $this->pm->findTatuatoreById($bozza['idTatuatore']);
 
+        if ($cliente === null || $studio === null || $tatuatore === null) {
+            return [
+                'status'  => 'error',
+                'message' => 'Dati non disponibili per la pubblicazione'
+            ];
+        }
+
+        $recensione = $this->pm->salvaRecensione(
+            $bozza['voto'],
+            $bozza['titolo'],
+            $bozza['descrizione'],
+            $bozza['foto'],
+            $bozza['stile'],
+            $cliente,
+            $studio,
+            $tatuatore
+        );
+
         SessionManager::remove('studio_selezionato');
+        SessionManager::remove('cliente_loggato');
         SessionManager::remove('bozza_recensione');
 
         return [
             'status'      => 'success',
             'interfaccia' => 'Bacheca aggiornata e notifica studio',
             'data'        => [
-                'voto'        => $bozza['voto'],
-                'titolo'      => $bozza['titolo'],
-                'descrizione' => $bozza['descrizione'],
-                'foto'        => $bozza['foto'],
-                'tatuatore'   => $tatuatore !== null ? $tatuatore->getNome() . ' ' . $tatuatore->getCognome() : 'N/D',
-                'stile'       => $bozza['stile'],
+                'voto'        => $recensione->getVoto(),
+                'titolo'      => $recensione->getTitolo(),
+                'descrizione' => $recensione->getDescrizione(),
+                'foto'        => $recensione->getFoto(),
+                'tatuatore'   => $tatuatore->getNome() . ' ' . $tatuatore->getCognome(),
+                'stile'       => $recensione->getStile(),
                 'idStudio'    => $idStudio
             ]
         ];

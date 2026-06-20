@@ -7,6 +7,10 @@ use InkMaster\Foundation\SegnalazioneRepository;//Fab
 use InkMaster\Foundation\PersonaRepository;//Fab
 use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
 use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
+use InkMaster\Foundation\RecensioneRepository;
+use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Tatuatore;
+use InkMaster\Entity\Recensione;
 
 
 /*Nota Fab:Per conferma_ban non serve una repository — salva dati nel DB. Per ora con dati fittizi non c'è niente da salvare, 
@@ -22,6 +26,7 @@ class PersistentManager
     private StudioRepository $studioRepository;
     private SegnalazioneRepository $segnalazioneRepository;//Fab
     private PersonaRepository $personaRepository;//Fab
+    private RecensioneRepository $recensioneRepository;
     private function __construct($entityManager = null)
     {
         $this->em = $entityManager;
@@ -29,6 +34,7 @@ class PersistentManager
         $this->studioRepository = new StudioRepository($entityManager);
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
         $this->personaRepository = new PersonaRepository($entityManager);//Fab
+        $this->recensioneRepository = new RecensioneRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -100,6 +106,19 @@ class PersistentManager
     public function findTatuatoreById(int $idTatuatore): ?object
     {
         return $this->studioRepository->findTatuatoreById($idTatuatore);
+    }
+
+    public function salvaRecensione(
+        int $voto,
+        string $titolo,
+        string $descrizione,
+        ?string $foto,
+        string $stile,
+        Cliente $cliente,
+        Studio $studio,
+        Tatuatore $tatuatore
+    ): Recensione {
+        return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
     }
 
 }

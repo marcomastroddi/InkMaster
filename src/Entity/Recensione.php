@@ -4,6 +4,7 @@ namespace InkMaster\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use InkMaster\Entity\Tatuatore;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'recensioni')]
@@ -33,6 +34,20 @@ class Recensione
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;
 
+    #[ORM\Column(type: 'string', length: 150)]
+    private string $titolo;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $foto = null;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $stile;
+
+    // Relazione: la recensione riguarda un tatuatore specifico (Molti a uno)
+    #[ORM\ManyToOne(targetEntity: Tatuatore::class)]
+    #[ORM\JoinColumn(name: 'tatuatore_id', referencedColumnName: 'id', nullable: false)]
+    private Tatuatore $tatuatore;
+
 
     // Costruttore
     public function __construct(
@@ -40,15 +55,22 @@ class Recensione
         DateTime $data, 
         Cliente $cliente, 
         Studio $studio, 
-        ?string $descrizione = null
+        string $titolo,
+        string $stile,
+        Tatuatore $tatuatore,
+        ?string $descrizione = null,
+        ?string $foto = null
     ) {
         $this->voto = $voto;
         $this->data = $data;
         $this->cliente = $cliente;
         $this->studio = $studio;
+        $this->titolo = $titolo;
+        $this->stile = $stile;
+        $this->tatuatore = $tatuatore;
         $this->descrizione = $descrizione;
+        $this->foto = $foto;
     }
-
     // Metodi getter
     public function getId(): ?int 
     {
@@ -80,6 +102,25 @@ class Recensione
         return $this->studio;
     }
 
+    public function getTitolo(): string 
+    {
+        return $this->titolo;
+    }
+
+    public function getFoto(): ?string 
+    {
+        return $this->foto;
+    }
+
+    public function getStile(): string 
+    {
+        return $this->stile;
+    }
+
+    public function getTatuatore(): Tatuatore 
+    {
+        return $this->tatuatore;
+    }
     // Metodi setter
     public function setVoto(int $voto): void 
     {
@@ -104,5 +145,25 @@ class Recensione
     public function setStudio(Studio $studio): void 
     {
         $this->studio = $studio;
+    }
+
+    public function setTitolo(string $titolo): void 
+    {
+        $this->titolo = $titolo;
+    }
+
+    public function setFoto(?string $foto): void 
+    {
+        $this->foto = $foto;
+    }
+
+    public function setStile(string $stile): void 
+    {
+        $this->stile = $stile;
+    }
+
+    public function setTatuatore(Tatuatore $tatuatore): void 
+    {
+        $this->tatuatore = $tatuatore;
     }
 }
