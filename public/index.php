@@ -10,7 +10,7 @@ use InkMaster\Control\ModerazionePiattaforma;
 use \InkMaster\Control\GestisciSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
-
+use InkMaster\Control\GestioneProfilo;
 
 
 
@@ -24,6 +24,7 @@ $controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
 $controller8 = new GestisciSegnalazione();
+$controller9 = new GestioneProfilo();
 
 
 
@@ -252,7 +253,24 @@ echo '<h2>inviaSegnalazione</h2><pre>';
 print_r($datiInvioSegnalazione);
 echo '</pre>';
 
+//INTERFACCIA 9 - GESTIONE PROFILO
+$_SESSION['username'] = 'mario_rossi';
+$_SESSION['ruolo'] = 'cliente';
 
+$datiProfilo = $controller9->visualizzaProfilo();
+echo '<h2>visualizzaProfilo</h2><pre>';
+print_r($datiProfilo);
+echo '</pre>';
+
+$datiModifica = $controller9->modificaDati(['nome' => 'Mario', 'cognome' => 'Bianchi']);
+echo '<h2>modificaDati</h2><pre>';
+print_r($datiModifica);
+echo '</pre>';
+
+$datiPassword = $controller9->cambiaPassword('password123', 'nuovaPassword456');
+echo '<h2>cambiaPassword</h2><pre>';
+print_r($datiPassword);
+echo '</pre>';
 
 
 
@@ -550,6 +568,30 @@ switch ($page) {
             $_POST['descrizione'] ?? '',
             $_POST['tipo_target'] ?? '',
             (int)($_POST['id_target'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+//INTERFACCIA 9 - GESTIONE PROFILO
+    case 'visualizza_profilo':
+        $dati = $controller9->visualizzaProfilo();
+        View::render('profilo', $dati);
+        break;
+
+    case 'modifica_dati':
+        $dati = $controller9->modificaDati([
+            'nome'    => $_POST['nome']    ?? '',
+            'cognome' => $_POST['cognome'] ?? ''
+        ]);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'cambia_password':
+        $dati = $controller9->cambiaPassword(
+            $_POST['vecchia_password'] ?? '',
+            $_POST['nuova_password']   ?? ''
         );
         header('Content-Type: application/json');
         echo json_encode($dati);
