@@ -40,4 +40,9 @@ class ClienteRepository
 
         return null;
     }
+
+    public function countClienti(): int
+    {
+        return 3; // fittizio
+    }
 }

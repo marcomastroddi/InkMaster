@@ -75,4 +75,9 @@ class AppuntamentoRepository
             new Appuntamento(new DateTime('2024-06-03'), DateTime::createFromFormat('H:i', '14:00'), DateTime::createFromFormat('H:i', '15:30'), 'COMPLETATO', $cliente2, $studio, $tatuatore, 'Rosa sulla spalla'),
         ];
     }
+
+    public function countPrenotazioniAttive(): int
+    {
+        return 4; // fittizio
+    }
 }

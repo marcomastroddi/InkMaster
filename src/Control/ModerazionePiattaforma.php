@@ -67,4 +67,32 @@ class ModerazionePiattaforma
         ];
     }
 
+    public function visualizzaDashboard(): array
+    {
+        $totaleClienti      = $this->pm->countClienti();
+        $totaleStudi        = $this->pm->countStudi();
+        $segnalazioniAperte = $this->pm->countSegnalazioniAperte();
+        $prenotazioniAttive = $this->pm->countPrenotazioniAttive();
+
+        $totaleUtenti = $totaleClienti + $totaleStudi;
+        $percentualeClienti = $totaleUtenti > 0 ? round(($totaleClienti / $totaleUtenti) * 100) : 0;
+        $percentualeStudi   = $totaleUtenti > 0 ? round(($totaleStudi   / $totaleUtenti) * 100) : 0;
+
+        return [
+            'status' => 'success',
+            'data'   => [
+                'kpi' => [
+                    'utenti_registrati'  => $totaleClienti,
+                    'studi_registrati'   => $totaleStudi,
+                    'segnalazioni_aperte'=> $segnalazioniAperte,
+                    'prenotazioni_attive'=> $prenotazioniAttive
+                ],
+                'tipo_utenti' => [
+                    'clienti_percentuale' => $percentualeClienti,
+                    'studi_percentuale'   => $percentualeStudi
+                ]
+            ]
+        ];
+    }
+
 }

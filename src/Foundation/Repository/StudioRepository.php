@@ -196,4 +196,9 @@ class StudioRepository
 
         return null;
     }
+
+    public function countStudi(): int
+    {
+        return 5; // fittizio — stessi della findAvailableStudios
+    }
 }

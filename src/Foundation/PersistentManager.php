@@ -217,6 +217,29 @@ class PersistentManager
     {
         return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
     }
+
+
+
+    // Metodi per le statistiche della dashboard del moderatore
+    public function countClienti(): int
+    {
+        return $this->clienteRepository->countClienti();
+    }
+
+    public function countStudi(): int
+    {
+        return $this->studioRepository->countStudi();
+    }
+
+    public function countSegnalazioniAperte(): int
+    {
+        return $this->segnalazioneRepository->countSegnalazioniAperte();
+    }
+
+    public function countPrenotazioniAttive(): int
+    {
+        return $this->appuntamentoRepository->countPrenotazioniAttive();
+    }
 }
 
 

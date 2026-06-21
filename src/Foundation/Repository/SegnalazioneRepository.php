@@ -29,4 +29,9 @@ class SegnalazioneRepository
         // $this->em->flush();
         return true;
     }
+
+    public function countSegnalazioniAperte(): int
+    {
+        return 2; // fittizio
+    }
 }

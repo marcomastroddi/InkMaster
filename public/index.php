@@ -219,6 +219,12 @@ echo '</pre>';
 
 
 //INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
+
+$datiDashboard = $controller6->visualizzaDashboard();
+echo '<h2>visualizzaDashboard</h2><pre>';
+print_r($datiDashboard);
+echo '</pre>';
+
 $datiSegnalazioni = $controller6->accedi_segnalazioni();
 echo '<h2>accedi_segnalazioni</h2>';
 echo '<pre>';
@@ -237,6 +243,8 @@ echo '<pre>';
 print_r($datiBan);
 echo '</pre>';
 
+
+
 //INTERFACCIA 7 - LOGIN
 $datiLogin = $controllerLogin->login('mario_rossi', 'password123');
 echo '<h2>login</h2><pre>'; print_r($datiLogin); echo '</pre>';
@@ -244,7 +252,7 @@ echo '<h2>login</h2><pre>'; print_r($datiLogin); echo '</pre>';
 $datiLogout = $controllerLogin->logout();
 echo '<h2>logout</h2><pre>'; print_r($datiLogout); echo '</pre>';
 
-//INTERFACCIA 8 - INVIO SEGNALAZIONE
+
 //INTERFACCIA 8 - GESTISCI SEGNALAZIONE
 $_SESSION['ruolo'] = 'cliente';
 $_SESSION['id_utente'] = 1;
@@ -316,6 +324,8 @@ $datiPagamenti = $controller12->visualizzaPagamenti();
 echo '<h2>visualizzaPagamenti</h2><pre>';
 print_r($datiPagamenti);
 echo '</pre>';
+
+
 
 
 
@@ -544,6 +554,12 @@ switch ($page) {
 
 
 //INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
+
+    case 'dashboard_moderatore':
+        $dati = $controller6->visualizzaDashboard();
+        View::render('dashboard_moderatore', $dati);
+        break;
+
     case 'accedi_segnalazioni':
         $dati = $controller5->accedi_segnalazioni();
         View::render('segnalazioni', $dati);
