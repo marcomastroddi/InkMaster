@@ -11,6 +11,8 @@ use \InkMaster\Control\GestisciSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
 use InkMaster\Control\GestioneProfilo;
+use InkMaster\Control\GestioneClienti;
+use InkMaster\Control\GestioneCalendario;
 
 
 
@@ -25,6 +27,8 @@ $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
 $controller8 = new GestisciSegnalazione();
 $controller9 = new GestioneProfilo();
+$controller10 = new GestioneClienti();
+$controller11 = new GestioneCalendario();
 
 
 
@@ -272,8 +276,36 @@ echo '<h2>cambiaPassword</h2><pre>';
 print_r($datiPassword);
 echo '</pre>';
 
+//INTERFACCIA 10 - GESTIONE CLIENTI
+$_SESSION['id_studio'] = 1;
 
+$datiClienti = $controller10->visualizzaClienti();
+echo '<h2>visualizzaClienti</h2><pre>';
+print_r($datiClienti);
+echo '</pre>';
 
+$datiStato = $controller10->aggiornaStato(1, 'COMPLETATO');
+echo '<h2>aggiornaStato</h2><pre>';
+print_r($datiStato);
+echo '</pre>';
+
+$datiPagamento = $controller10->aggiungiPagamento(1, 150.00);
+echo '<h2>aggiungiPagamento</h2><pre>';
+print_r($datiPagamento);
+echo '</pre>';
+
+//INTERFACCIA 11 - GESTIONE CALENDARIO
+$_SESSION['id_studio'] = 1;
+
+$datiCalendario = $controller11->visualizzaCalendario(6, 2024);
+echo '<h2>visualizzaCalendario</h2><pre>';
+print_r($datiCalendario);
+echo '</pre>';
+
+$datiGiorno = $controller11->visualizzaAppuntamentiDelGiorno('2024-06-01');
+echo '<h2>visualizzaAppuntamentiDelGiorno</h2><pre>';
+print_r($datiGiorno);
+echo '</pre>';
 
 
 
@@ -597,8 +629,44 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
+//INTERFACCIA 10 - GESTIONE CLIENTI
+    case 'visualizza_clienti':
+        $dati = $controller10->visualizzaClienti();
+        View::render('clienti', $dati);
+        break;
 
+    case 'aggiorna_stato':
+        $dati = $controller10->aggiornaStato(
+            (int)($_POST['id_appuntamento'] ?? 0),
+            $_POST['stato'] ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
+    case 'aggiungi_pagamento':
+        $dati = $controller10->aggiungiPagamento(
+            (int)($_POST['id_appuntamento'] ?? 0),
+            (float)($_POST['importo'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+//INTERFACCIA 11 - GESTIONE CALENDARIO
+    case 'visualizza_calendario':
+        $mese = (int)($_GET['mese'] ?? date('n'));
+        $anno = (int)($_GET['anno'] ?? date('Y'));
+        $dati = $controller11->visualizzaCalendario($mese, $anno);
+        View::render('calendario', $dati);
+        break;
+
+    case 'appuntamenti_del_giorno':
+        $data = $_GET['data'] ?? '';
+        $dati = $controller11->visualizzaAppuntamentiDelGiorno($data);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
 
 

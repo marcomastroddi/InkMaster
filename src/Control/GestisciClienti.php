@@ -1,0 +1,67 @@
+<?php
+
+namespace InkMaster\Control;
+
+use InkMaster\Foundation\PersistentManager;
+use InkMaster\Foundation\SessionManager;
+
+class GestioneClienti
+{
+    private PersistentManager $pm;
+
+    public function __construct()
+    {
+        $this->pm = PersistentManager::getInstance();
+    }
+
+    public function visualizzaClienti(): array
+    {
+        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
+
+        if (!$idStudio) {
+            return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];
+        }
+
+        $appuntamenti = $this->pm->findAppuntamentiByStudioId($idStudio);
+
+        return [
+            'status' => 'success',
+            'data'   => $appuntamenti
+        ];
+    }
+
+    public function aggiornaStato(int $idAppuntamento, string $stato): array
+    {
+        $appuntamento = $this->pm->find(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
+
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
+        }
+
+        $appuntamento->setStato($stato);
+        $this->pm->save($appuntamento);
+
+        return [
+            'status'  => 'success',
+            'message' => 'Stato aggiornato a: ' . $stato
+        ];
+    }
+
+    public function aggiungiPagamento(int $idAppuntamento, float $importo): array
+    {
+        $appuntamento = $this->pm->find(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
+
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
+        }
+
+        $appuntamento->setCosto($importo);
+        $this->pm->save($appuntamento);
+
+        return [
+            'status'  => 'success',
+            'message' => 'Pagamento di €' . $importo . ' aggiunto con successo.',
+            'interfaccia' => 'Pagamenti aggiornati'
+        ];
+    }
+}

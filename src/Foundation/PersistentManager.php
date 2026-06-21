@@ -202,6 +202,12 @@ class PersistentManager
         return $this->segnalazioneRepository->saveSegnalazione($segnalazione);
     }
 
+
+    
+    public function findAppuntamentiByStudioId(int $idStudio): array
+    {
+        return $this->appuntamentoRepository->findAppuntamentiByStudioId($idStudio);
+    }
 }
 
 
