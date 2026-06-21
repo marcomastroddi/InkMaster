@@ -26,6 +26,7 @@ class PubblicazioneRepository
         '12345678901',
         Citta::Roma,
         'roma.centro@inkmaster.it',
+        'inkmaster_roma',
         'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
         '0612345678',
         ['lun-ven' => '10:00-19:00'],
