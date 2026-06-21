@@ -18,25 +18,6 @@ class PrenotazionePagamento {
         $this->pm = PersistentManager::getInstance();
     }
 
-    // ── Step 0: l'utente apre la pagina dello studio ─────────────
-    public function scegli_studio(int $studioId): array
-    {
-        $studio = $this->pm->find(Studio::class, $studioId);
-
-        if ($studio === null) {
-            return ['status' => 'error', 'message' => 'Studio non trovato'];
-        }
-
-        // Salviamo l'id dello studio: ci servirà alla fine per creare l'appuntamento
-        $_SESSION['prenotazione']['studio_id'] = $studioId;
-
-        return [
-            'status' => 'success',
-            'interfaccia' => 'Interfaccia studio',
-            'data' => $studio
-        ];
-    }
-
     // ── Step 1: l'utente clicca "Avanti" dopo aver scelto un tatuatore ──
     public function scegli_tatuatore(int $tatuatoreId): array
     {

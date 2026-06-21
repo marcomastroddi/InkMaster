@@ -63,9 +63,10 @@ echo '<pre>';
 print_r($datiRicerca);
 echo '</pre>';
 
-//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
-$datiStudio = $controller2->scegli_studio(1);
+$datiStudio = $controller->scegli_studio(1);
 echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); echo '</pre>';
+
+//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
 
 $datiTatuatore = $controller2->scegli_tatuatore(1);
 echo '<h2>scegli_tatuatore</h2><pre>'; print_r($datiTatuatore); echo '</pre>';
