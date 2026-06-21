@@ -30,4 +30,10 @@ class SessionManager
     {
         unset($_SESSION[$key]);
     }
+
+    public static function destroy(): void
+    {
+        session_destroy();
+        $_SESSION = [];
+    }
 }

@@ -483,8 +483,22 @@ switch ($page) {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
         $dati = $controllerLogin->login($username, $password);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+        
+        if ($dati['status'] === 'success') {
+            switch ($dati['ruolo']) {
+                case 'cliente':
+                    View::render('home', $dati);
+                    break;
+                case 'tatuatore':
+                    View::render('portfolio', $dati);
+                    break;
+                case 'amministratore':
+                    View::render('moderazione', $dati);
+                    break;
+            }
+        } else {
+            View::render('login', $dati);
+        }
         break;
 
     case 'logout':
