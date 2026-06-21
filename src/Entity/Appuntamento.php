@@ -32,6 +32,10 @@ class Appuntamento
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $note = null;
 
+    // Costo concordato per l'appuntamento (impostato a lavoro concluso, nullable all'inizio)
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: true)]
+    private ?float $costo = null;
+
     // 1. Relazione con Cliente (Molti appuntamenti a un Cliente)
     #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: 'appuntamenti')]
     #[ORM\JoinColumn(name: 'cliente_id', referencedColumnName: 'id', nullable: false)]
@@ -66,7 +70,8 @@ class Appuntamento
         Cliente $cliente, 
         Studio $studio,
         Tatuatore $tatuatore,      // ← NUOVO
-        ?string $note = null
+        ?string $note = null,
+        ?float $costo = null
     ) {
         $this->data = $data;
         $this->oraInizio = $oraInizio;
@@ -76,6 +81,7 @@ class Appuntamento
         $this->studio = $studio;
         $this->tatuatore = $tatuatore;   // ← NUOVO
         $this->note = $note;
+        $this->costo = $costo;
 
         $this->messaggi = new ArrayCollection();
     }
@@ -106,9 +112,14 @@ class Appuntamento
         return $this->stato;
     }
 
-    public function getNote(): ?string 
+    public function getNote(): ?string
     {
         return $this->note;
+    }
+
+    public function getCosto(): ?float
+    {
+        return $this->costo;
     }
 
     public function getCliente(): Cliente 
@@ -157,9 +168,14 @@ class Appuntamento
         $this->stato = $stato;
     }
 
-    public function setNote(?string $note): void 
+    public function setNote(?string $note): void
     {
         $this->note = $note;
+    }
+
+    public function setCosto(?float $costo): void
+    {
+        $this->costo = $costo;
     }
 
     public function setCliente(Cliente $cliente): void 

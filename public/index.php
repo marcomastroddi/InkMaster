@@ -7,7 +7,7 @@ use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
-use \InkMaster\Control\GestioneSegnalazione;
+use InkMaster\Control\GestioneSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
 use InkMaster\Control\GestioneProfilo;
@@ -155,7 +155,7 @@ echo '</pre>';
 $datiPubblicazioneTatuaggio = $controller3->pubblicaPubblicazione([
     'titolo' => 'Nuovo Tatuaggio',
     'descrizione' => 'Descrizione del nuovo tatuaggio',
-    'percorso_immagine' => '/images/pubblicazioni/nuovo_tatuaggio.jpg',
+    'percorso_foto' => '/images/pubblicazioni/nuovo_tatuaggio.jpg',
     'stile' => 'Realistico'
 ]);
 echo '<h2>pubblicaPubblicazione</h2>';
@@ -184,7 +184,9 @@ echo '</pre>';
 
 
 //INTERFACCIA 5 - GESTIONE RECENSIONI
-$datiAvvio = $controller5->avvia_recensione(1, 1);
+$_SESSION['id_utente'] = 1; // simula il cliente loggato
+
+$datiAvvio = $controller5->avvia_recensione(1);
 echo '<h2>avvia_recensione</h2>';
 echo '<pre>';
 print_r($datiAvvio);

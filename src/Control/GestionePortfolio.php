@@ -2,6 +2,7 @@
 namespace InkMaster\Control; //namespace per evitare conflitti con altre classi
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
+use InkMaster\Entity\Studio;
 
 class GestionePortfolio {
 
@@ -14,14 +15,8 @@ class GestionePortfolio {
 
     public function apriPortfolio(): array
     {
-        // Recupera l'ID dello studio dalla sessione e non quello del tatuatore
-        // Questo perché il portfolio è legato allo studio, non al tatuatore
-        //$idStudio = SessionManager::get('id_studio'); 
-
-        $idStudio = 12345; // ID finto per il test
-
-        $nomeStudio = SessionManager::get('nome_studio'); // Recupera anche il nome dello studio per visualizzarlo nel portfolio
-        $nomeTatuatore = SessionManager::get('nome_tatuatore'); // Recupera il nome del tatuatore per visualizzarlo nel portfolio
+        // Il portfolio è legato allo studio loggato, non al singolo tatuatore
+        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
 
         if(!$idStudio)
         {
@@ -31,22 +26,23 @@ class GestionePortfolio {
             ];
         }
 
+        // Il nome dello studio si ricava dall'entità, non da una chiave di sessione
+        $studio = $this->pm->find(Studio::class, $idStudio);
         $portfolio = $this->pm->findPortfolioByStudioId($idStudio);
 
         /**
          * Attenzione: il controllo qui sotto non è necessario perché la funzione findPortfolioByStudioId
-         * restituisce sempre un array di pubblicazioni, anche se vuoto. Nel caso in cui sia vuoto non si 
+         * restituisce sempre un array di pubblicazioni, anche se vuoto. Nel caso in cui sia vuoto non si
          * visualizza un messaggio di errore, ma semplicemente si mostra un portfolio vuoto.
         *if ($portfolio === null) {
             *return ['status' => 'error', 'message' => 'Portfolio non trovato'];
-        *} 
+        *}
          */
 
         return [
             'status' => 'success',
             'data' => $portfolio,
-            'nome_studio' => $nomeStudio,
-            'nome_tatuatore' => $nomeTatuatore
+            'nome_studio' => $studio ? $studio->getNome() : null
         ];
     }
 
@@ -65,8 +61,7 @@ class GestionePortfolio {
 
     public function pubblicaPubblicazione(array $datiForm): array
     {
-        $idStudio = SessionManager::get('id_studio', 12345); // Recupera l'ID dello studio dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
-        $idTatuatore = SessionManager::get('id_tatuatore', 67890); // Recupera l'ID del tatuatore dalla sessione. Dato che non c'è ancora una sessione attiva, per ora uso un ID fittizio per il test
+        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
 
         // Generiamo in automatico data e ora correnti
         $dataCorrente = new \DateTime();
@@ -83,7 +78,7 @@ class GestionePortfolio {
         ];
 
         // Chiamata al Foundation per salvare la pubblicazione nel database grazie al metodo savePubblicazione()
-        $esitoPubblicazione = $this->pm->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+        $esitoPubblicazione = $this->pm->savePubblicazione($idStudio, $infoPubblicazione);
 
         if ($esitoPubblicazione) {
         return [

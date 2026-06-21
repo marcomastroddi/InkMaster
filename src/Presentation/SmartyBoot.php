@@ -1,5 +1,5 @@
 <?php
-namespace App\Presentation;
+namespace InkMaster\Presentation;
 
 // Se non usi i namespace globali, includi il file di Smarty installato da composer
 // require_once __DIR__ . '/../../vendor/autoload.php';

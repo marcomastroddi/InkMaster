@@ -57,7 +57,7 @@ class RecensioneRepository
     {
         $studio = new Studio(
             'InkMaster Roma Centro', '12345678901', Citta::Roma,
-            'roma.centro@inkmaster.it', 'inkmaster_roma',
+            'roma.centro@inkmaster.it', 'inkmaster_roma', 'password123',
             'Studio storico nel cuore di Roma.', '0612345678',
             ['lun-ven' => '10:00-19:00'], ['lun-ven' => '19:00']
         );
@@ -68,7 +68,7 @@ class RecensioneRepository
         );
 
         $tatuatore = new Tatuatore(
-            'Marco', 'Neri', 'password123',
+            'Marco', 'Neri',
             new DateTime('1988-03-22'), $studio
         );
 
@@ -86,9 +86,9 @@ class RecensioneRepository
         //     'SELECT r FROM InkMaster\Entity\Recensione r WHERE r.voto >= 4 ORDER BY RAND()'
         // )->setMaxResults($limit)->getResult();
 
-        $studio = new Studio('InkMaster Roma Centro', '12345678901', Citta::Roma, 'roma.centro@inkmaster.it', 'inkmaster_roma', 'Studio storico nel cuore di Roma.', '0612345678', ['lun-ven' => '10:00-19:00'], ['lun-ven' => '19:00']);
+        $studio = new Studio('InkMaster Roma Centro', '12345678901', Citta::Roma, 'roma.centro@inkmaster.it', 'inkmaster_roma', 'password123', 'Studio storico nel cuore di Roma.', '0612345678', ['lun-ven' => '10:00-19:00'], ['lun-ven' => '19:00']);
         $cliente = new Cliente('Mario', 'Rossi', 'password123', 'mario_rossi', new DateTime('1990-05-15'), 'mario.rossi@email.it', 'Roma');
-        $tatuatore = new Tatuatore('Marco', 'Neri', 'password123', new DateTime('1988-03-22'), $studio);
+        $tatuatore = new Tatuatore('Marco', 'Neri', new DateTime('1988-03-22'), $studio);
 
         $tutte = [
             new Recensione(5, new DateTime('2024-03-10'), $cliente, $studio, 'Lavoro fantastico', 'Realistico', $tatuatore, 'Ottimo lavoro, molto soddisfatto.'),

@@ -2,6 +2,7 @@
 namespace InkMaster\Control;
 
 use InkMaster\Foundation\PersistentManager;
+use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
@@ -27,13 +28,16 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Tatuatore non trovato'];
         }
 
+        $prenotazione = SessionManager::get('prenotazione', []);
+
         // Controllo di coerenza: il tatuatore deve appartenere allo studio scelto allo step 0
-        $studioId = $_SESSION['prenotazione']['studio_id'] ?? null;
+        $studioId = $prenotazione['studio_id'] ?? null;
         if  ($tatuatore->getStudio()->getId() !== (int)$studioId){
             return ['status' => 'error', 'message' => 'Tatuatore non valido per questo studio'];
         }
 
-        $_SESSION['prenotazione']['tatuatore_id'] = $tatuatoreId;
+        $prenotazione['tatuatore_id'] = $tatuatoreId;
+        SessionManager::set('prenotazione', $prenotazione);
 
         return [
             'status' => 'success',
@@ -52,7 +56,9 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Stile non trovato'];
         }
 
-        $_SESSION['prenotazione']['stile_id'] = $stileId;
+        $prenotazione = SessionManager::get('prenotazione', []);
+        $prenotazione['stile_id'] = $stileId;
+        SessionManager::set('prenotazione', $prenotazione);
 
         return [
             'status' => 'success',
@@ -71,7 +77,9 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Data non valida'];
         }
 
-        $_SESSION['prenotazione']['data'] = $data;
+        $prenotazione = SessionManager::get('prenotazione', []);
+        $prenotazione['data'] = $data;
+        SessionManager::set('prenotazione', $prenotazione);
 
         return [
             'status' => 'success',
@@ -82,7 +90,7 @@ class PrenotazionePagamento {
     // ── Step 4: l'utente scrive l'idea e clicca "Conferma" ──────
     public function richiedi_appuntamento(int $clienteId, string $descrizione): array
     {
-        $prenotazione = $_SESSION['prenotazione'] ?? [];
+        $prenotazione = SessionManager::get('prenotazione', []);
 
         // Controllo difensivo: l'utente deve aver completato tutti gli step precedenti
         if (
@@ -123,8 +131,9 @@ class PrenotazionePagamento {
 
         $this->pm->save($appuntamento);
 
-        // La prenotazione è completata, salviamo l'id dell'appuntamento in sessione per il passo successivo 
-        $_SESSION['prenotazione']['appuntamento_id'] = $appuntamento->getId();
+        // La prenotazione è completata, salviamo l'id dell'appuntamento in sessione per il passo successivo
+        $prenotazione['appuntamento_id'] = $appuntamento->getId();
+        SessionManager::set('prenotazione', $prenotazione);
 
         return [
             'status' => 'success',
@@ -135,7 +144,8 @@ class PrenotazionePagamento {
 
     public function confermaPrenotazione(): array
     {
-        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+        $prenotazione = SessionManager::get('prenotazione', []);
+        $appuntamentoId = $prenotazione['appuntamento_id'] ?? null;
 
         if ($appuntamentoId === null) {
             return ['status' => 'error', 'message' => 'Nessuna prenotazione in corso'];
@@ -146,7 +156,7 @@ class PrenotazionePagamento {
         // $appuntamento->setStato('CONFERMATO');
         // $this->pm->save($appuntamento);
 
-        unset($_SESSION['prenotazione']);
+        SessionManager::remove('prenotazione');
 
         return [
             'status'      => 'success',
@@ -197,7 +207,7 @@ class PrenotazionePagamento {
 
     public function concludi_appuntamento(string $stato, float $costo): array
     {
-        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+        $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
 
         if ($appuntamentoId === null) {
             return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
@@ -219,7 +229,7 @@ class PrenotazionePagamento {
 
     public function avvia_pagamento(): array
     {
-        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+        $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
 
         if ($appuntamentoId === null) {
             return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
@@ -235,7 +245,7 @@ class PrenotazionePagamento {
 
     public function inserisci_dati_pagamento(array $datiCarta): array
     {
-        $appuntamentoId = $_SESSION['prenotazione']['appuntamento_id'] ?? null;
+        $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
 
         if ($appuntamentoId === null) {
             return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
@@ -253,7 +263,7 @@ class PrenotazionePagamento {
         // TODO: quando ci sarà il DB
         // chiamata al servizio di pagamento esterno
 
-        unset($_SESSION['prenotazione']);
+        SessionManager::remove('prenotazione');
 
         return [
             'status'      => 'success',

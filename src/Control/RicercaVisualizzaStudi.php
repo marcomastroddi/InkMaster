@@ -122,9 +122,12 @@ class RicercaVisualizzaStudi
 
     public function avvia_ricerca(): array
     {
-        $citta = SessionManager::get('citta', 'Roma'); // c'è sempre un default
-        $stile = SessionManager::get('stile', '');
-        $testo = SessionManager::get('testo', '');
+        // Leggiamo i filtri dall'array dove li hanno salvati gli altri metodi
+        $filtri = SessionManager::get('filtri_ricerca', []);
+
+        $citta = $filtri['citta'] ?? 'Roma'; // default se l'utente non ha scelto città
+        $stile = $filtri['stile'] ?? '';
+        $testo = $filtri['testo'] ?? '';
 
         $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
 
@@ -146,7 +149,9 @@ class RicercaVisualizzaStudi
         }
 
         // Salviamo l'id dello studio: ci servirà alla fine per creare l'appuntamento
-        $_SESSION['prenotazione']['studio_id'] = $studioId;
+        $prenotazione = SessionManager::get('prenotazione', []);
+        $prenotazione['studio_id'] = $studioId;
+        SessionManager::set('prenotazione', $prenotazione);
 
         return [
             'status' => 'success',

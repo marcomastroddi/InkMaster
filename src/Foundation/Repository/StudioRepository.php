@@ -30,6 +30,7 @@ class StudioRepository
                 Citta::Roma,
                 'roma.centro@inkmaster.it',
                 'inkmaster_roma',
+                'password123',
                 'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
                 '0612345678',
                 ['lun-ven' => '10:00-19:00'],
@@ -41,6 +42,7 @@ class StudioRepository
                 Citta::Milano,
                 'milano.navigli@inkmaster.it',
                 'inkmaster_milano',
+                'password123',
                 'Studio moderno sui Navigli, focus su stili giapponesi e watercolor.',
                 '0223456789',
                 ['lun-sab' => '11:00-20:00'],
@@ -52,6 +54,7 @@ class StudioRepository
                 Citta::Napoli,
                 'napoli.centro@inkmaster.it',
                 'inkmaster_napoli',
+                'password123',
                 'Studio tradizionale nel centro storico di Napoli.',
                 '0813456789',
                 ['mar-dom' => '10:00-18:00'],
@@ -63,6 +66,7 @@ class StudioRepository
                 Citta::Torino,
                 'torino.centro@inkmaster.it',
                 'inkmaster_torino',
+                'password123',
                 'Piccolo studio boutique specializzato in tatuaggi geometrici e blackwork.',
                 '0114567890',
                 ['mar-sab' => '10:30-19:30'],
@@ -74,6 +78,7 @@ class StudioRepository
                 Citta::Pescara,
                 'pescara.mare@inkmaster.it',
                 'inkmaster_pescara',
+                'password123',
                 'Studio sul lungomare di Pescara, ambiente luminoso e rilassato.',
                 '0855678901',
                 ['lun-ven' => '09:30-18:30'],
@@ -90,6 +95,7 @@ class StudioRepository
         Citta::Roma,
         'roma.centro@inkmaster.it',
         'inkmaster_roma',
+        'password123',
         'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
         '0612345678',
         ['lun-ven' => '10:00-19:00'],
@@ -107,8 +113,8 @@ class StudioRepository
                 new DateTime('15:30:00'),
                 $studio,
                 $tatuaggio1,
-                'Dettaglio di un ritratto realistico completato in tre sessioni.',
-                '/images/pubblicazioni/realismo_bn.jpg'
+                '/images/pubblicazioni/realismo_bn.jpg',
+                'Dettaglio di un ritratto realistico completato in tre sessioni.'
             ),
             new Pubblicazione(
                 'Drago giapponese full back',
@@ -116,8 +122,8 @@ class StudioRepository
                 new DateTime('17:00:00'),
                 $studio,
                 $tatuaggio2,
-                'Lavoro completo in stile Giapponese, sessione finale di colore.',
-                '/images/pubblicazioni/drago_giapponese.jpg'
+                '/images/pubblicazioni/drago_giapponese.jpg',
+                'Lavoro completo in stile Giapponese, sessione finale di colore.'
             ),
             new Pubblicazione(
                 'Piccolo blackwork minimal',
@@ -125,8 +131,8 @@ class StudioRepository
                 new DateTime('11:15:00'),
                 $studio,
                 $tatuaggio3,
-                'Tatuaggio minimalista sul polso, perfetto per chi ama i dettagli sottili.',
-                '/images/pubblicazioni/blackwork_minimal.jpg'
+                '/images/pubblicazioni/blackwork_minimal.jpg',
+                'Tatuaggio minimalista sul polso, perfetto per chi ama i dettagli sottili.'
             ),
         ];
     }
@@ -139,19 +145,20 @@ class StudioRepository
             Citta::Roma,
             'roma.centro@inkmaster.it',
             'inkmaster_roma',
+            'password123',
             'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
             '0612345678',
             ['lun-ven' => '10:00-19:00'],
             ['lun-ven' => '19:00']
         );
 
-        $tatuatore1 = new Tatuatore('Claudia', 'Bianchi', 'password123', new DateTime('1992-03-10'), $studio);
+        $tatuatore1 = new Tatuatore('Claudia', 'Bianchi', new DateTime('1992-03-10'), $studio);
         $tatuatore1->setId(1);
 
-        $tatuatore2 = new Tatuatore('Giovanni', 'Verdi', 'password123', new DateTime('1988-07-22'), $studio);
+        $tatuatore2 = new Tatuatore('Giovanni', 'Verdi', new DateTime('1988-07-22'), $studio);
         $tatuatore2->setId(2);
 
-        $tatuatore3 = new Tatuatore('Mario', 'Neri', 'password123', new DateTime('1995-11-05'), $studio);
+        $tatuatore3 = new Tatuatore('Mario', 'Neri', new DateTime('1995-11-05'), $studio);
         $tatuatore3->setId(3);
 
         return [$tatuatore1, $tatuatore2, $tatuatore3];

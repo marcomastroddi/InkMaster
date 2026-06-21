@@ -23,12 +23,12 @@ class PagamentoRepository
     {
         $studio = new Studio(
             'InkMaster Roma Centro', '12345678901', Citta::Roma,
-            'roma.centro@inkmaster.it', 'inkmaster_roma',
+            'roma.centro@inkmaster.it', 'inkmaster_roma', 'password123',
             'Studio storico nel cuore di Roma.', '0612345678',
             ['lun-ven' => '10:00-19:00'], ['lun-ven' => '19:00']
         );
 
-        $tatuatore = new Tatuatore('Marco', 'Neri', 'password123', new DateTime('1988-03-22'), $studio);
+        $tatuatore = new Tatuatore('Marco', 'Neri', new DateTime('1988-03-22'), $studio);
 
         $cliente1 = new Cliente('Mario', 'Rossi', 'password123', 'mario_rossi', new DateTime('1990-05-15'), 'mario.rossi@email.it', 'Roma');
         $cliente2 = new Cliente('Laura', 'Bianchi', 'password123', 'laura_bianchi', new DateTime('1995-08-20'), 'laura.bianchi@email.it', 'Milano');

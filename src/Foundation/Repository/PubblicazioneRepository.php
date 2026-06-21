@@ -27,6 +27,7 @@ class PubblicazioneRepository
         Citta::Roma,
         'roma.centro@inkmaster.it',
         'inkmaster_roma',
+        'password123',
         'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
         '0612345678',
         ['lun-ven' => '10:00-19:00'],
@@ -41,12 +42,12 @@ class PubblicazioneRepository
             new DateTime('15:30:00'),
             $studio,
             $tatuaggio1,
-            'Dettaglio di un ritratto realistico completato in tre sessioni.',
-            '/images/pubblicazioni/realismo_bn.jpg'
+            '/images/pubblicazioni/realismo_bn.jpg',
+            'Dettaglio di un ritratto realistico completato in tre sessioni.'
         );
     }
 
-    public function savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione)
+    public function savePubblicazione($idStudio, $infoPubblicazione)
     {
         // Implementazione del metodo per salvare la pubblicazione
         //Per adesso, simulo il salvataggio e ritorno true per indicare successo

@@ -108,9 +108,9 @@ class PersistentManager
         return $this->studioRepository->findPortfolioByStudioId($idStudio);
     }
 
-    public function savePubblicazione(int $idStudio, int $idTatuatore, array $infoPubblicazione)
+    public function savePubblicazione(int $idStudio, array $infoPubblicazione)
     {
-        return $this->pubblicazioneRepository->savePubblicazione($idStudio, $idTatuatore, $infoPubblicazione);
+        return $this->pubblicazioneRepository->savePubblicazione($idStudio, $infoPubblicazione);
     }
 
     public function deletePubblicazione(int $idPubblicazione): bool
@@ -165,12 +165,6 @@ class PersistentManager
     public function deleteRecensione(int $idRecensione): bool
     {
         return $this->recensioneRepository->deleteRecensione($idRecensione);
-    }
-
-    // Fab, per adesso restituisce sempre lo stesso studio fittizio, ma in futuro potrà fare query sul DB
-    public function findById(int $id): ?Studio
-    {
-        return $this->findAvailableStudios([])[0] ?? null;
     }
 
     public function findByUsername(string $username): ?object

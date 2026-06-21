@@ -2,6 +2,24 @@
 namespace InkMaster\Foundation;
 //Codice generato da claude, da revisionare, è la base di session
 
+/**
+ * Gestione centralizzata della sessione.
+ *
+ * CHIAVI AMMESSE (non inventarne altre fuori da questo elenco):
+ *
+ * --- IDENTITÀ (scritte SOLO da Login::login, durano tutta la sessione) ---
+ *   'username'   string  Lo username dell'utente loggato
+ *   'ruolo'      string  'cliente' | 'studio' | 'amministratore'
+ *   'id_utente'  int     L'id dell'entità loggata (qualunque tipo)
+ *   'id_studio'  int     Solo per ruolo 'studio': id dello studio (dashboard studio)
+ *
+ * --- STATI TEMPORANEI / WIZARD (scritti durante una procedura, poi rimossi) ---
+ *   'filtri_ricerca'      array  Filtri della ricerca in corso (città, stile, testo)
+ *   'prenotazione'        array  Dati della prenotazione in corso (studio_id, tatuatore_id, ...)
+ *   'bozza_recensione'    array  Bozza della recensione in corso
+ *   'studio_selezionato'  int    Studio a cui si sta lasciando la recensione
+ *   'utente_selezionato'  int    Utente che il moderatore sta per bannare
+ */
 class SessionManager
 {
     public static function start(): void

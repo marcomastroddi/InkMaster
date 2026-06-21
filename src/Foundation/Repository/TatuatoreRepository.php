@@ -23,6 +23,7 @@ class TatuatoreRepository
             Citta::Roma,
             'roma.centro@inkmaster.it',
             'inkmaster_roma',
+            'password123',
             'Studio storico nel cuore di Roma.',
             '0612345678',
             ['lun-ven' => '10:00-19:00'],
@@ -32,7 +33,6 @@ class TatuatoreRepository
         return new Tatuatore(
             'Marco',
             'Neri',
-            'password123',
             new DateTime('1988-03-22'),
             $studio
         );

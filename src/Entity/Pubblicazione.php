@@ -27,7 +27,7 @@ class Pubblicazione
     private DateTime $ora;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private string $percorsoImmagine; // Percorso dell'immagine associata alla pubblicazione 
+    private string $percorsoImmagine; // Percorso dell'immagine: una pubblicazione DEVE avere una foto del tatuaggio
 
     // Relazione 1: La pubblicazione appartiene a uno specifico studio (Molti a uno)
     #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'pubblicazioni')]
@@ -45,18 +45,18 @@ class Pubblicazione
         string $titolo, 
         DateTime $data, 
         DateTime $ora, 
-        Studio $studio, 
+        Studio $studio,
         Tatuaggio $tatuaggio,
-        ?string $descrizione = null,
-        ?string $percorsoImmagine = null
+        string $percorsoImmagine,        // obbligatorio: la foto del tatuaggio
+        ?string $descrizione = null
     ) {
         $this->titolo = $titolo;
         $this->data = $data;
         $this->ora = $ora;
         $this->studio = $studio;
         $this->tatuaggio = $tatuaggio;
-        $this->descrizione = $descrizione;
         $this->percorsoImmagine = $percorsoImmagine;
+        $this->descrizione = $descrizione;
     }
 
     // Blocco getter
@@ -95,7 +95,7 @@ class Pubblicazione
         return $this->tatuaggio;
     }
 
-    public function getPercorsoImmagine(): string 
+    public function getPercorsoImmagine(): string
     {
         return $this->percorsoImmagine;
     }
@@ -131,7 +131,7 @@ class Pubblicazione
         $this->tatuaggio = $tatuaggio;
     }
 
-    public function setPercorsoImmagine(string $percorsoImmagine): void 
+    public function setPercorsoImmagine(string $percorsoImmagine): void
     {
         $this->percorsoImmagine = $percorsoImmagine;
     }

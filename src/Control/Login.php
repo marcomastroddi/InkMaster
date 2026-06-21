@@ -25,13 +25,23 @@ class Login
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
+        $ruolo = $utente->getRuolo();
+
+        // Dati base sempre presenti dopo il login
         SessionManager::set('username', $username);
-        SessionManager::set('ruolo', $utente->getRuolo());
+        SessionManager::set('ruolo', $ruolo);
+        SessionManager::set('id_utente', $utente->getId());
+
+        // Se è uno studio (o un tatuatore che usa le credenziali studio),
+        // salviamo anche id_studio: serve a tutte le dashboard dello studio.
+        if ($ruolo === 'studio') {
+            SessionManager::set('id_studio', $utente->getId());
+        }
 
         return [
             'status'      => 'success',
             'interfaccia' => 'Home',
-            'ruolo'       => $utente->getRuolo()
+            'ruolo'       => $ruolo
         ];
     }
 

@@ -24,13 +24,13 @@ class Recensione
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $descrizione = null;
 
-    // Relazione 1: La recensione è scritta da un cliente
-    #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: 'recensioni')]
+    // Relazione 1: La recensione è scritta da un cliente (unidirezionale)
+    #[ORM\ManyToOne(targetEntity: Cliente::class)]
     #[ORM\JoinColumn(name: 'cliente_id', referencedColumnName: 'id', nullable: false)]
     private Cliente $cliente;
-
-    // Relazione 2: La recensione è legata a uno studio specifico(Molti a uno)
-    #[ORM\ManyToOne(targetEntity: Studio::class, inversedBy: 'recensioni')]
+    
+    // Relazione 2: La recensione è legata a uno studio specifico (unidirezionale, Molti a uno)
+    #[ORM\ManyToOne(targetEntity: Studio::class)]
     #[ORM\JoinColumn(name: 'studio_id', referencedColumnName: 'id', nullable: false)]
     private Studio $studio;
 

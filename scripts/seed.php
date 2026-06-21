@@ -20,7 +20,7 @@ use InkMaster\Entity\Stile;
 use InkMaster\Entity\Tatuaggio;
 use InkMaster\Entity\Appuntamento;
 use InkMaster\Entity\Pagamento;
-use InkMaster\Entity\Cartadicredito;
+use InkMaster\Entity\CartaDiCredito;
 use InkMaster\Entity\Recensione;
 use InkMaster\Entity\Pubblicazione;
 use InkMaster\Entity\Segnalazione;
@@ -60,6 +60,8 @@ $studioRoma = new Studio(
     partitaIva: '12345678901',
     posizione: Citta::Roma,
     email: 'info@blackneedle.it',
+    username: 'black_needle',
+    password: 'hash_password_placeholder_studio_1', // in produzione: password già hashata
     descrizione: 'Studio specializzato in stili tradizionali e blackwork',
     telefono: '0612345678',
     orariApertura: ['lun' => '10:00', 'mar' => '10:00', 'mer' => '10:00', 'gio' => '10:00', 'ven' => '10:00'],
@@ -71,6 +73,8 @@ $studioMilano = new Studio(
     partitaIva: '98765432109',
     posizione: Citta::Milano,
     email: 'contatti@inkspire.it',
+    username: 'inkspire_milano',
+    password: 'hash_password_placeholder_studio_2', // in produzione: password già hashata
     descrizione: 'Studio moderno con focus su realismo e giapponese',
     telefono: '0298765432',
     orariApertura: ['lun' => '09:30', 'mar' => '09:30', 'mer' => '09:30', 'gio' => '09:30', 'ven' => '09:30', 'sab' => '10:00'],
@@ -86,7 +90,6 @@ $entityManager->persist($studioMilano);
 $tatuatore1 = new Tatuatore(
     nome: 'Marco',
     cognome: 'Bianchi',
-    password: 'hash_password_placeholder_1', // in produzione: password già hashata (es. bcrypt)
     dataNascita: new DateTime('1990-04-12'),
     studio: $studioRoma
 );
@@ -96,7 +99,6 @@ $tatuatore1->addStile($stileBlackwork);
 $tatuatore2 = new Tatuatore(
     nome: 'Giulia',
     cognome: 'Verdi',
-    password: 'hash_password_placeholder_2',
     dataNascita: new DateTime('1993-09-23'),
     studio: $studioMilano
 );
@@ -169,6 +171,7 @@ $pubblicazione1 = new Pubblicazione(
     ora: new DateTime('15:30'),
     studio: $studioMilano,
     tatuaggio: $tatuaggio2,
+    percorsoImmagine: '/images/pubblicazioni/drago_giapponese.jpg',
     descrizione: 'Realizzato in tre sessioni'
 );
 $entityManager->persist($pubblicazione1);
@@ -206,7 +209,7 @@ $entityManager->flush();
 // ------------------------------------------------------------
 // 9. CARTE DI CREDITO (nessuna dipendenza da altre entità)
 // ------------------------------------------------------------
-$carta1 = new Cartadicredito(
+$carta1 = new CartaDiCredito(
     nomeIntestatario: 'Luca',
     cognomeIntestatario: 'Rossi',
     numeroCarta: '4111111111111111',
@@ -214,7 +217,7 @@ $carta1 = new Cartadicredito(
     cvv: '123'
 );
 
-$carta2 = new Cartadicredito(
+$carta2 = new CartaDiCredito(
     nomeIntestatario: 'Sara',
     cognomeIntestatario: 'Ferrari',
     numeroCarta: '5500000000000004',

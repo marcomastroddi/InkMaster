@@ -55,7 +55,11 @@ class GestioneClienti
             return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
         }
 
-        // TODO: quando ci sarà il DB creare entità Pagamento e collegarla all'appuntamento
+        // Registriamo il costo concordato sull'appuntamento
+        $appuntamento->setCosto($importo);
+        $this->pm->save($appuntamento);
+
+        // TODO: quando ci sarà il DB, creare anche l'entità Pagamento collegata
         // $pagamento = new Pagamento($importo, 'IN_CORSO', $appuntamento, $cartaDiCredito);
         // $this->pm->save($pagamento);
 

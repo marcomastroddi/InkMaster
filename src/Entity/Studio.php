@@ -22,6 +22,9 @@ class Studio
     #[ORM\Column(type: 'string', length: 50, unique: true)]
     private string $username;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $password;
+
     #[ORM\Column(type: 'string', length: 11, unique: true)]
     private string $partitaIva;
 
@@ -62,6 +65,7 @@ class Studio
         Citta $posizione, 
         string $email,
         string $username,
+        string $password,
         ?string $descrizione = null,
         ?string $telefono = null,
         array $orariApertura = [],
@@ -72,6 +76,7 @@ class Studio
         $this->posizione = $posizione;
         $this->email = $email;
         $this->username = $username;
+        $this->password = $password;
         $this->descrizione = $descrizione;
         $this->telefono = $telefono;
         $this->orariApertura = $orariApertura;
@@ -114,9 +119,14 @@ class Studio
         return $this->email;
     }
 
-    public function getUsername(): string 
+    public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 
     public function getTelefono(): ?string 
@@ -158,15 +168,25 @@ class Studio
         return $this->pubblicazioni;
     }
 
+    public function getRuolo(): string
+    {
+        return 'studio';
+    }
+
     // Metodi setter
     public function setNome(string $nome): void 
     {
         $this->nome = $nome;
     }
 
-    public function setUsername(string $username): void 
+    public function setUsername(string $username): void
     {
         $this->username = $username;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 
     public function setPartitaIva(string $partitaIva): void 

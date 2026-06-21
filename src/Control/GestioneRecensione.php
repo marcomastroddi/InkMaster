@@ -13,10 +13,10 @@ class GestioneRecensione {
         $this->pm = PersistentManager::getInstance();
     }
 
-    public function avvia_recensione(int $idStudio, int $idCliente): array
+    public function avvia_recensione(int $idStudio): array
     {
+        // Il cliente è chi è loggato: lo studio selezionato è uno stato temporaneo del wizard
         SessionManager::set('studio_selezionato', $idStudio);
-        SessionManager::set('cliente_loggato', $idCliente);
 
         $studio = $this->pm->find(Studio::class, $idStudio);
 
@@ -89,7 +89,7 @@ class GestioneRecensione {
    public function pubblica_recensione(): array
     {
         $idStudio = SessionManager::get('studio_selezionato');
-        $idCliente = SessionManager::get('cliente_loggato');
+        $idCliente = SessionManager::get('id_utente');
         $bozza = SessionManager::get('bozza_recensione');
 
         if ($idStudio === null || $idCliente === null || $bozza === null) {
@@ -121,8 +121,8 @@ class GestioneRecensione {
             $tatuatore
         );
 
+        // Rimuoviamo solo gli stati temporanei del wizard: id_utente è identità, NON va toccato
         SessionManager::remove('studio_selezionato');
-        SessionManager::remove('cliente_loggato');
         SessionManager::remove('bozza_recensione');
 
         return [

@@ -7,7 +7,7 @@ use DateTime;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'carte_credito')]
-class Cartadicredito 
+class CartaDiCredito
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

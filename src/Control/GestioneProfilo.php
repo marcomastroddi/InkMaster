@@ -28,14 +28,20 @@ class GestioneProfilo
             return ['status' => 'error', 'message' => 'Utente non trovato.'];
         }
 
+        $data = [
+            'nome'     => $utente->getNome(),
+            'username' => $utente->getUsername(),
+            'ruolo'    => SessionManager::get('ruolo')
+        ];
+
+        
+        if (method_exists($utente, 'getCognome')) {
+            $data['cognome'] = $utente->getCognome();
+        }
+
         return [
             'status' => 'success',
-            'data' => [
-                'nome'     => $utente->getNome(),
-                'cognome'  => $utente->getCognome(),
-                'username' => $utente->getUsername(),
-                'ruolo'    => SessionManager::get('ruolo')
-            ]
+            'data'   => $data
         ];
     }
 
@@ -54,7 +60,8 @@ class GestioneProfilo
         }
 
         if (!empty($dati['nome']))    $utente->setNome($dati['nome']);
-        if (!empty($dati['cognome'])) $utente->setCognome($dati['cognome']);
+        
+        if (!empty($dati['cognome']) && method_exists($utente, 'setCognome')) $utente->setCognome($dati['cognome']);
 
         $this->pm->save($utente);
 

@@ -9,8 +9,14 @@ use DateTime;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'clienti')]
-class Cliente extends Persona 
+class Cliente extends Persona
 {
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
+    protected string $username;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    protected string $password;
+
     #[ORM\Column(type: 'date')]
     private DateTime $dataNascita;
 
@@ -40,9 +46,11 @@ class Cliente extends Persona
         string $email, 
         ?string $posizione = null
     ) {
-        // Invochiamo il costruttore del padre (Persona) per nome, cognome e password
-        parent::__construct($nome, $cognome, $password, $username);
-        
+        // Persona ora gestisce solo nome e cognome: username e password li teniamo qui
+        parent::__construct($nome, $cognome);
+        $this->username = $username;
+        $this->password = $password;
+
         $this->dataNascita = $dataNascita;
         $this->email = $email;
         $this->posizione = $posizione;
@@ -88,6 +96,16 @@ class Cliente extends Persona
     {
         return $this->segnalazioni;
     }
+    
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
 
     // Metodi setter
     public function setDataNascita(DateTime $dataNascita): void 
@@ -100,8 +118,18 @@ class Cliente extends Persona
         $this->email = $email;
     }
 
-    public function setPosizione(?string $posizione): void 
+    public function setPosizione(?string $posizione): void
     {
         $this->posizione = $posizione;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }

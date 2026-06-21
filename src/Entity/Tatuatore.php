@@ -25,16 +25,16 @@ class Tatuatore extends Persona
     private Collection $stili;
 
 
-    // Costruttore
+    // Costruttore — niente username/password: il tatuatore non fa login,
+    // è un'entità di dominio che appartiene a uno studio.
     public function __construct(
         string $nome, 
         string $cognome, 
-        string $password, 
         DateTime $dataNascita, 
         Studio $studio
     ) {
-        // Invochiamo il costruttore del padre (Persona)
-        parent::__construct($nome, $cognome, $password, $studio->getUsername());
+        // Invochiamo il costruttore del padre (Persona): solo nome e cognome
+        parent::__construct($nome, $cognome);
         
         $this->dataNascita = $dataNascita;
         $this->studio = $studio;
