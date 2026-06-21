@@ -70,12 +70,20 @@ print_r($datiRicerca);
 echo '</pre>';
 
 $datiStudio = $controller->scegli_studio(1);
-echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); echo '</pre>';
+echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); 
+echo '</pre>';
+
+$datiRecensioni = $controller->visualizza_recensioni(1);
+echo '<h2>visualizza_recensioni</h2><pre>'; 
+print_r($datiRecensioni); 
+echo '</pre>';
 
 //INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
 
 $datiTatuatore = $controller2->scegli_tatuatore(1);
-echo '<h2>scegli_tatuatore</h2><pre>'; print_r($datiTatuatore); echo '</pre>';
+echo '<h2>scegli_tatuatore</h2><pre>'; 
+print_r($datiTatuatore); 
+echo '</pre>';
 
 $datiStile = $controller2->scegli_stile(1);
 echo '<h2>scegli_stile</h2><pre>'; print_r($datiStile); echo '</pre>';
@@ -264,14 +272,14 @@ echo '</pre>';
 /*<?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use InkMaster\Control\RicercaVisualizzaTatuatori;
-use InkMaster\Presentation\View;
-
 $page = $_GET['page'] ?? 'home';
 
-$controller = new RicercaVisualizzaStudi();
-$controller2 = new PrenotazionePagamento();
+$pagineProtette = ['scegli_studio', 'scegli_tatuatore', 'scegli_stile', 'scegli_data', 'richiedi_appuntamento', 'confermaPrenotazione', 'accetta_richiesta', 'rifiuta_richiesta', 'concludi_appuntamento', 'avvia_pagamento', 'inserisci_dati_pagamento', 'apriPortfolio', 'mostraFormPubblicazione', 'pubblicaTatuaggio', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban'];
 
+if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
+    View::render('login', ['message' => 'Devi effettuare il login']);
+    exit;
+}
 
 switch ($page) {
 
@@ -315,6 +323,12 @@ switch ($page) {
     case 'avvia_ricerca':
     $dati = $controller->avvia_ricerca();
     View::render('risultati', $dati);
+    break;
+
+    case 'visualizza_recensioni':
+    $id = (int)($_GET['id'] ?? 0);
+    $dati = $controller->visualizza_recensioni($id);
+    View::render('recensioni', $dati);
     break;
 
 
@@ -491,8 +505,22 @@ switch ($page) {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
         $dati = $controllerLogin->login($username, $password);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+        
+        if ($dati['status'] === 'success') {
+            switch ($dati['ruolo']) {
+                case 'cliente':
+                    View::render('home', $dati);
+                    break;
+                case 'tatuatore':
+                    View::render('portfolio', $dati);
+                    break;
+                case 'amministratore':
+                    View::render('moderazione', $dati);
+                    break;
+            }
+        } else {
+            View::render('login', $dati);
+        }
         break;
 
     case 'logout':

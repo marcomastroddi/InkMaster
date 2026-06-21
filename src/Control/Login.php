@@ -37,8 +37,7 @@ class Login
 
     public function logout(): array
     {
-        SessionManager::remove('username');
-        SessionManager::remove('ruolo');
+        SessionManager::destroy();
         return [
             'status'      => 'success',
             'interfaccia' => 'Home',

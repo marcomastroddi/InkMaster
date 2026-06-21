@@ -34,7 +34,7 @@ class Tatuatore extends Persona
         Studio $studio
     ) {
         // Invochiamo il costruttore del padre (Persona)
-        parent::__construct($nome, $cognome, $password);
+        parent::__construct($nome, $cognome, $password, $studio->getUsername());
         
         $this->dataNascita = $dataNascita;
         $this->studio = $studio;

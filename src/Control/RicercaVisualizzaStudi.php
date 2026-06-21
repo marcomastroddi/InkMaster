@@ -161,5 +161,16 @@ class RicercaVisualizzaStudi
             'data' => $studio
         ];
     }
+    
+    public function visualizza_recensioni(int $studioId): array
+    {
+        $recensioni = $this->pm->findRecensioniByStudioId($studioId);
+
+        return [
+            'status'      => 'success',
+            'interfaccia' => 'Lista recensioni studio',
+            'data'        => $recensioni
+        ];
+    }
 
 }

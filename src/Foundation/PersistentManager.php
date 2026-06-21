@@ -191,6 +191,11 @@ class PersistentManager
         return null;
     }
 
+    public function findRecensioniByStudioId(int $idStudio): array
+    {
+        return $this->recensioneRepository->findByStudioId($idStudio);
+    }
+
 }
 
 
