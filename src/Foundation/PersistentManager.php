@@ -154,6 +154,11 @@ class PersistentManager
         return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
     }
 
+    public function deleteRecensione(int $idRecensione): bool
+    {
+        return $this->recensioneRepository->deleteRecensione($idRecensione);
+    }
+
     // Fab, per adesso restituisce sempre lo stesso studio fittizio, ma in futuro potrà fare query sul DB
     public function findById(int $id): ?Studio
     {

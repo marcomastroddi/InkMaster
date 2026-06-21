@@ -44,4 +44,11 @@ class RecensioneRepository
 
         return $recensione;
     }
+
+    public function deleteRecensione(int $idRecensione): bool
+    {
+        // Implementazione del metodo per eliminare la recensione
+        // Per adesso, simulo l'eliminazione e ritorno true per indicare successo
+        return true;
+    }
 }

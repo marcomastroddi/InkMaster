@@ -189,6 +189,12 @@ echo '<pre>';
 print_r($datiPubblica);
 echo '</pre>';
 
+$datiElimina = $controller5->eliminaRecensione(1);
+echo '<h2>eliminaRecensione</h2>';
+echo '<pre>';
+print_r($datiElimina);
+echo '</pre>';
+
 
 //INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
 $datiSegnalazioni = $controller6->accedi_segnalazioni();
