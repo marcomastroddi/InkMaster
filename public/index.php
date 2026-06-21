@@ -5,7 +5,7 @@ use InkMaster\Control\RicercaVisualizzaTatuatori;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
-use InkMaster\Control\InserimentoRecensione;
+use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
 
@@ -16,7 +16,7 @@ $controller = new RicercaVisualizzaTatuatori();
 $controller2 = new PrenotazionePagamento();
 $controller3 = new GestionePortfolio();
 $controller4 = new VisualizzaPortfolio();
-$controller5 = new InserimentoRecensione();
+$controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 
 

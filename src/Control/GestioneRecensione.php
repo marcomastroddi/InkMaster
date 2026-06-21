@@ -5,7 +5,7 @@ use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 
-class InserimentoRecensione {
+class GestioneRecensione {
     private PersistentManager $pm;
 
     public function __construct()
