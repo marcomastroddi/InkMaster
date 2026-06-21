@@ -12,6 +12,7 @@ use InkMaster\Foundation\Repository\ClienteRepository;
 use InkMaster\Foundation\Repository\AppuntamentoRepository;
 use InkMaster\Foundation\Repository\AmministratoreRepository;
 
+
 use InkMaster\Enum\Citta; 
 use InkMaster\Entity\Studio; 
 use InkMaster\Entity\Cliente;
@@ -20,7 +21,7 @@ use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Recensione;
 use InkMaster\Entity\Appuntamento;
 use InkMaster\Entity\Stile;
-
+use InkMaster\Entity\Segnalazione;
 
 
 /*Nota Fab:Per conferma_ban non serve una repository — salva dati nel DB. Per ora con dati fittizi non c'è niente da salvare, 
@@ -194,6 +195,11 @@ class PersistentManager
     public function findRecensioniByStudioId(int $idStudio): array
     {
         return $this->recensioneRepository->findByStudioId($idStudio);
+    }
+
+    public function saveSegnalazione(Segnalazione $segnalazione): bool
+    {
+        return $this->segnalazioneRepository->saveSegnalazione($segnalazione);
     }
 
 }

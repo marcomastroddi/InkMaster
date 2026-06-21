@@ -21,4 +21,12 @@ class SegnalazioneRepository
             new Segnalazione('Spam', 'L\'utente ha inviato messaggi ripetuti a più studi.', new DateTime('2024-03-20')),
         ];
     }
+
+    public function saveSegnalazione(Segnalazione $segnalazione): bool
+    {
+        // TODO: quando ci sarà il DB
+        // $this->em->persist($segnalazione);
+        // $this->em->flush();
+        return true;
+    }
 }

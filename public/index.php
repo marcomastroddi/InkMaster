@@ -7,7 +7,7 @@ use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
-use InkMaster\Control\InvioSegnalazione;
+use \InkMaster\Control\GestisciSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
 
@@ -23,7 +23,8 @@ $controller4 = new VisualizzaPortfolio();
 $controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
-$controller8 = new InvioSegnalazione();
+$controller8 = new GestisciSegnalazione();
+
 
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
@@ -176,7 +177,6 @@ print_r($datiDettagliPubblicazione);
 echo '</pre>';
 
 
-
 //INTERFACCIA 5 - GESTIONE RECENSIONI
 $datiAvvio = $controller5->avvia_recensione(1, 1);
 echo '<h2>avvia_recensione</h2>';
@@ -238,12 +238,19 @@ $datiLogout = $controllerLogin->logout();
 echo '<h2>logout</h2><pre>'; print_r($datiLogout); echo '</pre>';
 
 //INTERFACCIA 8 - INVIO SEGNALAZIONE
-$datiInvioSegnalazione = $controller8->apriFormSegnalazione('studio', 1);
+//INTERFACCIA 8 - GESTISCI SEGNALAZIONE
+$_SESSION['ruolo'] = 'cliente';
+$_SESSION['id_utente'] = 1;
+
+$datiFormSegnalazione = $controller8->apriFormSegnalazione('studio', 1);
 echo '<h2>apriFormSegnalazione</h2><pre>';
-echo '<pre>';
-print_r($datiInvioSegnalazione);
+print_r($datiFormSegnalazione);
 echo '</pre>';
 
+$datiInvioSegnalazione = $controller8->inviaSegnalazione('Spam o Truffa', 'Comportamento scorretto.', 'studio', 1);
+echo '<h2>inviaSegnalazione</h2><pre>';
+print_r($datiInvioSegnalazione);
+echo '</pre>';
 
 
 
@@ -529,7 +536,24 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
+//INTERFACCIA 8 - GESTISCI SEGNALAZIONE
+    case 'apri_form_segnalazione':
+        $tipoTarget = $_GET['tipo'] ?? '';
+        $idTarget   = (int)($_GET['id'] ?? 0);
+        $dati = $controller8->apriFormSegnalazione($tipoTarget, $idTarget);
+        View::render('form_segnalazione', $dati);
+        break;
 
+    case 'invia_segnalazione':
+        $dati = $controller8->inviaSegnalazione(
+            $_POST['motivo']      ?? '',
+            $_POST['descrizione'] ?? '',
+            $_POST['tipo_target'] ?? '',
+            (int)($_POST['id_target'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
 
 
