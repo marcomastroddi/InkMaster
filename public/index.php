@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use InkMaster\Control\RicercaVisualizzaTatuatori;
+use InkMaster\Control\RicercaVisualizzaStudi;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
-use InkMaster\Control\InserimentoRecensione;
+use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
@@ -15,11 +15,11 @@ use InkMaster\Control\Login;
 
 SessionManager::start();
 
-$controller = new RicercaVisualizzaTatuatori();
+$controller = new RicercaVisualizzaStudi();
 $controller2 = new PrenotazionePagamento();
 $controller3 = new GestionePortfolio();
 $controller4 = new VisualizzaPortfolio();
-$controller5 = new InserimentoRecensione();
+$controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
 
@@ -67,9 +67,10 @@ echo '<pre>';
 print_r($datiRicerca);
 echo '</pre>';
 
-//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
-$datiStudio = $controller2->scegli_studio(1);
+$datiStudio = $controller->scegli_studio(1);
 echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); echo '</pre>';
+
+//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
 
 $datiTatuatore = $controller2->scegli_tatuatore(1);
 echo '<h2>scegli_tatuatore</h2><pre>'; print_r($datiTatuatore); echo '</pre>';
@@ -193,6 +194,12 @@ echo '<pre>';
 print_r($datiPubblica);
 echo '</pre>';
 
+$datiElimina = $controller5->eliminaRecensione(1);
+echo '<h2>eliminaRecensione</h2>';
+echo '<pre>';
+print_r($datiElimina);
+echo '</pre>';
+
 
 //INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
 $datiSegnalazioni = $controller6->accedi_segnalazioni();
@@ -254,7 +261,7 @@ use InkMaster\Presentation\View;
 
 $page = $_GET['page'] ?? 'home';
 
-$controller = new RicercaVisualizzaTatuatori();
+$controller = new RicercaVisualizzaStudi();
 $controller2 = new PrenotazionePagamento();
 
 

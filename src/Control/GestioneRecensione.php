@@ -5,7 +5,7 @@ use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 
-class InserimentoRecensione {
+class GestioneRecensione {
     private PersistentManager $pm;
 
     public function __construct()
@@ -138,5 +138,24 @@ class InserimentoRecensione {
                 'idStudio'    => $idStudio
             ]
         ];
+    }
+
+    public function eliminaRecensione(int $idRecensione): array
+    {
+        $esitoEliminazione = $this->pm->deleteRecensione($idRecensione);
+
+        if ($esitoEliminazione) {
+            return [
+                'status' => 'success',
+                'message' => 'Recensione eliminata con successo',
+                'interfaccia' => 'Bacheca aggiornata senza la recensione eliminata'
+            ];
+        }
+
+        return [
+            'status' => 'error',
+            'message' => 'Impossibile eliminare la recensione.'
+        ];
+
     }
 }

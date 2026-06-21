@@ -4,8 +4,9 @@ namespace InkMaster\Control;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Enum\Citta;
 use InkMaster\Foundation\SessionManager;
+use InkMaster\Entity\Studio;
 
-class RicercaVisualizzaTatuatori
+class RicercaVisualizzaStudi
 {
     private PersistentManager $pm;
 
@@ -140,6 +141,24 @@ class RicercaVisualizzaTatuatori
             'status'      => 'success',
             'interfaccia' => 'Lista tatuatori',
             'data'        => $tatuatori
+        ];
+    }
+
+    public function scegli_studio(int $studioId): array
+    {
+        $studio = $this->pm->find(Studio::class, $studioId);
+
+        if ($studio === null) {
+            return ['status' => 'error', 'message' => 'Studio non trovato'];
+        }
+
+        // Salviamo l'id dello studio: ci servirà alla fine per creare l'appuntamento
+        $_SESSION['prenotazione']['studio_id'] = $studioId;
+
+        return [
+            'status' => 'success',
+            'interfaccia' => 'Interfaccia studio',
+            'data' => $studio
         ];
     }
 
