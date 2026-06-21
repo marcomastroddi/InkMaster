@@ -256,14 +256,14 @@ echo '<h2>logout</h2><pre>'; print_r($datiLogout); echo '</pre>';
 /*<?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use InkMaster\Control\RicercaVisualizzaTatuatori;
-use InkMaster\Presentation\View;
-
 $page = $_GET['page'] ?? 'home';
 
-$controller = new RicercaVisualizzaStudi();
-$controller2 = new PrenotazionePagamento();
+$pagineProtette = ['scegli_studio', 'scegli_tatuatore', 'scegli_stile', 'scegli_data', 'richiedi_appuntamento', 'confermaPrenotazione', 'accetta_richiesta', 'rifiuta_richiesta', 'concludi_appuntamento', 'avvia_pagamento', 'inserisci_dati_pagamento', 'apriPortfolio', 'mostraFormPubblicazione', 'pubblicaTatuaggio', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban'];
 
+if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
+    View::render('login', ['message' => 'Devi effettuare il login']);
+    exit;
+}
 
 switch ($page) {
 
