@@ -68,12 +68,20 @@ print_r($datiRicerca);
 echo '</pre>';
 
 $datiStudio = $controller->scegli_studio(1);
-echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); echo '</pre>';
+echo '<h2>scegli_studio</h2><pre>'; print_r($datiStudio); 
+echo '</pre>';
+
+$datiRecensioni = $controller->visualizza_recensioni(1);
+echo '<h2>visualizza_recensioni</h2><pre>'; 
+print_r($datiRecensioni); 
+echo '</pre>';
 
 //INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO
 
 $datiTatuatore = $controller2->scegli_tatuatore(1);
-echo '<h2>scegli_tatuatore</h2><pre>'; print_r($datiTatuatore); echo '</pre>';
+echo '<h2>scegli_tatuatore</h2><pre>'; 
+print_r($datiTatuatore); 
+echo '</pre>';
 
 $datiStile = $controller2->scegli_stile(1);
 echo '<h2>scegli_stile</h2><pre>'; print_r($datiStile); echo '</pre>';
@@ -307,6 +315,12 @@ switch ($page) {
     case 'avvia_ricerca':
     $dati = $controller->avvia_ricerca();
     View::render('risultati', $dati);
+    break;
+
+    case 'visualizza_recensioni':
+    $id = (int)($_GET['id'] ?? 0);
+    $dati = $controller->visualizza_recensioni($id);
+    View::render('recensioni', $dati);
     break;
 
 
