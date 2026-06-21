@@ -2,8 +2,6 @@
 namespace InkMaster\Control;
 
 use InkMaster\Foundation\PersistentManager;
-use InkMaster\Entity\Segnalazione;
-use InkMaster\Entity\Persona;
 use InkMaster\Foundation\SessionManager;
 
 class ModerazionePiattaforma

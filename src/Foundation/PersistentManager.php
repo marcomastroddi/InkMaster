@@ -1,22 +1,22 @@
 <?php
 namespace InkMaster\Foundation;
 
-use InkMaster\Foundation\StileRepository;
-use InkMaster\Foundation\StudioRepository;
-use InkMaster\Foundation\SegnalazioneRepository;//Fab 
-use InkMaster\Foundation\PersonaRepository;//Fab
-use InkMaster\Foundation\PubblicazioneRepository;
+use InkMaster\Foundation\Repository\StileRepository;
+use InkMaster\Foundation\Repository\StudioRepository;
+use InkMaster\Foundation\Repository\SegnalazioneRepository;//Fab 
+use InkMaster\Foundation\Repository\PersonaRepository;//Fab
+use InkMaster\Foundation\Repository\PubblicazioneRepository;
+use InkMaster\Foundation\Repository\RecensioneRepository;
+use InkMaster\Foundation\Repository\TatuatoreRepository;
+use InkMaster\Foundation\Repository\ClienteRepository;
+use InkMaster\Foundation\Repository\AppuntamentoRepository;
 
-use InkMaster\Enum\Citta; // <-- da correggere in base alla posizione reale del file (vedi nota)
-use InkMaster\Entity\Studio; // <-- da correggere in base alla posizione reale del file (vedi nota)
-use InkMaster\Foundation\RecensioneRepository;
+use InkMaster\Enum\Citta; 
+use InkMaster\Entity\Studio; 
 use InkMaster\Entity\Cliente;
 use InkMaster\Entity\Pubblicazione;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Recensione;
-use InkMaster\Foundation\TatuatoreRepository;
-use InkMaster\Foundation\ClienteRepository;
-use InkMaster\Foundation\AppuntamentoRepository;
 use InkMaster\Entity\Appuntamento;
 use InkMaster\Entity\Stile;
 
@@ -50,7 +50,6 @@ class PersistentManager
         $this->personaRepository = new PersonaRepository($entityManager);//Fab
         $this->recensioneRepository = new RecensioneRepository($entityManager);
         $this->pubblicazioneRepository = new PubblicazioneRepository($entityManager);
-        $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
         $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
         $this->clienteRepository = new ClienteRepository($entityManager);
         $this->appuntamentoRepository = new AppuntamentoRepository($entityManager);

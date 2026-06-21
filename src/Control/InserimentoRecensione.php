@@ -4,8 +4,6 @@ namespace InkMaster\Control;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
-use InkMaster\Entity\Cliente;
-use InkMaster\Entity\Tatuatore;
 
 class InserimentoRecensione {
     private PersistentManager $pm;

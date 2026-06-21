@@ -1,12 +1,10 @@
 <?php
-//Va dentro PersonaRepository perché seleziona_utente lavora su utenti generici — l'amministratore non sa se sta bannando un Cliente o un Tatuatore.
-//Però Persona è astratta, quindi per i dati fittizi siamo costretti ad usare Cliente che è la classe concreta. Quando ci sarà il DB reale, Doctrine gestirà automaticamente entrambi i tipi.
-namespace InkMaster\Foundation;
+namespace InkMaster\Foundation\Repository;
 
 use InkMaster\Entity\Cliente;
 use DateTime;
 
-class PersonaRepository
+class ClienteRepository
 {
     private $em;
 
@@ -26,5 +24,4 @@ class PersonaRepository
             'Roma'
         );
     }
-    
 }

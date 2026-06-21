@@ -2,7 +2,7 @@
 namespace InkMaster\Control; //namespace per evitare conflitti con altre classi
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
-use InkMaster\Entity\StudioRepository;
+
 class GestionePortfolio {
 
     private PersistentManager $pm;

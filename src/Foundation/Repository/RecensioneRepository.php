@@ -1,5 +1,5 @@
 <?php
-namespace InkMaster\Foundation;
+namespace InkMaster\Foundation\Repository;
 
 use InkMaster\Entity\Recensione;
 use InkMaster\Entity\Cliente;
