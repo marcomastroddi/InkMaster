@@ -7,6 +7,7 @@ use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
+use InkMaster\Control\InvioSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
 
@@ -22,6 +23,7 @@ $controller4 = new VisualizzaPortfolio();
 $controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
+$controller8 = new InvioSegnalazione();
 
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
@@ -227,6 +229,12 @@ echo '<h2>login</h2><pre>'; print_r($datiLogin); echo '</pre>';
 $datiLogout = $controllerLogin->logout();
 echo '<h2>logout</h2><pre>'; print_r($datiLogout); echo '</pre>';
 
+//INTERFACCIA 8 - INVIO SEGNALAZIONE
+$datiInvioSegnalazione = $controller8->apriFormSegnalazione('studio', 1);
+echo '<h2>apriFormSegnalazione</h2><pre>';
+echo '<pre>';
+print_r($datiInvioSegnalazione);
+echo '</pre>';
 
 
 
