@@ -6,6 +6,7 @@ use InkMaster\Enum\Citta;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 
+
 class RicercaVisualizzaStudi
 {
     private PersistentManager $pm;
@@ -16,26 +17,18 @@ class RicercaVisualizzaStudi
     }
 
     public function mostra_home(): array
-        {
-            $stiliTatuaggi = $this->pm->findAvailableStyles();
+    {
+        $cittaDefault = 'Roma';
 
-            $cittaDefault = 'Roma';
-
-            $recensioneInEvidenza = [
-                'utente' => 'Lorenzo Rossi',
-                'intestazione' => 'Lavoro spettacolare!',
-                'descrizione' => 'Il tatuatore ha capito al volo la mia idea. Linee sottilissime.',
-                'foto_tatuaggio' => 'https://placehold.co/120x150?text=Tatuaggio',
-                'nome_tatuatore' => 'DanInk'
-            ];
+        $recensioni = $this->pm->findRecensioniPositiveRandom(5);
+        $studi      = $this->pm->findStudiRandom(5);
 
         return [
-            'status' => 'success',
-            'interfaccia' => 'Home Page Iniziale',
-            'stili' => $stiliTatuaggi,
+            'status'         => 'success',
+            'interfaccia'    => 'Home Page Iniziale',
             'citta_corrente' => $cittaDefault,
-            'recensione' => $recensioneInEvidenza,
-            'tatuatori' => []
+            'recensioni'     => $recensioni,
+            'studi'          => $studi
         ];
     }
 

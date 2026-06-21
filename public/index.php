@@ -36,8 +36,7 @@ $controller12 = new GestionePagamenti();
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
 $datiHome = $controller->mostra_home();
-echo '<h2>mostra_home</h2>';
-echo '<pre>';
+echo '<h2>mostra_home</h2><pre>';
 print_r($datiHome);
 echo '</pre>';
 

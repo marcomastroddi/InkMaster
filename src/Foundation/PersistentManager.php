@@ -240,6 +240,17 @@ class PersistentManager
     {
         return $this->appuntamentoRepository->countPrenotazioniAttive();
     }
+
+    //Metodi per restituire dati random per la home page e la dashboard del moderatore
+    public function findRecensioniPositiveRandom(int $limit): array
+    {
+        return $this->recensioneRepository->findRecensioniPositiveRandom($limit);
+    }
+
+    public function findStudiRandom(int $limit): array
+    {
+        return $this->studioRepository->findStudiRandom($limit);
+    }
 }
 
 
