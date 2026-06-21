@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use InkMaster\Control\RicercaVisualizzaTatuatori;
+use InkMaster\Control\RicercaVisualizzaStudi;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
@@ -12,7 +12,7 @@ use InkMaster\Foundation\SessionManager;
 
 SessionManager::start();
 
-$controller = new RicercaVisualizzaTatuatori();
+$controller = new RicercaVisualizzaStudi();
 $controller2 = new PrenotazionePagamento();
 $controller3 = new GestionePortfolio();
 $controller4 = new VisualizzaPortfolio();
@@ -251,7 +251,7 @@ use InkMaster\Presentation\View;
 
 $page = $_GET['page'] ?? 'home';
 
-$controller = new RicercaVisualizzaTatuatori();
+$controller = new RicercaVisualizzaStudi();
 $controller2 = new PrenotazionePagamento();
 
 

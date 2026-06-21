@@ -6,7 +6,7 @@ use InkMaster\Enum\Citta;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 
-class RicercaVisualizzaTatuatori
+class RicercaVisualizzaStudi
 {
     private PersistentManager $pm;
 
