@@ -11,12 +11,16 @@ class Amministratore extends Persona
     // Non ci sono attributi aggiuntivi rispetto a Persona
 
     // Costruttore
-    public function __construct(string $nome, string $cognome, string $password) 
+    public function __construct(string $nome, string $cognome, string $password, string $username) 
     {
         // Richiama il costruttore della MappedSuperclass Persona
-        parent::__construct($nome, $cognome, $password);
+        parent::__construct($nome, $cognome, $password, $username);
     }
-
+    
+    public function getRuolo(): string
+    {
+        return 'amministratore';
+    }
     // Non sono necessari Getter e Setter aggiuntivi perché 
     // eredita ed utilizza direttamente quelli di Persona
 }

@@ -21,6 +21,7 @@ class PersonaRepository
             'Mario',
             'Rossi',
             'password123',
+            'mario_rossi',
             new DateTime('1990-05-15'),
             'mario.rossi@email.it',
             'Roma'

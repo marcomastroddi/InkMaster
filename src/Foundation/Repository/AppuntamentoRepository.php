@@ -24,6 +24,7 @@ class AppuntamentoRepository
             '12345678901',
             Citta::Roma,
             'roma.centro@inkmaster.it',
+            'inkmaster_roma',
             'Studio storico nel cuore di Roma.',
             '0612345678',
             ['lun-ven' => '10:00-19:00'],
@@ -32,6 +33,7 @@ class AppuntamentoRepository
 
         $cliente = new Cliente(
             'Mario', 'Rossi', 'password123',
+            'mario_rossi',
             new DateTime('1990-05-15'),
             'mario.rossi@email.it', 'Roma'
         );

@@ -21,15 +21,20 @@ abstract class Persona
     #[ORM\Column(type: 'string', length: 100)]
     protected string $cognome;
 
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
+    protected string $username;
+
     #[ORM\Column(type: 'string', length: 255)]
     protected string $password;
 
     // Costruttore
-    public function __construct(string $nome, string $cognome, string $password) 
+    public function __construct(string $nome, string $cognome, string $password, string $username) 
     {
         $this->nome = $nome;
         $this->cognome = $cognome;
+        $this->username = $username;
         $this->password = $password;
+        
     }
 
     // Metodi getter
@@ -46,6 +51,11 @@ abstract class Persona
     public function getCognome(): string 
     {
         return $this->cognome;
+    }
+
+    public function getUsername(): string 
+    {
+        return $this->username;
     }
 
     public function getPassword(): string 
@@ -68,6 +78,11 @@ abstract class Persona
     public function setCognome(string $cognome): void 
     {
         $this->cognome = $cognome;
+    }
+
+    public function setUsername(string $username): void 
+    {
+        $this->username = $username;
     }
 
     public function setPassword(string $password): void 

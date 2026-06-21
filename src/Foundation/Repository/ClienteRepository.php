@@ -19,9 +19,25 @@ class ClienteRepository
             'Mario',
             'Rossi',
             'password123',
+            'mario_rossi',
             new DateTime('1990-05-15'),
             'mario.rossi@email.it',
             'Roma'
         );
+    }
+
+    public function findByUsername(string $username): ?Cliente
+    {
+        $cliente = new Cliente(
+            'Mario', 'Rossi', 'password123', 'mario_rossi',
+            new DateTime('1990-05-15'),
+            'mario.rossi@email.it', 'Roma'
+        );
+
+        if ($cliente->getUsername() === $username) {
+            return $cliente;
+        }
+
+        return null;
     }
 }

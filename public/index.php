@@ -8,6 +8,9 @@ use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\InserimentoRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
 use InkMaster\Foundation\SessionManager;
+use InkMaster\Control\Login;
+
+
 
 
 SessionManager::start();
@@ -18,6 +21,7 @@ $controller3 = new GestionePortfolio();
 $controller4 = new VisualizzaPortfolio();
 $controller5 = new InserimentoRecensione();
 $controller6 = new ModerazionePiattaforma();
+$controllerLogin = new Login();
 
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
@@ -209,6 +213,12 @@ echo '<pre>';
 print_r($datiBan);
 echo '</pre>';
 
+//INTERFACCIA 7 - LOGIN
+$datiLogin = $controllerLogin->login('mario_rossi', 'password123');
+echo '<h2>login</h2><pre>'; print_r($datiLogin); echo '</pre>';
+
+$datiLogout = $controllerLogin->logout();
+echo '<h2>logout</h2><pre>'; print_r($datiLogout); echo '</pre>';
 
 
 
@@ -397,9 +407,21 @@ switch ($page) {
             echo json_encode($dati);
             break;
 
+//INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO
+    case 'apriPortfolio':
+        $idStudio = (int)($_GET['id'] ?? 0);
+        $dati = $controller4->apriPortfolio($idStudio);
+        View::render('portfolio_pubblico', $dati);
+        break;
+
+    case 'visualizzaDettagliPubblicazione':
+        $idPubblicazione = (int)($_GET['id'] ?? 0);
+        $dati = $controller4->visuaizzaDettagliPubblicazione($idPubblicazione);
+        View::render('dettagli_pubblicazione', $dati);
+        break;
 
 
-//INTERFACCIA 4 - GESTIONE RECENSIONI
+//INTERFACCIA 5 - GESTIONE RECENSIONI
     case 'avvia_recensione':
         $idStudio = (int)($_GET['id'] ?? 0);
         $idCliente = (int)(SessionManager::get('id_utente_loggato') ?? 0);
@@ -425,7 +447,7 @@ switch ($page) {
         break;
 
 
-//INTERFACCIA 5 - MODERAZIONE PIATTAFORMA
+//INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
     case 'accedi_segnalazioni':
         $dati = $controller5->accedi_segnalazioni();
         View::render('segnalazioni', $dati);
@@ -449,6 +471,20 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
+//INTERFACCIA 7 - LOGIN
+    case 'login':
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $dati = $controllerLogin->login($username, $password);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'logout':
+        $dati = $controllerLogin->logout();
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
 
 
 

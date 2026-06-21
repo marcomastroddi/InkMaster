@@ -19,6 +19,9 @@ class Studio
     #[ORM\Column(type: 'string', length: 150)]
     private string $nome;
 
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
+    private string $username;
+
     #[ORM\Column(type: 'string', length: 11, unique: true)]
     private string $partitaIva;
 
@@ -58,6 +61,7 @@ class Studio
         string $partitaIva, 
         Citta $posizione, 
         string $email,
+        string $username,
         ?string $descrizione = null,
         ?string $telefono = null,
         array $orariApertura = [],
@@ -67,6 +71,7 @@ class Studio
         $this->partitaIva = $partitaIva;
         $this->posizione = $posizione;
         $this->email = $email;
+        $this->username = $username;
         $this->descrizione = $descrizione;
         $this->telefono = $telefono;
         $this->orariApertura = $orariApertura;
@@ -107,6 +112,11 @@ class Studio
     public function getEmail(): string 
     {
         return $this->email;
+    }
+
+    public function getUsername(): string 
+    {
+        return $this->username;
     }
 
     public function getTelefono(): ?string 
@@ -152,6 +162,11 @@ class Studio
     public function setNome(string $nome): void 
     {
         $this->nome = $nome;
+    }
+
+    public function setUsername(string $username): void 
+    {
+        $this->username = $username;
     }
 
     public function setPartitaIva(string $partitaIva): void 

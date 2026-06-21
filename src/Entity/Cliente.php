@@ -29,17 +29,19 @@ class Cliente extends Persona
     private Collection $segnalazioni;
 
 
+    
     // Costruttore
     public function __construct(
         string $nome, 
         string $cognome, 
         string $password, 
+        string $username,
         DateTime $dataNascita, 
         string $email, 
         ?string $posizione = null
     ) {
         // Invochiamo il costruttore del padre (Persona) per nome, cognome e password
-        parent::__construct($nome, $cognome, $password);
+        parent::__construct($nome, $cognome, $password, $username);
         
         $this->dataNascita = $dataNascita;
         $this->email = $email;
@@ -59,6 +61,11 @@ class Cliente extends Persona
     public function getEmail(): string 
     {
         return $this->email;
+    }
+
+    public function getRuolo(): string
+    {
+        return 'cliente';
     }
 
     public function getPosizione(): ?string 

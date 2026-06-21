@@ -10,6 +10,7 @@ use InkMaster\Foundation\Repository\RecensioneRepository;
 use InkMaster\Foundation\Repository\TatuatoreRepository;
 use InkMaster\Foundation\Repository\ClienteRepository;
 use InkMaster\Foundation\Repository\AppuntamentoRepository;
+use InkMaster\Foundation\Repository\AmministratoreRepository;
 
 use InkMaster\Enum\Citta; 
 use InkMaster\Entity\Studio; 
@@ -40,6 +41,7 @@ class PersistentManager
     private TatuatoreRepository $tatuatoreRepository;
     private ClienteRepository $clienteRepository;
     private AppuntamentoRepository $appuntamentoRepository;
+    private AmministratoreRepository $amministratoreRepository;
 
     private function __construct($entityManager = null)
     {
@@ -53,6 +55,7 @@ class PersistentManager
         $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
         $this->clienteRepository = new ClienteRepository($entityManager);
         $this->appuntamentoRepository = new AppuntamentoRepository($entityManager);
+        $this->amministratoreRepository = new AmministratoreRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -158,6 +161,29 @@ class PersistentManager
     public function findById(int $id): ?Studio
     {
         return $this->findAvailableStudios([])[0] ?? null;
+    }
+
+    public function findByUsername(string $username): ?object
+    {
+        // 1. Cerca tra i clienti
+        $cliente = $this->clienteRepository->findByUsername($username);
+        if ($cliente !== null) {
+            return $cliente;
+        }
+
+        // 2. Cerca tra gli amministratori
+        $admin = $this->amministratoreRepository->findByUsername($username);
+        if ($admin !== null) {
+            return $admin;
+        }
+
+        // 3. Cerca tra gli studi (per i tatuatori)
+        $studio = $this->studioRepository->findByUsername($username);
+        if ($studio !== null) {
+            return $studio;
+        }
+
+        return null;
     }
 
 }
