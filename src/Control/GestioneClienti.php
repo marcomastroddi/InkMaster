@@ -55,12 +55,13 @@ class GestioneClienti
             return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
         }
 
-        $appuntamento->setCosto($importo);
-        $this->pm->save($appuntamento);
+        // TODO: quando ci sarà il DB creare entità Pagamento e collegarla all'appuntamento
+        // $pagamento = new Pagamento($importo, 'IN_CORSO', $appuntamento, $cartaDiCredito);
+        // $this->pm->save($pagamento);
 
         return [
-            'status'  => 'success',
-            'message' => 'Pagamento di €' . $importo . ' aggiunto con successo.',
+            'status'      => 'success',
+            'message'     => 'Pagamento di €' . $importo . ' registrato con successo.',
             'interfaccia' => 'Pagamenti aggiornati'
         ];
     }

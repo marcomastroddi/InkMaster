@@ -9,7 +9,7 @@ use InkMaster\Entity\Cliente;
 use InkMaster\Entity\Studio;
 use DateTime;
 
-class GestisciSegnalazione
+class GestioneSegnalazione
 {
     private PersistentManager $pm;
 

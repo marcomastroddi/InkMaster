@@ -7,12 +7,13 @@ use InkMaster\Control\GestionePortfolio;
 use InkMaster\Control\VisualizzaPortfolio;
 use InkMaster\Control\GestioneRecensione;
 use InkMaster\Control\ModerazionePiattaforma;
-use \InkMaster\Control\GestisciSegnalazione;
+use \InkMaster\Control\GestioneSegnalazione;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Control\Login;
 use InkMaster\Control\GestioneProfilo;
 use InkMaster\Control\GestioneClienti;
 use InkMaster\Control\GestioneCalendario;
+use InkMaster\Control\GestionePagamenti;
 
 
 
@@ -25,10 +26,11 @@ $controller4 = new VisualizzaPortfolio();
 $controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
 $controllerLogin = new Login();
-$controller8 = new GestisciSegnalazione();
+$controller8 = new GestioneSegnalazione();
 $controller9 = new GestioneProfilo();
 $controller10 = new GestioneClienti();
 $controller11 = new GestioneCalendario();
+$controller12 = new GestionePagamenti();
 
 
 
@@ -305,6 +307,14 @@ echo '</pre>';
 $datiGiorno = $controller11->visualizzaAppuntamentiDelGiorno('2024-06-01');
 echo '<h2>visualizzaAppuntamentiDelGiorno</h2><pre>';
 print_r($datiGiorno);
+echo '</pre>';
+
+//INTERFACCIA 12 - GESTIONE PAGAMENTI
+$_SESSION['id_studio'] = 1;
+
+$datiPagamenti = $controller12->visualizzaPagamenti();
+echo '<h2>visualizzaPagamenti</h2><pre>';
+print_r($datiPagamenti);
 echo '</pre>';
 
 
@@ -668,7 +678,11 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
-
+//INTERFACCIA 12 - GESTIONE PAGAMENTI
+    case 'visualizza_pagamenti':
+        $dati = $controller12->visualizzaPagamenti();
+        View::render('pagamenti', $dati);
+        break;
 
 
 
