@@ -79,6 +79,7 @@ class AppuntamentoRepository
 
     public function countPrenotazioniAttive(): int
     {
-        return 4; // fittizio
+        // Aggiusta 'CONFERMATO' a ciò che per te significa "prenotazione attiva"
+        return $this->em->getRepository(Appuntamento::class)->count(['stato' => 'CONFERMATO']);
     }
 }

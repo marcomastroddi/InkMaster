@@ -206,7 +206,7 @@ class StudioRepository
 
     public function countStudi(): int
     {
-        return 5; // fittizio — stessi della findAvailableStudios
+        return $this->em->getRepository(Studio::class)->count([]);
     }
     
     // Fab, per adesso restituisce sempre lo stesso studio fittizio, ma in futuro potrà fare query sul DB

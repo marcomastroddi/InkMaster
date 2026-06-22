@@ -28,6 +28,6 @@ class SegnalazioneRepository
 
     public function countSegnalazioniAperte(): int
     {
-        return 2; // fittizio
+        return $this->em->getRepository(Segnalazione::class)->count(['stato' => 'APERTA']);
     }
 }

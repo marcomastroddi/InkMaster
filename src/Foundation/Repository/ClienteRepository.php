@@ -43,6 +43,6 @@ class ClienteRepository
 
     public function countClienti(): int
     {
-        return 3; // fittizio
+        return $this->em->getRepository(Cliente::class)->count([]);
     }
 }
