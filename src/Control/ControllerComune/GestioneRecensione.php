@@ -1,4 +1,5 @@
 <?php 
+
 namespace InkMaster\Control\ControllerComune;
 
 use InkMaster\Foundation\PersistentManager;
@@ -13,15 +14,20 @@ class GestioneRecensione {
         $this->pm = PersistentManager::getInstance();
     }
 
+    //Metodo che mostra al cliente il form per l'inserimento della recensione,
+    //recupera dal db i tatuatori e gli stili così da mostrarli nel form
     public function mostraFormRecensione(int $idStudio): array
     {
-        // Il cliente è chi è loggato: lo studio selezionato è uno stato temporaneo del wizard
+        // Il cliente è chi è loggato: lo studio selezionato è uno stato temporaneo del wizard (???)
         SessionManager::set('studio_selezionato', $idStudio);
 
-        $studio = $this->pm->find(Studio::class, $idStudio);
+        //Grazie al metodo CRUD "read" recupero l'oggetto Studio
+        $studio = $this->pm->read(Studio::class, $idStudio);
 
-        if ($studio === null) {
-            return [
+        if ($studio === null) 
+        {
+            return 
+            [
                 'status'  => 'error',
                 'message' => 'Studio non trovato'
             ];
@@ -30,7 +36,10 @@ class GestioneRecensione {
         $tatuatori = $this->pm->findTatuatoriByStudioId($idStudio);
         $stili = $this->pm->findStiliByStudioId($idStudio);
 
-        return [
+        // NOTA: L'ID dello studio dovrà essere inserito in un <input type="hidden"> nel form HTML. (???)
+        //Restituiamo i dati a Presentation
+        return 
+        [
             'status'      => 'success',
             'interfaccia' => 'Form inserimento recensione',
             'data'        => [
