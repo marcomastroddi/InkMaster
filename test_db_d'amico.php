@@ -115,3 +115,21 @@ $pagamento = new \InkMaster\Entity\Pagamento(
 
 $pm->create($pagamento);
 echo "Pagamento salvato con ID: " . $pagamento->getId() . "\n";
+
+
+//test metodi in ViusualizzaPortfolio
+
+//findPortfolioByStudioId
+echo "\n=== TEST findPortfolioByStudioId() ===\n";
+foreach ($pm->findPortfolioByStudioId(1) as $pub) {
+    echo $pub->getId() . ' - ' . $pub->getTitolo() . "\n";
+}
+
+//findDettagliPubblicazione
+echo "\n=== TEST findDettagliPubblicazione() ===\n";
+$pub = $pm->findDettagliPubblicazione(1);
+if ($pub) {
+    echo $pub->getId() . ' - ' . $pub->getTitolo() . "\n";
+} else {
+    echo "Pubblicazione non trovata\n";
+}
