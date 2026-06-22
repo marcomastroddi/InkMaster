@@ -40,7 +40,7 @@ $controller10 = new GestioneClienti();
 $controller11 = new GestioneCalendario();
 $controller12 = new GestionePagamenti();
 
-
+/*
 
 //INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI
 $datiHome = $controller->mostra_home();
@@ -59,13 +59,13 @@ echo '<h2>seleziona_posizione</h2>';
 echo '<pre>';
 print_r($datiPosizione);
 echo '</pre>';
-
+*/
 $datiStili = $controller->apri_stili_disponibili();
 echo '<h2>apri_stili_disponibili</h2>';
 echo '<pre>';
 print_r($datiStili);
 echo '</pre>';
-
+/*
 $datiStile = $controller->seleziona_stile('Realistico');
 echo '<h2>seleziona_stile</h2>';
 echo '<pre>';
@@ -334,7 +334,7 @@ echo '<h2>visualizzaPagamenti</h2><pre>';
 print_r($datiPagamenti);
 echo '</pre>';
 
-
+*/
 
 
 

@@ -49,7 +49,16 @@ class PersistentManager
 
     private function __construct($entityManager = null)
     {
-        $this->em = $entityManager; //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
+        // Se nessuno lo passa, carichiamo l'EntityManager vero dal bootstrap
+        if ($entityManager === null) {
+            $entityManager = require __DIR__ . '/../../config/bootstrap-doctrine.php';
+        }
+        $this->em = $entityManager;
+
+        // ...i repository ora ricevono l'EM vero (non più null)
+        $this->stileRepository = new StileRepository($entityManager);   
+    
+        //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
         $this->stileRepository = new StileRepository($entityManager);
         $this->studioRepository = new StudioRepository($entityManager);
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab

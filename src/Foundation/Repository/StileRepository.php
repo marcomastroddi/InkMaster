@@ -15,15 +15,8 @@ class StileRepository
     /**
      * @return Stile[]
      */
-    public function findAvailableStyles(): array
-    {
-        return [
-            new Stile('Realistico', 'Riproduce immagini fotografiche con dettagli, luci e ombre estremamente fedeli alla realtà.'),
-            new Stile('Giapponese', 'Stile tradizionale orientale (Irezumi), con grandi composizioni, draghi, koi e colori vivaci.'),
-            new Stile('Blackwork', 'Utilizza solo inchiostro nero, spaziando da disegni geometrici a pieni totali (blackout).'),
-            new Stile('Watercolor', 'Imita l\'effetto di un acquerello, con colori sfumati e l\'assenza di contorni netti.'),
-            new Stile('Tradizionale', 'Conosciuto anche come Old School, con linee marcate, pochi colori netti e soggetti classici (ancore, rose).'),
-        ];
+    public function findAvailableStyles(): array {
+        return $this->em->getRepository(Stile::class)->findAll();
     }
     
     // Fab, per adesso restituisce sempre lo stesso stile fittizio, ma in futuro potrà fare query sul DB
