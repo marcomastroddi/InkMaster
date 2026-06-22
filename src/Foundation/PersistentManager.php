@@ -51,14 +51,11 @@ class PersistentManager
     {
         // Se nessuno lo passa, carichiamo l'EntityManager vero dal bootstrap
         if ($entityManager === null) {
-            $entityManager = require __DIR__ . '/../../config/bootstrap-doctrine.php';
+            $entityManager = require __DIR__ . '/../../config/bootstrap-doctrine.php'; //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
         }
         $this->em = $entityManager;
 
         // ...i repository ora ricevono l'EM vero (non più null)
-        $this->stileRepository = new StileRepository($entityManager);   
-    
-        //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
         $this->stileRepository = new StileRepository($entityManager);
         $this->studioRepository = new StudioRepository($entityManager);
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
@@ -96,10 +93,8 @@ class PersistentManager
      * Nota: Se l'oggetto è già stato recuperato da Doctrine nella stessa sessione, 
      * basta fare il flush(). Usiamo merge() o il flush diretto per sicurezza.
      */
-    public function update(object $entity): void
+    public function update(): void
     {
-        // Se l'oggetto è "distaccato" dalla sessione di Doctrine, merge lo riaggancia
-        $this->em->merge($entity); 
         $this->em->flush();
     }
 
@@ -132,13 +127,6 @@ class PersistentManager
         $this->em->flush();
     }
 
-    // Salva un oggetto nuovo o aggiorna uno esistente nel DB
-    public function save(object $entity): void
-    {
-        $this->em->persist($entity);
-        $this->em->flush();
-    }
-
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
@@ -147,19 +135,6 @@ class PersistentManager
     public function findAvailableStudios($criteri): array
     {
         return $this->studioRepository->findAvailableStudios($criteri);
-    }
-
-    // Cerca per ID — es: find(Studio::class, 5)
-    public function find(string $class, int $id): ?object
-    {
-        return match($class) {
-            Studio::class       => $this->studioRepository->findById($id),
-            Tatuatore::class    => $this->tatuatoreRepository->findById($id),
-            Cliente::class      => $this->clienteRepository->findById($id),
-            Appuntamento::class => $this->appuntamentoRepository->findById($id),
-            Stile::class        => $this->stileRepository->findById($id),
-            default             => null
-        };
     }
 
     public function findPortfolioByStudioId(int $idStudio): array
