@@ -13,7 +13,7 @@ class GestioneRecensione {
         $this->pm = PersistentManager::getInstance();
     }
 
-    public function avvia_recensione(int $idStudio): array
+    public function mostraFormRecensione(int $idStudio): array
     {
         // Il cliente è chi è loggato: lo studio selezionato è uno stato temporaneo del wizard
         SessionManager::set('studio_selezionato', $idStudio);
@@ -41,7 +41,7 @@ class GestioneRecensione {
         ];
     }
 
-    public function compila_recensione(int $voto, string $titolo, string $descrizione, string $foto, int $idTatuatore, string $stile): array
+    public function compilaRecensione(int $voto, string $titolo, string $descrizione, string $foto, int $idTatuatore, string $stile): array
     {
         $idStudio = SessionManager::get('studio_selezionato');
 
@@ -86,7 +86,7 @@ class GestioneRecensione {
         ];
     }
 
-   public function pubblica_recensione(): array
+   public function pubblicaRecensione(): array
     {
         $idStudio = SessionManager::get('studio_selezionato');
         $idCliente = SessionManager::get('id_utente');

@@ -206,11 +206,11 @@ switch ($page) {
 
     // ===== INTERFACCIA 5 - GESTIONE RECENSIONI =====
     case 'avvia_recensione':
-        View::render('recensioni/form_recensione', $controller5->avvia_recensione((int)($_GET['id'] ?? 0)));
+        View::render('recensioni/form_recensione', $controller5->mostraFormRecensione((int)($_GET['id'] ?? 0)));
         break;
 
     case 'compila_recensione':
-        $dati = $controller5->compila_recensione(
+        $dati = $controller5->compilaRecensione(
             (int)($_POST['voto'] ?? 0),
             $_POST['titolo'] ?? '',
             $_POST['descrizione'] ?? '',
@@ -222,7 +222,7 @@ switch ($page) {
         break;
 
     case 'pubblica_recensione':
-        View::render('recensioni/conferma_recensione', $controller5->pubblica_recensione());
+        View::render('recensioni/conferma_recensione', $controller5->pubblicaRecensione());
         break;
 
     case 'elimina_recensione':
