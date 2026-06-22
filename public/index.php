@@ -5,20 +5,23 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
 
 
-use InkMaster\Control\RicercaVisualizzaStudi;
-use InkMaster\Control\PrenotazionePagamento;
-use InkMaster\Control\GestionePortfolio;
-use InkMaster\Control\VisualizzaPortfolio;
-use InkMaster\Control\GestioneRecensione;
-use InkMaster\Control\ModerazionePiattaforma;
-use InkMaster\Control\GestioneSegnalazione;
-use InkMaster\Foundation\SessionManager;
-use InkMaster\Control\Login;
-use InkMaster\Control\GestioneProfilo;
-use InkMaster\Control\GestioneClienti;
-use InkMaster\Control\GestioneCalendario;
-use InkMaster\Control\GestionePagamenti;
+use InkMaster\Control\ControllerCliente\RicercaVisualizzaStudi;
+use InkMaster\Control\ControllerCliente\PrenotazionePagamento;
+use InkMaster\Control\ControllerCliente\VisualizzaPortfolio;
 
+use InkMaster\Control\ControllerStudio\GestionePortfolio;
+use InkMaster\Control\ControllerStudio\GestioneClienti;
+use InkMaster\Control\ControllerStudio\GestioneCalendario;
+use InkMaster\Control\ControllerStudio\GestionePagamenti;
+
+use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
+
+use InkMaster\Control\ControllerComune\GestioneRecensione;
+use InkMaster\Control\ControllerComune\GestioneSegnalazione;
+use InkMaster\Control\ControllerComune\Login;
+use InkMaster\Control\ControllerComune\GestioneProfilo;
+
+use InkMaster\Foundation\SessionManager;
 use Inkmaster\Foundation\PersistentManager;
 
 

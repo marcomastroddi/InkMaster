@@ -1,5 +1,5 @@
 <?php
-namespace InkMaster\Control;
+namespace InkMaster\Control\ControllerAmministratore;
 
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;

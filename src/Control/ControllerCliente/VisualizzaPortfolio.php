@@ -1,6 +1,6 @@
 <?php
 
-namespace InkMaster\Control;
+namespace InkMaster\Control\ControllerCliente;
 
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;

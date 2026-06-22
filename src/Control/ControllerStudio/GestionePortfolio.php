@@ -1,5 +1,5 @@
 <?php 
-namespace InkMaster\Control; //namespace per evitare conflitti con altre classi
+namespace InkMaster\Control\ControllerStudio; //namespace per evitare conflitti con altre classi
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
