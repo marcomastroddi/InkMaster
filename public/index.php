@@ -1,6 +1,7 @@
 <?php
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
+$entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
 
 use InkMaster\Control\ControllerCliente\RicercaVisualizzaStudi;
 use InkMaster\Control\ControllerCliente\PrenotazionePagamento;
@@ -14,15 +15,13 @@ use InkMaster\Control\ControllerComune\GestioneSegnalazione;
 use InkMaster\Control\ControllerComune\GestioneProfilo;
 use InkMaster\Control\ControllerComune\Login;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
+
 use InkMaster\Foundation\SessionManager;
+use Inkmaster\Foundation\PersistentManager;
 use InkMaster\Presentation\View;
 
-
-
-
-
-
 SessionManager::start();
+PersistentManager::getInstance($entityManager);
 
 $controller = new RicercaVisualizzaStudi();
 $controller2 = new PrenotazionePagamento();
