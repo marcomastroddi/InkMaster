@@ -8,6 +8,8 @@ use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
 use InkMaster\Entity\Cliente;
 use InkMaster\Entity\Appuntamento;
+use InkMaster\Entity\CartaDiCredito;
+use InkMaster\Entity\Pagamento;
 use DateTime;
 
 class PrenotazionePagamento {
@@ -22,7 +24,7 @@ class PrenotazionePagamento {
     // ── Step 1: l'utente clicca "Avanti" dopo aver scelto un tatuatore ──
     public function scegli_tatuatore(int $tatuatoreId): array
     {
-        $tatuatore = $this->pm->find(Tatuatore::class, $tatuatoreId);
+        $tatuatore = $this->pm->read(Tatuatore::class, $tatuatoreId);
 
         if ($tatuatore === null) {
             return ['status' => 'error', 'message' => 'Tatuatore non trovato'];
@@ -50,7 +52,7 @@ class PrenotazionePagamento {
     // ── Step 2: l'utente clicca "Avanti" dopo aver scelto uno stile ──
     public function scegli_stile(int $stileId): array
     {
-        $stile = $this->pm->find(Stile::class, $stileId);
+        $stile = $this->pm->read(Stile::class, $stileId);
 
         if ($stile === null) {
             return ['status' => 'error', 'message' => 'Stile non trovato'];
@@ -102,13 +104,10 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Prenotazione incompleta'];
         }
 
-        $studio     = $this->pm->find(Studio::class, $prenotazione['studio_id']);
-        $tatuatore  = $this->pm->find(Tatuatore::class, $prenotazione['tatuatore_id']);
-        $stile      = $this->pm->find(Stile::class, $prenotazione['stile_id']);
-
-        // TODO: quando ci sarà il login, $clienteId arriverà dalla sessione utente,
-        // non da un parametro passato dal form.
-        $cliente = $this->pm->find(Cliente::class, $clienteId);
+        $studio    = $this->pm->read(Studio::class, $prenotazione['studio_id']);
+        $tatuatore = $this->pm->read(Tatuatore::class, $prenotazione['tatuatore_id']);
+        $stile     = $this->pm->read(Stile::class, $prenotazione['stile_id']);
+        $cliente   = $this->pm->read(Cliente::class, $clienteId);
 
         if ($studio === null || $tatuatore === null || $stile === null || $cliente === null) {
             return ['status' => 'error', 'message' => 'Dati prenotazione non validi'];
@@ -129,7 +128,7 @@ class PrenotazionePagamento {
             note: 'Stile richiesto: ' . $stile->getNome() . ' — Idea: ' . $descrizione
         );
 
-        $this->pm->save($appuntamento);
+        $this->pm->create($appuntamento);
 
         // La prenotazione è completata, salviamo l'id dell'appuntamento in sessione per il passo successivo
         $prenotazione['appuntamento_id'] = $appuntamento->getId();
@@ -151,10 +150,9 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Nessuna prenotazione in corso'];
         }
 
-        // TODO: quando ci sarà il DB
-        // $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
-        // $appuntamento->setStato('CONFERMATO');
-        // $this->pm->save($appuntamento);
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
+        $appuntamento->setStato('CONFERMATO');
+        $this->pm->update();
 
         SessionManager::remove('prenotazione');
 
@@ -168,15 +166,15 @@ class PrenotazionePagamento {
 
     public function accetta_richiesta(int $appuntamentoId): array
     {
-        $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
 
         if ($appuntamento === null) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
         }
 
-        // TODO: quando ci sarà il DB
-        // $appuntamento->setStato('ACCETTATO');
-        // $this->pm->save($appuntamento);
+        $appuntamento->setStato('ACCETTATO');
+        $this->pm->update();
+
 
         return [
             'status'      => 'success',
@@ -188,14 +186,13 @@ class PrenotazionePagamento {
 
     public function rifiuta_richiesta(int $appuntamentoId): array
     {
-        $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
 
         if ($appuntamento === null) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
         }
 
-        // TODO: quando ci sarà il DB
-        // $this->pm->delete($appuntamento);
+        $this->pm->delete($appuntamento);
 
         return [
             'status'      => 'success',
@@ -213,11 +210,10 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
         }
 
-        // TODO: quando ci sarà il DB
-        // $appuntamento = $this->pm->find(Appuntamento::class, $appuntamentoId);
-        // $appuntamento->setStato($stato);
-        // $appuntamento->setCosto($costo);
-        // $this->pm->save($appuntamento);
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
+        $appuntamento->setStato($stato);
+        $appuntamento->setCosto($costo);
+        $this->pm->update();
 
         return [
             'status'      => 'success',
@@ -227,23 +223,34 @@ class PrenotazionePagamento {
     }
 
 
-    public function avvia_pagamento(): array
-    {
-        $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
+    public function avvia_Pagamento(): array
+{
+    $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
 
-        if ($appuntamentoId === null) {
-            return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
-        }
-
-        return [
-            'status'      => 'success',
-            'interfaccia' => 'Form dati pagamento',
-            'message'     => 'Inserisci i dati della carta per procedere al pagamento'
-        ];
+    if ($appuntamentoId === null) {
+        return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
     }
 
+    $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
 
-    public function inserisci_dati_pagamento(array $datiCarta): array
+    if ($appuntamento === null) {
+        return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
+    }
+
+    if ($appuntamento->getStato() !== 'COMPLETATO') {
+        return ['status' => 'error', 'message' => 'Il tatuaggio non è ancora completato'];
+    }
+
+    return [
+        'status'      => 'success',
+        'interfaccia' => 'Form dati pagamento',
+        'costo'       => $appuntamento->getCosto(),
+        'message'     => 'Inserisci i dati della carta per procedere al pagamento'
+    ];
+}
+
+
+    public function inserisci_Dati_Pagamento(array $datiCarta): array
     {
         $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
 
@@ -260,9 +267,28 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Dati carta incompleti'];
         }
 
-        // TODO: quando ci sarà il DB
-        // chiamata al servizio di pagamento esterno
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
 
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
+        }
+
+        $carta = new CartaDiCredito(
+            nomeIntestatario: $datiCarta['intestatario'],
+            cognomeIntestatario: '',
+            numeroCarta: $datiCarta['numero'],
+            dataScadenza: DateTime::createFromFormat('m/Y', $datiCarta['scadenza']),
+            cvv: $datiCarta['cvv']
+        );
+
+        $pagamento = new Pagamento(
+            importo: $appuntamento->getCosto(),
+            stato: 'COMPLETATO',
+            appuntamento: $appuntamento,
+            cartaDiCredito: $carta
+        );
+
+        $this->pm->create($pagamento);
         SessionManager::remove('prenotazione');
 
         return [
