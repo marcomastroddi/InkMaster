@@ -1,8 +1,8 @@
 <header class="main-header">
-    <div class="logo">Logo</div>
+    <a href="/home" class="logo">Logo</a>
     <nav class="nav-links">
-        <a href="#">For artists</a>
-        <a href="#" class="btn-accedi">Accedi</a>
+        <a href="/cerca">For artists</a>
+        <a href="/login" class="btn-accedi">Accedi</a>
         <a href="#" class="lang-selector">🌐 ENG</a>
     </nav>
 </header>

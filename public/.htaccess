@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Se chiedono un file o una cartella che esiste davvero (css, js, immagini),
+# servilo direttamente senza passare dal front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Tutto il resto (le "pagine") viene mandato a index.php = punto d'ingresso unico
+RewriteRule ^ index.php [QSA,L]

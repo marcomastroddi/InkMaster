@@ -1,6 +1,379 @@
 <?php
+// Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use InkMaster\Control\ControllerCliente\RicercaVisualizzaStudi;
+use InkMaster\Control\ControllerCliente\PrenotazionePagamento;
+use InkMaster\Control\ControllerCliente\VisualizzaPortfolio;
+use InkMaster\Control\ControllerStudio\GestionePortfolio;
+use InkMaster\Control\ControllerStudio\GestioneClienti;
+use InkMaster\Control\ControllerStudio\GestioneCalendario;
+use InkMaster\Control\ControllerStudio\GestionePagamenti;
+use InkMaster\Control\ControllerComune\GestioneRecensione;
+use InkMaster\Control\ControllerComune\GestioneSegnalazione;
+use InkMaster\Control\ControllerComune\GestioneProfilo;
+use InkMaster\Control\ControllerComune\Login;
+use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
+use InkMaster\Foundation\SessionManager;
+use InkMaster\Presentation\View;
+
+SessionManager::start();
+
+// ── Istanziazione dei controller ──
+$controller      = new RicercaVisualizzaStudi();
+$controller2     = new PrenotazionePagamento();
+$controller3     = new GestionePortfolio();
+$controller4     = new VisualizzaPortfolio();
+$controller5     = new GestioneRecensione();
+$controller6     = new ModerazionePiattaforma();
+$controllerLogin = new Login();
+$controller8     = new GestioneSegnalazione();
+$controller9     = new GestioneProfilo();
+$controller10    = new GestioneClienti();
+$controller11    = new GestioneCalendario();
+$controller12    = new GestionePagamenti();
+
+// ── Lettura della rotta dal percorso dell'URL ──
+$page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';
+
+// ── Rotte che richiedono il login ──
+$pagineProtette = [
+    'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
+    'avvia_recensione', 'compila_recensione', 'pubblica_recensione', 'elimina_recensione',
+    'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban',
+    'visualizza_profilo', 'modifica_dati', 'cambia_password',
+    'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
+    'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
+    'dashboard_studio',
+];
+
+if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
+    View::render('auth/login', ['message' => 'Devi effettuare il login']);
+    exit;
+}
+
+switch ($page) {
+
+    // ===== INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE STUDI =====
+    case 'home':
+        View::render('ricerca/home', $controller->mostra_home());
+        break;
+
+    case 'cerca':
+        View::render('ricerca/cerca', $controller->scegli_citta());
+        break;
+
+    case 'seleziona_posizione':
+        $dati = $controller->seleziona_posizione($_GET['citta'] ?? '');
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'stili':
+        View::render('ricerca/stili', $controller->apri_stili_disponibili());
+        break;
+
+    case 'seleziona_stile':
+        $dati = $controller->seleziona_stile($_GET['stile'] ?? '');
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'inserisci_testo_ricerca':
+        $dati = $controller->inserisci_testo_ricerca($_POST['testo'] ?? '');
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'avvia_ricerca':
+        View::render('ricerca/risultati', $controller->avvia_ricerca());
+        break;
+
+    case 'scegli_studio':
+        View::render('ricerca/studio', $controller->scegli_studio((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'visualizza_recensioni':
+        View::render('ricerca/recensioni', $controller->visualizza_recensioni((int)($_GET['id'] ?? 0)));
+        break;
+
+    // ===== INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO =====
+    case 'scegli_tatuatore':
+        View::render('prenotazione/scelta_stile', $controller2->scegli_tatuatore((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'scegli_stile':
+        View::render('prenotazione/scelta_data', $controller2->scegli_stile((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'scegli_data':
+        $dati = $controller2->scegli_data($_POST['data'] ?? '');
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'richiedi_appuntamento':
+        $dati = $controller2->richiedi_appuntamento(
+            (int)($_POST['cliente_id'] ?? 0),
+            $_POST['descrizione'] ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'conferma_prenotazione':
+        $dati = $controller2->confermaPrenotazione();
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'accetta_richiesta':
+        $dati = $controller2->accetta_richiesta((int)($_GET['id'] ?? 0));
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'rifiuta_richiesta':
+        $dati = $controller2->rifiuta_richiesta((int)($_GET['id'] ?? 0));
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'concludi_appuntamento':
+        $dati = $controller2->concludi_appuntamento(
+            $_POST['stato'] ?? '',
+            (float)($_POST['costo'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'avvia_pagamento':
+        View::render('prenotazione/form_pagamento', $controller2->avvia_pagamento());
+        break;
+
+    case 'inserisci_dati_pagamento':
+        $dati = $controller2->inserisci_dati_pagamento([
+            'numero'       => $_POST['numero']       ?? '',
+            'scadenza'     => $_POST['scadenza']     ?? '',
+            'cvv'          => $_POST['cvv']          ?? '',
+            'intestatario' => $_POST['intestatario'] ?? ''
+        ]);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 3 - GESTIONE PORTFOLIO (studio loggato) =====
+    case 'portfolio_studio':
+        View::render('portfolio/portfolio', $controller3->apriPortfolio());
+        break;
+
+    case 'form_pubblicazione':
+        View::render('portfolio/form_pubblicazione', $controller3->mostraFormPubblicazione());
+        break;
+
+    case 'pubblica_pubblicazione':
+        $dati = $controller3->pubblicaPubblicazione([
+            'titolo'        => $_POST['titolo']        ?? '',
+            'descrizione'   => $_POST['descrizione']   ?? '',
+            'percorso_foto' => $_POST['percorso_foto'] ?? '',
+            'stile'         => $_POST['stile']         ?? ''
+        ]);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'elimina_pubblicazione':
+        $dati = $controller3->eliminaPubblicazione((int)($_POST['id'] ?? 0));
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO (pubblico) =====
+    case 'portfolio_pubblico':
+        View::render('portfolio/portfolio_pubblico', $controller4->apriPortfolio((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'dettagli_pubblicazione':
+        View::render('portfolio/dettagli_pubblicazione', $controller4->visuaizzaDettagliPubblicazione((int)($_GET['id'] ?? 0)));
+        break;
+
+    // ===== INTERFACCIA 5 - GESTIONE RECENSIONI =====
+    case 'avvia_recensione':
+        View::render('recensioni/form_recensione', $controller5->avvia_recensione((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'compila_recensione':
+        $dati = $controller5->compila_recensione(
+            (int)($_POST['voto'] ?? 0),
+            $_POST['titolo'] ?? '',
+            $_POST['descrizione'] ?? '',
+            $_FILES['foto']['name'] ?? '',
+            (int)($_POST['idTatuatore'] ?? 0),
+            $_POST['stile'] ?? ''
+        );
+        View::render('recensioni/anteprima_recensione', $dati);
+        break;
+
+    case 'pubblica_recensione':
+        View::render('recensioni/conferma_recensione', $controller5->pubblica_recensione());
+        break;
+
+    case 'elimina_recensione':
+        $dati = $controller5->eliminaRecensione((int)($_POST['id'] ?? 0));
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 6 - MODERAZIONE PIATTAFORMA =====
+    case 'dashboard_moderatore':
+        View::render('moderatore/dashboard_moderatore', $controller6->visualizzaDashboard());
+        break;
+
+    case 'accedi_segnalazioni':
+        View::render('moderatore/segnalazioni', $controller6->accedi_segnalazioni());
+        break;
+
+    case 'seleziona_utente':
+        View::render('moderatore/utente', $controller6->seleziona_utente((int)($_GET['id'] ?? 0)));
+        break;
+
+    case 'conferma_ban':
+        $dati = $controller6->conferma_ban(
+            $_POST['tipo']        ?? '',
+            $_POST['durata']      ?? '',
+            $_POST['motivazione'] ?? '',
+            $_POST['gravita']     ?? '',
+            $_POST['descrizione'] ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 7 - LOGIN / LOGOUT =====
+    case 'login':
+        $dati = $controllerLogin->login($_POST['username'] ?? '', $_POST['password'] ?? '');
+        if ($dati['status'] === 'success') {
+            $destinazioni = [
+                'cliente'        => '/home',
+                'studio'         => '/dashboard_studio',
+                'amministratore' => '/dashboard_moderatore',
+            ];
+            header('Location: ' . ($destinazioni[$dati['ruolo']] ?? '/home'));
+            exit;
+        }
+        View::render('auth/login', $dati);
+        break;
+
+    case 'logout':
+        $controllerLogin->logout();
+        header('Location: /home');
+        exit;
+
+    // ===== INTERFACCIA 8 - GESTISCI SEGNALAZIONE =====
+    case 'form_segnalazione':
+        $dati = $controller8->apriFormSegnalazione(
+            $_GET['tipo'] ?? '',
+            (int)($_GET['id'] ?? 0)
+        );
+        View::render('profilo/form_segnalazione', $dati);
+        break;
+
+    case 'invia_segnalazione':
+        $dati = $controller8->inviaSegnalazione(
+            $_POST['motivo']      ?? '',
+            $_POST['descrizione'] ?? '',
+            $_POST['tipo_target'] ?? '',
+            (int)($_POST['id_target'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
+    case 'visualizza_profilo':
+        View::render('profilo/profilo', $controller9->visualizzaProfilo());
+        break;
+
+    case 'modifica_dati':
+        $dati = $controller9->modificaDati([
+            'nome'    => $_POST['nome']    ?? '',
+            'cognome' => $_POST['cognome'] ?? ''
+        ]);
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'cambia_password':
+        $dati = $controller9->cambiaPassword(
+            $_POST['vecchia_password'] ?? '',
+            $_POST['nuova_password']   ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 10 - GESTIONE CLIENTI =====
+    case 'visualizza_clienti':
+        View::render('studio/clienti', $controller10->visualizzaClienti());
+        break;
+
+    case 'aggiorna_stato':
+        $dati = $controller10->aggiornaStato(
+            (int)($_POST['id_appuntamento'] ?? 0),
+            $_POST['stato'] ?? ''
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    case 'aggiungi_pagamento':
+        $dati = $controller10->aggiungiPagamento(
+            (int)($_POST['id_appuntamento'] ?? 0),
+            (float)($_POST['importo'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 11 - GESTIONE CALENDARIO =====
+    case 'visualizza_calendario':
+        $dati = $controller11->visualizzaCalendario(
+            (int)($_GET['mese'] ?? date('n')),
+            (int)($_GET['anno'] ?? date('Y'))
+        );
+        View::render('studio/calendario', $dati);
+        break;
+
+    case 'appuntamenti_del_giorno':
+        $dati = $controller11->visualizzaAppuntamentiDelGiorno($_GET['data'] ?? '');
+        header('Content-Type: application/json');
+        echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA 12 - GESTIONE PAGAMENTI =====
+    case 'visualizza_pagamenti':
+        View::render('studio/pagamenti', $controller12->visualizzaPagamenti());
+        break;
+
+    // ===== DASHBOARD STUDIO (landing dopo il login dello studio) =====
+    case 'dashboard_studio':
+        View::render('studio/dashboard_studio', []);
+        break;
+
+    // ===== 404 =====
+    default:
+        View::render('errori/404', []);
+        break;
+}
+
+
+
+
+
+
+
+/*
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
 
@@ -334,6 +707,7 @@ $datiPagamenti = $controller12->visualizzaPagamenti();
 echo '<h2>visualizzaPagamenti</h2><pre>';
 print_r($datiPagamenti);
 echo '</pre>';
+*/
 
 
 
@@ -356,428 +730,7 @@ echo '</pre>';
 
 
 
-/*<?php
-require_once __DIR__ . '/../vendor/autoload.php';
 
-$page = $_GET['page'] ?? 'home';
-
-$pagineProtette = ['scegli_studio', 'scegli_tatuatore', 'scegli_stile', 'scegli_data', 'richiedi_appuntamento', 'confermaPrenotazione', 'accetta_richiesta', 'rifiuta_richiesta', 'concludi_appuntamento', 'avvia_pagamento', 'inserisci_dati_pagamento', 'apriPortfolio', 'mostraFormPubblicazione', 'pubblicaTatuaggio', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban'];
-
-if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
-    View::render('login', ['message' => 'Devi effettuare il login']);
-    exit;
-}
-
-switch ($page) {
-
-//INTERFACCIA 1 - RICERCA E VISUALIZZAZIONE TATUATORI(completa)
-    case 'home':
-        $dati = $controller->mostra_home();
-        View::render('home', $dati);
-        break;
-
-    case 'cerca':
-        $dati = $controller->scegli_citta();
-        View::render('cerca', $dati);
-        break;
-
-    case 'seleziona_posizione':
-    $citta = $_GET['citta'] ?? '';
-    $dati = $controller->seleziona_posizione($citta);
-    header('Content-Type: application/json');
-    echo json_encode($dati);
-    break;
-
-    case 'stili':
-    $dati = $controller->apri_stili_disponibili();
-    View::render('stili', $dati);
-    break;
-
-    case 'seleziona_stile':
-    $stile = $_GET['stile'] ?? '';
-    $dati = $controller->seleziona_stile($stile);
-    header('Content-Type: application/json');
-    echo json_encode($dati);
-    break;
-
-    case 'inserisci_testo_ricerca':
-    $testo = $_POST['testo'] ?? '';
-    $dati = $controller->inserisci_testo_ricerca($testo);
-    header('Content-Type: application/json');
-    echo json_encode($dati);
-    break;
-
-    case 'avvia_ricerca':
-    $dati = $controller->avvia_ricerca();
-    View::render('risultati', $dati);
-    break;
-
-    case 'visualizza_recensioni':
-    $id = (int)($_GET['id'] ?? 0);
-    $dati = $controller->visualizza_recensioni($id);
-    View::render('recensioni', $dati);
-    break;
-
-
-//INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO(in corso)
-
-    case 'scegli_studio':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller2->scegli_studio($id);
-        View::render('studio', $dati);
-        break;
-
-    case 'scegli_tatuatore':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller2->scegli_tatuatore($id);
-        View::render('scelta_stile', $dati);
-        break;
-
-    case 'scegli_stile':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller2->scegli_stile($id);
-        View::render('scelta_data', $dati);
-        break;
-
-    case 'scegli_data':
-        $data = $_POST['data'] ?? '';
-        $dati = $controller2->scegli_data($data);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'richiedi_appuntamento':
-        $clienteId   = (int)($_POST['cliente_id'] ?? 0);
-        $descrizione = $_POST['descrizione'] ?? '';
-        $dati = $controller2->richiedi_appuntamento($clienteId, $descrizione);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'confermaPrenotazione':
-        $dati = $controller2->confermaPrenotazione();
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'accetta_richiesta':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller2->accetta_richiesta($id);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'rifiuta_richiesta':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller2->rifiuta_richiesta($id);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'concludi_appuntamento':
-        $stato = $_POST['stato'] ?? '';
-        $costo = (float)($_POST['costo'] ?? 0);
-        $dati = $controller2->concludi_appuntamento($stato, $costo);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'avvia_pagamento':
-        $dati = $controller2->avvia_pagamento();
-        View::render('form_pagamento', $dati);
-        break;
-
-    case 'inserisci_dati_pagamento':
-        $datiCarta = [
-            'numero'       => $_POST['numero']       ?? '',
-            'scadenza'     => $_POST['scadenza']      ?? '',
-            'cvv'          => $_POST['cvv']           ?? '',
-            'intestatario' => $_POST['intestatario']  ?? ''
-        ];
-        $dati = $controller2->inserisci_dati_pagamento($datiCarta);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
- 
-        
-//INTERFACCIA 3 - GESTIONE PROFILO UTENTE
-    case 'apriPortfolio':
-            $dati = $controller3->apriPortfolio();
-            View::render('portfolio', $dati);
-            break;
-
-        case 'mostraFormPubblicazione':
-            $dati = $controller3->mostraFormPubblicazione();
-            View::render('form_pubblicazione', $dati);
-            break;
-        
-        case 'pubblicaTatuaggio':
-            $datiForm = [
-                'titolo'        => $_POST['titolo']        ?? '',
-                'descrizione'   => $_POST['descrizione']   ?? '',
-                'percorso_foto' => $_POST['percorso_foto'] ?? '',
-                'stile'         => $_POST['stile']         ?? ''
-            ];
-            $dati = $controller3->pubblicaTatuaggio($datiForm);
-            header('Content-Type: application/json');
-            echo json_encode($dati);
-            break;
-
-//INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO
-    case 'apriPortfolio':
-        $idStudio = (int)($_GET['id'] ?? 0);
-        $dati = $controller4->apriPortfolio($idStudio);
-        View::render('portfolio_pubblico', $dati);
-        break;
-
-    case 'visualizzaDettagliPubblicazione':
-        $idPubblicazione = (int)($_GET['id'] ?? 0);
-        $dati = $controller4->visuaizzaDettagliPubblicazione($idPubblicazione);
-        View::render('dettagli_pubblicazione', $dati);
-        break;
-
-
-//INTERFACCIA 5 - GESTIONE RECENSIONI
-    case 'avvia_recensione':
-        $idStudio = (int)($_GET['id'] ?? 0);
-        $idCliente = (int)(SessionManager::get('id_utente_loggato') ?? 0);
-        $dati = $controller4->avvia_recensione($idStudio, $idCliente);
-        View::render('form_recensione', $dati);
-        break;
-
-    case 'compila_recensione':
-        $dati = $controller4->compila_recensione(
-            (int)($_POST['voto'] ?? 0),
-            $_POST['titolo'] ?? '',
-            $_POST['descrizione'] ?? '',
-            $_FILES['foto']['name'] ?? '',
-            (int)($_POST['idTatuatore'] ?? 0),
-            $_POST['stile'] ?? ''
-        );
-        View::render('anteprima_recensione', $dati);
-        break;
-
-    case 'pubblica_recensione':
-        $dati = $controller4->pubblica_recensione();
-        View::render('conferma_recensione', $dati);
-        break;
-
-
-//INTERFACCIA 6 - MODERAZIONE PIATTAFORMA
-
-    case 'dashboard_moderatore':
-        $dati = $controller6->visualizzaDashboard();
-        View::render('dashboard_moderatore', $dati);
-        break;
-
-    case 'accedi_segnalazioni':
-        $dati = $controller5->accedi_segnalazioni();
-        View::render('segnalazioni', $dati);
-        break;
-
-    case 'seleziona_utente':
-        $id = (int)($_GET['id'] ?? 0);
-        $dati = $controller5->seleziona_utente($id);
-        View::render('utente', $dati);
-        break;
-
-    case 'conferma_ban':
-        $dati = $controller5->conferma_ban(
-            $_POST['tipo']        ?? '',
-            $_POST['durata']      ?? '',
-            $_POST['motivazione'] ?? '',
-            $_POST['gravita']     ?? '',
-            $_POST['descrizione'] ?? ''
-        );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 7 - LOGIN
-    case 'login':
-        $username = $_POST['username'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $dati = $controllerLogin->login($username, $password);
-        
-        if ($dati['status'] === 'success') {
-            switch ($dati['ruolo']) {
-                case 'cliente':
-                    View::render('home', $dati);
-                    break;
-                case 'tatuatore':
-                    View::render('portfolio', $dati);
-                    break;
-                case 'amministratore':
-                    View::render('moderazione', $dati);
-                    break;
-            }
-        } else {
-            View::render('login', $dati);
-        }
-        break;
-
-    case 'logout':
-        $dati = $controllerLogin->logout();
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 8 - GESTISCI SEGNALAZIONE
-    case 'apri_form_segnalazione':
-        $tipoTarget = $_GET['tipo'] ?? '';
-        $idTarget   = (int)($_GET['id'] ?? 0);
-        $dati = $controller8->apriFormSegnalazione($tipoTarget, $idTarget);
-        View::render('form_segnalazione', $dati);
-        break;
-
-    case 'invia_segnalazione':
-        $dati = $controller8->inviaSegnalazione(
-            $_POST['motivo']      ?? '',
-            $_POST['descrizione'] ?? '',
-            $_POST['tipo_target'] ?? '',
-            (int)($_POST['id_target'] ?? 0)
-        );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 9 - GESTIONE PROFILO
-    case 'visualizza_profilo':
-        $dati = $controller9->visualizzaProfilo();
-        View::render('profilo', $dati);
-        break;
-
-    case 'modifica_dati':
-        $dati = $controller9->modificaDati([
-            'nome'    => $_POST['nome']    ?? '',
-            'cognome' => $_POST['cognome'] ?? ''
-        ]);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'cambia_password':
-        $dati = $controller9->cambiaPassword(
-            $_POST['vecchia_password'] ?? '',
-            $_POST['nuova_password']   ?? ''
-        );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 10 - GESTIONE CLIENTI
-    case 'visualizza_clienti':
-        $dati = $controller10->visualizzaClienti();
-        View::render('clienti', $dati);
-        break;
-
-    case 'aggiorna_stato':
-        $dati = $controller10->aggiornaStato(
-            (int)($_POST['id_appuntamento'] ?? 0),
-            $_POST['stato'] ?? ''
-        );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-    case 'aggiungi_pagamento':
-        $dati = $controller10->aggiungiPagamento(
-            (int)($_POST['id_appuntamento'] ?? 0),
-            (float)($_POST['importo'] ?? 0)
-        );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 11 - GESTIONE CALENDARIO
-    case 'visualizza_calendario':
-        $mese = (int)($_GET['mese'] ?? date('n'));
-        $anno = (int)($_GET['anno'] ?? date('Y'));
-        $dati = $controller11->visualizzaCalendario($mese, $anno);
-        View::render('calendario', $dati);
-        break;
-
-    case 'appuntamenti_del_giorno':
-        $data = $_GET['data'] ?? '';
-        $dati = $controller11->visualizzaAppuntamentiDelGiorno($data);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
-
-//INTERFACCIA 12 - GESTIONE PAGAMENTI
-    case 'visualizza_pagamenti':
-        $dati = $controller12->visualizzaPagamenti();
-        View::render('pagamenti', $dati);
-        break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    default:
-        View::render('404', []);
-        break;
-}*/
 
 
 
