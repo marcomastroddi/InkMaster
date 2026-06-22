@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
@@ -17,7 +21,7 @@ use InkMaster\Control\ControllerComune\Login;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
 
 use InkMaster\Foundation\SessionManager;
-use Inkmaster\Foundation\PersistentManager;
+use InkMaster\Foundation\PersistentManager;
 use InkMaster\Presentation\View;
 
 SessionManager::start();
