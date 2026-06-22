@@ -49,7 +49,7 @@ class PersistentManager
 
     private function __construct($entityManager = null)
     {
-        $this->em = $entityManager;
+        $this->em = $entityManager; //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
         $this->stileRepository = new StileRepository($entityManager);
         $this->studioRepository = new StudioRepository($entityManager);
         $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
@@ -71,13 +71,63 @@ class PersistentManager
         return self::$instance;
     }
 
+    // 1. CREATE & UPDATE (Persist & Flush)
+    /**
+     * Salva un oggetto nuovo nel database o prepara un oggetto esistente per l'aggiornamento.
+     * In Doctrine, l'operazione di inserimento (Create) richiede il persist().
+     */
+    public function create(object $entity): void
+    {
+        $this->em->persist($entity);
+        $this->em->flush();
+    }
 
-    // Salva un oggetto nuovo o aggiorna uno esistente
+    /**
+     * Applica le modifiche di un oggetto già esistente (Update).
+     * Nota: Se l'oggetto è già stato recuperato da Doctrine nella stessa sessione, 
+     * basta fare il flush(). Usiamo merge() o il flush diretto per sicurezza.
+     */
+    public function update(object $entity): void
+    {
+        // Se l'oggetto è "distaccato" dalla sessione di Doctrine, merge lo riaggancia
+        $this->em->merge($entity); 
+        $this->em->flush();
+    }
+
+    // 2. READ (Find)
+    /**
+     * Legge un singolo record basandosi sulla classe dell'Entity e sul suo ID.
+     * Sostituisce la logica con il costrutto match usando direttamente Doctrine!
+     */
+    public function read(string $className, int $id): ?object
+    {
+        return $this->em->find($className, $id);
+    }
+
+    /**
+     * Legge TUTTI i record di una determinata classe.
+     * Utilissimo per tabelle come "Stile" o "Citta" per popolare i form.
+     */
+    public function readAll(string $className): array
+    {
+        return $this->em->getRepository($className)->findAll();
+    }
+
+    // 3. DELETE (Remove)
+    /**
+     * Elimina fisicamente un record dal database passando l'oggetto Entity.
+     */
+    public function delete(object $entity): void
+    {
+        $this->em->remove($entity);
+        $this->em->flush();
+    }
+
+    // Salva un oggetto nuovo o aggiorna uno esistente nel DB
     public function save(object $entity): void
     {
-        // TODO: quando ci sarà il DB
-        // $this->em->persist($entity);
-        // $this->em->flush();
+        $this->em->persist($entity);
+        $this->em->flush();
     }
 
     public function findAvailableStyles(): array

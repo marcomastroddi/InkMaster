@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
+$entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
+
+
 use InkMaster\Control\RicercaVisualizzaStudi;
 use InkMaster\Control\PrenotazionePagamento;
 use InkMaster\Control\GestionePortfolio;
@@ -14,6 +18,8 @@ use InkMaster\Control\GestioneProfilo;
 use InkMaster\Control\GestioneClienti;
 use InkMaster\Control\GestioneCalendario;
 use InkMaster\Control\GestionePagamenti;
+
+use Inkmaster\Foundation\PersistentManager;
 
 
 
