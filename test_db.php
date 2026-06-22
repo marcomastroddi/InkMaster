@@ -10,4 +10,3 @@ foreach ($pm->findAvailableStyles() as $stile) {
     echo $stile->getId() . ' - ' . $stile->getNome() . "\n";
 }
 
-
