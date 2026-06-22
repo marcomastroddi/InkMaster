@@ -241,8 +241,11 @@ switch ($page) {
         break;
 
     case 'seleziona_utente':
-        View::render('moderatore/utente', $controller6->seleziona_utente((int)($_GET['id'] ?? 0)));
-        break;
+        View::render('moderatore/utente', $controller6->seleziona_utente(
+            (int)($_GET['id'] ?? 0),
+            $_GET['tipo'] ?? ''
+        ));
+        break;;
 
     case 'conferma_ban':
         $dati = $controller6->conferma_ban(

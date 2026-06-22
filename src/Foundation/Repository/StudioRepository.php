@@ -188,7 +188,7 @@ class StudioRepository
 
     public function findById(int $id): ?Studio
     {
-        return $this->findAvailableStudios([])[0] ?? null;
+        return $this->em->getRepository(Studio::class)->find($id);
     }
 
     public function findByUsername(string $username): ?Studio

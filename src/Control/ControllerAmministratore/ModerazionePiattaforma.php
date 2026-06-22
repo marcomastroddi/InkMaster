@@ -3,6 +3,9 @@ namespace InkMaster\Control\ControllerAmministratore;
 
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
+use InkMaster\Entity\Ban;
+use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Studio;
 
 class ModerazionePiattaforma
 {
@@ -24,18 +27,28 @@ class ModerazionePiattaforma
         ];
     }
 
-    public function seleziona_utente(int $utenteId): array
+    public function seleziona_utente(int $utenteId, string $tipo): array
     {
-        $utente = $this->pm->findPersonaById($utenteId);
+        // Il tipo arriva dalla segnalazione: 'cliente' oppure 'studio'
+        $classe = match ($tipo) {
+            'cliente' => Cliente::class,
+            'studio'  => Studio::class,
+            default   => null,
+        };
 
-        if ($utente === null) {
-            return [
-                'status'  => 'error',
-                'message' => 'Utente non trovato'
-            ];
+        if ($classe === null) {
+            return ['status' => 'error', 'message' => 'Tipo utente non valido'];
         }
 
+        $utente = $this->pm->find($classe, $utenteId);
+
+        if ($utente === null) {
+            return ['status' => 'error', 'message' => 'Utente non trovato'];
+        }
+
+        // Salviamo SIA l'id SIA il tipo: serviranno a conferma_ban
         SessionManager::set('utente_selezionato', $utenteId);
+        SessionManager::set('tipo_utente_selezionato', $tipo);
 
         return [
             'status'      => 'success',
@@ -45,18 +58,23 @@ class ModerazionePiattaforma
     }
 
     public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione): array
-    { //va aggiunto un discorso sul db, per ora non serve perché non c'è niente da salvare. Quando ci sarà il db, aggiungeremo un metodo save() in PersistentManager e lo chiameremo qui.
-        $utenteId = SessionManager::get('utente_selezionato');
+    {
+        $utenteId   = SessionManager::get('utente_selezionato');
+        // Per ora 'cliente' (tappabuchi del #1); diventerà il tipo vero quando risolviamo seleziona_utente
+        $utenteTipo = SessionManager::get('tipo_utente_selezionato', 'cliente');
 
         if ($utenteId === null) {
             return ['status' => 'error', 'message' => 'Nessun utente selezionato'];
         }
 
-        // da implementare con il db
+        $ban = new Ban($utenteId, $utenteTipo, $tipo, $durata, $motivazione, $gravita, $descrizione);
+        $this->pm->save($ban);
+
         return [
             'status'      => 'success',
             'interfaccia' => 'Ban confermato',
             'data'        => [
+                'ban_id'      => $ban->getId(),
                 'utente_id'   => $utenteId,
                 'tipo'        => $tipo,
                 'durata'      => $durata,
