@@ -137,42 +137,6 @@ class StudioRepository
         ];
     }
 
-    public function findTatuatoriByStudioId($idStudio): array
-    {
-        $studio = new Studio(
-            'InkMaster Roma Centro',
-            '12345678901',
-            Citta::Roma,
-            'roma.centro@inkmaster.it',
-            'inkmaster_roma',
-            'password123',
-            'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
-            '0612345678',
-            ['lun-ven' => '10:00-19:00'],
-            ['lun-ven' => '19:00']
-        );
-
-        $tatuatore1 = new Tatuatore('Claudia', 'Bianchi', new DateTime('1992-03-10'), $studio);
-        $tatuatore1->setId(1);
-
-        $tatuatore2 = new Tatuatore('Giovanni', 'Verdi', new DateTime('1988-07-22'), $studio);
-        $tatuatore2->setId(2);
-
-        $tatuatore3 = new Tatuatore('Mario', 'Neri', new DateTime('1995-11-05'), $studio);
-        $tatuatore3->setId(3);
-
-        return [$tatuatore1, $tatuatore2, $tatuatore3];
-    }
-
-    public function findStiliByStudioId($idStudio): array
-    {
-        return [
-            new Stile('Realistico', 'Tatuaggi fotorealistici, ombreggiature dettagliate.'),
-            new Stile('Blackwork', 'Disegni interamente in nero, forte contrasto.'),
-            new Stile('Giapponese', 'Stile tradizionale orientale, draghi e fiori.'),
-        ];
-    }
-
     public function findTatuatoreById(int $idTatuatore): ?Tatuatore
     {
         $tatuatori = $this->findTatuatoriByStudioId(0); // 0 = ignorato, dati sempre fittizi
