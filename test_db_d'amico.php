@@ -264,3 +264,25 @@ echo "Studio: " . ($studio ? $studio->getNome() : 'non trovato') . "\n";
 foreach ($pm->findPortfolioByStudioId(1) as $pub) {
     echo $pub->getId() . ' - ' . $pub->getTitolo() . "\n";
 }
+
+//PubblicaPubblicazione test
+echo "\n=== TEST pubblica_Pubblicazione() ===\n";
+$esito = $pm->savePubblicazione(1, [
+    'titolo'        => 'Test pubblicazione',
+    'descrizione'   => 'Descrizione test',
+    'percorso_foto' => '/img/test.jpg',
+    'stile_scelto'  => null,
+    'data'          => new \DateTime(),
+    'ora'           => new \DateTime(),
+]);
+echo $esito ? "Pubblicazione salvata\n" : "Errore nel salvataggio\n";
+
+//EliminaPubblicazione test
+echo "\n=== TEST elimina_Pubblicazione() ===\n";
+$pub = $pm->findDettagliPubblicazione(1);
+if ($pub) {
+    $pm->delete($pub);
+    echo "Pubblicazione eliminata\n";
+} else {
+    echo "Pubblicazione non trovata\n";
+}
