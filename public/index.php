@@ -14,7 +14,7 @@ use InkMaster\Control\ControllerStudio\GestionePagamenti;
 use InkMaster\Control\ControllerCliente\GestioneRecensione;
 use InkMaster\Control\ControllerComune\GestioneSegnalazione;
 use InkMaster\Control\ControllerComune\GestioneProfilo;
-use InkMaster\Control\ControllerComune\Login;
+use InkMaster\Control\ControllerComune\Autenticazione;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
 
 use InkMaster\Foundation\SessionManager;
@@ -31,7 +31,7 @@ $controller3 = new GestionePortfolio();
 $controller4 = new VisualizzaPortfolio();
 $controller5 = new GestioneRecensione();
 $controller6 = new ModerazionePiattaforma();
-$controllerLogin = new Login();
+$controllerAutenticazione = new Autenticazione();
 $controller8 = new GestioneSegnalazione();
 $controller9 = new GestioneProfilo();
 $controller10 = new GestioneClienti();

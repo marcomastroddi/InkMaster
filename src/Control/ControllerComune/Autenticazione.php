@@ -4,8 +4,11 @@ namespace InkMaster\Control\ControllerComune;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 
-class Login
+class Autenticazione
 {
+
+    //DA INTEGRARE IL METODO REGISTRAZIONE! LOGIN NON CREA UN UTENTE!
+
     private PersistentManager $pm;
 
     public function __construct()
@@ -30,7 +33,7 @@ class Login
 
         // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
         if ($utente === null) {
-            $utente = $this->pm->findAdminByUsername($username);
+            $utente = $this->pm->findAmministratoreByUsername($username);
         }
 
         // Controllo di sicurezza: se l'username non esiste in nessuna tabella
