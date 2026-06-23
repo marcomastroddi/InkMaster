@@ -147,3 +147,16 @@ echo "\n=== TEST findStudiRandom() ===\n";
 foreach ($pm->findStudiRandom(5) as $s) {
     echo $s->getId() . ' - ' . $s->getNome() . "\n";
 }
+
+//scegli_citta non viene testato perchè non chiama il db
+//seleziona_posizione non viene testato perchè non chiama il db
+
+//apri_stili_disponibili test
+echo "\n=== TEST apri_stili_disponibili() ===\n";
+foreach ($pm->findAvailableStyles() as $s) {
+    echo $s->getId() . ' - ' . $s->getNome() . "\n";
+}
+
+//seleziona_stile non viene testato perchè non chiama il db
+//inserisci_testo_ricerca non viene testato perchè non chiama il db
+
