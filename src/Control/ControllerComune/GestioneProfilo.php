@@ -91,7 +91,7 @@ class GestioneProfilo
         
         if (!empty($dati['cognome']) && method_exists($utente, 'setCognome')) $utente->setCognome($dati['cognome']);
 
-        $this->pm->create($utente);
+        $this->pm->update();
 
         return [
             'status'      => 'success',
