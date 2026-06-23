@@ -38,7 +38,7 @@ class Recensione
     private string $titolo;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $foto = null;
+    private ?string $percorsoFoto = null;
 
     #[ORM\Column(type: 'string', length: 100)]
     private string $stile;
@@ -59,7 +59,7 @@ class Recensione
         string $stile,
         Tatuatore $tatuatore,
         ?string $descrizione = null,
-        ?string $foto = null
+        ?string $percorsoFoto = null
     ) {
         $this->voto = $voto;
         $this->data = $data;
@@ -69,7 +69,7 @@ class Recensione
         $this->stile = $stile;
         $this->tatuatore = $tatuatore;
         $this->descrizione = $descrizione;
-        $this->foto = $foto;
+        $this->percorsoFoto = $percorsoFoto;
     }
     // Metodi getter
     public function getId(): ?int 
@@ -109,7 +109,7 @@ class Recensione
 
     public function getFoto(): ?string 
     {
-        return $this->foto;
+        return $this->percorsoFoto;
     }
 
     public function getStile(): string 
@@ -152,9 +152,9 @@ class Recensione
         $this->titolo = $titolo;
     }
 
-    public function setFoto(?string $foto): void 
+    public function setFoto(?string $percorsoFoto): void 
     {
-        $this->foto = $foto;
+        $this->percorsoFoto = $percorsoFoto;
     }
 
     public function setStile(string $stile): void 

@@ -5,6 +5,7 @@ namespace InkMaster\Control\ControllerComune;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
+use InkMaster\Entity\Tatuatore;
 
 class GestioneRecensione {
     private PersistentManager $pm;
@@ -50,9 +51,9 @@ class GestioneRecensione {
         ];
     }
 
-    public function compilaRecensione(int $voto, string $titolo, string $descrizione, string $foto, int $idTatuatore, string $stile): array
+    public function compilaRecensione(int $voto, string $titolo, ?string $descrizione, ?string $foto, int $idTatuatore, string $stile): array
     {
-        $idStudio = SessionManager::get('studio_selezionato');
+        $idStudio = SessionManager::get('studio_selezionato'); //recuperiamo l'id dello studio dalla sessione inizializzata in mostrFormRecensione
 
         if ($idStudio === null) {
             return [
@@ -61,7 +62,8 @@ class GestioneRecensione {
             ];
         }
 
-        $tatuatore = $this->pm->findTatuatoreById($idTatuatore);
+        //Grazie al metodo CRUD "read" recuero l'oggetto tatuatore
+        $tatuatore = $this->pm->read(Tatuatore::class, $idTatuatore);
 
         if ($tatuatore === null) {
             return [
@@ -70,15 +72,25 @@ class GestioneRecensione {
             ];
         }
 
+        // --- GESTIONE CAMPI OPZIONALI ---
+        
+        // Se la descrizione è vuota, salviamo null, altrimenti teniamo il testo inserito
+        $testoDescrizione = !empty($descrizione) ? $descrizione : null;
+
+        // Se la foto è vuota, salviamo null, altrimenti teniamo il percorso
+        $percorsoFoto = !empty($foto) ? $foto : null;
+
         $bozza = [
             'voto'         => $voto,
             'titolo'       => $titolo,
-            'descrizione'  => $descrizione,
-            'foto'         => $foto,
+            'descrizione'  => $testoDescrizione,
+            'foto'         => $percorsoFoto,
             'idTatuatore'  => $idTatuatore,
             'stile'        => $stile
         ];
 
+        //Grazie a SessionManager "congeliamo" i dati inseriti nella recensione per
+        //poi recuperarli in pubblicaRecensione, in cui li usiamo per inserire la recensione nel Db
         SessionManager::set('bozza_recensione', $bozza);
 
         return [
@@ -87,8 +99,8 @@ class GestioneRecensione {
             'data'        => [
                 'voto'        => $voto,
                 'titolo'      => $titolo,
-                'descrizione' => $descrizione,
-                'foto'        => $foto,
+                'descrizione' => $testoDescrizione,
+                'foto'        => $percorsoFoto,
                 'tatuatore'   => $tatuatore->getNome() . ' ' . $tatuatore->getCognome(),
                 'stile'       => $stile
             ]
