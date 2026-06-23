@@ -5,6 +5,10 @@ namespace InkMaster\Control\ControllerStudio;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 
+use InkMaster\Entity\Pagamento;
+use InkMaster\Entity\CartaDiCredito;
+use InkMaster\Entity\Appuntamento;
+
 class GestioneClienti
 {
     private PersistentManager $pm;
@@ -30,16 +34,16 @@ class GestioneClienti
         ];
     }
 
-    public function aggiornaStato(int $idAppuntamento, string $stato): array
+    public function aggiorna_Stato(int $idAppuntamento, string $stato): array
     {
-        $appuntamento = $this->pm->find(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
+        $appuntamento = $this->pm->read(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
 
         if ($appuntamento === null) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
         }
 
         $appuntamento->setStato($stato);
-        $this->pm->save($appuntamento);
+        $this->pm->update();
 
         return [
             'status'  => 'success',
@@ -47,21 +51,25 @@ class GestioneClienti
         ];
     }
 
-    public function aggiungiPagamento(int $idAppuntamento, float $importo): array
+    public function aggiungi_Pagamento(int $idAppuntamento, float $importo, int $idCarta): array
     {
-        $appuntamento = $this->pm->find(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
+        $appuntamento = $this->pm->read(Appuntamento::class, $idAppuntamento);
 
         if ($appuntamento === null) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
         }
 
-        // Registriamo il costo concordato sull'appuntamento
-        $appuntamento->setCosto($importo);
-        $this->pm->save($appuntamento);
+        $carta = $this->pm->read(CartaDiCredito::class, $idCarta);
 
-        // TODO: quando ci sarà il DB, creare anche l'entità Pagamento collegata
-        // $pagamento = new Pagamento($importo, 'IN_CORSO', $appuntamento, $cartaDiCredito);
-        // $this->pm->save($pagamento);
+        if ($carta === null) {
+            return ['status' => 'error', 'message' => 'Carta di credito non trovata.'];
+        }
+
+        $appuntamento->setCosto($importo);
+        $this->pm->update();
+
+        $pagamento = new Pagamento($importo, 'COMPLETATO', $appuntamento, $carta);
+        $this->pm->create($pagamento);
 
         return [
             'status'      => 'success',

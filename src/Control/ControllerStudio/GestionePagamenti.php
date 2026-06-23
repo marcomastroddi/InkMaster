@@ -5,6 +5,7 @@ namespace InkMaster\Control\ControllerStudio;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 
+
 class GestionePagamenti
 {
     private PersistentManager $pm;

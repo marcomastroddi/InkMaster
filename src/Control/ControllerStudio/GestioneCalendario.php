@@ -1,5 +1,6 @@
 <?php
 
+
 namespace InkMaster\Control\ControllerStudio;
 
 use InkMaster\Foundation\PersistentManager;

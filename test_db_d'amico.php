@@ -185,3 +185,82 @@ echo "\n=== TEST findRecensioniByStudioId() ===\n";
 foreach ($pm->findRecensioniByStudioId(1) as $r) {
     echo $r->getId() . ' - ' . $r->getTitolo() . ' - voto: ' . $r->getVoto() . "\n";
 }
+
+
+//ControllerStudio
+
+//Controll gestione calendario
+
+//visualizza_calendario test
+echo "\n=== TEST findAppuntamentiByStudioId() ===\n";
+foreach ($pm->findAppuntamentiByStudioId(1) as $a) {
+    echo $a->getId() . ' - ' . $a->getData()->format('Y-m-d') . ' - ' . $a->getStato() . "\n";
+}
+
+//Visualizza appuntamenti del giorno test
+echo "\n=== TEST visualizza_AppuntamentiDelGiorno() ===\n";
+$appuntamenti = $pm->findAppuntamentiByStudioId(1);
+$dataTarget = '2026-07-01'; 
+foreach ($appuntamenti as $a) {
+    if ($a->getData()->format('Y-m-d') === $dataTarget) {
+        echo $a->getCliente()->getNome() . ' ' . $a->getCliente()->getCognome()
+            . ' - ' . $a->getOraInizio()->format('H:i')
+            . ' → ' . $a->getOraFine()->format('H:i')
+            . ' - ' . $a->getStato() . "\n";
+    }
+}
+
+//Controll GestioneClienti
+
+//visualizza_clienti test
+echo "\n=== TEST visualizza_Clienti() ===\n";
+foreach ($pm->findAppuntamentiByStudioId(1) as $a) {
+    $c = $a->getCliente();
+    echo $a->getId() . ' - ' . $c->getNome() . ' ' . $c->getCognome() . ' - ' . $a->getStato() . "\n";
+}
+
+//aggiorna_stato test
+echo "\n=== TEST aggiorna_Stato() ===\n";
+$a = $pm->read(\InkMaster\Entity\Appuntamento::class, 5);
+if ($a) {
+    $a->setStato('CONFERMATO');
+    $pm->update();
+    echo "Stato aggiornato: " . $a->getStato() . "\n";
+} else {
+    echo "Appuntamento non trovato\n";
+}
+
+//aggiungi_pagamento test
+echo "\n=== TEST aggiungi_Pagamento() ===\n";
+$appuntamento = $pm->read(\InkMaster\Entity\Appuntamento::class, 1);
+$carta = $pm->read(\InkMaster\Entity\CartaDiCredito::class, 1);
+if ($appuntamento && $carta) {
+    $pagamento = new \InkMaster\Entity\Pagamento(
+        $appuntamento->getCosto() ?? 100.00,
+        'COMPLETATO',
+        $appuntamento,
+        $carta
+    );
+    $pm->create($pagamento);
+    echo "Pagamento salvato con ID: " . $pagamento->getId() . "\n";
+} else {
+    echo "Appuntamento o carta non trovati\n";
+}
+
+//GestionePagamenti
+
+//visualizzaPagamenti test
+echo "\n=== TEST visualizza_Pagamenti() ===\n";
+foreach ($pm->findPagamentiByStudioId(1) as $p) {
+    echo $p->getId() . ' - €' . $p->getImporto() . ' - ' . $p->getStato() . "\n";
+}
+
+//GestionePortfolio
+
+//apriPortfolio test
+echo "\n=== TEST apri_Portfolio() ===\n";
+$studio = $pm->read(\InkMaster\Entity\Studio::class, 1);
+echo "Studio: " . ($studio ? $studio->getNome() : 'non trovato') . "\n";
+foreach ($pm->findPortfolioByStudioId(1) as $pub) {
+    echo $pub->getId() . ' - ' . $pub->getTitolo() . "\n";
+}
