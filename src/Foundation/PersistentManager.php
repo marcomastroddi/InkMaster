@@ -88,12 +88,6 @@ class PersistentManager
         $this->em->flush();
     }
 
-    // Cerca per ID — es: find(Studio::class, 5)
-    public function find(string $class, int $id): ?object
-    {
-        return $this->em->find($class, $id);
-    }
-
     /**
      * Applica le modifiche di un oggetto già esistente (Update).
      * Nota: Se l'oggetto è già stato recuperato da Doctrine nella stessa sessione, 
@@ -112,14 +106,6 @@ class PersistentManager
     public function read(string $className, int $id): ?object
     {
         return $this->em->find($className, $id);
-    }
-
-
-    // Salva un'entità nuova (o aggiorna una esistente) nel DB
-    public function save(object $entity): void
-    {
-        $this->em->persist($entity);
-        $this->em->flush();
     }
 
     /**
@@ -141,6 +127,8 @@ class PersistentManager
         $this->em->flush();
     }
 
+
+    
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
