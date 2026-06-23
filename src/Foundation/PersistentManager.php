@@ -128,7 +128,7 @@ class PersistentManager
     }
 
 
-    
+
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
@@ -178,11 +178,6 @@ class PersistentManager
     public function findStiliByStudioId(int $idStudio): array
     {
         return $this->stileRepository->findStiliByStudioId($idStudio);
-    }
-
-    public function findTatuatoreById(int $idTatuatore): ?object
-    {
-        return $this->studioRepository->findTatuatoreById($idTatuatore);
     }
 
     public function salvaRecensione(

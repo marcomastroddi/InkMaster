@@ -6,6 +6,8 @@ use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Studio;
 use InkMaster\Entity\Tatuatore;
+use InkMaster\Entity\Cliente;
+use InkMaster\Entity\Recensione;
 
 class GestioneRecensione {
     private PersistentManager $pm;
@@ -51,6 +53,8 @@ class GestioneRecensione {
         ];
     }
 
+    //Metodo che permette al cliente di compilare i campi del form della recensione
+    //e che restituisce un'anteprima della recensione compilata prima di procedere con l'invio
     public function compilaRecensione(int $voto, string $titolo, ?string $descrizione, ?string $foto, int $idTatuatore, string $stile): array
     {
         $idStudio = SessionManager::get('studio_selezionato'); //recuperiamo l'id dello studio dalla sessione inizializzata in mostrFormRecensione
@@ -107,12 +111,16 @@ class GestioneRecensione {
         ];
     }
 
+    //Metodo che permette al cliente di confermare l'invio della recensione
+    //e gli restituisce quindi la pagina dello studio aggiornata con la nuova recensione
    public function pubblicaRecensione(): array
     {
+        //Recupero informazioni utili dalla sessione
         $idStudio = SessionManager::get('studio_selezionato');
         $idCliente = SessionManager::get('id_utente');
         $bozza = SessionManager::get('bozza_recensione');
 
+        // Controllo di sicurezza: validità della sessione
         if ($idStudio === null || $idCliente === null || $bozza === null) {
             return [
                 'status'  => 'error',
@@ -120,10 +128,12 @@ class GestioneRecensione {
             ];
         }
 
-        $cliente = $this->pm->findPersonaById($idCliente);
-        $studio = $this->pm->find(Studio::class, $idStudio);
-        $tatuatore = $this->pm->findTatuatoreById($bozza['idTatuatore']);
+        //Recupero oggetti usando le CRUD del PersistentManager
+        $cliente   = $this->pm->read(Cliente::class, $idCliente);
+        $studio    = $this->pm->read(Studio::class, $idStudio);
+        $tatuatore = $this->pm->read(Tatuatore::class, $bozza['idTatuatore']);
 
+        //Controllo di integrità referenziale
         if ($cliente === null || $studio === null || $tatuatore === null) {
             return [
                 'status'  => 'error',
@@ -131,34 +141,49 @@ class GestioneRecensione {
             ];
         }
 
-        $recensione = $this->pm->salvaRecensione(
-            $bozza['voto'],
-            $bozza['titolo'],
-            $bozza['descrizione'],
-            $bozza['foto'],
-            $bozza['stile'],
-            $cliente,
-            $studio,
-            $tatuatore
-        );
+        try {
+            // Instanziazione della recensione
+            // Passiamo esattamente i 7 parametri obbligatori + i 2 opzionali (descrizione e foto)
+            $recensione = new Recensione(
+                $bozza['voto'],            // int $voto
+                new \DateTime(),           // DateTime $data (imposta la data corrente)
+                $cliente,                  // Cliente $cliente
+                $studio,                   // Studio $studio
+                $bozza['titolo'],          // string $titolo
+                $bozza['stile'],           // string $stile
+                $tatuatore,                // Tatuatore $tatuatore
+                $bozza['descrizione'],     // ?string $descrizione (opzionale)
+                $bozza['foto']             // ?string $percorsoFoto (opzionale)
+            );
 
-        // Rimuoviamo solo gli stati temporanei del wizard: id_utente è identità, NON va toccato
-        SessionManager::remove('studio_selezionato');
-        SessionManager::remove('bozza_recensione');
+            // Salvataggio tramite la CRUD "create" del PersistentManager
+            $this->pm->create($recensione);
 
-        return [
-            'status'      => 'success',
-            'interfaccia' => 'Bacheca aggiornata e notifica studio',
-            'data'        => [
-                'voto'        => $recensione->getVoto(),
-                'titolo'      => $recensione->getTitolo(),
-                'descrizione' => $recensione->getDescrizione(),
-                'foto'        => $recensione->getFoto(),
-                'tatuatore'   => $tatuatore->getNome() . ' ' . $tatuatore->getCognome(),
-                'stile'       => $recensione->getStile(),
-                'idStudio'    => $idStudio
-            ]
-        ];
+            // Rimozione degli stati temporanei del wizard (id_utente NON va rimosso)
+            SessionManager::remove('studio_selezionato');
+            SessionManager::remove('bozza_recensione');
+
+            // 6. Ritorno dei dati aggiornati per la Presentation
+            return [
+                'status'      => 'success',
+                'interfaccia' => 'Bacheca aggiornata e notifica studio',
+                'data'        => [
+                    'voto'        => $recensione->getVoto(),
+                    'titolo'      => $recensione->getTitolo(),
+                    'descrizione' => $recensione->getDescrizione(),
+                    'foto'        => $recensione->getFoto(),
+                    'tatuatore'   => $tatuatore->getNome() . ' ' . $tatuatore->getCognome(),
+                    'stile'       => $recensione->getStile(),
+                    'idStudio'    => $idStudio
+                ]
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'status'  => 'error',
+                'message' => 'Errore critico durante la pubblicazione sul database: ' . $e->getMessage()
+            ];
+        }
     }
 
     public function eliminaRecensione(int $idRecensione): array

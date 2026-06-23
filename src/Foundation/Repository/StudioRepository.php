@@ -93,19 +93,6 @@ class StudioRepository
             ->findBy(['studio' => $idStudio]);
     }
 
-    public function findTatuatoreById(int $idTatuatore): ?Tatuatore
-    {
-        $tatuatori = $this->findTatuatoriByStudioId(0); // 0 = ignorato, dati sempre fittizi
-
-        foreach ($tatuatori as $tatuatore) {
-            if ($tatuatore->getId() === $idTatuatore) {
-                return $tatuatore;
-            }
-        }
-
-        return null;
-    }
-
     public function findById(int $id): ?Studio
     {
         return $this->em->getRepository(Studio::class)->find($id);
