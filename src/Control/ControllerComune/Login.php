@@ -49,7 +49,7 @@ class Login
         // Salvataggio dei dati in sessione
         SessionManager::set('username', $username);
         SessionManager::set('ruolo', $ruolo);
-        SessionManager::set('id_utente', $utente->getId());
+        SessionManager::set('idUtente', $utente->getId());
 
         // 7. Gestione delle logiche specifiche a ciascun ruolo
         switch ($ruolo) {
