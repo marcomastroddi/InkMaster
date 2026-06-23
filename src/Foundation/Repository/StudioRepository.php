@@ -116,15 +116,9 @@ class StudioRepository
         return $this->em->getRepository(Studio::class)->count([]);
     }
     
-    // Fab, per adesso restituisce sempre lo stesso studio fittizio, ma in futuro potrà fare query sul DB
     public function findStudiRandom(int $limit): array
     {
-        // TODO: quando ci sarà il DB
-        // return $this->em->createQuery(
-        //     'SELECT s FROM InkMaster\Entity\Studio s ORDER BY RAND()'
-        // )->setMaxResults($limit)->getResult();
-
-        $studi = $this->findAvailableStudios([]);
+        $studi = $this->em->getRepository(Studio::class)->findAll();
         shuffle($studi);
         return array_slice($studi, 0, $limit);
     }

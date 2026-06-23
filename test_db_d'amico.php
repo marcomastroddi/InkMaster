@@ -133,3 +133,17 @@ if ($pub) {
 } else {
     echo "Pubblicazione non trovata\n";
 }
+
+
+//TEST METODI IN RICERCAVISULAIZZASTUDI
+
+//Mostra_home e i due metodi findRecensioniPositiveRandom e findStudiRandom
+echo "\n=== TEST findRecensioniPositiveRandom() ===\n";
+foreach ($pm->findRecensioniPositiveRandom(5) as $r) {
+    echo $r->getId() . ' - ' . $r->getTitolo() . ' - voto: ' . $r->getVoto() . "\n";
+}
+
+echo "\n=== TEST findStudiRandom() ===\n";
+foreach ($pm->findStudiRandom(5) as $s) {
+    echo $s->getId() . ' - ' . $s->getNome() . "\n";
+}
