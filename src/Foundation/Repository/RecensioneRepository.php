@@ -48,30 +48,10 @@ class RecensioneRepository
 
     public function findByStudioId(int $idStudio): array
     {
-        $studio = new Studio(
-            'InkMaster Roma Centro', '12345678901', Citta::Roma,
-            'roma.centro@inkmaster.it', 'inkmaster_roma', 'password123',
-            'Studio storico nel cuore di Roma.', '0612345678',
-            ['lun-ven' => '10:00-19:00'], ['lun-ven' => '19:00']
-        );
-
-        $cliente = new Cliente(
-            'Mario', 'Rossi', 'password123', 'mario_rossi',
-            new DateTime('1990-05-15'), 'mario.rossi@email.it', 'Roma'
-        );
-
-        $tatuatore = new Tatuatore(
-            'Marco', 'Neri',
-            new DateTime('1988-03-22'), $studio
-        );
-
-        return [
-            new Recensione(5, new DateTime('2024-03-10'), $cliente, $studio, 'Lavoro fantastico', 'Realistico', $tatuatore, 'Ottimo lavoro, molto soddisfatto.'),
-            new Recensione(4, new DateTime('2024-04-15'), $cliente, $studio, 'Molto bravo', 'Blackwork', $tatuatore, 'Professionale e preciso.'),
-            new Recensione(3, new DateTime('2024-05-20'), $cliente, $studio, 'Nella media', 'Giapponese', $tatuatore, 'Buon lavoro ma tempi lunghi.'),
-        ];
+        return $this->em->getRepository(Recensione::class)
+            ->findBy(['studio' => $idStudio]);
     }
-
+    
     public function findRecensioniPositiveRandom(int $limit): array
     {
         $recensioni = $this->em->getRepository(Recensione::class)

@@ -26,7 +26,7 @@ class Pubblicazione
     #[ORM\Column(type: 'time')]
     private DateTime $ora;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false, name: 'percorsoImmagine')]
     private string $percorsoImmagine; // Percorso dell'immagine: una pubblicazione DEVE avere una foto del tatuaggio
 
     // Relazione 1: La pubblicazione appartiene a uno specifico studio (Molti a uno)

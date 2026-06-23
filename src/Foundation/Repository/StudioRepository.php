@@ -23,70 +23,27 @@ class StudioRepository extends EntityRepository
     /**
      * @return Studio[]
      */
-    public function findAvailableStudios($criteri): array
+    public function findAvailableStudios(array $criteri): array
     {
-        return [
-            new Studio(
-                'InkMaster Roma Centro',
-                '12345678901',
-                Citta::Roma,
-                'roma.centro@inkmaster.it',
-                'inkmaster_roma',
-                'password123',
-                'Studio storico nel cuore di Roma, specializzato in stili realistici e blackwork.',
-                '0612345678',
-                ['lun-ven' => '10:00-19:00'],
-                ['lun-ven' => '19:00']
-            ),
-            new Studio(
-                'InkMaster Milano Navigli',
-                '23456789012',
-                Citta::Milano,
-                'milano.navigli@inkmaster.it',
-                'inkmaster_milano',
-                'password123',
-                'Studio moderno sui Navigli, focus su stili giapponesi e watercolor.',
-                '0223456789',
-                ['lun-sab' => '11:00-20:00'],
-                ['lun-sab' => '20:00']
-            ),
-            new Studio(
-                'InkMaster Napoli Centro',
-                '34567890123',
-                Citta::Napoli,
-                'napoli.centro@inkmaster.it',
-                'inkmaster_napoli',
-                'password123',
-                'Studio tradizionale nel centro storico di Napoli.',
-                '0813456789',
-                ['mar-dom' => '10:00-18:00'],
-                ['mar-dom' => '18:00']
-            ),
-            new Studio(
-                'InkMaster Torino Centro',
-                '45678901234',
-                Citta::Torino,
-                'torino.centro@inkmaster.it',
-                'inkmaster_torino',
-                'password123',
-                'Piccolo studio boutique specializzato in tatuaggi geometrici e blackwork.',
-                '0114567890',
-                ['mar-sab' => '10:30-19:30'],
-                ['mar-sab' => '19:30']
-            ),
-            new Studio(
-                'InkMaster Pescara Mare',
-                '56789012345',
-                Citta::Pescara,
-                'pescara.mare@inkmaster.it',
-                'inkmaster_pescara',
-                'password123',
-                'Studio sul lungomare di Pescara, ambiente luminoso e rilassato.',
-                '0855678901',
-                ['lun-ven' => '09:30-18:30'],
-                ['lun-ven' => '18:30']
-            ),
-        ];
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('s')->from(Studio::class, 's');
+
+        if (($criteri['tipo'] ?? '') === 'testo') {
+            $qb->where('s.nome LIKE :testo OR s.descrizione LIKE :testo')
+            ->setParameter('testo', '%' . $criteri['testo'] . '%');
+        } else {
+            $qb->where('s.posizione = :citta')
+            ->setParameter('citta', \InkMaster\Enum\Citta::from($criteri['citta']));
+
+            if (!empty($criteri['stile'])) {
+                $qb->join('s.tatuatori', 't')
+                ->join('t.stili', 'st')
+                ->andWhere('st.nome = :stile')
+                ->setParameter('stile', $criteri['stile']);
+            }
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findPortfolioByStudioId(int $idStudio): array

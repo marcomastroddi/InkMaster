@@ -37,7 +37,7 @@ class Recensione
     #[ORM\Column(type: 'string', length: 150)]
     private string $titolo;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true, name: 'foto')]
     private ?string $percorsoFoto = null;
 
     #[ORM\Column(type: 'string', length: 100)]
