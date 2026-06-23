@@ -142,8 +142,7 @@ class RicercaVisualizzaStudi
 
     public function scegli_studio(int $studioId): array
     {
-        $studio = $this->pm->find(Studio::class, $studioId);
-
+        $studio = $this->pm->read(Studio::class, $studioId);
         if ($studio === null) {
             return ['status' => 'error', 'message' => 'Studio non trovato'];
         }

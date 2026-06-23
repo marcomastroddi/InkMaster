@@ -160,3 +160,28 @@ foreach ($pm->findAvailableStyles() as $s) {
 //seleziona_stile non viene testato perchè non chiama il db
 //inserisci_testo_ricerca non viene testato perchè non chiama il db
 
+//test avvia_ricerca
+echo "\n=== TEST findAvailableStudios() per testo ===\n";
+foreach ($pm->findAvailableStudios(['tipo' => 'testo', 'testo' => 'Roma']) as $s) {
+    echo $s->getId() . ' - ' . $s->getNome() . "\n";
+}
+
+echo "\n=== TEST findAvailableStudios() per città ===\n";
+foreach ($pm->findAvailableStudios(['tipo' => 'posizione', 'citta' => 'Roma']) as $s) {
+    echo $s->getId() . ' - ' . $s->getNome() . "\n";
+}
+
+//scegli_studio test
+echo "\n=== TEST scegli_Studio() ===\n";
+$studio = $pm->read(\InkMaster\Entity\Studio::class, 5);
+if ($studio) {
+    echo $studio->getId() . ' - ' . $studio->getNome() . "\n";
+} else {
+    echo "Studio non trovato\n";
+}
+
+//Visualizza recensioni test
+echo "\n=== TEST findRecensioniByStudioId() ===\n";
+foreach ($pm->findRecensioniByStudioId(1) as $r) {
+    echo $r->getId() . ' - ' . $r->getTitolo() . ' - voto: ' . $r->getVoto() . "\n";
+}
