@@ -16,7 +16,7 @@ class GestionePortfolio {
     public function apriPortfolio(): array
     {
         // Il portfolio è legato allo studio loggato, non al singolo tatuatore
-        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
+        $idStudio = SessionManager::get('id_studio', 1); 
 
         if(!$idStudio)
         {
@@ -26,8 +26,7 @@ class GestionePortfolio {
             ];
         }
 
-        // Il nome dello studio si ricava dall'entità, non da una chiave di sessione
-        $studio = $this->pm->find(Studio::class, $idStudio);
+        $studio = $this->pm->read(Studio::class, $idStudio);
         $portfolio = $this->pm->findPortfolioByStudioId($idStudio);
 
         /**

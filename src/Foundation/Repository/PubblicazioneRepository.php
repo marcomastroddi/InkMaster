@@ -23,17 +23,40 @@ class PubblicazioneRepository
         return $this->em->find(Pubblicazione::class, $idPubblicazione);
     }
 
-    public function savePubblicazione($idStudio, $infoPubblicazione)
+    public function savePubblicazione(int $idStudio, array $infoPubblicazione): bool
     {
-        // Implementazione del metodo per salvare la pubblicazione
-        //Per adesso, simulo il salvataggio e ritorno true per indicare successo
+        $studio = $this->em->find(\InkMaster\Entity\Studio::class, $idStudio);
+
+        if ($studio === null) {
+            return false;
+        }
+
+        $pubblicazione = new \InkMaster\Entity\Pubblicazione(
+            $infoPubblicazione['titolo'],
+            $infoPubblicazione['data'],
+            $infoPubblicazione['ora'],
+            $studio,
+            $infoPubblicazione['percorso_foto'],
+            $infoPubblicazione['descrizione']
+        );
+
+        $this->em->persist($pubblicazione);
+        $this->em->flush();
+
         return true;
     }
 
     public function deletePubblicazione(int $idPubblicazione): bool
     {
-        // Implementazione del metodo per eliminare la pubblicazione
-        //Per adesso, simulo l'eliminazione e ritorno true per indicare successo
+        $pubblicazione = $this->em->find(\InkMaster\Entity\Pubblicazione::class, $idPubblicazione);
+
+        if ($pubblicazione === null) {
+            return false;
+        }
+
+        $this->em->remove($pubblicazione);
+        $this->em->flush();
+
         return true;
     }
 }

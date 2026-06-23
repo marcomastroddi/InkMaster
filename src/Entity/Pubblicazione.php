@@ -36,19 +36,19 @@ class Pubblicazione
 
     // Relazione 2: La pubblicazione riguarda uno ed un solo tatuaggio (Molti a uno)
     #[ORM\ManyToOne(targetEntity: Tatuaggio::class)]
-    #[ORM\JoinColumn(name: 'tatuaggio_id', referencedColumnName: 'id', nullable: false)]
-    private Tatuaggio $tatuaggio;
+    #[ORM\JoinColumn(name: 'tatuaggio_id', referencedColumnName: 'id', nullable: true)]
+    private ?Tatuaggio $tatuaggio = null;
 
 
     // Costruttore
     public function __construct(
-        string $titolo, 
-        DateTime $data, 
-        DateTime $ora, 
+        string $titolo,
+        DateTime $data,
+        DateTime $ora,
         Studio $studio,
-        Tatuaggio $tatuaggio,
-        string $percorsoImmagine,        // obbligatorio: la foto del tatuaggio
-        ?string $descrizione = null
+        string $percorsoImmagine,
+        ?string $descrizione = null,
+        ?Tatuaggio $tatuaggio = null
     ) {
         $this->titolo = $titolo;
         $this->data = $data;
@@ -90,7 +90,7 @@ class Pubblicazione
         return $this->studio;
     }
 
-    public function getTatuaggio(): Tatuaggio 
+    public function getTatuaggio(): ?Tatuaggio 
     {
         return $this->tatuaggio;
     }
@@ -126,7 +126,7 @@ class Pubblicazione
         $this->studio = $studio;
     }
 
-    public function setTatuaggio(Tatuaggio $tatuaggio): void 
+    public function setTatuaggio(?Tatuaggio $tatuaggio): void 
     {
         $this->tatuaggio = $tatuaggio;
     }
