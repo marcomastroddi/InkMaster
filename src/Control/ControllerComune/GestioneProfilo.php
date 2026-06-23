@@ -16,16 +16,30 @@ class GestioneProfilo
 
     public function visualizzaProfilo(): array
     {
+        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
+        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        $utente = $this->pm->findByUsername($username);
+        // Tentativo 1: È un Cliente?
+        $utente = $this->pm->findClienteByUsername($username);
 
+        // Tentativo 2: Se non è un cliente, è uno Studio?
         if ($utente === null) {
-            return ['status' => 'error', 'message' => 'Utente non trovato.'];
+            $utente = $this->pm->findStudioByUsername($username);
+        }
+
+        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
+        if ($utente === null) {
+            $utente = $this->pm->findAmministratoreByUsername($username);
+        }
+
+        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
+        if ($utente === null) {
+            return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
         $data = [
@@ -47,23 +61,37 @@ class GestioneProfilo
 
     public function modificaDati(array $dati): array
     {
+        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
+        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        $utente = $this->pm->findByUsername($username);
+        // Tentativo 1: È un Cliente?
+        $utente = $this->pm->findClienteByUsername($username);
 
+        // Tentativo 2: Se non è un cliente, è uno Studio?
         if ($utente === null) {
-            return ['status' => 'error', 'message' => 'Utente non trovato.'];
+            $utente = $this->pm->findStudioByUsername($username);
+        }
+
+        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
+        if ($utente === null) {
+            $utente = $this->pm->findAmministratoreByUsername($username);
+        }
+
+        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
+        if ($utente === null) {
+            return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
         if (!empty($dati['nome']))    $utente->setNome($dati['nome']);
         
         if (!empty($dati['cognome']) && method_exists($utente, 'setCognome')) $utente->setCognome($dati['cognome']);
 
-        $this->pm->save($utente);
+        $this->pm->create($utente);
 
         return [
             'status'      => 'success',
@@ -74,16 +102,30 @@ class GestioneProfilo
 
     public function cambiaPassword(string $vecchiaPassword, string $nuovaPassword): array
     {
+        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
+        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        $utente = $this->pm->findByUsername($username);
+        // Tentativo 1: È un Cliente?
+        $utente = $this->pm->findClienteByUsername($username);
 
+        // Tentativo 2: Se non è un cliente, è uno Studio?
         if ($utente === null) {
-            return ['status' => 'error', 'message' => 'Utente non trovato.'];
+            $utente = $this->pm->findStudioByUsername($username);
+        }
+
+        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
+        if ($utente === null) {
+            $utente = $this->pm->findAmministratoreByUsername($username);
+        }
+
+        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
+        if ($utente === null) {
+            return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
         if ($utente->getPassword() !== $vecchiaPassword) {
@@ -91,7 +133,7 @@ class GestioneProfilo
         }
 
         $utente->setPassword($nuovaPassword);
-        $this->pm->save($utente);
+        $this->pm->create($utente);
 
         return [
             'status'      => 'success',
