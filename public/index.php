@@ -11,7 +11,7 @@ use InkMaster\Control\ControllerStudio\GestionePortfolio;
 use InkMaster\Control\ControllerStudio\GestioneClienti;
 use InkMaster\Control\ControllerStudio\GestioneCalendario;
 use InkMaster\Control\ControllerStudio\GestionePagamenti;
-use InkMaster\Control\ControllerComune\GestioneRecensione;
+use InkMaster\Control\ControllerCliente\GestioneRecensione;
 use InkMaster\Control\ControllerComune\GestioneSegnalazione;
 use InkMaster\Control\ControllerComune\GestioneProfilo;
 use InkMaster\Control\ControllerComune\Login;
