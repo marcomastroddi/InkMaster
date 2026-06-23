@@ -128,7 +128,7 @@ class PersistentManager
     }
 
 
-    
+
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
@@ -180,11 +180,6 @@ class PersistentManager
         return $this->stileRepository->findStiliByStudioId($idStudio);
     }
 
-    public function findTatuatoreById(int $idTatuatore): ?object
-    {
-        return $this->studioRepository->findTatuatoreById($idTatuatore);
-    }
-
     public function salvaRecensione(
         int $voto,
         string $titolo,
@@ -196,11 +191,6 @@ class PersistentManager
         Tatuatore $tatuatore
     ): Recensione {
         return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
-    }
-
-    public function deleteRecensione(int $idRecensione): bool
-    {
-        return $this->recensioneRepository->deleteRecensione($idRecensione);
     }
 
     public function findByUsername(string $username): ?object
