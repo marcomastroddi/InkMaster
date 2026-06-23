@@ -1,6 +1,7 @@
 <?php
 namespace InkMaster\Foundation\Repository;
 
+use Doctrine\ORM\EntityRepository;
 use InkMaster\Entity\Studio;
 use InkMaster\Enum\Citta; 
 use InkMaster\Entity\Pubblicazione;
@@ -9,8 +10,6 @@ use DateTime;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
 
-use Doctrine\ORM\EntityRepository;
-
 class StudioRepository extends EntityRepository
 {
     private $em;
@@ -18,6 +17,7 @@ class StudioRepository extends EntityRepository
     public function __construct($entityManager = null)
     {
         $this->em = $entityManager;
+        parent::__construct($entityManager, $entityManager->getClassMetadata(Studio::class));
     }
 
     /**
@@ -57,17 +57,10 @@ class StudioRepository extends EntityRepository
         return $this->em->getRepository(Studio::class)->find($id);
     }
 
-    public function findByUsername(string $username): ?Studio
+    // Metodo che restituisce uno studio a partire dal suo username
+    public function findStudioByUsername(string $username): ?Studio
     {
-        $studi = $this->findAvailableStudios([]);
-
-        foreach ($studi as $studio) {
-            if ($studio->getUsername() === $username) {
-                return $studio;
-            }
-        }
-
-        return null;
+        return $this->em->getRepository(Studio::class)->findOneBy(['username' => $username]);
     }
 
     public function countStudi(): int

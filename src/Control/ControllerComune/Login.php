@@ -15,32 +15,66 @@ class Login
 
     public function login(string $username, string $password): array
     {
-        $utente = $this->pm->findByUsername($username);
+        // Inizializziamo la variabile che conterrà l'utente trovato
+        $utente = null;
 
+        // Ricerca a cascata nelle 3 tabelle distinte tramite metodi implementati in Foundatio 
+        
+        // Tentativo 1: È un Cliente?
+        $utente = $this->pm->findClienteByUsername($username);
+
+        // Tentativo 2: Se non è un cliente, è uno Studio?
+        if ($utente === null) {
+            $utente = $this->pm->findStudioByUsername($username);
+        }
+
+        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
+        if ($utente === null) {
+            $utente = $this->pm->findAdminByUsername($username);
+        }
+
+        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
         if ($utente === null) {
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
-        if ($utente->getPassword() !== $password) {
+        // Verifica della password tramite hash sicuro (funziona per tutte e 3 le classi perché hanno getPassword())
+        if (!password_verify($password, $utente->getPassword())) {
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
-        $ruolo = $utente->getRuolo();
+        // Sfruttiamo il metodo getRuolo
+        $ruolo = $utente->getRuolo(); 
 
-        // Dati base sempre presenti dopo il login
+        // Salvataggio dei dati in sessione
         SessionManager::set('username', $username);
         SessionManager::set('ruolo', $ruolo);
         SessionManager::set('id_utente', $utente->getId());
 
-        // Se è uno studio (o un tatuatore che usa le credenziali studio),
-        // salviamo anche id_studio: serve a tutte le dashboard dello studio.
-        if ($ruolo === 'studio') {
-            SessionManager::set('id_studio', $utente->getId());
+        // 7. Gestione delle logiche specifiche a ciascun ruolo
+        switch ($ruolo) {
+            case 'cliente':
+                $interfaccia = 'DashboardCliente';
+                break;
+
+            case 'studio':
+                // Essendo uno studio, l'id_utente corrisponde all'id_studio necessario per le dashboard
+                SessionManager::set('id_studio', $utente->getId());
+                $interfaccia = 'DashboardStudio';
+                break;
+
+            case 'amministratore':
+                $interfaccia = 'DashboardAdmin';
+                break;
+
+            default:
+                return ['status' => 'error', 'message' => 'Ruolo non identificato internamente'];
         }
 
+        // 8. Risposta finale con successo e reindirizzamento corretto
         return [
             'status'      => 'success',
-            'interfaccia' => 'Home',
+            'interfaccia' => $interfaccia,
             'ruolo'       => $ruolo
         ];
     }

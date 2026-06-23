@@ -23,6 +23,7 @@ use InkMaster\Entity\Recensione;
 use InkMaster\Entity\Appuntamento;
 use InkMaster\Entity\Stile;
 use InkMaster\Entity\Segnalazione;
+use InkMaster\Entity\Amministratore;
 
 
 
@@ -201,12 +202,6 @@ class PersistentManager
             return $cliente;
         }
 
-        // 2. Cerca tra gli amministratori
-        $admin = $this->amministratoreRepository->findByUsername($username);
-        if ($admin !== null) {
-            return $admin;
-        }
-
         // 3. Cerca tra gli studi (per i tatuatori)
         $studio = $this->studioRepository->findByUsername($username);
         if ($studio !== null) {
@@ -271,6 +266,23 @@ class PersistentManager
     {
         return $this->studioRepository->findStudiRandom($limit);
     }
+
+    public function findClienteByUsername(string $username): ?Cliente
+    {
+        return $this->clienteRepository->findClienteByUsername($username);
+    }
+
+    public function findAmministratoreByUsername(string $username): ?Amministratore
+    {
+        return $this->amministratoreRepository->findAmministratoreByUsername($username);
+    }
+
+    public function findStudioByUsername(string $username): ?Studio
+    {
+        return $this->studioRepository->findStudioByUsername($username);
+    }
+
+
 }
 
 
