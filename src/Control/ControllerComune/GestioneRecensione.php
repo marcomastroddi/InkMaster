@@ -186,23 +186,40 @@ class GestioneRecensione {
         }
     }
 
+
+    // Permette di eliminare una recensione dal sistema tramite il suo ID.
+    // Sfrutta i metodi CRUD "read" e "delete" generici del PersistentManager.
     public function eliminaRecensione(int $idRecensione): array
     {
-        $esitoEliminazione = $this->pm->deleteRecensione($idRecensione);
+        // Recuperiamo l'entità gestita da Doctrine dal DB tramite la CRUD "read"
+        $recensione = $this->pm->read(Recensione::class, $idRecensione);
 
-        if ($esitoEliminazione) {
+        // Se la recensione non esiste nel DB, restituiamo subito un errore
+        if ($recensione === null) {
             return [
-                'status' => 'success',
-                'message' => 'Recensione eliminata con successo',
-                'interfaccia' => 'Bacheca aggiornata senza la recensione eliminata'
+                'status'  => 'error',
+                'message' => 'Impossibile eliminare: recensione non trovata nel sistema.'
             ];
         }
 
-        return [
-            'status' => 'error',
-            'message' => 'Impossibile eliminare la recensione.'
-        ];
+        try {
+            // Utilizziamo il metodo CRUD "delete" passandogli l'oggetto Entity
+            $this->pm->delete($recensione);
 
+            // Risposta per la Presentation in caso di successo
+            return [
+                'status'      => 'success',
+                'message'     => 'Recensione eliminata con successo',
+                'interfaccia' => 'Bacheca aggiornata senza la recensione eliminata'
+            ];
+
+        } catch (\Exception $e) {
+            // Gestione di eventuali eccezioni lanciate dal database
+            return [
+                'status'  => 'error',
+                'message' => 'Errore critico durante l\'eliminazione dal database: ' . $e->getMessage()
+            ];
+        }
     }
 
     

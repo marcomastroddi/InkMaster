@@ -193,11 +193,6 @@ class PersistentManager
         return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
     }
 
-    public function deleteRecensione(int $idRecensione): bool
-    {
-        return $this->recensioneRepository->deleteRecensione($idRecensione);
-    }
-
     public function findByUsername(string $username): ?object
     {
         // 1. Cerca tra i clienti
