@@ -1,7 +1,7 @@
 <?php
 namespace InkMaster\Presentation;
 
-use InkMaster\Presentation\SmartyBoot;
+use InkMaster\config\SmartyBoot;
 
 class View
 {
