@@ -17,7 +17,7 @@
 }
 
 /* DECORAZIONE SINISTRA: Ramo Fineline Specchiato */
-.im-auth-wrapper::before {
+.im-cliente-theme.im-auth-wrapper::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -35,7 +35,7 @@
 }
 
 /* DECORAZIONE DESTRA: Ramo Fineline Originale */
-.im-auth-wrapper::after {
+.im-cliente-theme.im-auth-wrapper::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -259,4 +259,55 @@
 .im-studio-theme .textarea.im-input {
     min-height: 100px;
     padding-top: 12px;
+}
+
+CSS
+
+/* ==========================================================================
+   AGGIUNTA A AUTH.CSS: TEMA LOGIN - TRIBALE / GIAPPONESE IREZUMI (DRAGO)
+   ========================================================================== */
+
+/* Stile specifico per il background di Login con Drago Giapponese */
+.im-login-theme::before,
+.im-login-theme::after {
+    width: 900px;
+    height: 900px;
+    /* SVG di un dragone stilizzato Irezumi */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.15' opacity='0.2'%3E%3Cpath d='M80 20 C60 10, 40 25, 55 45 C70 65, 30 55, 25 75 C20 90, 45 95, 60 85'/%3E%3Cpath d='M75 20 L82 15 L80 23 L88 22 L82 28 C85 35, 74 38, 70 32 Z'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.15;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.im-login-theme::before {
+    left: -15%;
+    transform: translateY(-50%) scaleX(-1);
+    animation: im-drift 120s linear infinite;
+}
+
+.im-login-theme::after {
+    right: -15%;
+    transform: translateY(-50%);
+    animation: im-drift 150s linear infinite reverse;
+}
+
+/* Animazioni lente e fluttuanti per lo stile Irezumi */
+@keyframes im-japanese-drift-left {
+    0% { transform: translateY(-50%) scaleX(-1) rotate(-15deg); }
+    50% { transform: translateY(-47%) scaleX(-1) rotate(-10deg); }
+    100% { transform: translateY(-50%) scaleX(-1) rotate(-15deg); }
+}
+
+@keyframes im-japanese-drift-right {
+    0% { transform: translateY(-50%) rotate(15deg); }
+    50% { transform: translateY(-53%) rotate(20deg); }
+    100% { transform: translateY(-50%) rotate(15deg); }
+}
+
+/* Ottimizzazione dimensioni per la card di Login (più stretta rispetto alle registrazioni) */
+.im-login-card {
+    max-width: 480px !important;
+    margin: 0 auto;
 }

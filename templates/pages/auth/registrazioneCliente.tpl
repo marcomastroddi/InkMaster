@@ -10,7 +10,7 @@
 {/block}
 
 {block name="content"}
-<div class="im-page im-auth-wrapper">
+<div class="im-page im-auth-wrapper im-cliente-theme">
     {* Sfondo con blob animati per continuità di stile con la home *}
     <div class="im-hero-bg">
         <div class="im-blob im-blob-1" style="width: 450px; height: 450px; left: -100px; top: -100px;"></div>
