@@ -95,8 +95,7 @@ switch ($page) {
         break;
 
     case 'avvia_ricerca':
-        View::render('ricerca/risultati', $controller->avvia_ricerca());
-        break;
+        View::render('ricerca/ElencoTatuatori', $controller->avvia_ricerca());        break;
 
     case 'scegli_studio':
         View::render('ricerca/studio', $controller->scegli_studio((int)($_GET['id'] ?? 0)));
