@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    {block name="extra_css"}{/block}
-</head>
+    <link rel="stylesheet" href="/CSS/layout.css">
+    {block name="extra_css"}{/block}</head>
 <body>
     {include file='partials/header.tpl'}
 
