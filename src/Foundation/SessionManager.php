@@ -10,7 +10,7 @@ namespace InkMaster\Foundation;
  * --- IDENTITÀ (scritte SOLO da Login::login, durano tutta la sessione) ---
  *   'username'   string  Lo username dell'utente loggato
  *   'ruolo'      string  'cliente' | 'studio' | 'amministratore'
- *   'id_utente'  int     L'id dell'entità loggata (qualunque tipo)
+ *   'idUtente'  int     L'id dell'entità loggata (qualunque tipo)
  *   'id_studio'  int     Solo per ruolo 'studio': id dello studio (dashboard studio)
  *
  * --- STATI TEMPORANEI / WIZARD (scritti durante una procedura, poi rimossi) ---

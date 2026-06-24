@@ -67,7 +67,7 @@ class GestioneSegnalazione
     public function inviaSegnalazione(string $motivo, string $descrizione, string $tipoTarget, int $idTarget): array
     {
         $ruoloMittente = SessionManager::get('ruolo');
-        $idMittente    = SessionManager::get('id_utente', 1);
+        $idMittente    = SessionManager::get('idUtente', 1);
 
         if (!$ruoloMittente || !$idMittente) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];

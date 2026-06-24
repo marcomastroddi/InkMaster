@@ -261,7 +261,7 @@ switch ($page) {
 
     // ===== INTERFACCIA 7 - LOGIN / LOGOUT =====
     case 'login':
-        $dati = $controllerLogin->login($_POST['username'] ?? '', $_POST['password'] ?? '');
+        $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
         if ($dati['status'] === 'success') {
             $destinazioni = [
                 'cliente'        => '/home',
@@ -275,7 +275,7 @@ switch ($page) {
         break;
 
     case 'logout':
-        $controllerLogin->logout();
+        $controllerAutenticazione->logout();
         header('Location: /home');
         exit;
 

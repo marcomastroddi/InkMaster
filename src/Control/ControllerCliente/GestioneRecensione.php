@@ -117,7 +117,7 @@ class GestioneRecensione {
     {
         //Recupero informazioni utili dalla sessione
         $idStudio = SessionManager::get('studio_selezionato');
-        $idCliente = SessionManager::get('id_utente');
+        $idCliente = SessionManager::get('idUtente');
         $bozza = SessionManager::get('bozza_recensione');
 
         // Controllo di sicurezza: validità della sessione

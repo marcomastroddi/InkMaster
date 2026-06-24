@@ -194,22 +194,6 @@ class PersistentManager
         return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
     }
 
-    public function findByUsername(string $username): ?object
-    {
-        // 1. Cerca tra i clienti
-        $cliente = $this->clienteRepository->findByUsername($username);
-        if ($cliente !== null) {
-            return $cliente;
-        }
-
-        // 3. Cerca tra gli studi (per i tatuatori)
-        $studio = $this->studioRepository->findByUsername($username);
-        if ($studio !== null) {
-            return $studio;
-        }
-
-        return null;
-    }
 
     public function findRecensioniByStudioId(int $idStudio): array
     {

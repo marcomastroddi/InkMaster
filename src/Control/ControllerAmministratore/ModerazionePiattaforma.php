@@ -40,7 +40,7 @@ class ModerazionePiattaforma
             return ['status' => 'error', 'message' => 'Tipo utente non valido'];
         }
 
-        $utente = $this->pm->find($classe, $utenteId);
+        $utente = $this->pm->read($classe, $utenteId);
 
         if ($utente === null) {
             return ['status' => 'error', 'message' => 'Utente non trovato'];
@@ -68,7 +68,7 @@ class ModerazionePiattaforma
         }
 
         $ban = new Ban($utenteId, $utenteTipo, $tipo, $durata, $motivazione, $gravita, $descrizione);
-        $this->pm->save($ban);
+        $this->pm->create($ban);
 
         return [
             'status'      => 'success',
