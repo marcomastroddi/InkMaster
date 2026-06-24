@@ -1,5 +1,5 @@
 <?php
-namespace InkMaster\Presentation;
+namespace InkMaster\Config;
 
 // Se non usi i namespace globali, includi il file di Smarty installato da composer
 // require_once __DIR__ . '/../../vendor/autoload.php';
@@ -15,7 +15,7 @@ class SmartyBoot
         if (self::$instance === null) {
             $smarty = new Smarty();
 
-            // __DIR__ è "progetto/src/Presentation"
+            // __DIR__ è "progetto/src/Config"
             // dirname(__DIR__, 2) sale di due livelli e arriva a "progetto/" (la tua root)
             $rootDir = dirname(__DIR__, 2);
 
