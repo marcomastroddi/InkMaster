@@ -22,13 +22,15 @@ class RicercaVisualizzaStudi
 
         $recensioni = $this->pm->findRecensioniPositiveRandom(5);
         $studi      = $this->pm->findStudiRandom(5);
+        $stili      = $this->pm->findAvailableStyles();   
 
         return [
             'status'         => 'success',
             'interfaccia'    => 'Home Page Iniziale',
             'citta_corrente' => $cittaDefault,
             'recensioni'     => $recensioni,
-            'studi'          => $studi
+            'studi'          => $studi,
+            'stili'          => $stili
         ];
     }
 

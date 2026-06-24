@@ -3,6 +3,7 @@
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
+require_once __DIR__ . '/../config/bootstrap-smarty.php';
 
 use InkMaster\Control\ControllerCliente\RicercaVisualizzaStudi;
 use InkMaster\Control\ControllerCliente\PrenotazionePagamento;

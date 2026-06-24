@@ -1,12 +1,12 @@
 <?php
-namespace InkMaster\Config;
+namespace InkMaster\config;
 
 // Se non usi i namespace globali, includi il file di Smarty installato da composer
 // require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Smarty\Smarty;
 
-class SmartyBoot 
+class bootstrapSmarty 
 {
     private static ?Smarty $instance = null;
 
@@ -17,7 +17,7 @@ class SmartyBoot
 
             // __DIR__ è "progetto/src/Config"
             // dirname(__DIR__, 2) sale di due livelli e arriva a "progetto/" (la tua root)
-            $rootDir = dirname(__DIR__, 2);
+            $rootDir = dirname(__DIR__);
 
             // Configurazione speculare al tuo screenshot
             $smarty->setTemplateDir($rootDir . '/templates/');
