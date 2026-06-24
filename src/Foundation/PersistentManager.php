@@ -258,4 +258,18 @@ class PersistentManager
     {
         return $this->amministratoreRepository->findAmministratoreByUsername($username);
     }
+
+    // ==================================================================
+    // REGISTRAZIONE — Registrazione (controllo unicità username)
+    // ==================================================================
+
+    /** Vero se lo username è libero in TUTTE le tabelle utente (cliente, studio, admin). */
+    public function usernameDisponibile(string $username): bool
+    {
+        return $this->findClienteByUsername($username) === null
+            && $this->findStudioByUsername($username) === null
+            && $this->findAmministratoreByUsername($username) === null;
+    }
+
+
 }

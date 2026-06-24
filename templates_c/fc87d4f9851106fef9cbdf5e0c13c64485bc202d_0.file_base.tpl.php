@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-22 15:57:37
+/* Smarty version 5.8.0, created on 2026-06-24 09:31:32
   from 'file:layouts/base.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a395b71b11be7_81272897',
+  'unifunc' => 'content_6a3ba3f46b30f9_11330732',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc87d4f9851106fef9cbdf5e0c13c64485bc202d' => 
     array (
       0 => 'layouts/base.tpl',
-      1 => 1782142839,
+      1 => 1782149182,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_6a395b71b11be7_81272897 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ba3f46b30f9_11330732 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -32,7 +32,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4824865446a395b71ad5140_06922577', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13574148886a3ba3f451aa96_99513694', "title");
 ?>
 </title>
     <link rel="stylesheet" href="/css/style.css">
@@ -43,7 +43,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4824865446a39
 
     <main class="content">
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16299808436a395b71b10ae3_19865557', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16397394006a3ba3f46b1f71_61458103', "content");
 ?>
 
     </main>
@@ -54,7 +54,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16299808436a3
 </html>
 <?php }
 /* {block "title"} */
-class Block_4824865446a395b71ad5140_06922577 extends \Smarty\Runtime\Block
+class Block_13574148886a3ba3f451aa96_99513694 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\layouts';
@@ -64,7 +64,7 @@ InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_16299808436a395b71b10ae3_19865557 extends \Smarty\Runtime\Block
+class Block_16397394006a3ba3f46b1f71_61458103 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\layouts';
