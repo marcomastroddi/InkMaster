@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-22 23:29:12
+/* Smarty version 5.8.0, created on 2026-06-24 18:17:46
   from 'file:partials/footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a39a928f35e60_54978211',
+  'unifunc' => 'content_6a3c032ad683c3_38298973',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '484ab685faaff27868ce0d4edc6e7fae4abb3d38' => 
     array (
       0 => 'partials/footer.tpl',
-      1 => 1782145692,
+      1 => 1782317858,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,30 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a39a928f35e60_54978211 (\Smarty\Template $_smarty_tpl) {
+function content_6a3c032ad683c3_38298973 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
-?><footer class="main-footer">
-    <h2>Contatti</h2>
-    <p>InkMaster Studio d'Esame - 2026</p>
-</footer>
-<?php }
+?><div class="im-footer">
+    <div class="im-footer-top">
+        <div>
+            <div class="im-footer-logo">INK<span class="im-accent">MASTER</span></div>
+            <div class="im-footer-desc">La rete dei migliori studi e tatuatori in Italia.</div>
+        </div>
+        <div class="im-footer-cols">
+            <div class="im-footer-col">
+                <span class="im-footer-col-title">Contatti</span>
+                <span>info@inkmaster.it</span>
+                <span>+39 06 1234 5678</span>
+                <span>Roma, IT</span>
+            </div>
+            <div class="im-footer-col">
+                <span class="im-footer-col-title">Piattaforma</span>
+                <a href="/cerca">Per gli artisti</a>
+                <a href="#">Come funziona</a>
+                <a href="#">Assistenza</a>
+            </div>
+        </div>
+    </div>
+    <div class="im-copyright">© <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')(time(),'%Y');?>
+ InkMaster — Tutti i diritti riservati</div>
+</div><?php }
 }
