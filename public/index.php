@@ -269,12 +269,12 @@ switch ($page) {
         View::render('auth/registrazioneCliente', []);
         break;
 
-    case 'registrazione_studio':
-        View::render('auth/registrazione_studio', []);
+    case 'registrazioneStudio':
+        View::render('auth/registrazioneStudio', []);
         break;
 
     // --- POST: esegue la registrazione ---
-    case 'registra_cliente':
+    case 'registraCliente':
         $dati = $controllerRegistrazione->registraCliente([
             'nome'              => $_POST['nome']              ?? '',
             'cognome'           => $_POST['cognome']           ?? '',
@@ -293,7 +293,7 @@ switch ($page) {
         View::render('auth/registrazioneCliente', $dati);
         break;
 
-    case 'registra_studio':
+    case 'registraStudio':
         $dati = $controllerRegistrazione->registraStudio([
             'nome'              => $_POST['nome']              ?? '',
             'partita_iva'       => $_POST['partita_iva']       ?? '',
@@ -309,7 +309,7 @@ switch ($page) {
             header('Location: /login');
             exit;
         }
-        View::render('auth/registrazione_studio', $dati);
+        View::render('auth/registrazioneStudio', $dati);
         break;
 
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====

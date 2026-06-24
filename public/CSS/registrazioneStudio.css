@@ -1,0 +1,154 @@
+/* ==========================================================================
+   CSS ESTENSIONE: REGISTRAZIONE STUDIO (Tema: Bulma Integration & Tattoo Machine)
+   ========================================================================== */
+
+/* Wrapper principale e sfondo Dotwork coordinato */
+.im-auth-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+    padding: 60px 20px;
+    overflow: hidden;
+    background-color: #0a0c0d;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* DECORAZIONE DESTRA: Unica grande macchinetta per tatuare a bobina in stile fineline */
+.im-auth-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    /* Disegno vettoriale SVG: Macchinetta per tatuaggi a linee fini geometriche */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Telaio / Frame --%3E%3Cpath d='M30 65 L45 75 L55 50 L35 45 Z' opacity='0.8'/%3E%3Cpath d='M35 45 L30 25 L45 20 L50 35 L55 50'/%3E%3C!-- Bobine / Coils --%3E%3Crect x='36' y='28' width='6' height='12' rx='1' stroke-width='0.2'/%3E%3Cpath d='M36 31 H42 M36 34 H42 M36 37 H42' opacity='0.6'/%3E%3Crect x='44' y='26' width='6' height='12' rx='1' stroke-width='0.2'/%3E%3Cpath d='M44 29 H50 M44 32 H50 M44 35 H50' opacity='0.6'/%3E%3C!-- Barra dell'armatura e molla --%3E%3Cpath d='M33 22 L52 24 M33 22 C30 22, 28 35, 30 45' stroke-width='0.3'/%3E%3C!-- Tubo e Impugnatura / Grip --%3E%3Cpath d='M50 35 L75 60' stroke-width='0.4'/%3E%3Crect x='60' y='45' width='8' height='18' rx='1' transform='rotate(-45 60 45)' stroke-width='0.25'/%3E%3Cpath d='M58 47 L69 58 M56 49 L67 60' opacity='0.5'/%3E%3C!-- Ago Fineline / Needle --%3E%3Cpath d='M48 24 L85 70' stroke-width='0.15'/%3E%3Cpath d='M85 70 L88 74' stroke-width='0.3'/%3E%3C!-- Linee decorative geometriche di contorno --%3E%3Ccircle cx='75' cy='60' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M25 15 L35 20 M55 15 L50 25' opacity='0.4'/%3E%3Ccircle cx='88' cy='74' r='0.4' fill='%232fd8aa'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.14;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-right 140s linear infinite;
+}
+
+/* DECORAZIONE SINISTRA: Elemento simmetrico specchiato per bilanciare l'estetica */
+.im-auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -12%;
+    transform: translateY(-50%) scaleX(-1);
+    width: 800px;
+    height: 800px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 65 L45 75 L55 50 L35 45 Z' opacity='0.8'/%3E%3Cpath d='M35 45 L30 25 L45 20 L50 35 L55 50'/%3E%3Crect x='36' y='28' width='6' height='12' rx='1' stroke-width='0.2'/%3E%3Crect x='44' y='26' width='6' height='12' rx='1' stroke-width='0.2'/%3E%3Cpath d='M50 35 L75 60' stroke-width='0.4'/%3E%3Crect x='60' y='45' width='8' height='18' rx='1' transform='rotate(-45 60 45)' stroke-width='0.25'/%3E%3Cpath d='M48 24 L85 70' stroke-width='0.15'/%3E%3Cpath d='M85 70 L88 74' stroke-width='0.3'/%3E%3Ccircle cx='75' cy='60' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.10;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-left 160s linear infinite;
+}
+
+@keyframes im-tattoo-drift-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes im-tattoo-drift-left {
+    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
+    to { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
+}
+
+.im-auth-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px; /* Allargata leggermente per ospitare i campi su due colonne di Bulma */
+}
+
+/* CARD CENTRALE (Finestra pulita ripristinata) */
+.im-auth-card {
+    background: #101417; 
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* RESET E CORREZIONE CLASSI DI BULMA PER IL COINVOLGIMENTO TEMA DARK */
+.im-label, .field .label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cdd3d1 !important; /* Forza lo stile sopra Bulma */
+    margin-bottom: 6px;
+}
+
+.im-input, .input.im-input, .textarea.im-input {
+    background: #14191c !important;
+    border: 1px solid #232b30 !important;
+    color: #eef1f0 !important;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.im-input::placeholder {
+    color: #4b534f !important;
+}
+
+.im-input:focus, .input.im-input:focus, .textarea.im-input:focus {
+    border-color: #2fd8aa !important;
+    background: #161c20 !important;
+}
+
+/* Bottone di invio */
+.im-btn-submit {
+    width: 100%;
+    padding: 16px !important;
+    height: auto !important;
+    background: #2fd8aa !important;
+    color: #0a0c0d !important;
+    border: none !important;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.im-btn-submit:hover {
+    background: #37eec0 !important;
+}
+
+/* ADATTAMENTO FIX PER L'AUTOFILL (giallo di Chrome) */
+.im-input:-webkit-autofill,
+.im-input:-webkit-autofill:hover, 
+.im-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #eef1f0 !important;
+    transition: background-color 5000000s ease-in-out 0s;
+    box-shadow: inset 0 0 0 1000px #14191c !important;
+}
+
+.im-auth-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: #8a9592;
+}
+
+.im-link-auth {
+    color: #2fd8aa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.im-link-auth:hover {
+    text-decoration: underline;
+}
