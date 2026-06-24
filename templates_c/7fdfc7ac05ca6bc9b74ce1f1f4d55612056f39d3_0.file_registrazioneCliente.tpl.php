@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 17:10:51
+/* Smarty version 5.8.0, created on 2026-06-24 18:30:36
   from 'file:pages/auth/registrazioneCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3c0f9b1b3321_58622857',
+  'unifunc' => 'content_6a3c224c06f792_91566507',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7fdfc7ac05ca6bc9b74ce1f1f4d55612056f39d3' => 
     array (
       0 => 'pages/auth/registrazioneCliente.tpl',
-      1 => 1782321041,
+      1 => 1782325827,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3c0f9b1b3321_58622857 (\Smarty\Template $_smarty_tpl) {
+function content_6a3c224c06f792_91566507 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9186161336a3c0f9b1abb41_47375976', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15876482536a3c224c06a062_41494595', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15589118086a3c0f9b1b19c7_89391986', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11436311936a3c224c06e136_29173819', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18081977956a3c0f9b1b2914_21646133', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16833454956a3c224c06eeb4_50442844', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_9186161336a3c0f9b1abb41_47375976 extends \Smarty\Runtime\Block
+class Block_15876482536a3c224c06a062_41494595 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -51,26 +51,26 @@ Registrati come cliente — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_15589118086a3c0f9b1b19c7_89391986 extends \Smarty\Runtime\Block
+class Block_11436311936a3c224c06e136_29173819 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 ?>
 
         <link rel="stylesheet" href="/CSS/home.css">
-        <link rel="stylesheet" href="/CSS/registrazioneCliente.css">
+        <link rel="stylesheet" href="/CSS/auth.css">
 <?php
 }
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_18081977956a3c0f9b1b2914_21646133 extends \Smarty\Runtime\Block
+class Block_16833454956a3c224c06eeb4_50442844 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 ?>
 
-<div class="im-page im-auth-wrapper">
+<div class="im-page im-auth-wrapper im-cliente-theme">
         <div class="im-hero-bg">
         <div class="im-blob im-blob-1" style="width: 450px; height: 450px; left: -100px; top: -100px;"></div>
         <div class="im-blob im-blob-2" style="width: 550px; height: 550px; right: -150px; bottom: -100px; top: auto; animation-delay: -3s;"></div>

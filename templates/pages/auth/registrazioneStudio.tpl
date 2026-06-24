@@ -6,7 +6,7 @@
     {* Carica gli stili globali e della nav *}
     <link rel="stylesheet" href="/CSS/home.css">
     {* Carica gli stili specifici del form *}
-    <link rel="stylesheet" href="/CSS/registrazioneCliente.css">
+    <link rel="stylesheet" href="/CSS/auth.css">
 {/block}
 
 {block name="content"}
