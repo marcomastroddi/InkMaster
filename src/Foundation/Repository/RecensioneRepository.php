@@ -17,34 +17,6 @@ class RecensioneRepository
         $this->em = $entityManager;
     }
 
-    public function salvaRecensione(
-        int $voto,
-        string $titolo,
-        string $descrizione,
-        ?string $foto,
-        string $stile,
-        Cliente $cliente,
-        Studio $studio,
-        Tatuatore $tatuatore
-    ): Recensione {
-        $recensione = new Recensione(
-            $voto,
-            new DateTime(),
-            $cliente,
-            $studio,
-            $titolo,
-            $stile,
-            $tatuatore,
-            $descrizione,
-            $foto
-        );
-
-        // da implementare con il db:
-        // $this->em->persist($recensione);
-        // $this->em->flush();
-
-        return $recensione;
-    }
 
     public function findByStudioId(int $idStudio): array
     {

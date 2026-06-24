@@ -52,10 +52,6 @@ class StudioRepository extends EntityRepository
             ->findBy(['studio' => $idStudio]);
     }
 
-    public function findById(int $id): ?Studio
-    {
-        return $this->em->getRepository(Studio::class)->find($id);
-    }
 
     // Metodo che restituisce uno studio a partire dal suo username
     public function findStudioByUsername(string $username): ?Studio

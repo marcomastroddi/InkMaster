@@ -159,7 +159,7 @@ class GestioneRecensione {
             // Salvataggio tramite la CRUD "create" del PersistentManager
             $this->pm->create($recensione);
 
-            // Rimozione degli stati temporanei del wizard (id_utente NON va rimosso)
+            // Rimozione degli stati temporanei del wizard (idUtente NON va rimosso)
             SessionManager::remove('studio_selezionato');
             SessionManager::remove('bozza_recensione');
 

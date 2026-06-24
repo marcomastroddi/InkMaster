@@ -35,9 +35,5 @@ class StileRepository extends EntityRepository
         ->getResult();
     }
     
-    // Fab, per adesso restituisce sempre lo stesso stile fittizio, ma in futuro potrà fare query sul DB
-    public function findById(int $id): ?Stile
-    {
-        return $this->findAvailableStyles()[0] ?? null;
-    }
+    
 }

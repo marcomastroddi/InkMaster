@@ -32,27 +32,4 @@ class TatuatoreRepository extends EntityRepository
             ->getResult(); // Ritorna un array di oggetti Tatuatore
     }
 
-
-    public function findById(int $id): ?Tatuatore
-    {
-        $studio = new Studio(
-            'InkMaster Roma Centro',
-            '12345678901',
-            Citta::Roma,
-            'roma.centro@inkmaster.it',
-            'inkmaster_roma',
-            'password123',
-            'Studio storico nel cuore di Roma.',
-            '0612345678',
-            ['lun-ven' => '10:00-19:00'],
-            ['lun-ven' => '19:00']
-        );
-
-        return new Tatuatore(
-            'Marco',
-            'Neri',
-            new DateTime('1988-03-22'),
-            $studio
-        );
-    }
 }

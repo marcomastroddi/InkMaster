@@ -3,8 +3,7 @@ namespace InkMaster\Foundation;
 
 use InkMaster\Foundation\Repository\StileRepository;
 use InkMaster\Foundation\Repository\StudioRepository;
-use InkMaster\Foundation\Repository\SegnalazioneRepository;//Fab 
-use InkMaster\Foundation\Repository\PersonaRepository;//Fab
+use InkMaster\Foundation\Repository\SegnalazioneRepository;
 use InkMaster\Foundation\Repository\PubblicazioneRepository;
 use InkMaster\Foundation\Repository\RecensioneRepository;
 use InkMaster\Foundation\Repository\TatuatoreRepository;
@@ -13,33 +12,27 @@ use InkMaster\Foundation\Repository\AppuntamentoRepository;
 use InkMaster\Foundation\Repository\AmministratoreRepository;
 use InkMaster\Foundation\Repository\PagamentoRepository;
 
-
-use InkMaster\Enum\Citta; 
-use InkMaster\Entity\Studio; 
+use InkMaster\Entity\Studio;
 use InkMaster\Entity\Cliente;
-use InkMaster\Entity\Pubblicazione;
-use InkMaster\Entity\Tatuatore;
-use InkMaster\Entity\Recensione;
-use InkMaster\Entity\Appuntamento;
-use InkMaster\Entity\Stile;
-use InkMaster\Entity\Segnalazione;
 use InkMaster\Entity\Amministratore;
 
-
-
-/*Nota Fab:Per conferma_ban non serve una repository — salva dati nel DB. Per ora con dati fittizi non c'è niente da salvare, 
-quindi nel controller lasciamo il metodo com'è già.
-Quando ci sarà il DB aggiungeremo save() in PersistentManager 
-*/
-
+/**
+ * PersistentManager
+ * ------------------------------------------------------------------
+ * Unico punto di accesso al database (facciata sui repository Doctrine).
+ * I controller chiamano SOLO questa classe, mai i repository direttamente.
+ *
+ * - CRUD generico per-id: create / read / update / delete
+ * - Query di dominio: metodi find...By... raggruppati per controller
+ */
 class PersistentManager
 {
     private static ?PersistentManager $instance = null;
     private $em;
+
     private StileRepository $stileRepository;
     private StudioRepository $studioRepository;
-    private SegnalazioneRepository $segnalazioneRepository;//Fab
-    private PersonaRepository $personaRepository;//Fab
+    private SegnalazioneRepository $segnalazioneRepository;
     private RecensioneRepository $recensioneRepository;
     private PubblicazioneRepository $pubblicazioneRepository;
     private TatuatoreRepository $tatuatoreRepository;
@@ -48,26 +41,28 @@ class PersistentManager
     private AmministratoreRepository $amministratoreRepository;
     private PagamentoRepository $pagamentoRepository;
 
+    // ==================================================================
+    // COSTRUZIONE (Singleton) + aggancio dell'EntityManager
+    // ==================================================================
     private function __construct($entityManager = null)
     {
         // Se nessuno lo passa, carichiamo l'EntityManager vero dal bootstrap
         if ($entityManager === null) {
-            $entityManager = require __DIR__ . '/../../config/bootstrap-doctrine.php'; //ponte all'EntityManager di Doctrine, che gestisce le operazioni sul database
+            $entityManager = require __DIR__ . '/../../config/bootstrap-doctrine.php';
         }
         $this->em = $entityManager;
 
-        // ...i repository ora ricevono l'EM vero (non più null)
-        $this->stileRepository = new StileRepository($entityManager);
-        $this->studioRepository = new StudioRepository($entityManager);
-        $this->segnalazioneRepository = new SegnalazioneRepository($entityManager);//Fab
-        $this->personaRepository = new PersonaRepository($entityManager);//Fab
-        $this->recensioneRepository = new RecensioneRepository($entityManager);
+        // I repository ricevono l'EntityManager reale
+        $this->stileRepository         = new StileRepository($entityManager);
+        $this->studioRepository        = new StudioRepository($entityManager);
+        $this->segnalazioneRepository  = new SegnalazioneRepository($entityManager);
+        $this->recensioneRepository    = new RecensioneRepository($entityManager);
         $this->pubblicazioneRepository = new PubblicazioneRepository($entityManager);
-        $this->tatuatoreRepository = new TatuatoreRepository($entityManager);
-        $this->clienteRepository = new ClienteRepository($entityManager);
-        $this->appuntamentoRepository = new AppuntamentoRepository($entityManager);
+        $this->tatuatoreRepository     = new TatuatoreRepository($entityManager);
+        $this->clienteRepository       = new ClienteRepository($entityManager);
+        $this->appuntamentoRepository  = new AppuntamentoRepository($entityManager);
         $this->amministratoreRepository = new AmministratoreRepository($entityManager);
-        $this->pagamentoRepository = new PagamentoRepository($entityManager);
+        $this->pagamentoRepository     = new PagamentoRepository($entityManager);
     }
 
     public static function getInstance($entityManager = null): PersistentManager
@@ -78,197 +73,189 @@ class PersistentManager
         return self::$instance;
     }
 
-    // 1. CREATE & UPDATE (Persist & Flush)
-    /**
-     * Salva un oggetto nuovo nel database o prepara un oggetto esistente per l'aggiornamento.
-     * In Doctrine, l'operazione di inserimento (Create) richiede il persist().
-     */
+    // ==================================================================
+    // CRUD GENERICO — usato da (quasi) tutti i controller
+    // ==================================================================
+
+    /** Inserisce una nuova entità nel DB (persist + flush). */
     public function create(object $entity): void
     {
         $this->em->persist($entity);
         $this->em->flush();
     }
 
-    /**
-     * Applica le modifiche di un oggetto già esistente (Update).
-     * Nota: Se l'oggetto è già stato recuperato da Doctrine nella stessa sessione, 
-     * basta fare il flush(). Usiamo merge() o il flush diretto per sicurezza.
-     */
+    /** Applica le modifiche a entità già gestite da Doctrine (solo flush). */
     public function update(): void
     {
         $this->em->flush();
     }
 
-    // 2. READ (Find)
-    /**
-     * Legge un singolo record basandosi sulla classe dell'Entity e sul suo ID.
-     * Sostituisce la logica con il costrutto match usando direttamente Doctrine!
-     */
+    /** Legge un singolo record per classe + id. */
     public function read(string $className, int $id): ?object
     {
         return $this->em->find($className, $id);
     }
 
-    /**
-     * Legge TUTTI i record di una determinata classe.
-     * Utilissimo per tabelle come "Stile" o "Citta" per popolare i form.
-     */
+    /** Legge tutti i record di una classe (es. per popolare i form). */
     public function readAll(string $className): array
     {
         return $this->em->getRepository($className)->findAll();
     }
 
-    // 3. DELETE (Remove)
-    /**
-     * Elimina fisicamente un record dal database passando l'oggetto Entity.
-     */
+    /** Elimina fisicamente un'entità dal DB. */
     public function delete(object $entity): void
     {
         $this->em->remove($entity);
         $this->em->flush();
     }
 
+    // ==================================================================
+    // RICERCA & HOME — RicercaVisualizzaStudi
+    // ==================================================================
 
-
+    /** Stili disponibili (home + form di pubblicazione del portfolio). */
     public function findAvailableStyles(): array
     {
         return $this->stileRepository->findAvailableStyles();
     }
 
+    /** Ricerca studi in base ai criteri (città/stile/testo). */
     public function findAvailableStudios($criteri): array
     {
         return $this->studioRepository->findAvailableStudios($criteri);
     }
 
-    public function findPortfolioByStudioId(int $idStudio): array
-    {
-        return $this->studioRepository->findPortfolioByStudioId($idStudio);
-    }
-
-    public function savePubblicazione(int $idStudio, array $infoPubblicazione)
-    {
-        return $this->pubblicazioneRepository->savePubblicazione($idStudio, $infoPubblicazione);
-    }
-
-    public function deletePubblicazione(int $idPubblicazione): bool
-    {
-        return $this->pubblicazioneRepository->deletePubblicazione($idPubblicazione);
-    }
-
-    public function findDettagliPubblicazione(int $idPubblicazione): ?Object
-    {
-        return $this->pubblicazioneRepository->findDettagliPubblicazione($idPubblicazione);
-    }
-
-    //Fab
-    public function findAllSegnalazioni(): array
-    {
-        return $this->segnalazioneRepository->findAllSegnalazioni();
-    }
-    //Fab
-    public function findPersonaById(int $id): ?object
-    {
-        return $this->personaRepository->findById($id);
-    }
-
-    public function findTatuatoriByStudioId(int $idStudio): array
-    {
-        return $this->tatuatoreRepository->findTatuatoriByStudioId($idStudio);
-    }
-
-    public function findStiliByStudioId(int $idStudio): array
-    {
-        return $this->stileRepository->findStiliByStudioId($idStudio);
-    }
-
-    public function salvaRecensione(
-        int $voto,
-        string $titolo,
-        string $descrizione,
-        ?string $foto,
-        string $stile,
-        Cliente $cliente,
-        Studio $studio,
-        Tatuatore $tatuatore
-    ): Recensione {
-        return $this->recensioneRepository->salvaRecensione($voto, $titolo, $descrizione, $foto, $stile, $cliente, $studio, $tatuatore);
-    }
-
-
-    public function findRecensioniByStudioId(int $idStudio): array
-    {
-        return $this->recensioneRepository->findByStudioId($idStudio);
-    }
-
-    public function findAppuntamentiByStudioId(int $idStudio): array
-    {
-        return $this->appuntamentoRepository->findAppuntamentiByStudioId($idStudio);
-    }
-
-    public function findPagamentiByStudioId(int $idStudio): array
-    {
-        return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
-    }
-
-
-
-    // Metodi per le statistiche della dashboard del moderatore
-    public function countClienti(): int
-    {
-        return $this->clienteRepository->countClienti();
-    }
-
-    public function countStudi(): int
-    {
-        return $this->studioRepository->countStudi();
-    }
-
-    public function countSegnalazioniAperte(): int
-    {
-        return $this->segnalazioneRepository->countSegnalazioniAperte();
-    }
-
-    public function countPrenotazioniAttive(): int
-    {
-        return $this->appuntamentoRepository->countPrenotazioniAttive();
-    }
-
-    //Metodi per restituire dati random per la home page e la dashboard del moderatore
-    public function findRecensioniPositiveRandom(int $limit): array
-    {
-        return $this->recensioneRepository->findRecensioniPositiveRandom($limit);
-    }
-
+    /** Studi random in evidenza nella home. */
     public function findStudiRandom(int $limit): array
     {
         return $this->studioRepository->findStudiRandom($limit);
     }
 
+    /** Recensioni positive random in evidenza nella home. */
+    public function findRecensioniPositiveRandom(int $limit): array
+    {
+        return $this->recensioneRepository->findRecensioniPositiveRandom($limit);
+    }
+
+    /** Recensioni di uno studio (scheda studio). */
+    public function findRecensioniByStudioId(int $idStudio): array
+    {
+        return $this->recensioneRepository->findByStudioId($idStudio);
+    }
+
+    // ==================================================================
+    // PORTFOLIO — GestionePortfolio (studio) + VisualizzaPortfolio (pubblico)
+    // ==================================================================
+
+    /** Pubblicazioni di uno studio. */
+    public function findPortfolioByStudioId(int $idStudio): array
+    {
+        return $this->studioRepository->findPortfolioByStudioId($idStudio);
+    }
+
+    /** Dettaglio di una singola pubblicazione. */
+    public function findDettagliPubblicazione(int $idPubblicazione): ?Object
+    {
+        return $this->pubblicazioneRepository->findDettagliPubblicazione($idPubblicazione);
+    }
+
+    /** Crea una nuova pubblicazione nel portfolio dello studio. */
+    public function savePubblicazione(int $idStudio, array $infoPubblicazione)
+    {
+        return $this->pubblicazioneRepository->savePubblicazione($idStudio, $infoPubblicazione);
+    }
+
+    /** Elimina una pubblicazione dal portfolio. */
+    public function deletePubblicazione(int $idPubblicazione): bool
+    {
+        return $this->pubblicazioneRepository->deletePubblicazione($idPubblicazione);
+    }
+
+    // ==================================================================
+    // RECENSIONI — GestioneRecensione (form di inserimento)
+    // ==================================================================
+
+    /** Tatuatori di uno studio (per scegliere chi recensire). */
+    public function findTatuatoriByStudioId(int $idStudio): array
+    {
+        return $this->tatuatoreRepository->findTatuatoriByStudioId($idStudio);
+    }
+
+    /** Stili offerti da uno studio (per il form recensione). */
+    public function findStiliByStudioId(int $idStudio): array
+    {
+        return $this->stileRepository->findStiliByStudioId($idStudio);
+    }
+
+    // ==================================================================
+    // DASHBOARD STUDIO — GestioneClienti / GestioneCalendario / GestionePagamenti
+    // ==================================================================
+
+    /** Appuntamenti di uno studio (clienti + calendario). */
+    public function findAppuntamentiByStudioId(int $idStudio): array
+    {
+        return $this->appuntamentoRepository->findAppuntamentiByStudioId($idStudio);
+    }
+
+    /** Pagamenti ricevuti da uno studio. */
+    public function findPagamentiByStudioId(int $idStudio): array
+    {
+        return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
+    }
+
+    // ==================================================================
+    // MODERAZIONE — ModerazionePiattaforma (segnalazioni + KPI dashboard)
+    // ==================================================================
+
+    /** Tutte le segnalazioni da moderare. */
+    public function findAllSegnalazioni(): array
+    {
+        return $this->segnalazioneRepository->findAllSegnalazioni();
+    }
+
+    /** KPI: numero clienti registrati. */
+    public function countClienti(): int
+    {
+        return $this->clienteRepository->countClienti();
+    }
+
+    /** KPI: numero studi registrati. */
+    public function countStudi(): int
+    {
+        return $this->studioRepository->countStudi();
+    }
+
+    /** KPI: segnalazioni ancora aperte. */
+    public function countSegnalazioniAperte(): int
+    {
+        return $this->segnalazioneRepository->countSegnalazioniAperte();
+    }
+
+    /** KPI: prenotazioni attive. */
+    public function countPrenotazioniAttive(): int
+    {
+        return $this->appuntamentoRepository->countPrenotazioniAttive();
+    }
+
+    // ==================================================================
+    // AUTENTICAZIONE — Autenticazione (login: ricerca per username e ruolo)
+    // ==================================================================
+
+    /** Cerca un cliente per username. */
     public function findClienteByUsername(string $username): ?Cliente
     {
         return $this->clienteRepository->findClienteByUsername($username);
     }
 
-    public function findAmministratoreByUsername(string $username): ?Amministratore
-    {
-        return $this->amministratoreRepository->findAmministratoreByUsername($username);
-    }
-
+    /** Cerca uno studio per username. */
     public function findStudioByUsername(string $username): ?Studio
     {
         return $this->studioRepository->findStudioByUsername($username);
     }
 
-
+    /** Cerca un amministratore per username. */
+    public function findAmministratoreByUsername(string $username): ?Amministratore
+    {
+        return $this->amministratoreRepository->findAmministratoreByUsername($username);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
