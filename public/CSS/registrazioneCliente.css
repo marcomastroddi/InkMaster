@@ -150,6 +150,26 @@
     background: #161c20;
 }
 
+/* ==========================================================================
+   FIX AUTOFILL (Rimuove lo sfondo giallo del completamento automatico)
+   ========================================================================== */
+
+/* Forza lo sfondo scuro e il testo chiaro quando i campi vengono auto-compilati */
+.im-input:-webkit-autofill,
+.im-input:-webkit-autofill:hover, 
+.im-input:-webkit-autofill:focus, 
+.im-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #eef1f0 !important; /* Mantiene il testo chiaro originale */
+    transition: background-color 5000000s ease-in-out 0s; /* Blocca il cambio di colore dello sfondo */
+    box-shadow: inset 0 0 0 1000px #14191c !important; /* Copre il giallo con il colore dell'input scuro */
+}
+
+/* Gestisce l'autofill quando l'input riceve anche il focus */
+.im-input:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 1000px #161c20 !important; /* Colore di focus scuro */
+    border-color: #2fd8aa !important; /* Mantiene il bordo brand color */
+}
+
 .im-input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1) opacity(0.5);
     cursor: pointer;
