@@ -2,24 +2,50 @@
 
 {block name="title"}Accedi — InkMaster{/block}
 
+{block name="extra_css"}
+    {* Carica gli stili globali e della nav *}
+    <link rel="stylesheet" href="/CSS/home.css">
+    {* Carica il foglio di stile unico per i form di autenticazione *}
+    <link rel="stylesheet" href="/CSS/auth.css">
+{/block}
+
 {block name="content"}
-    <h1>Accedi</h1>
+<div class="im-page im-auth-wrapper im-login-theme">
+    {* Sfondo con blob animati per continuità di stile con la home *}
+    <div class="im-hero-bg">
+        <div class="im-blob im-blob-1" style="width: 400px; height: 400px; left: -150px; top: -50px;"></div>
+        <div class="im-blob im-blob-2" style="width: 450px; height: 450px; right: -100px; bottom: -150px; top: auto; animation-delay: -2s;"></div>
+    </div>
 
-    {* Messaggio: errore credenziali oppure "Devi effettuare il login" dalle rotte protette *}
-    {if isset($message)}
-        <p class="form-error">{$message}</p>
-    {/if}
+    <div class="im-auth-container im-login-card">
+        <div class="im-auth-card">
+            <div class="im-auth-header">
+                <div class="im-eyebrow">Bentornato</div>
+                <h1 class="im-title-auth">Accedi</h1>
+                <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
+            </div>
 
-    <form method="post" action="/login">
-        <label>Username <input type="text" name="username" required></label>
-        <label>Password <input type="password" name="password" required></label>
-        <button type="submit">Accedi</button>
-    </form>
+            <form action="/login_action" method="POST" class="im-form">
+                <div class="im-form-group">
+                    <label class="im-label" for="username">Username</label>
+                    <input type="text" id="username" name="username" class="im-input" required placeholder="Inserisci il tuo username">
+                </div>
 
-    {* --- Link verso la registrazione --- *}
-    <p>Non hai un account?</p>
-    <ul>
-        <li><a href="/registrazione_cliente">Registrati come cliente</a></li>
-        <li><a href="/registrazione_studio">Registra il tuo studio</a></li>
-    </ul>
+                <div class="im-form-group mt-4">
+                    <label class="im-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="im-input" required placeholder="Inserisci la tua password">
+                </div>
+
+                <button type="submit" class="im-btn-submit mt-5">Accedi</button>
+            </form>
+
+            <div class="im-auth-footer">
+                Non hai un account? <br class="is-hidden-tablet">
+                <a href="/registrazioneCliente" class="im-link-auth">Registrati come cliente</a> 
+                <span style="color: #4b534f; margin: 0 8px;">•</span>
+                <a href="/registrazioneStudio" class="im-link-auth">Registra il tuo studio</a>
+            </div>
+        </div>
+    </div>
+</div>
 {/block}
