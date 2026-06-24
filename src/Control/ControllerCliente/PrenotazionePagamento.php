@@ -262,7 +262,7 @@ class PrenotazionePagamento {
             empty($datiCarta['numero']) ||
             empty($datiCarta['scadenza']) ||
             empty($datiCarta['cvv']) ||
-            empty($datiCarta['intestatario'])
+            (empty($datiCarta['nome']) && empty($datiCarta['intestatario']))
         ) {
             return ['status' => 'error', 'message' => 'Dati carta incompleti'];
         }
@@ -273,9 +273,19 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
         }
 
+        // Supporta sia nome+cognome separati che intestatario unico
+        if (!empty($datiCarta['nome'])) {
+            $nome    = $datiCarta['nome'];
+            $cognome = $datiCarta['cognome'] ?? '';
+        } else {
+            $parti   = explode(' ', $datiCarta['intestatario'], 2);
+            $nome    = $parti[0];
+            $cognome = $parti[1] ?? '';
+        }
+
         $carta = new CartaDiCredito(
-            nomeIntestatario: $datiCarta['intestatario'],
-            cognomeIntestatario: '',
+            nomeIntestatario: $nome,
+            cognomeIntestatario: $cognome,
             numeroCarta: $datiCarta['numero'],
             dataScadenza: DateTime::createFromFormat('m/Y', $datiCarta['scadenza']),
             cvv: $datiCarta['cvv']
