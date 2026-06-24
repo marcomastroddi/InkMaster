@@ -1,0 +1,197 @@
+/* ==========================================================================
+   CSS SPECIFICO: REGISTRAZIONE CLIENTE (Tema: Twin Bouquet Fineline Layout)
+   ========================================================================== */
+
+.im-auth-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+    padding: 60px 20px;
+    overflow: hidden;
+    background-color: #0a0c0d;
+    /* Texture di sfondo puntinata delicata (Dotwork) */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* DECORAZIONE SINISTRA: Ramo Fineline Specchiato */
+.im-auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -12%;
+    transform: translateY(-50%) scaleX(-1); /* Specchia il disegno per bilanciare il lato sinistro */
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.12; /* Leggermente più basso per asimmetria artistica */
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-left 160s linear infinite;
+}
+
+/* DECORAZIONE DESTRA: Ramo Fineline Originale */
+.im-auth-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -12%;
+    transform: translateY(-50%);
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.14;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-right 140s linear infinite;
+}
+
+/* Animazioni differenziate per velocità e rotazione */
+@keyframes im-tattoo-drift-left {
+    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
+    to { transform: translateY(-50%) scaleX(-1) rotate(-360deg); } /* Ruota in senso opposto */
+}
+
+@keyframes im-tattoo-drift-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.im-auth-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 760px;
+}
+
+/* STRUTTURA CARD (Stabile, Solida e Pulita) */
+.im-auth-card {
+    background: #101417; 
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.im-auth-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.im-title-auth {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+    color: #eef1f0;
+}
+
+.im-subtitle {
+    font-size: 15px;
+    color: #8a9592;
+}
+
+.im-form {
+    margin-top: 20px;
+}
+
+.im-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 680px) {
+    .im-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .im-auth-card {
+        padding: 32px 20px;
+    }
+}
+
+.im-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.im-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cdd3d1;
+}
+
+.im-input {
+    background: #14191c;
+    border: 1px solid #232b30;
+    color: #eef1f0;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.im-input::placeholder {
+    color: #4b534f;
+}
+
+.im-input:focus {
+    border-color: #2fd8aa;
+    background: #161c20;
+}
+
+.im-input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.5);
+    cursor: pointer;
+}
+
+.im-btn-submit {
+    width: 100%;
+    padding: 16px;
+    margin-top: 32px;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+}
+
+.im-btn-submit:hover {
+    background: #37eec0;
+}
+
+.im-btn-submit:active {
+    transform: scale(0.99);
+}
+
+.im-auth-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: #8a9592;
+}
+
+.im-link-auth {
+    color: #2fd8aa;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.im-link-auth:hover {
+    text-decoration: underline;
+}

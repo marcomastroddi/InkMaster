@@ -265,8 +265,8 @@ switch ($page) {
     // ===== INTERFACCIA 7.0 - REGISTRAZIONE (pubblica: cliente e studio) =====
 
     // --- GET: mostra i form ---
-    case 'registrazione_cliente':
-        View::render('auth/registrazione_cliente', []);
+    case 'registrazioneCliente':
+        View::render('auth/registrazioneCliente', []);
         break;
 
     case 'registrazione_studio':
@@ -290,7 +290,7 @@ switch ($page) {
             exit;
         }
         // Errore: ri-mostra il form col messaggio
-        View::render('auth/registrazione_cliente', $dati);
+        View::render('auth/registrazioneCliente', $dati);
         break;
 
     case 'registra_studio':
