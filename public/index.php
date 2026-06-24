@@ -15,6 +15,7 @@ use InkMaster\Control\ControllerCliente\GestioneRecensione;
 use InkMaster\Control\ControllerComune\GestioneSegnalazione;
 use InkMaster\Control\ControllerComune\GestioneProfilo;
 use InkMaster\Control\ControllerComune\Autenticazione;
+use InkMaster\Control\ControllerComune\Registrazione;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
 
 use InkMaster\Foundation\SessionManager;
@@ -37,6 +38,7 @@ $controller9 = new GestioneProfilo();
 $controller10 = new GestioneClienti();
 $controller11 = new GestioneCalendario();
 $controller12 = new GestionePagamenti();
+$controllerRegistrazione = new Registrazione();
 
 
 // ── Lettura della rotta dal percorso dell'URL ──
@@ -259,7 +261,57 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
-    // ===== INTERFACCIA 7 - LOGIN / LOGOUT =====
+    // ===== INTERFACCIA 7.0 - REGISTRAZIONE (pubblica: cliente e studio) =====
+
+    // --- GET: mostra i form ---
+    case 'registrazione_cliente':
+        View::render('auth/registrazione_cliente', []);
+        break;
+
+    case 'registrazione_studio':
+        View::render('auth/registrazione_studio', []);
+        break;
+
+    // --- POST: esegue la registrazione ---
+    case 'registra_cliente':
+        $dati = $controllerRegistrazione->registraCliente([
+            'nome'              => $_POST['nome']              ?? '',
+            'cognome'           => $_POST['cognome']           ?? '',
+            'username'          => $_POST['username']          ?? '',
+            'password'          => $_POST['password']          ?? '',
+            'conferma_password' => $_POST['conferma_password'] ?? '',
+            'data_nascita'      => $_POST['data_nascita']      ?? '',
+            'email'             => $_POST['email']             ?? '',
+            'posizione'         => $_POST['posizione']         ?? '',
+        ]);
+        if ($dati['status'] === 'success') {
+            header('Location: /login');
+            exit;
+        }
+        // Errore: ri-mostra il form col messaggio
+        View::render('auth/registrazione_cliente', $dati);
+        break;
+
+    case 'registra_studio':
+        $dati = $controllerRegistrazione->registraStudio([
+            'nome'              => $_POST['nome']              ?? '',
+            'partita_iva'       => $_POST['partita_iva']       ?? '',
+            'posizione'         => $_POST['posizione']         ?? '',
+            'email'             => $_POST['email']             ?? '',
+            'username'          => $_POST['username']          ?? '',
+            'password'          => $_POST['password']          ?? '',
+            'conferma_password' => $_POST['conferma_password'] ?? '',
+            'descrizione'       => $_POST['descrizione']       ?? '',
+            'telefono'          => $_POST['telefono']          ?? '',
+        ]);
+        if ($dati['status'] === 'success') {
+            header('Location: /login');
+            exit;
+        }
+        View::render('auth/registrazione_studio', $dati);
+        break;
+
+    // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
         $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
         if ($dati['status'] === 'success') {
@@ -278,7 +330,7 @@ switch ($page) {
         $controllerAutenticazione->logout();
         header('Location: /home');
         exit;
-
+    
     // ===== INTERFACCIA 8 - GESTISCI SEGNALAZIONE =====
     case 'form_segnalazione':
         $dati = $controller8->apriFormSegnalazione(
@@ -371,10 +423,12 @@ switch ($page) {
         View::render('studio/dashboard_studio', []);
         break;
 
+    
     // ===== 404 =====
     default:
         View::render('errori/404', []);
         break;
+
 }
 
 
