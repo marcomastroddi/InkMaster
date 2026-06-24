@@ -34,7 +34,7 @@ class GestioneClienti
         ];
     }
 
-    public function aggiorna_Stato(int $idAppuntamento, string $stato): array
+    public function aggiornaStato(int $idAppuntamento, string $stato): array
     {
         $appuntamento = $this->pm->read(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
 
@@ -51,7 +51,7 @@ class GestioneClienti
         ];
     }
 
-    public function aggiungi_Pagamento(int $idAppuntamento, float $importo, int $idCarta): array
+    public function aggiungiPagamento(int $idAppuntamento, float $importo, int $idCarta): array
     {
         $appuntamento = $this->pm->read(Appuntamento::class, $idAppuntamento);
 

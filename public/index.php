@@ -339,7 +339,8 @@ switch ($page) {
     case 'aggiungi_pagamento':
         $dati = $controller10->aggiungiPagamento(
             (int)($_POST['id_appuntamento'] ?? 0),
-            (float)($_POST['importo'] ?? 0)
+            (float)($_POST['importo'] ?? 0),
+            (int)($_POST['id_carta'] ?? 0)
         );
         header('Content-Type: application/json');
         echo json_encode($dati);
