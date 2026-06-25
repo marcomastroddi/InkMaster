@@ -395,9 +395,15 @@ switch ($page) {
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
         if ($dati['status'] === 'success') {
-            header('Location: /dashboardStudio');
+            SessionManager::set('username', $_POST['username']);
+            SessionManager::set('ruolo', 'studio');
+            SessionManager::set('id_studio', $dati['idStudio']);
+            header('Location: /dashboard_studio');
             exit;
         }
+        View::render('auth/registrazioneStudio', $dati);
+        break;
+}
         View::render('auth/registrazioneStudio', $dati);
         break;
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
