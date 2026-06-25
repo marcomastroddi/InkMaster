@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 17:31:12
+/* Smarty version 5.8.0, created on 2026-06-25 19:44:14
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d49c02e9826_03782508',
+  'unifunc' => 'content_6a3d68ee9d6a15_53857558',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ccab56d2f4e683b50909d274441414a74cf705a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782401448,
+      1 => 1782409451,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3d49c02e9826_03782508 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d68ee9d6a15_53857558 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9699618156a3d49c028fb70_56224036', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3948679136a3d68ee984646_07575701', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17880098096a3d49c02958b9_72431270', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15706123136a3d68ee989984_11066008', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8533815596a3d49c02962f7_80621128', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7830030356a3d68ee98a758_09316777', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_9699618156a3d49c028fb70_56224036 extends \Smarty\Runtime\Block
+class Block_3948679136a3d68ee984646_07575701 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_17880098096a3d49c02958b9_72431270 extends \Smarty\Runtime\Block
+class Block_15706123136a3d68ee989984_11066008 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8533815596a3d49c02962f7_80621128 extends \Smarty\Runtime\Block
+class Block_7830030356a3d68ee98a758_09316777 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -375,8 +375,23 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
                             </div>
                             <div class="st-rev-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 </div>
-                            <p class="st-rev-text"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getDescrizione(), ENT_QUOTES, 'UTF-8', true);?>
+                                <p class="st-rev-text"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getDescrizione(), ENT_QUOTES, 'UTF-8', true);?>
 </p>
+                                <?php if ($_smarty_tpl->getValue('rec')->getFoto()) {?>
+                                    <div class="st-rev-photos">
+                                        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec')->getFotoArray(), 'fotoUrl');
+$foreach8DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('fotoUrl')->value) {
+$foreach8DoElse = false;
+?>
+                                            <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoUrl'), ENT_QUOTES, 'UTF-8', true);?>
+" alt="Foto tatuaggio" class="st-rev-photo">
+                                        <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+                                    </div>
+                                <?php }?>
                             <div class="st-rev-footer">
                                 <span class="st-rev-stile"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getStile(), ENT_QUOTES, 'UTF-8', true);?>
 </span>
@@ -393,7 +408,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <p class="st-muted">Ancora nessuna recensione.</p>
             <?php }?>
             <div style="margin-top:20px">
-                <a href="/avvia_recensione?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
+                <a href="/avviaRecensione?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
 " class="st-cta-outline">✍ Scrivi una recensione</a>
             </div>
         </section>
@@ -423,9 +438,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="pb-grid">
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('tatuatori'), 't');
-$foreach8DoElse = true;
+$foreach9DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('t')->value) {
-$foreach8DoElse = false;
+$foreach9DoElse = false;
 ?>
                     <a href="/scegliTatuatore?id=<?php echo $_smarty_tpl->getValue('t')->getId();?>
 " class="pb-item">
@@ -453,9 +468,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="pb-grid">
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('stili'), 's');
-$foreach9DoElse = true;
+$foreach10DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('s')->value) {
-$foreach9DoElse = false;
+$foreach10DoElse = false;
 ?>
                     <a href="/scegliStile?id=<?php echo $_smarty_tpl->getValue('s')->getId();?>
 " class="pb-item">
@@ -560,13 +575,16 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="pb-nav">
                 <a href="/home" class="pb-btn">Torna alla home</a>
             </div>
-
         <?php }?>
 
     </div>
 </div>
-<?php }
-$_smarty_tpl->renderSubTemplate('file:partials/overlay_recensione.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+<?php }?>
+
+<?php $_smarty_tpl->renderSubTemplate('file:partials/overlay_recensione.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
+<?php
 }
 }
 /* {/block "content"} */
