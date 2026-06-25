@@ -8,29 +8,53 @@
 
 {block name="content"}
 <div class="st-page">
+    {* ── BLOB SFONDO ── *}
+    <div class="st-page">
+    <div class="st-bg">
+        <div class="st-blob st-blob-1"></div>
+        <div class="st-blob st-blob-2"></div>
+    </div>
 
   {* ── STRIP PORTFOLIO ── *}
   <div class="st-strip">
     {foreach $data->getPubblicazioni() as $pub}
       <div class="st-strip-slot">
         <img src="{$pub->getPercorsoImmagine()|escape}" alt="{$pub->getTitolo()|escape}">
+        <div class="st-strip-label">{$pub->getTitolo()|escape}</div>
       </div>
     {foreachelse}
-      {for $i=1 to 4}
+      {for $i=1 to 5}
         <div class="st-strip-slot st-strip-ph">
-          <span>{$data->getNome()|substr:0:2|upper}</span>
+          <div class="st-strip-ph-inner">
+            <span class="st-strip-ph-icon">🖼</span>
+            <span class="st-strip-ph-text">Portfolio</span>
+          </div>
         </div>
       {/for}
     {/foreach}
   </div>
 
-  {* ── HERO INFO BAR ── *}
-  <div class="st-infobar">
-    <div class="st-infobar-left">
-      <div class="st-avatar">{$data->getNome()|substr:0:2|upper}</div>
-      <div>
+  {* ── LAYOUT PRINCIPALE ── *}
+  <div class="st-layout">
+
+    {* ── SIDEBAR SINISTRA ── *}
+    <aside class="st-sidebar">
+      <div class="st-sidebar-card">
+
+        <div class="st-avatar">{$data->getNome()|substr:0:2|upper}</div>
         <h1 class="st-nome">{$data->getNome()|escape}</h1>
         <div class="st-city">📍 {$data->getPosizione()->value}</div>
+
+        {if $n_recensioni > 0}
+          <div class="st-rating">
+            <span class="st-rating-stars">
+              {for $i=1 to 5}{if $i <= $media_voto|round}★{else}<span class="st-star-off">★</span>{/if}{/for}
+            </span>
+            <span class="st-rating-num">{$media_voto}</span>
+            <span class="st-rating-count">({$n_recensioni})</span>
+          </div>
+        {/if}
+
         <div class="st-tags">
           {foreach $data->getTatuatori() as $tat}
             {foreach $tat->getStili() as $st}
@@ -38,30 +62,31 @@
             {/foreach}
           {/foreach}
         </div>
+
+        <div class="st-divider"></div>
+
+        <div class="st-appt-box">
+          <h3 class="st-appt-title">Richiedi appuntamento</h3>
+          {if $data->getTelefono()}
+            <div class="st-contact-row"><span class="st-ci">📞</span>{$data->getTelefono()|escape}</div>
+          {/if}
+          <div class="st-contact-row"><span class="st-ci">✉</span>{$data->getEmail()|escape}</div>
+          <a href="/scegli_tatuatore?id={$data->getId()}" class="st-cta">Prenota</a>
+        </div>
+
       </div>
-    </div>
-    <div class="st-infobar-right">
-      {if $data->getTelefono()}
-        <div class="st-contact-row"><span class="st-ci">📞</span>{$data->getTelefono()|escape}</div>
-      {/if}
-      <div class="st-contact-row"><span class="st-ci">✉</span>{$data->getEmail()|escape}</div>
-      <a href="/scegli_tatuatore?id={$data->getId()}" class="st-cta">Richiedi appuntamento</a>
-    </div>
-  </div>
+    </aside>
 
-  {* ── CORPO PRINCIPALE ── *}
-  <div class="st-body">
+    {* ── CONTENUTO DESTRA ── *}
+    <main class="st-main">
 
-    {* COLONNA SX *}
-    <div class="st-col-left">
-
-      {* About *}
+      {* Descrizione *}
       <section class="st-section">
         <h2 class="st-h2">About us</h2>
         {if $data->getDescrizione()}
           <p class="st-desc">{$data->getDescrizione()|escape}</p>
         {else}
-          <p class="st-desc st-muted">Nessuna descrizione disponibile.</p>
+          <p class="st-muted">Nessuna descrizione disponibile.</p>
         {/if}
       </section>
 
@@ -83,26 +108,22 @@
         </div>
       </section>
 
-    </div>
-
-    {* COLONNA DX — ORARI *}
-    <div class="st-col-right">
+      {* Orari *}
       <section class="st-section">
         <h2 class="st-h2">Orari di apertura</h2>
         <div class="st-orari-card">
-          {assign var=giorni value=['Lun','Mar','Mer','Gio','Ven','Sab','Dom']}
-          {assign var=orariAp value=$data->getOrariApertura()}
-          {assign var=orariCh value=$data->getOrariChiusura()}
-          {if $orariAp}
-            {foreach $orariAp as $giorno => $apertura}
+                    {if $data->getOrariApertura()}
+            {assign var=orariCh value=$data->getOrariChiusura()}
+            {foreach $data->getOrariApertura() as $giorno => $apertura}
               {assign var=chiusura value=$orariCh[$giorno]|default:''}
               <div class="st-orari-row {if $chiusura === 'Chiuso'}st-orari-chiuso{/if}">
                 <span class="st-orari-day">{$giorno|escape}</span>
                 {if $chiusura === 'Chiuso'}
+                  <span class="st-orari-time st-muted-inline">—</span>
                   <span class="st-orari-badge st-badge-chiuso">Chiuso</span>
                 {else}
                   <span class="st-orari-time">{$apertura|escape} – {$chiusura|escape}</span>
-                  <span class="st-orari-badge st-badge-aperto">Aperto</span>
+                  <span class="st-orari-badge st-badge-aperto">● Aperto</span>
                 {/if}
               </div>
             {/foreach}
@@ -111,67 +132,66 @@
               <div class="st-orari-row">
                 <span class="st-orari-day">{$g}</span>
                 <span class="st-orari-time">9:00 – 18:00</span>
-                <span class="st-orari-badge st-badge-aperto">Aperto</span>
+                <span class="st-orari-badge st-badge-aperto">● Aperto</span>
               </div>
             {/foreach}
             <div class="st-orari-row">
               <span class="st-orari-day">Sab</span>
               <span class="st-orari-time">9:00 – 14:00</span>
-              <span class="st-orari-badge st-badge-aperto">Aperto</span>
+              <span class="st-orari-badge st-badge-aperto">● Aperto</span>
             </div>
             <div class="st-orari-row st-orari-chiuso">
               <span class="st-orari-day">Dom</span>
+              <span class="st-orari-time st-muted-inline">—</span>
               <span class="st-orari-badge st-badge-chiuso">Chiuso</span>
             </div>
           {/if}
         </div>
       </section>
-    </div>
 
-  </div>{* fine st-body *}
-
-  {* ── RECENSIONI ── *}
-  <div class="st-reviews-wrap">
-    <div class="st-reviews-inner">
-      <div class="st-reviews-head">
-        <h2 class="st-h2">Recensioni</h2>
-        <a href="/visualizza_recensioni?id={$data->getId()}" class="st-reviews-link">Vedi tutte →</a>
-      </div>
-
-      {if $recensioni}
-        <div class="st-reviews-grid">
-          {foreach $recensioni as $rec}
-            <div class="st-review">
-              <div class="st-rev-top">
-                <span class="st-rev-av">
-                  {$rec->getCliente()->getNome()|substr:0:1}{$rec->getCliente()->getCognome()|substr:0:1}
-                </span>
-                <div class="st-rev-meta">
-                  <span class="st-rev-name">{$rec->getCliente()->getNome()|escape} {$rec->getCliente()->getCognome()|substr:0:1}.</span>
-                  <span class="st-rev-badge">✓ verificato</span>
-                  <div class="st-rev-stars">
-                    {for $i=1 to 5}{if $i <= $rec->getVoto()}★{else}<span class="st-star-off">★</span>{/if}{/for}
-                  </div>
-                </div>
-                <span class="st-rev-date">{$rec->getData()->format('M Y')}</span>
-              </div>
-              <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
-              <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
-              <div class="st-rev-footer">
-                <span class="st-rev-stile">{$rec->getStile()|escape}</span>
-                · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
-              </div>
-            </div>
-          {/foreach}
+      {* Recensioni *}
+      <section class="st-section">
+        <div class="st-reviews-head">
+          <h2 class="st-h2">Recensioni</h2>
+          <a href="/visualizza_recensioni?id={$data->getId()}" class="st-reviews-link">Vedi tutte →</a>
         </div>
-      {else}
-        <p class="st-muted">Ancora nessuna recensione per questo studio.</p>
-      {/if}
+        {if $recensioni}
+          <div class="st-reviews-list">
+            {foreach $recensioni as $rec}
+              <div class="st-review">
+                <div class="st-rev-top">
+                  <span class="st-rev-av">
+                    {$rec->getCliente()->getNome()|substr:0:1}{$rec->getCliente()->getCognome()|substr:0:1}
+                  </span>
+                  <div class="st-rev-meta">
+                    <div class="st-rev-nameline">
+                      <span class="st-rev-name">{$rec->getCliente()->getNome()|escape} {$rec->getCliente()->getCognome()|substr:0:1}.</span>
+                      <span class="st-rev-badge">✓ verificato</span>
+                    </div>
+                    <div class="st-rev-stars">
+                      {for $i=1 to 5}{if $i <= $rec->getVoto()}★{else}<span class="st-star-off">★</span>{/if}{/for}
+                    </div>
+                  </div>
+                  <span class="st-rev-date">{$rec->getData()->format('M Y')}</span>
+                </div>
+                <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
+                <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
+                <div class="st-rev-footer">
+                  <span class="st-rev-stile">{$rec->getStile()|escape}</span>
+                  · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        {else}
+          <p class="st-muted">Ancora nessuna recensione.</p>
+        {/if}
+        <div style="margin-top:20px">
+          <a href="/avvia_recensione?id={$data->getId()}" class="st-cta-outline">✍ Scrivi una recensione</a>
+        </div>
+      </section>
 
-      <div class="st-reviews-cta-wrap">
-        <a href="/avvia_recensione?id={$data->getId()}" class="st-cta-outline">✍ Scrivi una recensione</a>
-      </div>
-    </div>
+    </main>
   </div>
 
 </div>
