@@ -215,3 +215,20 @@
     border-color: #2fd8aa;
     box-shadow: 0 0 0 3px rgba(47, 216, 170, .1);
 }
+
+.rc-file-input {
+    width: 100%;
+    padding: 11px 14px;
+    background: #0d1114;
+    border: 1px dashed rgba(47, 216, 170, .3);
+    border-radius: 10px;
+    color: #6b736f;
+    font-size: 0.85rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.rc-file-input:hover {
+    border-color: #2fd8aa;
+}
