@@ -1,5 +1,4 @@
 <?php
-
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
@@ -266,7 +265,7 @@ switch ($page) {
         break;
 
     // ===== INTERFACCIA 5 - GESTIONE RECENSIONI =====
-    case 'avvia_recensione':
+    case 'avviaRecensione':
         $studioId = (int)($_GET['id'] ?? 0);
         $recDati = $controller5->mostraFormRecensione($studioId);
         $datiStudio = $controller->scegli_studio($studioId);
@@ -395,11 +394,16 @@ switch ($page) {
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
         if ($dati['status'] === 'success') {
+            SessionManager::set('username', $_POST['username']);
+            SessionManager::set('ruolo', 'studio');
+            SessionManager::set('idStudio', $dati['idStudio']);
             header('Location: /dashboardStudio');
             exit;
         }
         View::render('auth/registrazioneStudio', $dati);
         break;
+
+    
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
         $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');

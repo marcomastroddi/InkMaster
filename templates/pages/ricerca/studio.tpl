@@ -204,17 +204,14 @@
                                 <span class="st-rev-date">{$rec->getData()->format('M Y')}</span>
                             </div>
                             <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
-                            <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
-                            {if $rec->getFoto()}
-                                {assign var=fotoList value=$rec->getFoto()|json_decode:true}
-                                {if $fotoList}
+                                <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
+                                {if $rec->getFoto()}
                                     <div class="st-rev-photos">
-                                        {foreach $fotoList as $fotoUrl}
+                                        {foreach $rec->getFotoArray() as $fotoUrl}
                                             <img src="{$fotoUrl|escape}" alt="Foto tatuaggio" class="st-rev-photo">
                                         {/foreach}
                                     </div>
                                 {/if}
-                            {/if}
                             <div class="st-rev-footer">
                                 <span class="st-rev-stile">{$rec->getStile()|escape}</span>
                                 · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
@@ -226,7 +223,7 @@
                 <p class="st-muted">Ancora nessuna recensione.</p>
             {/if}
             <div style="margin-top:20px">
-                <a href="/avvia_recensione?id={$data->getId()}" class="st-cta-outline">✍ Scrivi una recensione</a>
+                <a href="/avviaRecensione?id={$data->getId()}" class="st-cta-outline">✍ Scrivi una recensione</a>
             </div>
         </section>
 

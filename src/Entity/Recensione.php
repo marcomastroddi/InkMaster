@@ -71,6 +71,13 @@ class Recensione
         $this->descrizione = $descrizione;
         $this->percorsoFoto = $percorsoFoto;
     }
+
+    public function getFotoArray(): array
+    {
+        if (empty($this->percorsoFoto)) return [];
+        return json_decode($this->percorsoFoto, true) ?? [];
+    }
+
     // Metodi getter
     public function getId(): ?int 
     {
