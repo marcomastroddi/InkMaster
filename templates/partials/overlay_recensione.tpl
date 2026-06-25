@@ -59,7 +59,7 @@
 
                 <div class="rc-field">
                     <label class="rc-label">Foto del tatuaggio (opzionale)</label>
-                    <input type="file" name="foto" class="rc-file-input" accept="image/*">
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" multiple>
                 </div>
 
                 <div class="rc-nav">

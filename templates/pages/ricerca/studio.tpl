@@ -205,6 +205,16 @@
                             </div>
                             <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
                             <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
+                            {if $rec->getFoto()}
+                                {assign var=fotoList value=$rec->getFoto()|json_decode:true}
+                                {if $fotoList}
+                                    <div class="st-rev-photos">
+                                        {foreach $fotoList as $fotoUrl}
+                                            <img src="{$fotoUrl|escape}" alt="Foto tatuaggio" class="st-rev-photo">
+                                        {/foreach}
+                                    </div>
+                                {/if}
+                            {/if}
                             <div class="st-rev-footer">
                                 <span class="st-rev-stile">{$rec->getStile()|escape}</span>
                                 · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
@@ -350,11 +360,12 @@
             <div class="pb-nav">
                 <a href="/home" class="pb-btn">Torna alla home</a>
             </div>
-
         {/if}
 
     </div>
 </div>
 {/if}
+
 {include file='partials/overlay_recensione.tpl'}
+
 {/block}

@@ -497,3 +497,18 @@
 }
 
 .pb-status { color: #2fd8aa; }
+
+.st-rev-photos {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.st-rev-photo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(47, 216, 170, .15);
+}
