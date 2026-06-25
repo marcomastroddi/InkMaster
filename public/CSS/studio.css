@@ -23,7 +23,7 @@
 .st-strip-ph-text { font-size: 11px; font-weight: 600; color: #3f4a47; letter-spacing: .08em; text-transform: uppercase; }
 
 /* ── layout ── */
-.st-layout { display: grid; grid-template-columns: 360px 1fr; gap: 0; max-width: 1260px; margin: 0 auto; padding: 40px 48px; align-items: start; position: relative; z-index: 1; }
+.st-layout { display: grid; grid-template-columns: 360px 1fr; gap: 0; max-width: 1260px; margin: 0 auto; padding: 40px 48px; position: relative; z-index: 1; }
 
 /* ── sidebar ── */
 .st-sidebar-card { position: sticky; top: 24px; background: #101417; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 30px 28px; margin-right: 40px; }
