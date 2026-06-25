@@ -1,11 +1,18 @@
 /* ==========================================================================
    DASHBOARD STUDIO — sfondo: Grande Onda Irezumi (singola forma fullpage)
    ========================================================================== */
+/* 1. Metti a .im-page solo il colore nero di base */
+.im-page { 
+    min-height: 100vh; 
+    background: #0a0c0d; 
+}
 
+/* 2. Applica il gradiente radiale direttamente dentro al wrap della dashboard */
 .im-dash-wrap {
     position: relative;
     min-height: calc(100vh - 80px);
-    background: #0a0c0d;
+    /* Il gradiente ora è stampato direttamente qui sopra! */
+    background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d; 
     overflow: hidden;
 }
 
