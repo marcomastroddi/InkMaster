@@ -13,14 +13,18 @@
 
                 <div class="rc-field">
                     <label class="rc-label">Voto</label>
-                    <select name="voto" class="rc-select" required>
-                        <option value="">Seleziona voto</option>
-                        <option value="1">★ 1 — Pessimo</option>
-                        <option value="2">★★ 2 — Scarso</option>
-                        <option value="3">★★★ 3 — Nella media</option>
-                        <option value="4">★★★★ 4 — Buono</option>
-                        <option value="5">★★★★★ 5 — Eccellente</option>
-                    </select>
+                    <div class="rc-stars">
+                        <input type="radio" name="voto" id="s5" value="5" required>
+                        <label for="s5">★</label>
+                        <input type="radio" name="voto" id="s4" value="4">
+                        <label for="s4">★</label>
+                        <input type="radio" name="voto" id="s3" value="3">
+                        <label for="s3">★</label>
+                        <input type="radio" name="voto" id="s2" value="2">
+                        <label for="s2">★</label>
+                        <input type="radio" name="voto" id="s1" value="1">
+                        <label for="s1">★</label>
+                    </div>
                 </div>
 
                 <div class="rc-field">
