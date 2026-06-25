@@ -52,7 +52,7 @@ $pagineProtette = [
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
-    'dashboard_studio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
+    'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
     'avvia_recensione', 'compila_recensione',
 ]; 
 
@@ -393,6 +393,7 @@ switch ($page) {
             'descrizione'       => $_POST['descrizione']       ?? '',
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
+
         if ($dati['status'] === 'success') {
             SessionManager::set('username', $_POST['username']);
             SessionManager::set('ruolo', 'studio');
@@ -402,6 +403,12 @@ switch ($page) {
         }
         View::render('auth/registrazioneStudio', $dati);
         break;
+
+    case 'dashboardStudio':
+        // Carica la vista della dashboard (adatta il percorso se necessario)
+        View::render('studio/dashboardStudio', []); 
+        break;
+
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
         $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
