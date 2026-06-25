@@ -1,47 +1,48 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 14:24:23
+/* Smarty version 5.8.0, created on 2026-06-25 17:31:12
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d1df7dce754_74708268',
+  'unifunc' => 'content_6a3d49c02e9826_03782508',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ccab56d2f4e683b50909d274441414a74cf705a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782390218,
+      1 => 1782401448,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3d1df7dce754_74708268 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d49c02e9826_03782508 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16967589776a3d1df7d6d197_25941872', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9699618156a3d49c028fb70_56224036', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19719857936a3d1df7d74576_84979392', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17880098096a3d49c02958b9_72431270', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8381221976a3d1df7d759b5_44264105', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8533815596a3d49c02962f7_80621128', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_16967589776a3d1df7d6d197_25941872 extends \Smarty\Runtime\Block
+class Block_9699618156a3d49c028fb70_56224036 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -51,19 +52,20 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_19719857936a3d1df7d74576_84979392 extends \Smarty\Runtime\Block
+class Block_17880098096a3d49c02958b9_72431270 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 ?>
 
     <link rel="stylesheet" href="/CSS/studio.css">
+    <link rel="stylesheet" href="/CSS/recensione.css">
 <?php
 }
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8381221976a3d1df7d759b5_44264105 extends \Smarty\Runtime\Block
+class Block_8533815596a3d49c02962f7_80621128 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -563,9 +565,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
     </div>
 </div>
-<?php }?>
-
-<?php
+<?php }
+$_smarty_tpl->renderSubTemplate('file:partials/overlay_recensione.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 }
 }
 /* {/block "content"} */

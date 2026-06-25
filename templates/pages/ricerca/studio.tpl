@@ -4,6 +4,7 @@
 
 {block name="extra_css"}
     <link rel="stylesheet" href="/CSS/studio.css">
+    <link rel="stylesheet" href="/CSS/recensione.css">
 {/block}
 
 {block name="content"}
@@ -355,5 +356,5 @@
     </div>
 </div>
 {/if}
-
+{include file='partials/overlay_recensione.tpl'}
 {/block}
