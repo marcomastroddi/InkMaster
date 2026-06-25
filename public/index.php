@@ -259,7 +259,20 @@ switch ($page) {
 
     // ===== INTERFACCIA 4 - VISUALIZZAZIONE PORTFOLIO (pubblico) =====
     case 'portfolio_pubblico':
-        View::render('portfolio/portfolio_pubblico', $controller4->apriPortfolio((int)($_GET['id'] ?? 0)));
+        $studioId = (int)($_GET['id'] ?? 0);
+        $page = max(1, (int)($_GET['page'] ?? 1));
+        $perPage = 12;
+        $result = $controller4->apriPortfolio($studioId);
+        $tuttePub = $result['data'] ?? [];
+        $totale = count($tuttePub);
+        $totPagine = (int)ceil($totale / $perPage);
+        $pubPagina = array_slice($tuttePub, ($page - 1) * $perPage, $perPage);
+        View::render('portfolio/portfolio_pubblico', [
+            'pubblica'  => $pubPagina,
+            'pagina'    => $page,
+            'totPagine' => $totPagine,
+            'studioId'  => $studioId,
+        ]);
         break;
 
     case 'dettagli_pubblicazione':

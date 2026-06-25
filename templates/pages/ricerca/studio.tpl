@@ -78,7 +78,7 @@
 </div>
 {if $pubTotali > 0}
 <div class="st-strip-footer">
-    <a href="#" class="st-strip-portfolio-btn">
+    <a href="/portfolio_pubblico?id={$data->getId()}" class="st-strip-portfolio-btn">
         Vedi portfolio {if $pubTotali > 4}+{math equation="x-4" x=$pubTotali}{/if}
     </a>
 </div>

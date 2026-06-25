@@ -1,0 +1,170 @@
+.pf-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.pf-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.pf-back {
+    color: #2fd8aa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.pf-back:hover { text-decoration: underline; }
+
+.pf-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #e8eaed;
+    margin: 0;
+}
+
+.pf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.pf-slot {
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #101417;
+    text-decoration: none;
+    position: relative;
+    aspect-ratio: 1;
+}
+
+.pf-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+}
+
+.pf-slot:hover img { transform: scale(1.05); }
+
+.pf-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.pf-empty {
+    color: #6b7280;
+    grid-column: 1 / -1;
+}
+
+.pf-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pf-page-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #2a3330;
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: .85rem;
+    transition: all .2s;
+}
+
+.pf-page-btn:hover {
+    border-color: #2fd8aa;
+    color: #2fd8aa;
+}
+
+.pf-page-btn--active {
+    background: #2fd8aa;
+    border-color: #2fd8aa;
+    color: #0a0c0d;
+    font-weight: 700;
+}
+
+.pf-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 200px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.pf-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.pf-blob-1 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2fd8aa18 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation: pf-drift1 12s ease-in-out infinite;
+}
+
+.pf-blob-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2fd8aa10 0%, transparent 70%);
+    bottom: 100px;
+    left: -80px;
+    animation: pf-drift2 15s ease-in-out infinite;
+}
+
+.pf-geo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pf-geo-1 { fill: none; stroke: #2fd8aa22; stroke-width: 1.5; animation: pf-spin 20s linear infinite; transform-origin: 100px 100px; }
+.pf-geo-2 { fill: none; stroke: #2fd8aa18; stroke-width: 1; animation: pf-spin 28s linear infinite reverse; transform-origin: 650px 140px; }
+.pf-geo-3 { fill: none; stroke: #2fd8aa20; stroke-width: 1.5; animation: pf-spin 16s linear infinite; transform-origin: 710px 430px; }
+.pf-geo-4 { fill: none; stroke: #2fd8aa15; stroke-width: 1; animation: pf-spin 24s linear infinite reverse; transform-origin: 60px 420px; }
+.pf-geo-5 { fill: none; stroke: #2fd8aa18; stroke-width: 1; animation: pf-pulse 6s ease-in-out infinite; }
+.pf-geo-6 { fill: none; stroke: #2fd8aa20; stroke-width: 1.5; animation: pf-spin 18s linear infinite; transform-origin: 320px 80px; }
+
+@keyframes pf-drift1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-40px, 40px); }
+}
+@keyframes pf-drift2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+}
+@keyframes pf-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes pf-pulse {
+    0%, 100% { r: 40; opacity: .6; }
+    50% { r: 52; opacity: 1; }
+}
