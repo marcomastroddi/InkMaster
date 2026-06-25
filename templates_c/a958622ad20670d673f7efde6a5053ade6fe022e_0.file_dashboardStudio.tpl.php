@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 18:23:13
+/* Smarty version 5.8.0, created on 2026-06-25 22:39:19
   from 'file:pages/studio/dashboardStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d7211151418_36133418',
+  'unifunc' => 'content_6a3dae17e94db5_43213092',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a958622ad20670d673f7efde6a5053ade6fe022e' => 
     array (
       0 => 'pages/studio/dashboardStudio.tpl',
-      1 => 1782405965,
+      1 => 1782427153,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d7211151418_36133418 (\Smarty\Template $_smarty_tpl) {
+function content_6a3dae17e94db5_43213092 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6644481276a3d72110c2c18_79391394', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14530333056a3dae17e6fb81_09148416', "title");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20106006076a3d72110c75e3_61300833', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7259131136a3dae17e79e45_33570777', "extra_css");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19153503476a3d72110c8192_81840283', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2254992456a3dae17e7bb88_76429193', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_6644481276a3d72110c2c18_79391394 extends \Smarty\Runtime\Block
+class Block_14530333056a3dae17e6fb81_09148416 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -50,7 +50,7 @@ Dashboard — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_20106006076a3d72110c75e3_61300833 extends \Smarty\Runtime\Block
+class Block_7259131136a3dae17e79e45_33570777 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -62,7 +62,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_19153503476a3d72110c8192_81840283 extends \Smarty\Runtime\Block
+class Block_2254992456a3dae17e7bb88_76429193 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -106,7 +106,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
     </svg>
         <div class="im-dash-content">
         <div class="im-dash-eyebrow">Dashboard Studio</div>
-        <h1 class="im-dash-title">Bentornato, <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nome_studio'), ENT_QUOTES, 'UTF-8', true);?>
+        <h1 class="im-dash-title">Bentornato, <?php echo $_smarty_tpl->getValue('_sessione')['username'];?>
 </h1>
         <div class="im-dash-grid">
                         <a href="/visualizza_clienti" class="im-dash-card">

@@ -50,7 +50,7 @@
     {* ── Contenuto ── *}
     <div class="im-dash-content">
         <div class="im-dash-eyebrow">Dashboard Studio</div>
-        <h1 class="im-dash-title">Bentornato, {$nome_studio|escape}</h1>
+        <h1 class="im-dash-title">Bentornato, {$_sessione.username}</h1>
         <div class="im-dash-grid">
             {* Card 1 — Clienti *}
             <a href="/visualizza_clienti" class="im-dash-card">

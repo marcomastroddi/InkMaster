@@ -71,7 +71,7 @@ class Registrazione
             }
         }
 
-        // 2. Le due password coincidono
+        // 2. Le due password non coincidono
         if ($dati['password'] !== $dati['conferma_password']) {
             return ['status' => 'error', 'message' => 'Le password non coincidono'];
         }
@@ -104,7 +104,8 @@ class Registrazione
             );
             $this->pm->create($studio);
         } catch (\Throwable $e) {
-            return ['status' => 'error', 'message' => 'Email/P.IVA già registrata o dati non validi'];
+            // Rimesso in modalità "produzione" con un messaggio pulito per l'utente
+            return ['status' => 'error', 'message' => 'Email, Partita IVA o Username già in uso o dati non validi'];
         }
 
         return [
