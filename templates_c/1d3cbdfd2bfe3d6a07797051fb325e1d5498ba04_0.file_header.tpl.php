@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 14:09:01
+/* Smarty version 5.8.0, created on 2026-06-25 15:02:13
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d367d05ae19_68206013',
+  'unifunc' => 'content_6a3d42f5256c12_26292025',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1d3cbdfd2bfe3d6a07797051fb325e1d5498ba04' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782396534,
+      1 => 1782399727,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d367d05ae19_68206013 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d42f5256c12_26292025 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\partials';
 ?><div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
@@ -36,7 +36,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\partials';
                 <span class="im-nav-username"><?php echo $_smarty_tpl->getValue('_sessione')['username'];?>
 </span>
             </a>
-            <a href="/logout" class="im-btn-outline">Esci</a>
+            <a href="#" class="im-btn-outline" id="im-logout-btn">Esci</a>
         <?php } else { ?>
                         <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
@@ -44,5 +44,20 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\partials';
 
         <span class="im-lang">🌐 <strong>ITA</strong></span>
     </div>
-</div><?php }
+</div>
+
+<?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
+<div class="im-logout-overlay" id="im-logout-overlay">
+    <div class="im-logout-modal">
+        <div class="im-logout-eyebrow">CI DISPIACE VEDERTI ANDARE</div>
+        <h2 class="im-logout-title">Vuoi davvero uscire?</h2>
+        <p class="im-logout-desc">Accedendo al tuo profilo puoi tenere traccia delle prenotazioni, scrivere recensioni e seguire i tuoi studi preferiti. Tutto questo ti aspetta al prossimo accesso.</p>
+        <div class="im-logout-actions">
+            <button type="button" class="im-logout-stay" id="im-logout-cancel">Rimani con noi</button>
+            <a href="/logout" class="im-logout-confirm">Esci</a>
+        </div>
+    </div>
+</div>
+<?php }
+}
 }

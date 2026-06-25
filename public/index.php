@@ -332,23 +332,25 @@ switch ($page) {
 
     // --- POST: esegue la registrazione ---
     case 'registraCliente':
-        $dati = $controllerRegistrazione->registraCliente([
-            'nome'              => $_POST['nome']              ?? '',
-            'cognome'           => $_POST['cognome']           ?? '',
-            'username'          => $_POST['username']          ?? '',
-            'password'          => $_POST['password']          ?? '',
-            'conferma_password' => $_POST['conferma_password'] ?? '',
-            'data_nascita'      => $_POST['data_nascita']      ?? '',
-            'email'             => $_POST['email']             ?? '',
-            'posizione'         => $_POST['posizione']         ?? '',
-        ]);
-        if ($dati['status'] === 'success') {
-            header('Location: /home');
-            exit;
-        }
-        // Errore: ri-mostra il form col messaggio
-        View::render('auth/registrazioneCliente', $dati);
-        break;
+    $dati = $controllerRegistrazione->registraCliente([
+        'nome'              => $_POST['nome']              ?? '',
+        'cognome'           => $_POST['cognome']           ?? '',
+        'username'          => $_POST['username']          ?? '',
+        'password'          => $_POST['password']          ?? '',
+        'conferma_password' => $_POST['conferma_password'] ?? '',
+        'data_nascita'      => $_POST['data_nascita']      ?? '',
+        'email'             => $_POST['email']             ?? '',
+        'posizione'         => $_POST['posizione']         ?? '',
+    ]);
+    if ($dati['status'] === 'success') {
+        SessionManager::set('username', $_POST['username']);
+        SessionManager::set('ruolo', 'cliente');
+        SessionManager::set('idUtente', $dati['idUtente']);
+        header('Location: /home');
+        exit;
+    }
+    View::render('auth/registrazioneCliente', $dati);
+    break;
 
     case 'registraStudio':
         $dati = $controllerRegistrazione->registraStudio([

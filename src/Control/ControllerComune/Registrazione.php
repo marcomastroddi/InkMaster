@@ -56,8 +56,9 @@ class Registrazione
 
         return [
             'status'      => 'success',
-            'message'     => 'Registrazione completata, ora puoi accedere',
-            'interfaccia' => 'Login'
+            'message'     => 'Registrazione completata',
+            'interfaccia' => 'Home',
+            'idUtente'    => $cliente->getId(),
         ];
     }
 
