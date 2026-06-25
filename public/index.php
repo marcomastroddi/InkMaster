@@ -278,16 +278,32 @@ switch ($page) {
         break;
 
     case 'compilaRecensione':
+        $percorsoFoto = null;
+        if (!empty($_FILES['foto']['name'][0])) {
+            $percorsi = [];
+            foreach ($_FILES['foto']['tmp_name'] as $i => $tmp) {
+                if ($_FILES['foto']['error'][$i] === 0) {
+                    $ext = pathinfo($_FILES['foto']['name'][$i], PATHINFO_EXTENSION);
+                    $nomeFile = uniqid('foto_') . '.' . $ext;
+                    $destinazione = __DIR__ . '/img/' . $nomeFile;
+                    if (move_uploaded_file($tmp, $destinazione)) {
+                        $percorsi[] = '/img/' . $nomeFile;
+                    }
+                }
+            }
+            if (!empty($percorsi)) {
+                $percorsoFoto = json_encode($percorsi);
+            }
+        }
         $dati = $controller5->compilaRecensione(
             (int)($_POST['voto'] ?? 0),
             $_POST['titolo'] ?? '',
             $_POST['descrizione'] ?? null,
-            null,
+            $percorsoFoto,
             (int)($_POST['tatuatore_id'] ?? 0),
             $_POST['stile'] ?? ''
         );
         $studioId = (int)(SessionManager::get('studio_selezionato') ?? 0);
-        // pubblica direttamente
         $controller5->pubblicaRecensione();
         $datiStudio = $controller->scegli_studio($studioId);
         $datiStudio['mostra_overlay_recensione'] = true;
@@ -379,9 +395,6 @@ switch ($page) {
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
         if ($dati['status'] === 'success') {
-            SessionManager::set('username', $_POST['username']);
-            SessionManager::set('ruolo', 'studio');
-            SessionManager::set('idStudio', $dati['idStudio']);
             header('Location: /dashboardStudio');
             exit;
         }
@@ -499,7 +512,7 @@ switch ($page) {
         break;
 
     // ===== DASHBOARD STUDIO (landing dopo il login dello studio) =====
-     case 'dashboard_studio':
+    case 'dashboard_studio':
         $idStudio = SessionManager::get('id_studio');
         $studio = $idStudio
             ? PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $idStudio)
