@@ -164,3 +164,336 @@
 }
 @keyframes st-dash { to { stroke-dashoffset: -260; } }
 
+/* ── overlay prenotazione ── */
+.pb-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+}
+
+.pb-card {
+    background: linear-gradient(145deg, #101c1a 0%, #0d1114 60%, #0a0c0d 100%);
+    border: 1px solid rgba(47, 216, 170, .22);
+    border-radius: 18px;
+    max-width: 720px;
+    width: 100%;
+    padding: 36px;
+    box-shadow: 0 0 60px rgba(47, 216, 170, .08), 0 24px 48px rgba(0,0,0,.6);
+}
+
+.pb-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.pb-studio-name {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #eef1f0;
+    letter-spacing: -.01em;
+}
+
+.pb-close {
+    color: #6b736f;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: color .2s;
+}
+
+.pb-close:hover { color: #eef1f0; }
+
+.pb-step-indicator {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.pb-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e2428;
+}
+
+.pb-dot--active { background: #2fd8aa; }
+.pb-dot--done   { background: #1a7a60; }
+
+.pb-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #eef1f0;
+    margin-bottom: 20px;
+}
+
+.pb-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.pb-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 12px;
+    background: rgba(47, 216, 170, .04);
+    border: 1px solid rgba(47, 216, 170, .12);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+}
+
+.pb-item:hover {
+    border-color: #2fd8aa;
+    background: rgba(47, 216, 170, .09);
+}
+
+.pb-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,216,170,.22), rgba(47,216,170,.04));
+    border: 1px solid rgba(47,216,170,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #2fd8aa;
+}
+
+.pb-item-name {
+    color: #cdd3d1;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pb-hint {
+    color: #6b736f;
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* ── overlay prenotazione ── */
+.pb-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+}
+
+.pb-card {
+    background: linear-gradient(145deg, #101c1a 0%, #0d1114 60%, #0a0c0d 100%);
+    border: 1px solid rgba(47, 216, 170, .22);
+    border-radius: 18px;
+    max-width: 720px;
+    width: 100%;
+    padding: 36px;
+    box-shadow: 0 0 60px rgba(47, 216, 170, .08), 0 24px 48px rgba(0,0,0,.6);
+}
+
+.pb-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.pb-studio-name {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #eef1f0;
+    letter-spacing: -.01em;
+}
+
+.pb-close {
+    color: #6b736f;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: color .2s;
+}
+
+.pb-close:hover { color: #eef1f0; }
+
+.pb-step-indicator {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.pb-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e2428;
+}
+
+.pb-dot--active { background: #2fd8aa; }
+.pb-dot--done   { background: #1a7a60; }
+
+.pb-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #eef1f0;
+    margin-bottom: 20px;
+}
+
+.pb-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.pb-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 12px;
+    background: rgba(47, 216, 170, .04);
+    border: 1px solid rgba(47, 216, 170, .12);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+}
+
+.pb-item:hover {
+    border-color: #2fd8aa;
+    background: rgba(47, 216, 170, .09);
+}
+
+.pb-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,216,170,.22), rgba(47,216,170,.04));
+    border: 1px solid rgba(47,216,170,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #2fd8aa;
+}
+
+.pb-item-name {
+    color: #cdd3d1;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pb-hint {
+    color: #6b736f;
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.pb-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pb-date-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #0d1114;
+    border: 1px solid rgba(47, 216, 170, .18);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.pb-date-input:focus {
+    outline: none;
+    border-color: #2fd8aa;
+}
+
+.pb-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: #0d1114;
+    border: 1px solid rgba(47, 216, 170, .18);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.pb-textarea:focus {
+    outline: none;
+    border-color: #2fd8aa;
+}
+
+.pb-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.pb-btn {
+    background: #2fd8aa;
+    color: #0a0c0d;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    transition: background .2s;
+}
+
+.pb-btn:hover { background: #26c49a; }
+
+.pb-riepilogo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.pb-riepilogo-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.pb-riepilogo-label {
+    color: #6b736f;
+    font-size: 0.85rem;
+}
+
+.pb-riepilogo-value {
+    color: #eef1f0;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.pb-status { color: #2fd8aa; }

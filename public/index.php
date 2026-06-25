@@ -53,8 +53,8 @@ $pagineProtette = [
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
-    'dashboard_studio',
-];
+    'dashboard_studio', 
+]; //'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'richiediAppuntamento', da ri-inserire dopo
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
     View::render('auth/login', ['message' => 'Devi effettuare il login']);
@@ -106,27 +106,85 @@ switch ($page) {
         break;
 
     // ===== INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO =====
-    case 'scegli_tatuatore':
-        View::render('prenotazione/scelta_stile', $controller2->scegli_tatuatore((int)($_GET['id'] ?? 0)));
+    case 'prenota':
+        $studioId = (int)($_GET['id'] ?? SessionManager::get('prenotazione', [])['studio_id'] ?? 0);
+        $studio = PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $studioId);
+        $prenotazione = SessionManager::get('prenotazione', []);
+        $prenotazione['studio_id'] = $studioId;
+        SessionManager::set('prenotazione', $prenotazione);
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['tatuatori'] = $studio->getTatuatori();
+        View::render('ricerca/studio', $datiStudio);
         break;
 
-    case 'scegli_stile':
-        View::render('prenotazione/scelta_data', $controller2->scegli_stile((int)($_GET['id'] ?? 0)));
+    case 'scegliTatuatore':
+        $dati = $controller2->scegli_tatuatore((int)($_GET['id'] ?? 0));
+        $studioId = SessionManager::get('prenotazione', [])['studio_id'] ?? 0;
+        $studio = PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $studioId);
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['overlay_step'] = 'stile';
+        $datiStudio['stili'] = $dati['data'];
+        View::render('ricerca/studio', $datiStudio);
         break;
 
-    case 'scegli_data':
-        $dati = $controller2->scegli_data($_POST['data'] ?? '');
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+    case 'scegliStile':
+        $controller2->scegli_stile((int)($_GET['id'] ?? 0));
+        $studioId = SessionManager::get('prenotazione', [])['studio_id'] ?? 0;
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['overlay_step'] = 'data';
+        View::render('ricerca/studio', $datiStudio);
         break;
 
-    case 'richiedi_appuntamento':
-        $dati = $controller2->richiedi_appuntamento(
-            (int)($_POST['cliente_id'] ?? 0),
-            $_POST['descrizione'] ?? ''
+    case 'scegliData':
+        $controller2->scegli_data($_POST['data'] ?? '');
+        $studioId = SessionManager::get('prenotazione', [])['studio_id'] ?? 0;
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['overlay_step'] = 'descrizione';
+        View::render('ricerca/studio', $datiStudio);
+        break;
+
+    case 'richiediAppuntamento':
+        $pren = SessionManager::get('prenotazione', []);
+        $controller2->richiedi_appuntamento(
+            (int)($_SESSION['idUtente'] ?? 0),
+            $pren['descrizione'] ?? ''
         );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+        $studioId = $pren['studio_id'] ?? 0;
+        $tatuatore = PersistentManager::getInstance()->read(\InkMaster\Entity\Tatuatore::class, $pren['tatuatore_id'] ?? 0);
+        $stile = PersistentManager::getInstance()->read(\InkMaster\Entity\Stile::class, $pren['stile_id'] ?? 0);
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['overlay_step'] = 'conferma';
+        $datiStudio['riepilogo'] = [
+            'tatuatore'   => $tatuatore ? $tatuatore->getNome().' '.$tatuatore->getCognome() : '—',
+            'stile'       => $stile ? $stile->getNome() : '—',
+            'data'        => $pren['data'] ?? '—',
+            'descrizione' => $pren['descrizione'] ?? '—',
+        ];
+        View::render('ricerca/studio', $datiStudio);
+        break;
+    
+    case 'mostraRiepilogo':
+        $pren = SessionManager::get('prenotazione', []);
+        $pren['descrizione'] = $_POST['descrizione'] ?? '';
+        SessionManager::set('prenotazione', $pren);
+        $studioId = $pren['studio_id'] ?? 0;
+        $tatuatore = PersistentManager::getInstance()->read(\InkMaster\Entity\Tatuatore::class, $pren['tatuatore_id'] ?? 0);
+        $stile = PersistentManager::getInstance()->read(\InkMaster\Entity\Stile::class, $pren['stile_id'] ?? 0);
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay'] = true;
+        $datiStudio['overlay_step'] = 'riepilogo';
+        $datiStudio['riepilogo'] = [
+            'tatuatore'   => $tatuatore ? $tatuatore->getNome().' '.$tatuatore->getCognome() : '—',
+            'stile'       => $stile ? $stile->getNome() : '—',
+            'data'        => $pren['data'] ?? '—',
+            'descrizione' => $pren['descrizione'],
+        ];
+        View::render('ricerca/studio', $datiStudio);
         break;
 
     case 'conferma_prenotazione':
