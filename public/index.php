@@ -48,13 +48,14 @@ $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';
 // ── Rotte che richiedono il login ──
 $pagineProtette = [
     'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
-    'avvia_recensione', 'compila_recensione', 'pubblica_recensione', 'elimina_recensione',
+    'pubblica_recensione', 'elimina_recensione',
     'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban',
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
-    'dashboard_studio', 
-]; //'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'richiediAppuntamento', da ri-inserire dopo
+    'dashboard_studio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
+    'avvia_recensione', 'compila_recensione',
+]; 
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
     View::render('auth/login', ['message' => 'Devi effettuare il login']);
@@ -266,19 +267,32 @@ switch ($page) {
 
     // ===== INTERFACCIA 5 - GESTIONE RECENSIONI =====
     case 'avvia_recensione':
-        View::render('recensioni/form_recensione', $controller5->mostraFormRecensione((int)($_GET['id'] ?? 0)));
+        $studioId = (int)($_GET['id'] ?? 0);
+        $recDati = $controller5->mostraFormRecensione($studioId);
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay_recensione'] = true;
+        $datiStudio['overlay_rec_step'] = 'form';
+        $datiStudio['rec_tatuatori'] = $recDati['data']['tatuatori'];
+        $datiStudio['rec_stili'] = $recDati['data']['stili'];
+        View::render('ricerca/studio', $datiStudio);
         break;
 
     case 'compila_recensione':
         $dati = $controller5->compilaRecensione(
             (int)($_POST['voto'] ?? 0),
             $_POST['titolo'] ?? '',
-            $_POST['descrizione'] ?? '',
-            $_FILES['foto']['name'] ?? '',
-            (int)($_POST['idTatuatore'] ?? 0),
+            $_POST['descrizione'] ?? null,
+            null,
+            (int)($_POST['tatuatore_id'] ?? 0),
             $_POST['stile'] ?? ''
         );
-        View::render('recensioni/anteprima_recensione', $dati);
+        $studioId = (int)(SessionManager::get('studio_selezionato') ?? 0);
+        // pubblica direttamente
+        $controller5->pubblicaRecensione();
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay_recensione'] = true;
+        $datiStudio['overlay_rec_step'] = 'successo';
+        View::render('ricerca/studio', $datiStudio);
         break;
 
     case 'pubblica_recensione':
@@ -332,25 +346,23 @@ switch ($page) {
 
     // --- POST: esegue la registrazione ---
     case 'registraCliente':
-    $dati = $controllerRegistrazione->registraCliente([
-        'nome'              => $_POST['nome']              ?? '',
-        'cognome'           => $_POST['cognome']           ?? '',
-        'username'          => $_POST['username']          ?? '',
-        'password'          => $_POST['password']          ?? '',
-        'conferma_password' => $_POST['conferma_password'] ?? '',
-        'data_nascita'      => $_POST['data_nascita']      ?? '',
-        'email'             => $_POST['email']             ?? '',
-        'posizione'         => $_POST['posizione']         ?? '',
-    ]);
-    if ($dati['status'] === 'success') {
-        SessionManager::set('username', $_POST['username']);
-        SessionManager::set('ruolo', 'cliente');
-        SessionManager::set('idUtente', $dati['idUtente']);
-        header('Location: /home');
-        exit;
-    }
-    View::render('auth/registrazioneCliente', $dati);
-    break;
+        $dati = $controllerRegistrazione->registraCliente([
+            'nome'              => $_POST['nome']              ?? '',
+            'cognome'           => $_POST['cognome']           ?? '',
+            'username'          => $_POST['username']          ?? '',
+            'password'          => $_POST['password']          ?? '',
+            'conferma_password' => $_POST['conferma_password'] ?? '',
+            'data_nascita'      => $_POST['data_nascita']      ?? '',
+            'email'             => $_POST['email']             ?? '',
+            'posizione'         => $_POST['posizione']         ?? '',
+        ]);
+        if ($dati['status'] === 'success') {
+            header('Location: /login');
+            exit;
+        }
+        // Errore: ri-mostra il form col messaggio
+        View::render('auth/registrazioneCliente', $dati);
+        break;
 
     case 'registraStudio':
         $dati = $controllerRegistrazione->registraStudio([
@@ -413,21 +425,17 @@ switch ($page) {
 
     // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
     case 'visualizza_profilo':
-        View::render('profilo/profiloCliente', $controller9->visualizzaProfilo());
+        View::render('profilo/profilo', $controller9->visualizzaProfilo());
         break;
 
     case 'modifica_dati':
         $dati = $controller9->modificaDati([
-            'nome'         => $_POST['nome']         ?? '',
-            'cognome'      => $_POST['cognome']       ?? '',
-            'email'        => $_POST['email']         ?? '',
-            'data_nascita' => $_POST['data_nascita']  ?? '',
-            'posizione'    => $_POST['posizione']     ?? '',
-            'username'     => $_POST['username']      ?? '',
+            'nome'    => $_POST['nome']    ?? '',
+            'cognome' => $_POST['cognome'] ?? ''
         ]);
         header('Content-Type: application/json');
         echo json_encode($dati);
-        break;    
+        break;
 
     case 'cambia_password':
         $dati = $controller9->cambiaPassword(
