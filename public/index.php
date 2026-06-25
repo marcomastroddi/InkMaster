@@ -346,23 +346,25 @@ switch ($page) {
 
     // --- POST: esegue la registrazione ---
     case 'registraCliente':
-        $dati = $controllerRegistrazione->registraCliente([
-            'nome'              => $_POST['nome']              ?? '',
-            'cognome'           => $_POST['cognome']           ?? '',
-            'username'          => $_POST['username']          ?? '',
-            'password'          => $_POST['password']          ?? '',
-            'conferma_password' => $_POST['conferma_password'] ?? '',
-            'data_nascita'      => $_POST['data_nascita']      ?? '',
-            'email'             => $_POST['email']             ?? '',
-            'posizione'         => $_POST['posizione']         ?? '',
-        ]);
-        if ($dati['status'] === 'success') {
-            header('Location: /login');
-            exit;
-        }
-        // Errore: ri-mostra il form col messaggio
-        View::render('auth/registrazioneCliente', $dati);
-        break;
+    $dati = $controllerRegistrazione->registraCliente([
+        'nome'              => $_POST['nome']              ?? '',
+        'cognome'           => $_POST['cognome']           ?? '',
+        'username'          => $_POST['username']          ?? '',
+        'password'          => $_POST['password']          ?? '',
+        'conferma_password' => $_POST['conferma_password'] ?? '',
+        'data_nascita'      => $_POST['data_nascita']      ?? '',
+        'email'             => $_POST['email']             ?? '',
+        'posizione'         => $_POST['posizione']         ?? '',
+    ]);
+    if ($dati['status'] === 'success') {
+        SessionManager::set('username', $_POST['username']);
+        SessionManager::set('ruolo', 'cliente');
+        SessionManager::set('idUtente', $dati['idUtente']);
+        header('Location: /home');
+        exit;
+    }
+    View::render('auth/registrazioneCliente', $dati);
+    break;
 
     case 'registraStudio':
         $dati = $controllerRegistrazione->registraStudio([
@@ -382,7 +384,6 @@ switch ($page) {
         }
         View::render('auth/registrazioneStudio', $dati);
         break;
-
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
         $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
@@ -425,17 +426,21 @@ switch ($page) {
 
     // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
     case 'visualizza_profilo':
-        View::render('profilo/profilo', $controller9->visualizzaProfilo());
+        View::render('profilo/profiloCliente', $controller9->visualizzaProfilo());
         break;
 
     case 'modifica_dati':
         $dati = $controller9->modificaDati([
-            'nome'    => $_POST['nome']    ?? '',
-            'cognome' => $_POST['cognome'] ?? ''
+            'nome'         => $_POST['nome']         ?? '',
+            'cognome'      => $_POST['cognome']       ?? '',
+            'email'        => $_POST['email']         ?? '',
+            'data_nascita' => $_POST['data_nascita']  ?? '',
+            'posizione'    => $_POST['posizione']     ?? '',
+            'username'     => $_POST['username']      ?? '',
         ]);
         header('Content-Type: application/json');
         echo json_encode($dati);
-        break;
+        break;    
 
     case 'cambia_password':
         $dati = $controller9->cambiaPassword(
