@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 00:46:31
+/* Smarty version 5.8.0, created on 2026-06-25 11:52:54
   from 'file:pages/ricerca/ElencoTatuatori.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3c5e47cc9ab9_44552411',
+  'unifunc' => 'content_6a3cfa76cddff9_41727315',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '033de955d3d97298355c2dc65f66a54f7f31dce2' => 
     array (
       0 => 'pages/ricerca/ElencoTatuatori.tpl',
-      1 => 1782341187,
+      1 => 1782381163,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3c5e47cc9ab9_44552411 (\Smarty\Template $_smarty_tpl) {
+function content_6a3cfa76cddff9_41727315 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3017939236a3c5e47cba036_67204718', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17683931616a3cfa76cc8755_90627552', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3925085016a3c5e47cbbaf6_27571377', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12223090386a3cfa76ccb154_98649322', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18849670776a3c5e47cbc058_98521964', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13876489926a3cfa76ccb695_92000223', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base_ricerca.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_3017939236a3c5e47cba036_67204718 extends \Smarty\Runtime\Block
+class Block_17683931616a3cfa76cc8755_90627552 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -51,7 +51,7 @@ Risultati ricerca — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_3925085016a3c5e47cbbaf6_27571377 extends \Smarty\Runtime\Block
+class Block_12223090386a3cfa76ccb154_98649322 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_18849670776a3c5e47cbc058_98521964 extends \Smarty\Runtime\Block
+class Block_13876489926a3cfa76ccb695_92000223 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -192,135 +192,167 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   <div class="el-map">
     <svg class="el-map-svg" viewBox="0 0 220 275" xmlns="http://www.w3.org/2000/svg">
 
-      <!-- ═══ PENISOLA (~230 punti) ═══ -->
+      <!-- PENISOLA ~280 punti -->
       <path class="el-map-land" d="
         M 32,95
-        L 33,87 L 31,85 L 26,81 L 25,74
-        L 23,61 L 23,51 L 23,48
-        L 26,46 L 34,45 L 38,45
-        L 40,39 L 44,41 L 49,42
-        L 54,48 L 58,46 L 61,44
-        L 66,41 L 72,33 L 75,32
-        L 79,30 L 83,28
-        L 91,21 L 95,22 L 97,23
-        L 101,28 L 107,31 L 117,32 L 121,32
-        L 121,49 L 120,49 L 124,52
-        L 118,52 L 112,53 L 110,54
-        L 107,56 L 103,59
-        L 102,63 L 102,68 L 101,74
-        L 101,76 L 101,79 L 102,81 L 104,84
-        L 107,89 L 109,90
-        L 113,92 L 115,94 L 118,96 L 120,98
-        L 122,99 L 124,101
-        L 126,106 L 127,109 L 128,111 L 130,115
-        L 133,125 L 134,126 L 136,128
-        L 138,131 L 141,133 L 143,135
-        L 145,136 L 146,137
-        L 152,143 L 155,145
-        L 157,144 L 158,143 L 159,141
-        L 159,140 L 160,138 L 161,138 L 162,138
-        L 163,139 L 164,139
-        L 163,141 L 162,143 L 161,145
-        L 160,145 L 159,145
-        L 160,151 L 162,152 L 164,153
-        L 167,155 L 169,156 L 171,158
-        L 174,159 L 175,160
-        L 177,162 L 178,163 L 179,165
-        L 181,166 L 183,167 L 185,167
-        L 185,168 L 186,170 L 187,173
-        L 188,175 L 190,177
-        L 193,178 L 193,181 L 192,184 L 191,186
-        L 189,183 L 187,181 L 185,180
-        L 183,179 L 181,178 L 179,175
-        L 176,172 L 174,171
-        L 170,174 L 168,173 L 166,175
-        L 165,178 L 164,181 L 163,187 L 163,191 L 165,191
-        L 164,196 L 166,199 L 170,202
-        L 173,203 L 174,204
-        L 172,207 L 168,210 L 164,211
-        L 163,214 L 160,216
-        L 160,222 L 158,224 L 156,225
-        L 157,229 L 155,229 L 153,229
-        L 152,228 L 151,225
-        L 151,222
-        L 154,220 L 154,219 L 154,215
-        L 153,212 L 157,210
-        L 161,205 L 156,201 L 156,196
-        L 153,190 L 152,184 L 151,181 L 149,180
-        L 147,179 L 145,179
-        L 143,181
-        L 143,177 L 142,173 L 140,170
-        L 138,166 L 136,167 L 134,167
-        L 132,169 L 132,167 L 130,162
-        L 129,163 L 128,164 L 127,164
-        L 126,161 L 125,157 L 121,154
-        L 120,153 L 119,153 L 118,153
-        L 116,152 L 114,151 L 110,149
-        L 107,148 L 108,148 L 104,145
-        L 101,141 L 98,138 L 96,135 L 95,134
-        L 94,130 L 93,129 L 92,128
-        L 90,127 L 89,127 L 87,126 L 86,126
-        L 85,124 L 83,122 L 81,120 L 80,119
-        L 79,117 L 77,116 L 76,115
-        L 74,110 L 74,104 L 73,100
-        L 72,95 L 72,93 L 71,91
-        L 69,89 L 67,88 L 66,88
-        L 63,85 L 60,84 L 59,83
-        L 57,82 L 55,82 L 53,81 L 51,81 L 49,81
-        L 46,83 L 44,85 L 43,89
-        L 42,91 L 41,92 L 40,93 L 38,93 L 36,94 L 34,95
+        L 33,87 L 32,86 L 31,85 L 29,83 L 27,81 L 26,79 L 25,77 L 24,75
+        L 23,72 L 23,68 L 23,63 L 23,60 L 23,55 L 23,51 L 23,48
+        L 24,46 L 25,46 L 26,46 L 28,45 L 30,45 L 32,45 L 34,45 L 36,45 L 38,45
+        L 40,39 L 42,38 L 43,37 L 44,37 L 46,39 L 47,40 L 49,41 L 50,42
+        L 52,42 L 54,46 L 56,45 L 58,44 L 60,44
+        L 62,43 L 64,41 L 65,40 L 67,38 L 69,35 L 71,33 L 72,32
+        L 75,32 L 77,31 L 79,29 L 81,28 L 83,27 L 85,26 L 87,25 L 89,23 L 91,21
+        L 93,22 L 95,22 L 97,23 L 99,25 L 101,28
+        L 103,29 L 105,30 L 107,31 L 109,31 L 111,31 L 113,31
+        L 115,31 L 117,31 L 119,32 L 121,32
+        L 121,35 L 121,39 L 121,43 L 121,47 L 121,49 L 120,49 L 124,52
+        L 118,52 L 115,53 L 113,53 L 111,54 L 109,54 L 107,56
+        L 105,57 L 103,59 L 102,61 L 102,63 L 102,65
+        L 102,68 L 101,71 L 101,74 L 101,77 L 101,79
+        L 102,80 L 103,82 L 104,84 L 106,86
+        L 107,89 L 108,90 L 109,90 L 110,91 L 111,92 L 113,92
+        L 114,93 L 115,94 L 116,95 L 118,96 L 119,97 L 120,98 L 122,99
+        L 123,100 L 124,101 L 125,103 L 126,105 L 126,107 L 127,109
+        L 128,111 L 129,113 L 130,115 L 131,118 L 132,120 L 133,125
+        L 134,126 L 135,127 L 136,128 L 138,130 L 139,132 L 141,133
+        L 142,135 L 143,136 L 144,136 L 145,136 L 146,137
+        L 147,139 L 148,140 L 149,141 L 151,142 L 153,143 L 155,145
+        L 155,143 L 155,141 L 155,139 L 155,138 L 155,137
+        L 156,136 L 156,135 L 157,135 L 157,136 L 157,137
+        L 158,137 L 158,138 L 159,138 L 159,139
+        L 158,140 L 157,141 L 157,142 L 156,143 L 156,144 L 156,145 L 156,146
+        L 157,148 L 158,149 L 159,150 L 160,151 L 161,152 L 162,152
+        L 163,153 L 164,153 L 165,154 L 166,155 L 167,155 L 168,156 L 169,156
+        L 170,157 L 171,158 L 172,158 L 173,159 L 174,159 L 175,160
+        L 176,161 L 177,162 L 178,163 L 179,164 L 180,165 L 181,166
+        L 182,166 L 183,167 L 184,167 L 185,167
+        L 185,168 L 186,170 L 186,171 L 187,173 L 187,174
+        L 188,175 L 189,176 L 190,177 L 191,178 L 192,178
+        L 193,179 L 193,181 L 193,183 L 192,185 L 191,186
+        L 190,185 L 190,184 L 189,183 L 188,182 L 187,181
+        L 186,181 L 185,180 L 184,180 L 183,180 L 182,179
+        L 181,179 L 180,178 L 179,177 L 178,176 L 177,175
+        L 175,173 L 174,172 L 174,171
+        L 172,173 L 170,173 L 169,174 L 168,174
+        L 167,174 L 166,175 L 165,176 L 165,177
+        L 164,179 L 164,181 L 163,184 L 163,187 L 163,190 L 163,191
+        L 163,193 L 163,195 L 164,196 L 164,197 L 164,198 L 165,199
+        L 166,200 L 166,201 L 167,201 L 168,202 L 170,203
+        L 172,204 L 173,204 L 174,205 L 173,206 L 172,207
+        L 172,208 L 171,209 L 170,210 L 169,211 L 168,212
+        L 167,213 L 166,214 L 165,215 L 164,216 L 163,217
+        L 162,218 L 161,219 L 160,220 L 160,221 L 160,222
+        L 159,223 L 158,224 L 157,225 L 156,225 L 155,225
+        L 155,226 L 155,227 L 156,228 L 157,229
+        L 156,229 L 155,229 L 154,229 L 153,229
+        L 152,228 L 151,227 L 151,225
+        L 151,222 L 152,220 L 153,219 L 154,218
+        L 154,217 L 154,216 L 154,215 L 154,214
+        L 153,213 L 153,212 L 154,211 L 155,210
+        L 156,210 L 157,210 L 158,209 L 159,208
+        L 160,207 L 161,206 L 161,205 L 160,204
+        L 159,203 L 158,202 L 157,201 L 156,201
+        L 156,200 L 156,199 L 156,197 L 156,196
+        L 155,195 L 155,194 L 155,192 L 154,191
+        L 153,190 L 152,188 L 152,186 L 152,185 L 152,184
+        L 151,183 L 151,182 L 151,181 L 150,181 L 149,180
+        L 148,180 L 147,180 L 147,179 L 146,179 L 145,179
+        L 144,180 L 143,181 L 143,179 L 143,178
+        L 143,177 L 143,176 L 143,175
+        L 142,174 L 142,173 L 141,172 L 140,170 L 140,169
+        L 139,168 L 138,167 L 137,166
+        L 136,167 L 135,167 L 134,167 L 133,168 L 132,169
+        L 132,168 L 132,167 L 131,166 L 131,165
+        L 130,163 L 130,162 L 129,163 L 129,164
+        L 128,164 L 128,163 L 127,163 L 126,162 L 125,162
+        L 125,161 L 124,160 L 123,159 L 122,157
+        L 121,156 L 121,155 L 121,154
+        L 120,153 L 120,152 L 119,152 L 118,152
+        L 117,152 L 116,152 L 115,151 L 114,151 L 113,151
+        L 111,150 L 110,149 L 109,149
+        L 107,148 L 106,147 L 105,146 L 104,145
+        L 103,144 L 102,143 L 101,141 L 100,140
+        L 99,139 L 97,137 L 96,136 L 95,135 L 95,134
+        L 94,132 L 94,130 L 93,130 L 93,129 L 92,128
+        L 91,128 L 90,127 L 89,127 L 88,127 L 87,126 L 86,126
+        L 86,125 L 85,124 L 84,123 L 83,122 L 82,121 L 81,120 L 80,119
+        L 79,118 L 79,117 L 78,117 L 77,116 L 76,116 L 76,115
+        L 75,113 L 74,111 L 74,109 L 74,106
+        L 74,104 L 73,102 L 73,100 L 73,98
+        L 72,96 L 72,94 L 72,93 L 71,91
+        L 70,90 L 69,89 L 68,88 L 67,88 L 66,88
+        L 64,87 L 63,86 L 62,85 L 61,85 L 60,84
+        L 59,84 L 59,83 L 58,83 L 57,82 L 56,82
+        L 55,82 L 54,82 L 53,81 L 52,81 L 51,81 L 50,81 L 49,81
+        L 47,82 L 46,83 L 45,84 L 44,85 L 43,87 L 43,89
+        L 42,90 L 42,91 L 41,92 L 40,93 L 39,93 L 38,93
+        L 37,94 L 36,94 L 35,95 L 34,95
         Z
       "/>
-            <!-- ═══ SICILIA (~40 punti) ═══ -->
-        <path class="el-map-land" d="
-            M 150,222
-            L 146,231 L 145,233
-            L 143,239 L 145,245
-            L 144,248 L 136,248
-            L 138,254 L 144,257
-            L 141,257 L 136,254 L 135,250
-            L 133,249 L 131,248
-            L 128,249 L 126,248
-            L 121,243 L 119,241
-            L 116,239 L 114,239
-            L 112,235 L 110,234
-            L 107,233 L 105,232 L 104,232
-            L 103,232
-            L 105,227 L 107,225
-            L 108,223 L 110,222 L 112,222
-            L 118,224 L 122,225 L 125,225
-            L 127,226 L 130,225
-            L 134,224 L 138,224
-            L 142,223 L 145,222
-            Z
-        "/>
-              <!-- ═══ SARDEGNA (~30 punti) ═══ -->
-        <path class="el-map-land" d="
-            M 62,155
-            L 60,154 L 57,153
-            L 50,160 L 45,162
-            L 44,169 L 42,168
-            L 43,172 L 47,175
-            L 46,184 L 47,185 L 46,187
-            L 45,190 L 45,192 L 45,193
-            L 47,201 L 49,205 L 49,208
-            L 47,207 L 45,205
-            L 52,200 L 56,199
-            L 60,200 L 62,201
-            L 63,198
-            L 64,190 L 64,183
-            L 64,175 L 63,172 L 64,170
-            L 61,160
-            Z
-        "/>
-              <!-- Roma (evidenziata) -->
+
+      <!-- SICILIA ~70 punti -->
+      <path class="el-map-land" d="
+        M 150,222
+        L 151,224 L 150,226 L 149,227 L 147,229 L 146,231
+        L 145,232 L 145,233 L 144,235 L 143,237 L 143,239
+        L 143,241 L 144,243 L 145,245 L 145,246 L 145,247
+        L 146,248 L 147,249 L 148,250
+        L 147,252 L 146,254 L 145,256 L 144,257
+        L 143,257 L 142,257 L 141,256 L 140,256 L 139,255
+        L 138,254 L 136,252 L 135,252 L 134,251
+        L 133,250 L 132,249 L 131,248
+        L 129,248 L 127,248 L 126,248
+        L 124,246 L 122,245 L 120,243
+        L 118,242 L 116,241 L 114,239
+        L 113,238 L 112,237 L 111,237 L 109,237 L 107,237
+        L 106,236 L 106,235 L 105,234
+        L 104,233 L 104,232 L 103,232
+        L 103,231 L 103,230 L 104,229
+        L 105,227 L 105,226 L 106,225
+        L 107,225 L 107,224 L 108,223
+        L 108,222 L 109,222 L 110,222 L 111,222 L 113,222 L 115,223
+        L 118,224 L 120,224 L 122,225 L 124,225
+        L 127,226 L 129,226 L 130,225 L 132,225
+        L 134,224 L 136,224 L 138,224 L 140,223 L 142,223 L 145,222
+        Z
+      "/>
+
+      <!-- SARDEGNA ~50 punti -->
+      <path class="el-map-land" d="
+        M 62,155
+        L 61,156 L 60,156 L 60,155 L 59,155 L 58,154 L 57,153
+        L 55,155 L 53,157 L 51,159 L 50,160
+        L 48,161 L 47,162 L 45,162
+        L 44,163 L 44,165 L 44,167 L 44,169
+        L 43,170 L 42,169 L 42,168
+        L 43,170 L 44,172 L 45,173
+        L 46,175 L 47,176 L 47,177
+        L 47,179 L 47,181 L 47,183 L 47,184 L 47,185
+        L 46,186 L 46,187 L 45,188
+        L 45,190 L 45,192 L 45,193 L 45,194
+        L 46,196 L 46,198 L 47,200 L 47,201
+        L 48,203 L 49,205 L 49,206 L 49,208
+        L 48,208 L 47,208 L 47,207 L 46,207 L 45,206 L 45,205
+        L 49,202 L 51,201 L 53,200 L 54,200
+        L 55,199 L 56,199 L 57,199 L 58,200
+        L 60,200 L 61,200 L 62,201
+        L 63,199 L 63,198 L 63,196
+        L 64,193 L 64,191 L 64,189 L 64,187
+        L 64,185 L 64,183 L 64,181 L 64,179
+        L 64,177 L 64,175 L 63,173 L 63,172
+        L 64,170 L 64,168 L 63,166
+        L 62,164 L 61,162 L 61,160
+        Z
+      "/>
+
+      <!-- Roma -->
       <circle class="el-map-city-dot el-map-city-dot--main" cx="105" cy="138" r="4"/>
       <circle class="el-map-city-ring"                       cx="105" cy="138" r="7"/>
       <!-- altre città -->
       <circle class="el-map-city-dot" cx="57"  cy="58"  r="3"/>
       <circle class="el-map-city-dot" cx="35"  cy="67"  r="3"/>
       <circle class="el-map-city-dot" cx="102" cy="61"  r="3"/>
-      <circle class="el-map-city-dot" cx="53"  cy="83"  r="3"/>
+      <circle class="el-map-city-dot" cx="53"  cy="81"  r="3"/>
       <circle class="el-map-city-dot" cx="88"  cy="80"  r="3"/>
       <circle class="el-map-city-dot" cx="87"  cy="95"  r="3"/>
       <circle class="el-map-city-dot" cx="122" cy="101" r="3"/>
@@ -331,12 +363,12 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <circle class="el-map-city-dot" cx="139" cy="240" r="3"/>
       <circle class="el-map-city-dot" cx="54"  cy="199" r="3"/>
       <circle class="el-map-city-dot" cx="85"  cy="43"  r="3"/>
-      <!-- etichette -->
+
       <text class="el-map-lbl el-map-lbl--main" x="108" y="136">Roma</text>
       <text class="el-map-lbl" x="60"  y="56" >Milano</text>
       <text class="el-map-lbl" x="15"  y="65" >Torino</text>
       <text class="el-map-lbl" x="105" y="60" >Venezia</text>
-      <text class="el-map-lbl" x="55"  y="80" >Genova</text>
+      <text class="el-map-lbl" x="55"  y="79" >Genova</text>
       <text class="el-map-lbl" x="90"  y="78" >Bologna</text>
       <text class="el-map-lbl" x="90"  y="93" >Firenze</text>
       <text class="el-map-lbl" x="123" y="99" >Ancona</text>
