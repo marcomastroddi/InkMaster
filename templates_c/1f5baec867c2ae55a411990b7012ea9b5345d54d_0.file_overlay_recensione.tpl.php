@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 17:31:12
+/* Smarty version 5.8.0, created on 2026-06-25 18:39:01
   from 'file:partials/overlay_recensione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d49c031c3d3_40730941',
+  'unifunc' => 'content_6a3d59a5042d44_07118602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f5baec867c2ae55a411990b7012ea9b5345d54d' => 
     array (
       0 => 'partials/overlay_recensione.tpl',
-      1 => 1782400993,
+      1 => 1782405511,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d49c031c3d3_40730941 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d59a5042d44_07118602 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 if ($_smarty_tpl->getValue('mostra_overlay_recensione')) {?>
 <div class="rc-backdrop">
@@ -67,9 +67,9 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
                         <option value="">Seleziona tatuatore</option>
                         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec_tatuatori'), 't');
-$foreach10DoElse = true;
+$foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('t')->value) {
-$foreach10DoElse = false;
+$foreach0DoElse = false;
 ?>
                             <option value="<?php echo $_smarty_tpl->getValue('t')->getId();?>
 "><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('t')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
@@ -82,21 +82,14 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 </div>
 
                 <div class="rc-field">
-                    <label class="rc-label">Stile</label>
-                    <select name="stile" class="rc-select" required>
-                        <option value="">Seleziona stile</option>
-                        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec_stili'), 's');
-$foreach11DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('s')->value) {
-$foreach11DoElse = false;
-?>
-                            <option value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('s')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
-"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('s')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
-</option>
-                        <?php
-}
-$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+                    <label class="rc-label">Voto</label>
+                    <select name="voto" class="rc-select" required>
+                        <option value="">Seleziona voto</option>
+                        <option value="1">★ 1</option>
+                        <option value="2">★★ 2</option>
+                        <option value="3">★★★ 3</option>
+                        <option value="4">★★★★ 4</option>
+                        <option value="5">★★★★★ 5</option>
                     </select>
                 </div>
 

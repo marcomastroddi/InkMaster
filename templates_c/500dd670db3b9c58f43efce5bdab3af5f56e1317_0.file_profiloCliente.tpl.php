@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 18:24:08
+/* Smarty version 5.8.0, created on 2026-06-25 18:39:15
   from 'file:pages/profilo/profiloCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d5628e319b1_64062640',
+  'unifunc' => 'content_6a3d59b3af81b5_67033074',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '500dd670db3b9c58f43efce5bdab3af5f56e1317' => 
     array (
       0 => 'pages/profilo/profiloCliente.tpl',
-      1 => 1782404159,
+      1 => 1782405406,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d5628e319b1_64062640 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d59b3af81b5_67033074 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16996782286a3d5628df6731_66999990', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_693332506a3d59b3ae9c53_12191064', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4169460416a3d5628df9ee9_67652599', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13692777676a3d59b3aecd98_07051507', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16522675576a3d5628dfabb6_44327672', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18334624796a3d59b3aed817_09682266', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_16996782286a3d5628df6731_66999990 extends \Smarty\Runtime\Block
+class Block_693332506a3d59b3ae9c53_12191064 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -51,7 +51,7 @@ Il mio profilo — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_4169460416a3d5628df9ee9_67652599 extends \Smarty\Runtime\Block
+class Block_13692777676a3d59b3aecd98_07051507 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_16522675576a3d5628dfabb6_44327672 extends \Smarty\Runtime\Block
+class Block_18334624796a3d59b3aed817_09682266 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -133,13 +133,13 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('data')['cogn
 
                         <div class="im-profilo-section-title">Sicurezza</div>
 
-            <form id="im-form-password" class="im-form">
+            <form id="im-form-password" class="im-form" autocomplete="off">
                 <div class="im-form-group" style="margin-bottom:16px;">
                     <label class="im-label" for="vecchia_password">Password attuale</label>
                     <div class="im-input-eye-wrap">
                         <input type="password" id="vecchia_password" name="vecchia_password"
-                            class="im-input" placeholder="••••••••" autocomplete="current-password" required>
-                        <button type="button" class="im-eye-btn" data-target="vecchia_password">👁</button>
+                            class="im-input" placeholder="••••••••" autocomplete="new-password" required>
+                        <button type="button" class="im-eye-btn" data-target="new_password">👁</button>
                     </div>
                 </div>
                 <div class="im-form-grid">
