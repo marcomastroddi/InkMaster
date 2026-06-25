@@ -1,0 +1,135 @@
+/* ==========================================================================
+   DASHBOARD STUDIO — sfondo: Grande Onda Irezumi (singola forma fullpage)
+   ========================================================================== */
+
+.im-dash-wrap {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    background: #0a0c0d;
+    overflow: hidden;
+}
+
+/* SVG a tutto schermo, fisso dietro al contenuto */
+.im-dash-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+}
+
+.im-dash-wave-group {
+    animation: im-wave-drift 18s ease-in-out infinite alternate;
+    transform-origin: 720px 450px;
+}
+
+@keyframes im-wave-drift {
+    0%   { transform: translateY(0px) translateX(0px) scaleY(1); }
+    50%  { transform: translateY(-18px) translateX(12px) scaleY(1.03); }
+    100% { transform: translateY(8px) translateX(-10px) scaleY(0.98); }
+}
+
+/* Contenuto sopra allo sfondo */
+.im-dash-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+}
+
+/* Intestazione */
+.im-dash-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #2fd8aa;
+    margin-bottom: 10px;
+}
+
+.im-dash-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    color: #eef1f0;
+    margin-bottom: 56px;
+}
+
+/* Griglia card */
+.im-dash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 860px) { .im-dash-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .im-dash-grid { grid-template-columns: 1fr; } }
+
+/* Singola card */
+.im-dash-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 28px 26px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, border-color 0.2s, transform 0.18s;
+    cursor: pointer;
+}
+
+.im-dash-card:hover {
+    background: rgba(47,216,170,.07);
+    border-color: rgba(47,216,170,.3);
+    transform: translateY(-3px);
+}
+
+.im-dash-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(47,216,170,.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.im-dash-card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #2fd8aa;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.im-dash-card-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #9aa3a0;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.im-dash-card-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #eef1f0;
+    margin-top: auto;
+}
+
+.im-dash-card-arrow {
+    font-size: 18px;
+    color: #2fd8aa;
+    margin-top: 4px;
+    transition: transform 0.2s;
+}
+
+.im-dash-card:hover .im-dash-card-arrow { transform: translateX(4px); }

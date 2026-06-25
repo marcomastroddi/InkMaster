@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 18:30:37
+/* Smarty version 5.8.0, created on 2026-06-25 17:00:56
   from 'file:pages/auth/registrazioneStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3c224d9f7e65_28199708',
+  'unifunc' => 'content_6a3d5ec81a60c2_44585212',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2781cbbf89d0a0d96b9226866042317bbadca71f' => 
     array (
       0 => 'pages/auth/registrazioneStudio.tpl',
-      1 => 1782325827,
+      1 => 1782406844,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3c224d9f7e65_28199708 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d5ec81a60c2_44585212 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12472797686a3c224d9ed755_32255918', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13477112916a3d5ec819c128_65778253', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21151620786a3c224d9f5307_01174214', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19730968326a3d5ec81a42d8_23794075', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3888528446a3c224d9f6c16_07637331', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17705134566a3d5ec81a54d4_25823990', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_12472797686a3c224d9ed755_32255918 extends \Smarty\Runtime\Block
+class Block_13477112916a3d5ec819c128_65778253 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Registra il tuo studio — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_21151620786a3c224d9f5307_01174214 extends \Smarty\Runtime\Block
+class Block_19730968326a3d5ec81a42d8_23794075 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_3888528446a3c224d9f6c16_07637331 extends \Smarty\Runtime\Block
+class Block_17705134566a3d5ec81a54d4_25823990 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -84,7 +84,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
                 <p class="im-subtitle">Entra nella rete di InkMaster e mostra le tue opere a migliaia di clienti.</p>
             </div>
 
-            <form action="/registrazione/registraStudio" method="POST" class="im-form">
+            <form action="/registraStudio" method="POST" class="im-form">
                 <div class="im-form-grid">
                     
                     <div class="im-form-group">
@@ -113,8 +113,25 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
                     </div>
                     
                     <div class="im-form-group">
-                        <label class="im-label" for="posizione">Sede / Posizione</label>
-                        <input type="text" id="posizione" name="posizione" class="im-input" required placeholder="Indirizzo completo, Città">
+                        <label class="im-label" for="posizione">Città</label>
+                        <select id="posizione" name="posizione" class="im-input" required>
+                            <option value="" disabled selected>Seleziona la tua città</option>
+                            <option value="Roma">Roma</option>
+                            <option value="Milano">Milano</option>
+                            <option value="Napoli">Napoli</option>
+                            <option value="Torino">Torino</option>
+                            <option value="Bologna">Bologna</option>
+                            <option value="Firenze">Firenze</option>
+                            <option value="Palermo">Palermo</option>
+                            <option value="Genova">Genova</option>
+                            <option value="Venezia">Venezia</option>
+                            <option value="Bari">Bari</option>
+                            <option value="Catania">Catania</option>
+                            <option value="Catanzaro">Catanzaro</option>
+                            <option value="Pescara">Pescara</option>
+                            <option value="Avezzano">Avezzano</option>
+                            <option value="Popoli">Popoli</option>
+                        </select>
                     </div>
 
                     <div class="im-form-group">

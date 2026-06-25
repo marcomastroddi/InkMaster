@@ -379,7 +379,7 @@ switch ($page) {
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
         if ($dati['status'] === 'success') {
-            header('Location: /login');
+            header('Location: /dashboardStudio');
             exit;
         }
         View::render('auth/registrazioneStudio', $dati);
@@ -496,8 +496,14 @@ switch ($page) {
         break;
 
     // ===== DASHBOARD STUDIO (landing dopo il login dello studio) =====
-    case 'dashboard_studio':
-        View::render('studio/dashboard_studio', []);
+     case 'dashboard_studio':
+        $idStudio = SessionManager::get('id_studio');
+        $studio = $idStudio
+            ? PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $idStudio)
+            : null;
+        View::render('studio/dashboard_studio', [
+            'nome_studio' => $studio ? $studio->getNome() : SessionManager::get('username', 'Studio')
+        ]);
         break;
 
     
