@@ -1,0 +1,72 @@
+.st-page { min-height: 100vh; background: #0a0c0d; color: #eef1f0; font-family: 'Archivo', sans-serif; }
+
+/* ── strip ── */
+.st-strip { display: grid; grid-template-columns: repeat(4, 1fr); height: 240px; gap: 3px; }
+.st-strip-slot { overflow: hidden; background: #0d1012; }
+.st-strip-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.82); transition: filter .3s; display: block; }
+.st-strip-slot:hover img { filter: brightness(1); }
+.st-strip-ph { display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(47,216,170,.07), #101417); }
+.st-strip-ph span { font-size: 38px; font-weight: 900; color: rgba(47,216,170,.18); }
+
+/* ── infobar ── */
+.st-infobar { display: flex; align-items: center; justify-content: space-between; gap: 32px; max-width: 1260px; margin: 0 auto; padding: 32px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.st-infobar-left { display: flex; align-items: center; gap: 20px; }
+.st-avatar { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; background: radial-gradient(circle, rgba(47,216,170,.22), rgba(47,216,170,.04)); border: 1px solid rgba(47,216,170,.35); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: #2fd8aa; }
+.st-nome { font-size: 22px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 4px; }
+.st-city { font-size: 13px; color: #9aa3a0; margin-bottom: 10px; }
+.st-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.st-tag { font-size: 11px; font-weight: 700; color: #2fd8aa; background: rgba(47,216,170,.1); border: 1px solid rgba(47,216,170,.2); padding: 4px 10px; border-radius: 999px; }
+.st-tag--sm { font-size: 10px; padding: 3px 8px; }
+.st-infobar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.st-contact-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #9aa3a0; }
+.st-ci { font-size: 14px; }
+.st-cta { display: inline-block; background: #2fd8aa; color: #0a0c0d; font-size: 14px; font-weight: 800; padding: 12px 26px; border-radius: 10px; margin-top: 4px; white-space: nowrap; }
+
+/* ── body ── */
+.st-body { display: grid; grid-template-columns: 1fr 340px; gap: 48px; max-width: 1260px; margin: 0 auto; padding: 48px 48px 20px; align-items: start; }
+
+/* ── sezioni ── */
+.st-section { margin-bottom: 44px; }
+.st-h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 18px; padding-bottom: 11px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.st-desc { font-size: 15px; line-height: 1.75; color: #9aa3a0; }
+.st-muted { color: #4b534f; font-style: italic; font-size: 14px; }
+
+/* ── team ── */
+.st-team { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.st-member { background: #101417; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 18px 14px; text-align: center; }
+.st-member-av { width: 52px; height: 52px; border-radius: 50%; background: radial-gradient(circle, rgba(47,216,170,.16), rgba(47,216,170,.03)); border: 1px solid rgba(47,216,170,.26); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #2fd8aa; margin: 0 auto 10px; }
+.st-member-name { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.st-member-tags { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+
+/* ── orari ── */
+.st-orari-card { background: #101417; border: 1px solid rgba(255,255,255,.07); border-radius: 16px; overflow: hidden; }
+.st-orari-row { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,.05); }
+.st-orari-row:last-child { border-bottom: none; }
+.st-orari-day { font-size: 13px; font-weight: 700; color: #cdd3d1; width: 34px; flex-shrink: 0; }
+.st-orari-time { font-size: 13px; color: #9aa3a0; flex: 1; }
+.st-orari-badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-left: auto; flex-shrink: 0; }
+.st-badge-aperto { color: #2fd8aa; background: rgba(47,216,170,.12); }
+.st-badge-chiuso { color: #4b534f; background: rgba(255,255,255,.05); }
+.st-orari-chiuso .st-orari-day, .st-orari-chiuso .st-orari-time { color: #3f4a47; }
+
+/* ── recensioni ── */
+.st-reviews-wrap { background: #0d1012; border-top: 1px solid rgba(255,255,255,.06); padding: 52px 0 72px; }
+.st-reviews-inner { max-width: 1260px; margin: 0 auto; padding: 0 48px; }
+.st-reviews-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+.st-reviews-link { font-size: 14px; font-weight: 600; color: #2fd8aa; }
+.st-reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.st-review { background: #101417; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 22px 22px; }
+.st-rev-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.st-rev-av { width: 40px; height: 40px; border-radius: 50%; background: rgba(47,216,170,.12); border: 1px solid rgba(47,216,170,.28); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #2fd8aa; flex-shrink: 0; }
+.st-rev-meta { flex: 1; }
+.st-rev-name { font-size: 14px; font-weight: 700; }
+.st-rev-badge { font-size: 10px; font-weight: 700; color: #2fd8aa; background: rgba(47,216,170,.1); padding: 2px 7px; border-radius: 999px; margin-left: 6px; }
+.st-rev-stars { font-size: 13px; color: #f5b942; margin-top: 4px; }
+.st-star-off { color: #3f4a47; }
+.st-rev-date { font-size: 11px; color: #6b736f; font-family: ui-monospace, monospace; white-space: nowrap; }
+.st-rev-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+.st-rev-text { font-size: 14px; line-height: 1.65; color: #9aa3a0; margin-bottom: 12px; }
+.st-rev-footer { font-size: 12px; color: #6b736f; font-family: ui-monospace, monospace; }
+.st-rev-stile { color: #2fd8aa; font-weight: 700; }
+.st-reviews-cta-wrap { text-align: center; }
+.st-cta-outline { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #cdd3d1; border: 1px solid rgba(255,255,255,.16); padding: 12px 28px; border-radius: 999px; }

@@ -150,15 +150,21 @@ class RicercaVisualizzaStudi
             return ['status' => 'error', 'message' => 'Studio non trovato'];
         }
 
-        // Salviamo l'id dello studio: ci servirà alla fine per creare l'appuntamento
+        $tutteRecensioni = $this->pm->findRecensioniByStudioId($studioId);
+        $recensioni = array_slice(
+            array_values(array_filter($tutteRecensioni, fn($r) => $r->getVoto() >= 4)),
+            0, 5
+        );
+
         $prenotazione = SessionManager::get('prenotazione', []);
         $prenotazione['studio_id'] = $studioId;
         SessionManager::set('prenotazione', $prenotazione);
 
         return [
-            'status' => 'success',
-            'interfaccia' => 'Interfaccia studio',
-            'data' => $studio
+            'status'     => 'success',
+            'interfaccia'=> 'Interfaccia studio',
+            'data'       => $studio,
+            'recensioni' => $recensioni,
         ];
     }
     
