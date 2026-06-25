@@ -110,7 +110,8 @@ class Registrazione
         return [
             'status'      => 'success',
             'message'     => 'Registrazione studio completata, ora puoi accedere',
-            'interfaccia' => 'Login'
+            'interfaccia' => 'Login',
+            'idStudio' => $studio->getId(),
         ];
     }
 }

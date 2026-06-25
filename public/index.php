@@ -379,6 +379,9 @@ switch ($page) {
             'telefono'          => $_POST['telefono']          ?? '',
         ]);
         if ($dati['status'] === 'success') {
+            SessionManager::set('username', $_POST['username']);
+            SessionManager::set('ruolo', 'studio');
+            SessionManager::set('idStudio', $dati['idStudio']);
             header('Location: /dashboardStudio');
             exit;
         }
