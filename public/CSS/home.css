@@ -46,7 +46,9 @@
 .im-link { font-size: 14px; font-weight: 600; color: #2fd8aa; }
 
 /* griglia tatuatori */
-.im-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.im-grid-wrap { overflow: hidden; }
+.im-grid { display: flex; gap: 18px; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+.im-card { flex: 0 0 calc((100% - 72px) / 5); min-width: 0; }
 .im-card { background: #101417; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 26px 20px; text-align: center; display: block; }
 .im-avatar { width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 16px; background: radial-gradient(circle at 50% 35%, rgba(47,216,170,.2), rgba(47,216,170,.05)); border: 1px solid rgba(47,216,170,.3); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #2fd8aa; }
 .im-card-name { font-size: 16px; font-weight: 800; letter-spacing: -.01em; }
@@ -54,7 +56,7 @@
 .im-tag { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; font-size: 12px; font-weight: 700; color: #2fd8aa; background: rgba(47,216,170,.1); padding: 5px 11px; border-radius: 999px; }
 .im-card-city { font-size: 13px; color: #9aa3a0; margin-top: 12px; }
 .im-more-wrap { text-align: center; margin-top: 26px; }
-.im-more { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #cdd3d1; border: 1px solid rgba(255,255,255,.18); padding: 12px 26px; border-radius: 999px; }
+.im-more { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #cdd3d1; border: 1px solid rgba(255,255,255,.18); padding: 12px 26px; border-radius: 999px; background: transparent; cursor: pointer; font-family: inherit; }
 
 /* recensioni */
 .im-reviews { padding: 56px 0 80px; }
@@ -86,3 +88,13 @@
 @keyframes im-drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px,40px); } }
 @keyframes im-drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-50px,30px); } }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+.im-chip--attivo { color: #0a0c0d; background: #2fd8aa; border-color: #2fd8aa; }
+
+/* city dropdown */
+.im-city { cursor: pointer; display: inline-block; position: relative; }
+.im-city-dropdown { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: #13171a; border: 1px solid rgba(47,216,170,.35); border-radius: 14px; min-width: 200px; z-index: 100; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+.im-city-dropdown.aperto { display: block; }
+.im-city-option { padding: 13px 22px; font-size: 16px; font-weight: 600; color: #cdd3d1; cursor: pointer; transition: background .15s; }
+.im-city-option:hover, .im-city-option.selezionata { background: rgba(47,216,170,.12); color: #2fd8aa; }
+

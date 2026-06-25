@@ -31,12 +31,20 @@
     <div class="im-hero-content">
       <div class="im-eyebrow">Inchiostro che resta · prenotazione facile</div>
       <h1 class="im-title">Cerca il tuo tatuatore a
-        <a href="/cerca" class="im-city">{$citta_corrente|default:'Roma'} <span class="im-caret">▾</span>
-          <span class="im-underline"></span>
-        </a>
+    <span class="im-city" id="im-city-trigger">
+        <span id="im-city-label">{$citta_corrente|default:'Roma'}</span>
+        <span class="im-caret">▾</span>
+        <span class="im-underline"></span>
+        <div class="im-city-dropdown" id="im-city-dropdown">
+            {foreach ['Roma','Milano','Napoli','Torino','Bologna','Firenze','Palermo','Genova','Venezia','Bari'] as $c}
+                <div class="im-city-option" data-citta="{$c}">{$c}</div>
+            {/foreach}
+        </div>
+    </span>
       </h1>
 
       <form action="/avvia_ricerca" method="get" class="im-search">
+        
         <div class="im-search-row">
           <div class="im-search-field">
             <div class="im-search-box">
@@ -45,15 +53,16 @@
             </div>
           </div>
           <button type="submit" class="im-search-submit">Cerca</button>
+          <input type="hidden" name="citta" id="im-citta-val" value="{$citta_corrente|default:'Roma'}">
         </div>
       </form>
 
       <div class="im-styles">
         <div class="im-styles-label">Sfoglia per stile</div>
         <div class="im-chips">
-          {foreach $stili as $stile}
-            <a href="/seleziona_stile?stile={$stile->getNome()|escape:'url'}" class="im-chip">{$stile->getNome()}</a>
-          {/foreach}
+            {foreach $stili as $stile}
+            <button type="button" class="im-chip" data-stile="{$stile->getNome()|escape:'html'}">{$stile->getNome()}</button>
+            {/foreach}
         </div>
       </div>
     </div>
@@ -62,7 +71,7 @@
   {* ============ BANDA TICKER ============ *}
   <div class="im-band">
     <div class="im-ticker">
-      {assign var=citta_ticker value=['ROMA','MILANO','NAPOLI','TORINO','BOLOGNA','FIRENZE','PALERMO','GENOVA','VENEZIA','BARI','POPOLI','AVEZZANO','PESCARA','MONTESILVANO','AGNONE','ANTROSANO','CORVARO','L\'QUILA']}
+      {assign var=citta_ticker value=['ROMA','MILANO','NAPOLI','TORINO','BOLOGNA','FIRENZE','PALERMO','GENOVA','VENEZIA','BARI','POPOLI','AVEZZANO','PESCARA','MONTESILVANO','AGNONE','ANTROSANO','CORVARO','L\'AQUILA']}
       {section name=rep loop=2}{foreach $citta_ticker as $c}<span>{$c}</span>{/foreach}{/section}
     </div>
   </div>
@@ -73,28 +82,26 @@
       <h2 class="im-h2">Tatuatori suggeriti</h2>
       <a href="/avvia_ricerca" class="im-link">Vedi tutti →</a>
     </div>
-    <div class="im-grid">
-      {assign var=mostrati value=0}
-      {foreach $studi as $studio}
-        {foreach $studio->getTatuatori() as $tatuatore}
-          {if $mostrati < 5}
+    <div class="im-grid-wrap">
+        <div class="im-grid">
+         {foreach $studi as $studio}
+         {foreach $studio->getTatuatori() as $tatuatore}
             <a href="/scegli_studio?id={$studio->getId()}" class="im-card">
-              <div class="im-avatar">{$tatuatore->getNome()|substr:0:1}{$tatuatore->getCognome()|substr:0:1}</div>
-              <div class="im-card-name">{$tatuatore->getNome()} {$tatuatore->getCognome()}</div>
-              <div class="im-card-studio">{$studio->getNome()}</div>
-              {foreach $tatuatore->getStili() as $st}
+            <div class="im-avatar">{$tatuatore->getNome()|substr:0:1}{$tatuatore->getCognome()|substr:0:1}</div>
+            <div class="im-card-name">{$tatuatore->getNome()} {$tatuatore->getCognome()}</div>
+            <div class="im-card-studio">{$studio->getNome()}</div>
+            {foreach $tatuatore->getStili() as $st}
                 <div class="im-tag">{$st->getNome()}</div>
                 {break}
-              {/foreach}
-              <div class="im-card-city">{$studio->getPosizione()->value}</div>
+            {/foreach}
+            <div class="im-card-city">{$studio->getPosizione()->value}</div>
             </a>
-            {assign var=mostrati value=$mostrati+1}
-          {/if}
         {/foreach}
-      {/foreach}
+        {/foreach}
+    </div>
     </div>
     <div class="im-more-wrap">
-      <a href="/avvia_ricerca" class="im-more">Altro »</a>
+        <button type="button" class="im-more" id="im-altro">Altro »</button>
     </div>
   </div>
 
@@ -136,5 +143,85 @@
     <div class="im-scroll-hint">‹ scorri per vedere tutte le recensioni ›</div>
   </div>
 
+<script>
+// ============ JAVASCRIPT ============
+// Chip toggle
+document.querySelectorAll('.im-chip').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var attivo = this.classList.contains('im-chip--attivo');
+        document.querySelectorAll('.im-chip').forEach(function(b) {
+            b.classList.remove('im-chip--attivo');
+        });
+        if (!attivo) {
+            this.classList.add('im-chip--attivo');
+            document.getElementById('im-stile-val').value = this.dataset.stile;
+            document.querySelector('.im-search-box input').focus();
+        } else {
+            document.getElementById('im-stile-val').value = '';
+        }
+    });
+});
+
+// Enter nel campo di ricerca → submit esplicito
+document.querySelector('.im-search-box input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        this.closest('form').submit();
+    }
+});
+
+// Tasto indietro (bfcache): ripristina pagina pulita
+window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+        document.querySelector('.im-search-box input').value = '';
+        document.querySelectorAll('.im-chip').forEach(function(b) {
+            b.classList.remove('im-chip--attivo');
+        });
+        document.getElementById('im-stile-val').value = '';
+    }
+});
+
+// City dropdown
+var cityTrigger = document.getElementById('im-city-trigger');
+var cityDropdown = document.getElementById('im-city-dropdown');
+
+cityTrigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    cityDropdown.classList.toggle('aperto');
+});
+
+document.querySelectorAll('.im-city-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var citta = this.dataset.citta;
+        document.getElementById('im-city-label').textContent = citta;
+        document.getElementById('im-citta-val').value = citta;
+        document.querySelectorAll('.im-city-option').forEach(function(o) {
+            o.classList.remove('selezionata');
+        });
+        this.classList.add('selezionata');
+        cityDropdown.classList.remove('aperto');
+    });
+});
+
+document.addEventListener('click', function() {
+    cityDropdown.classList.remove('aperto');
+});
+
+// Slider "Altro »"
+var imGrid = document.querySelector('.im-grid');
+var imSlide = 0;
+
+document.getElementById('im-altro').addEventListener('click', function() {
+    var card = imGrid.querySelector('.im-card');
+    var cardW = card.offsetWidth + 18;
+    var visibili = 5;
+    var totale = imGrid.querySelectorAll('.im-card').length;
+    var maxSlide = Math.ceil(totale / visibili) - 1;
+
+    imSlide = imSlide >= maxSlide ? 0 : imSlide + 1;
+    imGrid.style.transform = 'translateX(-' + (imSlide * visibili * cardW) + 'px)';
+});
+</script>
 </div>
 {/block}

@@ -124,27 +124,22 @@ class RicercaVisualizzaStudi
 
     public function avvia_ricerca(): array
     {
-        // Leggiamo i filtri dall'array dove li hanno salvati gli altri metodi
-        if (!empty($_GET['testo'])) {
-            $filtri = SessionManager::get('filtri_ricerca', []);
-            $filtri['testo'] = trim($_GET['testo']);
-            SessionManager::set('filtri_ricerca', $filtri);
-        }
-        $filtri = SessionManager::get('filtri_ricerca', []);
+        // Legge tutto da $_GET — nessun carryover dalla sessione
+        $citta = !empty($_GET['citta']) ? trim($_GET['citta']) : 'Roma';
+        $stile = !empty($_GET['stile']) ? trim($_GET['stile']) : '';
+        $testo = !empty($_GET['testo']) ? trim($_GET['testo']) : '';
 
-        $citta = $filtri['citta'] ?? 'Roma'; // default se l'utente non ha scelto città
-        $stile = $filtri['stile'] ?? '';
-        $testo = $filtri['testo'] ?? '';
+        // Pulisce i filtri vecchi dalla sessione
+        SessionManager::set('filtri_ricerca', []);
 
         $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
-
         $tatuatori = $this->pm->findAvailableStudios($criteri);
 
         return [
             'status'          => 'success',
             'interfaccia'     => 'Lista tatuatori',
             'data'            => $tatuatori,
-            'filtri_correnti' => $filtri,
+            'filtri_correnti' => ['citta' => $citta, 'stile' => $stile, 'testo' => $testo],
         ];
     }
 
