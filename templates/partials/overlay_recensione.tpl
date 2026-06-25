@@ -59,7 +59,9 @@
 
                 <div class="rc-field">
                     <label class="rc-label">Foto del tatuaggio (opzionale)</label>
-                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" multiple>
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*">
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" style="margin-top:8px">
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" style="margin-top:8px">
                 </div>
 
                 <div class="rc-nav">
@@ -77,6 +79,41 @@
             </div>
             <div class="rc-nav">
                 <a href="/scegli_studio?id={$data->getId()}" class="rc-btn">Torna allo studio</a>
+            </div>
+
+        {elseif $overlay_rec_step === 'dettaglio'}
+            <div class="rc-dettaglio">
+                <div class="rc-det-top">
+                    <span class="rc-det-av">
+                        {$recensione_dettaglio->getCliente()->getNome()|substr:0:1}{$recensione_dettaglio->getCliente()->getCognome()|substr:0:1}
+                    </span>
+                    <div>
+                        <div class="rc-det-name">{$recensione_dettaglio->getCliente()->getNome()|escape} {$recensione_dettaglio->getCliente()->getCognome()|substr:0:1}.</div>
+                        <div class="rc-det-stars">
+                            {for $i=1 to 5}{if $i <= $recensione_dettaglio->getVoto()}★{else}<span class="st-star-off">★</span>{/if}{/for}
+                        </div>
+                    </div>
+                    <span class="rc-det-date">{$recensione_dettaglio->getData()->format('M Y')}</span>
+                </div>
+                <div class="rc-det-title">{$recensione_dettaglio->getTitolo()|escape}</div>
+                <p class="rc-det-text">{$recensione_dettaglio->getDescrizione()|escape}</p>
+                {assign var=fotoArr value=$recensione_dettaglio->getFotoArray()}
+                {if $fotoArr}
+                    <div class="rc-det-photos">
+                        {foreach $fotoArr as $fotoUrl}
+                            <a href="{$fotoUrl|escape}" target="_blank">
+                                <img src="{$fotoUrl|escape}" alt="Foto tatuaggio" class="rc-det-photo">
+                            </a>
+                        {/foreach}
+                    </div>
+                {/if}
+                <div class="rc-det-footer">
+                    <span class="rc-det-stile">{$recensione_dettaglio->getStile()|escape}</span>
+                    · {$recensione_dettaglio->getTatuatore()->getNome()|escape} {$recensione_dettaglio->getTatuatore()->getCognome()|escape}
+                </div>
+            </div>
+            <div class="rc-nav">
+                <a href="/scegli_studio?id={$data->getId()}" class="rc-btn">← Torna allo studio</a>
             </div>
         {/if}
 

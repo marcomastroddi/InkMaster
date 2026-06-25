@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
@@ -318,6 +320,18 @@ switch ($page) {
         $dati = $controller5->eliminaRecensione((int)($_POST['id'] ?? 0));
         header('Content-Type: application/json');
         echo json_encode($dati);
+        break;
+
+    case 'visualizzaRecensione':
+        $recId = (int)($_GET['id'] ?? 0);
+        $pm = \InkMaster\Foundation\PersistentManager::getInstance();
+        $recensione = $pm->read(\InkMaster\Entity\Recensione::class, $recId);
+        $studioId = $recensione->getStudio()->getId();
+        $datiStudio = $controller->scegli_studio($studioId);
+        $datiStudio['mostra_overlay_recensione'] = true;
+        $datiStudio['overlay_rec_step'] = 'dettaglio';
+        $datiStudio['recensione_dettaglio'] = $recensione;
+        View::render('ricerca/studio', $datiStudio);
         break;
 
     // ===== INTERFACCIA 6 - MODERAZIONE PIATTAFORMA =====

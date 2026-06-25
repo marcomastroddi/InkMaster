@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 23:34:04
+/* Smarty version 5.8.0, created on 2026-06-26 01:04:12
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d9ecc4e40a6_69849453',
+  'unifunc' => 'content_6a3db3ec107b11_82739579',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ccab56d2f4e683b50909d274441414a74cf705a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782423235,
+      1 => 1782428635,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3d9ecc4e40a6_69849453 (\Smarty\Template $_smarty_tpl) {
+function content_6a3db3ec107b11_82739579 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7940178936a3d9ecc4b92b7_69311973', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20847217936a3db3ec0ddda1_90768369', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11648703506a3d9ecc4bc7e3_01798980', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5786011156a3db3ec0e0cd3_81781041', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1758340476a3d9ecc4bcde1_68583736', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18470581156a3db3ec0e11f5_51772080', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_7940178936a3d9ecc4b92b7_69311973 extends \Smarty\Runtime\Block
+class Block_20847217936a3db3ec0ddda1_90768369 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_11648703506a3d9ecc4bc7e3_01798980 extends \Smarty\Runtime\Block
+class Block_5786011156a3db3ec0e0cd3_81781041 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_1758340476a3d9ecc4bcde1_68583736 extends \Smarty\Runtime\Block
+class Block_18470581156a3db3ec0e11f5_51772080 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -117,19 +117,25 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
     </svg>
 </div>
 
+<?php $_smarty_tpl->assign('pubVisibili', $_smarty_tpl->getValue('pub_visibili'), false, NULL);
+$_smarty_tpl->assign('pubTotali', $_smarty_tpl->getValue('pub_totali'), false, NULL);?>
+
 <div class="st-strip">
     <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('data')->getPubblicazioni(), 'pub');
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('pubVisibili'), 'pub');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('pub')->value) {
 $foreach0DoElse = false;
 ?>
         <div class="st-strip-slot">
-            <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getPercorsoImmagine(), ENT_QUOTES, 'UTF-8', true);?>
+            <a href="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getPercorsoImmagine(), ENT_QUOTES, 'UTF-8', true);?>
+" target="_blank">
+                <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getPercorsoImmagine(), ENT_QUOTES, 'UTF-8', true);?>
 " alt="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 ">
-            <div class="st-strip-label"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+                <div class="st-strip-label"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 </div>
+            </a>
         </div>
     <?php
 }
@@ -153,6 +159,14 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 </div>
+<?php if ($_smarty_tpl->getValue('pubTotali') > 0) {?>
+<div class="st-strip-footer">
+    <a href="#" class="st-strip-portfolio-btn">
+        Vedi portfolio <?php if ($_smarty_tpl->getValue('pubTotali') > 4) {?>+<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('math')->handle(array('equation'=>"x-4",'x'=>$_smarty_tpl->getValue('pubTotali')), $_smarty_tpl);
+}?>
+    </a>
+</div>
+<?php }?>
 
 <div class="st-layout">
 
@@ -344,7 +358,8 @@ $foreach7DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('rec')->value) {
 $foreach7DoElse = false;
 ?>
-                        <div class="st-review">
+                        <a href="/visualizzaRecensione?id=<?php echo $_smarty_tpl->getValue('rec')->getId();?>
+" class="st-review">
                             <div class="st-rev-content">
                                 <div class="st-rev-top">
                                     <span class="st-rev-av">
@@ -391,13 +406,17 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
                                 <?php if ($_smarty_tpl->getValue('fotoArr')) {?>
                                     <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoArr')[0], ENT_QUOTES, 'UTF-8', true);?>
 " alt="Foto tatuaggio" class="st-rev-photo">
+                                    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('fotoArr')) > 1) {?>
+                                        <span class="st-rev-photo-count">+<?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('fotoArr'));?>
+</span>
+                                    <?php }?>
                                 <?php } else { ?>
                                     <span class="st-rev-photo-ph"><?php echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
 echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);?>
 </span>
                                 <?php }?>
                             </div>
-                        </div>
+                        </a>
                     <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>

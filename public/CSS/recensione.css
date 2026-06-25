@@ -232,3 +232,16 @@
 .rc-file-input:hover {
     border-color: #2fd8aa;
 }
+
+.rc-dettaglio { padding: 8px 0; }
+.rc-det-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.rc-det-av { width: 44px; height: 44px; border-radius: 50%; background: #2fd8aa22; color: #2fd8aa; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.rc-det-name { font-weight: 600; color: #e8eaed; }
+.rc-det-stars { color: #f5b942; font-size: 1rem; }
+.rc-det-date { margin-left: auto; color: #6b7280; font-size: .85rem; }
+.rc-det-title { font-size: 1.1rem; font-weight: 700; color: #e8eaed; margin-bottom: 8px; }
+.rc-det-text { color: #9ca3af; line-height: 1.6; margin-bottom: 16px; }
+.rc-det-photos { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.rc-det-photo { width: 140px; height: 140px; object-fit: cover; border-radius: 10px; }
+.rc-det-footer { color: #6b7280; font-size: .85rem; }
+.rc-det-stile { color: #2fd8aa; font-weight: 600; }

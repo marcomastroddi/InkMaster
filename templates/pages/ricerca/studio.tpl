@@ -54,11 +54,16 @@
     </svg>
 </div>
 
+{assign var=pubVisibili value=$pub_visibili}
+{assign var=pubTotali value=$pub_totali}
+
 <div class="st-strip">
-    {foreach $data->getPubblicazioni() as $pub}
+    {foreach $pubVisibili as $pub}
         <div class="st-strip-slot">
-            <img src="{$pub->getPercorsoImmagine()|escape}" alt="{$pub->getTitolo()|escape}">
-            <div class="st-strip-label">{$pub->getTitolo()|escape}</div>
+            <a href="{$pub->getPercorsoImmagine()|escape}" target="_blank">
+                <img src="{$pub->getPercorsoImmagine()|escape}" alt="{$pub->getTitolo()|escape}">
+                <div class="st-strip-label">{$pub->getTitolo()|escape}</div>
+            </a>
         </div>
     {foreachelse}
         {for $i=1 to 5}
@@ -71,6 +76,13 @@
         {/for}
     {/foreach}
 </div>
+{if $pubTotali > 0}
+<div class="st-strip-footer">
+    <a href="#" class="st-strip-portfolio-btn">
+        Vedi portfolio {if $pubTotali > 4}+{math equation="x-4" x=$pubTotali}{/if}
+    </a>
+</div>
+{/if}
 
 <div class="st-layout">
 
@@ -187,7 +199,7 @@
             {if $recensioni}
                 <div class="st-reviews-list">
                     {foreach $recensioni as $rec}
-                        <div class="st-review">
+                        <a href="/visualizzaRecensione?id={$rec->getId()}" class="st-review">
                             <div class="st-rev-content">
                                 <div class="st-rev-top">
                                     <span class="st-rev-av">
@@ -215,11 +227,14 @@
                                 {assign var=fotoArr value=$rec->getFotoArray()}
                                 {if $fotoArr}
                                     <img src="{$fotoArr[0]|escape}" alt="Foto tatuaggio" class="st-rev-photo">
+                                    {if $fotoArr|count > 1}
+                                        <span class="st-rev-photo-count">+{$fotoArr|count}</span>
+                                    {/if}
                                 {else}
                                     <span class="st-rev-photo-ph">{$rec->getTatuatore()->getNome()|substr:0:1}{$rec->getTatuatore()->getCognome()|substr:0:1}</span>
                                 {/if}
                             </div>
-                        </div>
+                        </a>
                     {/foreach}
                 </div>
             {else}

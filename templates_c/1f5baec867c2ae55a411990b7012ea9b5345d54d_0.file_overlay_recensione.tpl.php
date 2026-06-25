@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 19:44:14
+/* Smarty version 5.8.0, created on 2026-06-26 00:20:42
   from 'file:partials/overlay_recensione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d68eea0cfa0_23218373',
+  'unifunc' => 'content_6a3da9badbf606_42048517',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f5baec867c2ae55a411990b7012ea9b5345d54d' => 
     array (
       0 => 'partials/overlay_recensione.tpl',
-      1 => 1782407786,
+      1 => 1782426036,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d68eea0cfa0_23218373 (\Smarty\Template $_smarty_tpl) {
+function content_6a3da9badbf606_42048517 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 if ($_smarty_tpl->getValue('mostra_overlay_recensione')) {?>
 <div class="rc-backdrop">
@@ -64,9 +64,9 @@ if ($_smarty_tpl->getValue('mostra_overlay_recensione')) {?>
                         <option value="">Seleziona tatuatore</option>
                         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec_tatuatori'), 't');
-$foreach11DoElse = true;
+$foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('t')->value) {
-$foreach11DoElse = false;
+$foreach0DoElse = false;
 ?>
                             <option value="<?php echo $_smarty_tpl->getValue('t')->getId();?>
 "><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('t')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
@@ -84,9 +84,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                         <option value="">Seleziona stile</option>
                         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec_stili'), 's');
-$foreach12DoElse = true;
+$foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('s')->value) {
-$foreach12DoElse = false;
+$foreach1DoElse = false;
 ?>
                             <option value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('s')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
 "><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('s')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
@@ -104,7 +104,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
                 <div class="rc-field">
                     <label class="rc-label">Foto del tatuaggio (opzionale)</label>
-                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" multiple>
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*">
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" style="margin-top:8px">
+                    <input type="file" name="foto[]" class="rc-file-input" accept="image/*" style="margin-top:8px">
                 </div>
 
                 <div class="rc-nav">
@@ -124,6 +126,69 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="rc-nav">
                 <a href="/scegli_studio?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
 " class="rc-btn">Torna allo studio</a>
+            </div>
+
+        <?php } elseif ($_smarty_tpl->getValue('overlay_rec_step') === 'dettaglio') {?>
+            <div class="rc-dettaglio">
+                <div class="rc-det-top">
+                    <span class="rc-det-av">
+                        <?php echo substr((string) $_smarty_tpl->getValue('recensione_dettaglio')->getCliente()->getNome(), (int) 0, (int) 1);
+echo substr((string) $_smarty_tpl->getValue('recensione_dettaglio')->getCliente()->getCognome(), (int) 0, (int) 1);?>
+
+                    </span>
+                    <div>
+                        <div class="rc-det-name"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getCliente()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+ <?php echo substr((string) $_smarty_tpl->getValue('recensione_dettaglio')->getCliente()->getCognome(), (int) 0, (int) 1);?>
+.</div>
+                        <div class="rc-det-stars">
+                            <?php
+$_smarty_tpl->assign('i', null);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? 5+1 - (1) : 1-(5)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;
+if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('recensione_dettaglio')->getVoto()) {?>★<?php } else { ?><span class="st-star-off">★</span><?php }
+}
+}
+?>
+                        </div>
+                    </div>
+                    <span class="rc-det-date"><?php echo $_smarty_tpl->getValue('recensione_dettaglio')->getData()->format('M Y');?>
+</span>
+                </div>
+                <div class="rc-det-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+</div>
+                <p class="rc-det-text"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getDescrizione(), ENT_QUOTES, 'UTF-8', true);?>
+</p>
+                <?php $_smarty_tpl->assign('fotoArr', $_smarty_tpl->getValue('recensione_dettaglio')->getFotoArray(), false, NULL);?>
+                <?php if ($_smarty_tpl->getValue('fotoArr')) {?>
+                    <div class="rc-det-photos">
+                        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('fotoArr'), 'fotoUrl');
+$foreach2DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('fotoUrl')->value) {
+$foreach2DoElse = false;
+?>
+                            <a href="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoUrl'), ENT_QUOTES, 'UTF-8', true);?>
+" target="_blank">
+                                <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoUrl'), ENT_QUOTES, 'UTF-8', true);?>
+" alt="Foto tatuaggio" class="rc-det-photo">
+                            </a>
+                        <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+                    </div>
+                <?php }?>
+                <div class="rc-det-footer">
+                    <span class="rc-det-stile"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getStile(), ENT_QUOTES, 'UTF-8', true);?>
+</span>
+                    · <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getTatuatore()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+ <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('recensione_dettaglio')->getTatuatore()->getCognome(), ENT_QUOTES, 'UTF-8', true);?>
+
+                </div>
+            </div>
+            <div class="rc-nav">
+                <a href="/scegli_studio?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
+" class="rc-btn">← Torna allo studio</a>
             </div>
         <?php }?>
 

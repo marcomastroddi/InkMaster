@@ -160,11 +160,17 @@ class RicercaVisualizzaStudi
         $prenotazione['studio_id'] = $studioId;
         SessionManager::set('prenotazione', $prenotazione);
 
+        $pubblicazioni = $studio->getPubblicazioni()->toArray();
+        $pubVisibili = array_slice($pubblicazioni, 0, 4);   // ← aggiungi
+        $pubTotali = count($pubblicazioni);                 // ← aggiungi
+
         return [
-            'status'     => 'success',
-            'interfaccia'=> 'Interfaccia studio',
-            'data'       => $studio,
-            'recensioni' => $recensioni,
+            'status'       => 'success',
+            'interfaccia'  => 'Interfaccia studio',
+            'data'         => $studio,
+            'recensioni'   => $recensioni,
+            'pub_visibili' => $pubVisibili,                 // ← aggiungi
+            'pub_totali'   => $pubTotali,                   // ← aggiungi
         ];
     }
     
