@@ -343,7 +343,7 @@ switch ($page) {
             'posizione'         => $_POST['posizione']         ?? '',
         ]);
         if ($dati['status'] === 'success') {
-            header('Location: /login');
+            header('Location: /home');
             exit;
         }
         // Errore: ri-mostra il form col messaggio

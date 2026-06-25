@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 18:30:36
+/* Smarty version 5.8.0, created on 2026-06-25 13:55:51
   from 'file:pages/auth/registrazioneCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3c224c06f792_91566507',
+  'unifunc' => 'content_6a3d3367371505_71783716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7fdfc7ac05ca6bc9b74ce1f1f4d55612056f39d3' => 
     array (
       0 => 'pages/auth/registrazioneCliente.tpl',
-      1 => 1782325827,
+      1 => 1782395740,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3c224c06f792_91566507 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d3367371505_71783716 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15876482536a3c224c06a062_41494595', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19195380566a3d336735b502_55076463', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11436311936a3c224c06e136_29173819', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5094357246a3d3367365024_20143366', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16833454956a3c224c06eeb4_50442844', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8394047276a3d3367366563_82891806', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_15876482536a3c224c06a062_41494595 extends \Smarty\Runtime\Block
+class Block_19195380566a3d336735b502_55076463 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Registrati come cliente — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_11436311936a3c224c06e136_29173819 extends \Smarty\Runtime\Block
+class Block_5094357246a3d3367365024_20143366 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_16833454956a3c224c06eeb4_50442844 extends \Smarty\Runtime\Block
+class Block_8394047276a3d3367366563_82891806 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -84,7 +84,11 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
                 <p class="im-subtitle">Trova i migliori artisti e prenota il tuo prossimo tatuaggio in pochi clic.</p>
             </div>
 
-            <form action="/registrazione_cliente_action" method="POST" class="im-form">
+            <form action="/registraCliente" method="POST" class="im-form">
+                <?php if ((true && ($_smarty_tpl->hasVariable('message') && null !== ($_smarty_tpl->getValue('message') ?? null))) && $_smarty_tpl->getValue('message')) {?>
+                    <div class="im-alert im-alert-error"><?php echo $_smarty_tpl->getValue('message');?>
+</div>
+                <?php }?>
                 <div class="im-form-grid">
                     <div class="im-form-group">
                         <label class="im-label" for="nome">Nome</label>

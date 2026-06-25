@@ -25,7 +25,10 @@
                 <p class="im-subtitle">Trova i migliori artisti e prenota il tuo prossimo tatuaggio in pochi clic.</p>
             </div>
 
-            <form action="/registrazione_cliente_action" method="POST" class="im-form">
+            <form action="/registraCliente" method="POST" class="im-form">
+                {if isset($message) && $message}
+                    <div class="im-alert im-alert-error">{$message}</div>
+                {/if}
                 <div class="im-form-grid">
                     <div class="im-form-group">
                         <label class="im-label" for="nome">Nome</label>

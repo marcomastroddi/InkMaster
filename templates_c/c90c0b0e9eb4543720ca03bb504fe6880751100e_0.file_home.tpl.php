@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 14:54:11
+/* Smarty version 5.8.0, created on 2026-06-25 11:27:04
   from 'file:pages/ricerca/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3bef934c7424_87853416',
+  'unifunc' => 'content_6a3d1088548516_01142896',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c90c0b0e9eb4543720ca03bb504fe6880751100e' => 
     array (
       0 => 'pages/ricerca/home.tpl',
-      1 => 1782312811,
+      1 => 1782386769,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3bef934c7424_87853416 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d1088548516_01142896 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19671681816a3bef92c2ac92_67542886', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7133230256a3d1087ed0f78_96831339', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9072439996a3bef92d50339_07464809', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20094848746a3d1087ee9cb2_41160672', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6209729546a3bef92d50fc3_98315101', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7189270626a3d1087eec056_50817295', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_19671681816a3bef92c2ac92_67542886 extends \Smarty\Runtime\Block
+class Block_7133230256a3d1087ed0f78_96831339 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Home — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_9072439996a3bef92d50339_07464809 extends \Smarty\Runtime\Block
+class Block_20094848746a3d1087ee9cb2_41160672 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_6209729546a3bef92d50fc3_98315101 extends \Smarty\Runtime\Block
+class Block_7189270626a3d1087eec056_50817295 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -87,13 +87,30 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
     <div class="im-hero-content">
       <div class="im-eyebrow">Inchiostro che resta · prenotazione facile</div>
       <h1 class="im-title">Cerca il tuo tatuatore a
-        <a href="/cerca" class="im-city"><?php echo (($tmp = $_smarty_tpl->getValue('citta_corrente') ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp);?>
- <span class="im-caret">▾</span>
-          <span class="im-underline"></span>
-        </a>
+    <span class="im-city" id="im-city-trigger">
+        <span id="im-city-label"><?php echo (($tmp = $_smarty_tpl->getValue('citta_corrente') ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp);?>
+</span>
+        <span class="im-caret">▾</span>
+        <span class="im-underline"></span>
+        <div class="im-city-dropdown" id="im-city-dropdown">
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, array('Roma','Milano','Napoli','Torino','Bologna','Firenze','Palermo','Genova','Venezia','Bari'), 'c');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('c')->value) {
+$foreach0DoElse = false;
+?>
+                <div class="im-city-option" data-citta="<?php echo $_smarty_tpl->getValue('c');?>
+"><?php echo $_smarty_tpl->getValue('c');?>
+</div>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+        </div>
+    </span>
       </h1>
 
       <form action="/avvia_ricerca" method="get" class="im-search">
+        
         <div class="im-search-row">
           <div class="im-search-field">
             <div class="im-search-box">
@@ -102,22 +119,24 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
             </div>
           </div>
           <button type="submit" class="im-search-submit">Cerca</button>
+          <input type="hidden" name="citta" id="im-citta-val" value="<?php echo (($tmp = $_smarty_tpl->getValue('citta_corrente') ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp);?>
+">
         </div>
       </form>
 
       <div class="im-styles">
         <div class="im-styles-label">Sfoglia per stile</div>
         <div class="im-chips">
-          <?php
+            <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('stili'), 'stile');
-$foreach0DoElse = true;
+$foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('stile')->value) {
-$foreach0DoElse = false;
+$foreach1DoElse = false;
 ?>
-            <a href="/seleziona_stile?stile=<?php echo rawurlencode((string)$_smarty_tpl->getValue('stile')->getNome());?>
-" class="im-chip"><?php echo $_smarty_tpl->getValue('stile')->getNome();?>
-</a>
-          <?php
+            <button type="button" class="im-chip" data-stile="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('stile')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+"><?php echo $_smarty_tpl->getValue('stile')->getNome();?>
+</button>
+            <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         </div>
@@ -127,15 +146,15 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
     <div class="im-band">
     <div class="im-ticker">
-      <?php $_smarty_tpl->assign('citta_ticker', array('ROMA','MILANO','NAPOLI','TORINO','BOLOGNA','FIRENZE','PALERMO','GENOVA','VENEZIA','BARI','POPOLI','AVEZZANO','PESCARA','MONTESILVANO','AGNONE','ANTROSANO','CORVARO','L\'QUILA'), false, NULL);?>
+      <?php $_smarty_tpl->assign('citta_ticker', array('ROMA','MILANO','NAPOLI','TORINO','BOLOGNA','FIRENZE','PALERMO','GENOVA','VENEZIA','BARI','POPOLI','AVEZZANO','PESCARA','MONTESILVANO','AGNONE','ANTROSANO','CORVARO','L\'AQUILA'), false, NULL);?>
       <?php
 $_smarty_tpl->tpl_vars['__smarty_section_rep'] = new \Smarty\Variable(array());
 if (true) {
 for ($__section_rep_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_rep']->value['index'] = 0; $__section_rep_0_iteration <= 2; $__section_rep_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_rep']->value['index']++){
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('citta_ticker'), 'c');
-$foreach1DoElse = true;
+$foreach2DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('c')->value) {
-$foreach1DoElse = false;
+$foreach2DoElse = false;
 ?><span><?php echo $_smarty_tpl->getValue('c');?>
 </span><?php
 }
@@ -151,57 +170,55 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);
       <h2 class="im-h2">Tatuatori suggeriti</h2>
       <a href="/avvia_ricerca" class="im-link">Vedi tutti →</a>
     </div>
-    <div class="im-grid">
-      <?php $_smarty_tpl->assign('mostrati', 0, false, NULL);?>
-      <?php
+    <div class="im-grid-wrap">
+        <div class="im-grid">
+         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('studi'), 'studio');
-$foreach2DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('studio')->value) {
-$foreach2DoElse = false;
-?>
-        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('studio')->getTatuatori(), 'tatuatore');
 $foreach3DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('tatuatore')->value) {
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('studio')->value) {
 $foreach3DoElse = false;
 ?>
-          <?php if ($_smarty_tpl->getValue('mostrati') < 5) {?>
+         <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('studio')->getTatuatori(), 'tatuatore');
+$foreach4DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('tatuatore')->value) {
+$foreach4DoElse = false;
+?>
             <a href="/scegli_studio?id=<?php echo $_smarty_tpl->getValue('studio')->getId();?>
 " class="im-card">
-              <div class="im-avatar"><?php echo substr((string) $_smarty_tpl->getValue('tatuatore')->getNome(), (int) 0, (int) 1);
+            <div class="im-avatar"><?php echo substr((string) $_smarty_tpl->getValue('tatuatore')->getNome(), (int) 0, (int) 1);
 echo substr((string) $_smarty_tpl->getValue('tatuatore')->getCognome(), (int) 0, (int) 1);?>
 </div>
-              <div class="im-card-name"><?php echo $_smarty_tpl->getValue('tatuatore')->getNome();?>
+            <div class="im-card-name"><?php echo $_smarty_tpl->getValue('tatuatore')->getNome();?>
  <?php echo $_smarty_tpl->getValue('tatuatore')->getCognome();?>
 </div>
-              <div class="im-card-studio"><?php echo $_smarty_tpl->getValue('studio')->getNome();?>
+            <div class="im-card-studio"><?php echo $_smarty_tpl->getValue('studio')->getNome();?>
 </div>
-              <?php
+            <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('tatuatore')->getStili(), 'st');
-$foreach4DoElse = true;
+$foreach5DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('st')->value) {
-$foreach4DoElse = false;
+$foreach5DoElse = false;
 ?>
                 <div class="im-tag"><?php echo $_smarty_tpl->getValue('st')->getNome();?>
 </div>
                 <?php break 1;?>
-              <?php
+            <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-              <div class="im-card-city"><?php echo $_smarty_tpl->getValue('studio')->getPosizione()->value;?>
+            <div class="im-card-city"><?php echo $_smarty_tpl->getValue('studio')->getPosizione()->value;?>
 </div>
             </a>
-            <?php $_smarty_tpl->assign('mostrati', $_smarty_tpl->getValue('mostrati')+1, false, NULL);?>
-          <?php }?>
         <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-      <?php
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
+    </div>
     <div class="im-more-wrap">
-      <a href="/avvia_ricerca" class="im-more">Altro »</a>
+        <button type="button" class="im-more" id="im-altro">Altro »</button>
     </div>
   </div>
 
@@ -210,9 +227,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <div class="im-revscroll">
       <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('recensioni'), 'rec');
-$foreach5DoElse = true;
+$foreach6DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('rec')->value) {
-$foreach5DoElse = false;
+$foreach6DoElse = false;
 ?>
         <div class="im-review">
           <div class="im-review-main">
@@ -271,6 +288,88 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <div class="im-scroll-hint">‹ scorri per vedere tutte le recensioni ›</div>
   </div>
 
+<?php echo '<script'; ?>
+>
+// ============ JAVASCRIPT ============
+// Chip toggle
+document.querySelectorAll('.im-chip').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var attivo = this.classList.contains('im-chip--attivo');
+        document.querySelectorAll('.im-chip').forEach(function(b) {
+            b.classList.remove('im-chip--attivo');
+        });
+        if (!attivo) {
+            this.classList.add('im-chip--attivo');
+            document.getElementById('im-stile-val').value = this.dataset.stile;
+            document.querySelector('.im-search-box input').focus();
+        } else {
+            document.getElementById('im-stile-val').value = '';
+        }
+    });
+});
+
+// Enter nel campo di ricerca → submit esplicito
+document.querySelector('.im-search-box input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        this.closest('form').submit();
+    }
+});
+
+// Tasto indietro (bfcache): ripristina pagina pulita
+window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+        document.querySelector('.im-search-box input').value = '';
+        document.querySelectorAll('.im-chip').forEach(function(b) {
+            b.classList.remove('im-chip--attivo');
+        });
+        document.getElementById('im-stile-val').value = '';
+    }
+});
+
+// City dropdown
+var cityTrigger = document.getElementById('im-city-trigger');
+var cityDropdown = document.getElementById('im-city-dropdown');
+
+cityTrigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    cityDropdown.classList.toggle('aperto');
+});
+
+document.querySelectorAll('.im-city-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var citta = this.dataset.citta;
+        document.getElementById('im-city-label').textContent = citta;
+        document.getElementById('im-citta-val').value = citta;
+        document.querySelectorAll('.im-city-option').forEach(function(o) {
+            o.classList.remove('selezionata');
+        });
+        this.classList.add('selezionata');
+        cityDropdown.classList.remove('aperto');
+    });
+});
+
+document.addEventListener('click', function() {
+    cityDropdown.classList.remove('aperto');
+});
+
+// Slider "Altro »"
+var imGrid = document.querySelector('.im-grid');
+var imSlide = 0;
+
+document.getElementById('im-altro').addEventListener('click', function() {
+    var card = imGrid.querySelector('.im-card');
+    var cardW = card.offsetWidth + 18;
+    var visibili = 5;
+    var totale = imGrid.querySelectorAll('.im-card').length;
+    var maxSlide = Math.ceil(totale / visibili) - 1;
+
+    imSlide = imSlide >= maxSlide ? 0 : imSlide + 1;
+    imGrid.style.transform = 'translateX(-' + (imSlide * visibili * cardW) + 'px)';
+});
+<?php echo '</script'; ?>
+>
 </div>
 <?php
 }
