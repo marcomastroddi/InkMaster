@@ -1,0 +1,228 @@
+/* ==========================================================================
+   PROFILO CLIENTE
+   ========================================================================== */
+
+.im-auth-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+    padding: 60px 20px;
+    overflow: hidden;
+    background-color: #0a0c0d;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* Mandala Blackwork — decorazione sinistra e destra */
+.im-profilo-theme.im-auth-wrapper::before,
+.im-profilo-theme.im-auth-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 820px;
+    height: 820px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.2' stroke-linecap='round'%3E%3Ccircle cx='50' cy='50' r='46'/%3E%3Ccircle cx='50' cy='50' r='38'/%3E%3Ccircle cx='50' cy='50' r='28'/%3E%3Ccircle cx='50' cy='50' r='18'/%3E%3Ccircle cx='50' cy='50' r='8'/%3E%3Ccircle cx='50' cy='50' r='2.5' fill='%232fd8aa' fill-opacity='0.4'/%3E%3Cline x1='50' y1='4' x2='50' y2='96'/%3E%3Cline x1='4' y1='50' x2='96' y2='50'/%3E%3Cline x1='17.6' y1='17.6' x2='82.4' y2='82.4'/%3E%3Cline x1='82.4' y1='17.6' x2='17.6' y2='82.4'/%3E%3Cline x1='6.2' y1='30' x2='93.8' y2='70' opacity='0.4'/%3E%3Cline x1='6.2' y1='70' x2='93.8' y2='30' opacity='0.4'/%3E%3Cline x1='30' y1='6.2' x2='70' y2='93.8' opacity='0.4'/%3E%3Cline x1='70' y1='6.2' x2='30' y2='93.8' opacity='0.4'/%3E%3Cpolygon points='50,4 96,50 50,96 4,50' stroke-width='0.25'/%3E%3Cpolygon points='50,4 96,50 50,96 4,50' stroke-width='0.15' transform='rotate(45 50 50)'/%3E%3Cpolygon points='50,12 88,50 50,88 12,50' stroke-width='0.2' opacity='0.6'/%3E%3Ccircle cx='50' cy='4' r='1.2'/%3E%3Ccircle cx='96' cy='50' r='1.2'/%3E%3Ccircle cx='50' cy='96' r='1.2'/%3E%3Ccircle cx='4' cy='50' r='1.2'/%3E%3Ccircle cx='17.6' cy='17.6' r='1'/%3E%3Ccircle cx='82.4' cy='17.6' r='1'/%3E%3Ccircle cx='82.4' cy='82.4' r='1'/%3E%3Ccircle cx='17.6' cy='82.4' r='1'/%3E%3Ccircle cx='50' cy='22' r='0.8' fill='%232fd8aa' fill-opacity='0.6'/%3E%3Ccircle cx='78' cy='50' r='0.8' fill='%232fd8aa' fill-opacity='0.6'/%3E%3Ccircle cx='50' cy='78' r='0.8' fill='%232fd8aa' fill-opacity='0.6'/%3E%3Ccircle cx='22' cy='50' r='0.8' fill='%232fd8aa' fill-opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.13;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.im-profilo-theme.im-auth-wrapper::before {
+    left: -22%;
+    transform: translateY(-50%);
+    animation: im-mandala-spin-left 90s linear infinite;
+}
+
+.im-profilo-theme.im-auth-wrapper::after {
+    right: -22%;
+    transform: translateY(-50%);
+    animation: im-mandala-spin-right 110s linear infinite;
+}
+
+@keyframes im-mandala-spin-left {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(-360deg); }
+}
+
+@keyframes im-mandala-spin-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+.im-auth-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 680px;
+}
+
+.im-auth-card {
+    background: #101417;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Avatar e intestazione */
+.im-profilo-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-size: 2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    letter-spacing: -.02em;
+}
+
+.im-profilo-ruolo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #2fd8aa;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.im-profilo-nome {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: #eef1f0;
+    margin-bottom: 32px;
+}
+
+/* Separatore sezioni */
+.im-profilo-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #4b534f;
+    margin: 28px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+/* Form */
+.im-form { margin-top: 4px; }
+
+.im-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 680px) {
+    .im-form-grid { grid-template-columns: 1fr; }
+    .im-auth-card { padding: 32px 20px; }
+}
+
+.im-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.im-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cdd3d1;
+}
+
+.im-input {
+    background: #14191c;
+    border: 1px solid #232b30;
+    color: #eef1f0;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.im-input::placeholder { color: #4b534f; }
+.im-input:focus { border-color: #2fd8aa; background: #161c20; }
+
+.im-input:-webkit-autofill,
+.im-input:-webkit-autofill:hover,
+.im-input:-webkit-autofill:focus,
+.im-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #eef1f0 !important;
+    transition: background-color 5000000s ease-in-out 0s;
+    box-shadow: inset 0 0 0 1000px #14191c !important;
+}
+
+.im-input:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 1000px #161c20 !important;
+    border-color: #2fd8aa !important;
+}
+
+.im-input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.5);
+    cursor: pointer;
+}
+
+.im-btn-submit {
+    width: 100%;
+    padding: 16px;
+    margin-top: 24px;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+}
+
+.im-btn-submit:hover { background: #37eec0; }
+.im-btn-submit:active { transform: scale(0.99); }
+
+/* Password con occhietto */
+.im-input-eye-wrap { position: relative; }
+.im-input-eye-wrap .im-input { padding-right: 48px; }
+
+.im-eye-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4b534f;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.im-eye-btn:hover { color: #2fd8aa; }
+
+/* Feedback inline */
+.im-feedback {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.im-feedback.ok  { display: block; background: rgba(47,216,170,.12); color: #2fd8aa; }
+.im-feedback.err { display: block; background: rgba(230,57,70,.12);  color: #e63946; }

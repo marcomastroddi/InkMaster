@@ -2,8 +2,10 @@
 
 namespace InkMaster\Control\ControllerComune;
 
+use InkMaster\Entity\Cliente;
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
+use DateTime;
 
 class GestioneProfilo
 {
@@ -16,28 +18,16 @@ class GestioneProfilo
 
     public function visualizzaProfilo(): array
     {
-        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
-        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        // Tentativo 1: È un Cliente?
-        $utente = $this->pm->findClienteByUsername($username);
+        $utente = $this->pm->findClienteByUsername($username)
+            ?? $this->pm->findStudioByUsername($username)
+            ?? $this->pm->findAmministratoreByUsername($username);
 
-        // Tentativo 2: Se non è un cliente, è uno Studio?
-        if ($utente === null) {
-            $utente = $this->pm->findStudioByUsername($username);
-        }
-
-        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
-        if ($utente === null) {
-            $utente = $this->pm->findAmministratoreByUsername($username);
-        }
-
-        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
         if ($utente === null) {
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
@@ -45,100 +35,91 @@ class GestioneProfilo
         $data = [
             'nome'     => $utente->getNome(),
             'username' => $utente->getUsername(),
-            'ruolo'    => SessionManager::get('ruolo')
+            'ruolo'    => SessionManager::get('ruolo'),
         ];
 
-        
         if (method_exists($utente, 'getCognome')) {
             $data['cognome'] = $utente->getCognome();
         }
 
-        return [
-            'status' => 'success',
-            'data'   => $data
-        ];
+        if ($utente instanceof Cliente) {
+            $data['email']         = $utente->getEmail();
+            $data['data_nascita']  = $utente->getDataNascita()->format('Y-m-d');
+            $data['posizione']     = $utente->getPosizione() ?? '';
+        }
+
+        return ['status' => 'success', 'data' => $data];
     }
 
     public function modificaDati(array $dati): array
     {
-        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
-        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        // Tentativo 1: È un Cliente?
-        $utente = $this->pm->findClienteByUsername($username);
+        $utente = $this->pm->findClienteByUsername($username)
+            ?? $this->pm->findStudioByUsername($username)
+            ?? $this->pm->findAmministratoreByUsername($username);
 
-        // Tentativo 2: Se non è un cliente, è uno Studio?
-        if ($utente === null) {
-            $utente = $this->pm->findStudioByUsername($username);
-        }
-
-        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
-        if ($utente === null) {
-            $utente = $this->pm->findAmministratoreByUsername($username);
-        }
-
-        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
         if ($utente === null) {
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
         if (!empty($dati['nome']))    $utente->setNome($dati['nome']);
-        
-        if (!empty($dati['cognome']) && method_exists($utente, 'setCognome')) $utente->setCognome($dati['cognome']);
+        if (!empty($dati['cognome']) && method_exists($utente, 'setCognome')) {
+            $utente->setCognome($dati['cognome']);
+        }
+
+        if ($utente instanceof Cliente) {
+            if (!empty($dati['email']))  $utente->setEmail($dati['email']);
+            if (!empty($dati['posizione'])) $utente->setPosizione($dati['posizione']);
+            if (!empty($dati['data_nascita'])) {
+                $utente->setDataNascita(new DateTime($dati['data_nascita']));
+            }
+            if (!empty($dati['username']) && $dati['username'] !== $username) {
+                $utente->setUsername($dati['username']);
+                SessionManager::set('username', $dati['username']);
+            }
+        }
 
         $this->pm->update();
 
         return [
-            'status'      => 'success',
-            'message'     => 'Dati aggiornati con successo.',
-            'interfaccia' => 'Profilo aggiornato'
+            'status'  => 'success',
+            'message' => 'Dati aggiornati con successo.',
         ];
     }
 
     public function cambiaPassword(string $vecchiaPassword, string $nuovaPassword): array
     {
-        //Recupero lo username dell'utente dalla sessione
         $username = SessionManager::get('username');
 
-        //Controllo dello username
         if (!$username) {
             return ['status' => 'error', 'message' => 'Devi essere loggato.'];
         }
 
-        // Tentativo 1: È un Cliente?
-        $utente = $this->pm->findClienteByUsername($username);
+        $utente = $this->pm->findClienteByUsername($username)
+            ?? $this->pm->findStudioByUsername($username)
+            ?? $this->pm->findAmministratoreByUsername($username);
 
-        // Tentativo 2: Se non è un cliente, è uno Studio?
-        if ($utente === null) {
-            $utente = $this->pm->findStudioByUsername($username);
-        }
-
-        // Tentativo 3: Se non è nessuno dei precedenti, è un Amministratore?
-        if ($utente === null) {
-            $utente = $this->pm->findAmministratoreByUsername($username);
-        }
-
-        // Controllo di sicurezza: se l'username non esiste in nessuna tabella
         if ($utente === null) {
             return ['status' => 'error', 'message' => 'Credenziali non valide'];
         }
 
-        if ($utente->getPassword() !== $vecchiaPassword) {
+        if (!password_verify($vecchiaPassword, $utente->getPassword())) {
             return ['status' => 'error', 'message' => 'Password attuale non corretta.'];
         }
 
+        $utente->setPassword(password_hash($nuovaPassword, PASSWORD_BCRYPT));
+
         $utente->setPassword($nuovaPassword);
-        $this->pm->create($utente);
+        $this->pm->update();
 
         return [
-            'status'      => 'success',
-            'message'     => 'Password aggiornata con successo.',
-            'interfaccia' => 'Profilo'
+            'status'  => 'success',
+            'message' => 'Password aggiornata con successo.',
         ];
     }
 }

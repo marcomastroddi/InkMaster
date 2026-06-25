@@ -413,17 +413,21 @@ switch ($page) {
 
     // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
     case 'visualizza_profilo':
-        View::render('profilo/profilo', $controller9->visualizzaProfilo());
+        View::render('profilo/profiloCliente', $controller9->visualizzaProfilo());
         break;
 
     case 'modifica_dati':
         $dati = $controller9->modificaDati([
-            'nome'    => $_POST['nome']    ?? '',
-            'cognome' => $_POST['cognome'] ?? ''
+            'nome'         => $_POST['nome']         ?? '',
+            'cognome'      => $_POST['cognome']       ?? '',
+            'email'        => $_POST['email']         ?? '',
+            'data_nascita' => $_POST['data_nascita']  ?? '',
+            'posizione'    => $_POST['posizione']     ?? '',
+            'username'     => $_POST['username']      ?? '',
         ]);
         header('Content-Type: application/json');
         echo json_encode($dati);
-        break;
+        break;    
 
     case 'cambia_password':
         $dati = $controller9->cambiaPassword(
