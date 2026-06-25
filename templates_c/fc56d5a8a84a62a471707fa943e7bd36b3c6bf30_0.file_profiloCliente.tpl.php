@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 16:09:46
+/* Smarty version 5.8.0, created on 2026-06-25 16:24:06
   from 'file:pages/profilo/profiloCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d52ca0bb545_32709186',
+  'unifunc' => 'content_6a3d56267933d9_19765192',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc56d5a8a84a62a471707fa943e7bd36b3c6bf30' => 
     array (
       0 => 'pages/profilo/profiloCliente.tpl',
-      1 => 1782403780,
+      1 => 1782404636,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d52ca0bb545_32709186 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d56267933d9_19765192 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12701185776a3d52ca090b01_19369110', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15688122706a3d56267685e0_37248106', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13672842066a3d52ca09b342_48310422', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1643698856a3d56267764e6_42233823', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20580743076a3d52ca09d103_61773068', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_810372246a3d56267776d6_87959765', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_12701185776a3d52ca090b01_19369110 extends \Smarty\Runtime\Block
+class Block_15688122706a3d56267685e0_37248106 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\profilo';
@@ -51,7 +51,7 @@ Il mio profilo — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_13672842066a3d52ca09b342_48310422 extends \Smarty\Runtime\Block
+class Block_1643698856a3d56267764e6_42233823 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\profilo';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\profilo';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_20580743076a3d52ca09d103_61773068 extends \Smarty\Runtime\Block
+class Block_810372246a3d56267776d6_87959765 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\profilo';
@@ -133,13 +133,13 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('data')['cogn
 
                         <div class="im-profilo-section-title">Sicurezza</div>
 
-            <form id="im-form-password" class="im-form">
+            <form id="im-form-password" class="im-form" autocomplete="off">
                 <div class="im-form-group" style="margin-bottom:16px;">
                     <label class="im-label" for="vecchia_password">Password attuale</label>
                     <div class="im-input-eye-wrap">
                         <input type="password" id="vecchia_password" name="vecchia_password"
-                            class="im-input" placeholder="••••••••" autocomplete="current-password" required>
-                        <button type="button" class="im-eye-btn" data-target="vecchia_password">👁</button>
+                            class="im-input" placeholder="••••••••" autocomplete="new-password" required>
+                        <button type="button" class="im-eye-btn" data-target="new_password">👁</button>
                     </div>
                 </div>
                 <div class="im-form-grid">

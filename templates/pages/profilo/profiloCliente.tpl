@@ -63,13 +63,13 @@
             {* ── Sezione cambio password ── *}
             <div class="im-profilo-section-title">Sicurezza</div>
 
-            <form id="im-form-password" class="im-form">
+            <form id="im-form-password" class="im-form" autocomplete="off">
                 <div class="im-form-group" style="margin-bottom:16px;">
                     <label class="im-label" for="vecchia_password">Password attuale</label>
                     <div class="im-input-eye-wrap">
                         <input type="password" id="vecchia_password" name="vecchia_password"
-                            class="im-input" placeholder="••••••••" autocomplete="current-password" required>
-                        <button type="button" class="im-eye-btn" data-target="vecchia_password">👁</button>
+                            class="im-input" placeholder="••••••••" autocomplete="new-password" required>
+                        <button type="button" class="im-eye-btn" data-target="new_password">👁</button>
                     </div>
                 </div>
                 <div class="im-form-grid">
