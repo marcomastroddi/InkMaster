@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 19:44:14
+/* Smarty version 5.8.0, created on 2026-06-25 23:34:04
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d68ee9d6a15_53857558',
+  'unifunc' => 'content_6a3d9ecc4e40a6_69849453',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ccab56d2f4e683b50909d274441414a74cf705a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782409451,
+      1 => 1782423235,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3d68ee9d6a15_53857558 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d9ecc4e40a6_69849453 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3948679136a3d68ee984646_07575701', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7940178936a3d9ecc4b92b7_69311973', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15706123136a3d68ee989984_11066008', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11648703506a3d9ecc4bc7e3_01798980', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7830030356a3d68ee98a758_09316777', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1758340476a3d9ecc4bcde1_68583736', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_3948679136a3d68ee984646_07575701 extends \Smarty\Runtime\Block
+class Block_7940178936a3d9ecc4b92b7_69311973 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_15706123136a3d68ee989984_11066008 extends \Smarty\Runtime\Block
+class Block_11648703506a3d9ecc4bc7e3_01798980 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_7830030356a3d68ee98a758_09316777 extends \Smarty\Runtime\Block
+class Block_1758340476a3d9ecc4bcde1_68583736 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -345,21 +345,22 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('rec')->value) {
 $foreach7DoElse = false;
 ?>
                         <div class="st-review">
-                            <div class="st-rev-top">
-                                <span class="st-rev-av">
-                                    <?php echo substr((string) $_smarty_tpl->getValue('rec')->getCliente()->getNome(), (int) 0, (int) 1);
+                            <div class="st-rev-content">
+                                <div class="st-rev-top">
+                                    <span class="st-rev-av">
+                                        <?php echo substr((string) $_smarty_tpl->getValue('rec')->getCliente()->getNome(), (int) 0, (int) 1);
 echo substr((string) $_smarty_tpl->getValue('rec')->getCliente()->getCognome(), (int) 0, (int) 1);?>
 
-                                </span>
-                                <div class="st-rev-meta">
-                                    <div class="st-rev-nameline">
-                                        <span class="st-rev-name"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getCliente()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+                                    </span>
+                                    <div class="st-rev-meta">
+                                        <div class="st-rev-nameline">
+                                            <span class="st-rev-name"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getCliente()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
  <?php echo substr((string) $_smarty_tpl->getValue('rec')->getCliente()->getCognome(), (int) 0, (int) 1);?>
 .</span>
-                                        <span class="st-rev-badge">✓ verificato</span>
-                                    </div>
-                                    <div class="st-rev-stars">
-                                        <?php
+                                            <span class="st-rev-badge">✓ verificato</span>
+                                        </div>
+                                        <div class="st-rev-stars">
+                                            <?php
 $_smarty_tpl->assign('i', null);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? 5+1 - (1) : 1-(5)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
 if ($_smarty_tpl->tpl_vars['i']->total > 0) {
 for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
@@ -368,36 +369,33 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
 }
 }
 ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <span class="st-rev-date"><?php echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');?>
+                                    <span class="st-rev-date"><?php echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');?>
 </span>
-                            </div>
-                            <div class="st-rev-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+                                </div>
+                                <div class="st-rev-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 </div>
                                 <p class="st-rev-text"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getDescrizione(), ENT_QUOTES, 'UTF-8', true);?>
 </p>
-                                <?php if ($_smarty_tpl->getValue('rec')->getFoto()) {?>
-                                    <div class="st-rev-photos">
-                                        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('rec')->getFotoArray(), 'fotoUrl');
-$foreach8DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('fotoUrl')->value) {
-$foreach8DoElse = false;
-?>
-                                            <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoUrl'), ENT_QUOTES, 'UTF-8', true);?>
-" alt="Foto tatuaggio" class="st-rev-photo">
-                                        <?php
-}
-$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-                                    </div>
-                                <?php }?>
-                            <div class="st-rev-footer">
-                                <span class="st-rev-stile"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getStile(), ENT_QUOTES, 'UTF-8', true);?>
+                                <div class="st-rev-footer">
+                                    <span class="st-rev-stile"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getStile(), ENT_QUOTES, 'UTF-8', true);?>
 </span>
-                                · <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+                                    · <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
  <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), ENT_QUOTES, 'UTF-8', true);?>
 
+                                </div>
+                            </div>
+                            <div class="st-rev-photo-box">
+                                <?php $_smarty_tpl->assign('fotoArr', $_smarty_tpl->getValue('rec')->getFotoArray(), false, NULL);?>
+                                <?php if ($_smarty_tpl->getValue('fotoArr')) {?>
+                                    <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('fotoArr')[0], ENT_QUOTES, 'UTF-8', true);?>
+" alt="Foto tatuaggio" class="st-rev-photo">
+                                <?php } else { ?>
+                                    <span class="st-rev-photo-ph"><?php echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
+echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);?>
+</span>
+                                <?php }?>
                             </div>
                         </div>
                     <?php
@@ -438,9 +436,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="pb-grid">
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('tatuatori'), 't');
-$foreach9DoElse = true;
+$foreach8DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('t')->value) {
-$foreach9DoElse = false;
+$foreach8DoElse = false;
 ?>
                     <a href="/scegliTatuatore?id=<?php echo $_smarty_tpl->getValue('t')->getId();?>
 " class="pb-item">
@@ -468,9 +466,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="pb-grid">
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('stili'), 's');
-$foreach10DoElse = true;
+$foreach9DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('s')->value) {
-$foreach10DoElse = false;
+$foreach9DoElse = false;
 ?>
                     <a href="/scegliStile?id=<?php echo $_smarty_tpl->getValue('s')->getId();?>
 " class="pb-item">

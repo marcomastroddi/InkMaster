@@ -188,33 +188,36 @@
                 <div class="st-reviews-list">
                     {foreach $recensioni as $rec}
                         <div class="st-review">
-                            <div class="st-rev-top">
-                                <span class="st-rev-av">
-                                    {$rec->getCliente()->getNome()|substr:0:1}{$rec->getCliente()->getCognome()|substr:0:1}
-                                </span>
-                                <div class="st-rev-meta">
-                                    <div class="st-rev-nameline">
-                                        <span class="st-rev-name">{$rec->getCliente()->getNome()|escape} {$rec->getCliente()->getCognome()|substr:0:1}.</span>
-                                        <span class="st-rev-badge">✓ verificato</span>
+                            <div class="st-rev-content">
+                                <div class="st-rev-top">
+                                    <span class="st-rev-av">
+                                        {$rec->getCliente()->getNome()|substr:0:1}{$rec->getCliente()->getCognome()|substr:0:1}
+                                    </span>
+                                    <div class="st-rev-meta">
+                                        <div class="st-rev-nameline">
+                                            <span class="st-rev-name">{$rec->getCliente()->getNome()|escape} {$rec->getCliente()->getCognome()|substr:0:1}.</span>
+                                            <span class="st-rev-badge">✓ verificato</span>
+                                        </div>
+                                        <div class="st-rev-stars">
+                                            {for $i=1 to 5}{if $i <= $rec->getVoto()}★{else}<span class="st-star-off">★</span>{/if}{/for}
+                                        </div>
                                     </div>
-                                    <div class="st-rev-stars">
-                                        {for $i=1 to 5}{if $i <= $rec->getVoto()}★{else}<span class="st-star-off">★</span>{/if}{/for}
-                                    </div>
+                                    <span class="st-rev-date">{$rec->getData()->format('M Y')}</span>
                                 </div>
-                                <span class="st-rev-date">{$rec->getData()->format('M Y')}</span>
-                            </div>
-                            <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
+                                <div class="st-rev-title">{$rec->getTitolo()|escape}</div>
                                 <p class="st-rev-text">{$rec->getDescrizione()|escape}</p>
-                                {if $rec->getFoto()}
-                                    <div class="st-rev-photos">
-                                        {foreach $rec->getFotoArray() as $fotoUrl}
-                                            <img src="{$fotoUrl|escape}" alt="Foto tatuaggio" class="st-rev-photo">
-                                        {/foreach}
-                                    </div>
+                                <div class="st-rev-footer">
+                                    <span class="st-rev-stile">{$rec->getStile()|escape}</span>
+                                    · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
+                                </div>
+                            </div>
+                            <div class="st-rev-photo-box">
+                                {assign var=fotoArr value=$rec->getFotoArray()}
+                                {if $fotoArr}
+                                    <img src="{$fotoArr[0]|escape}" alt="Foto tatuaggio" class="st-rev-photo">
+                                {else}
+                                    <span class="st-rev-photo-ph">{$rec->getTatuatore()->getNome()|substr:0:1}{$rec->getTatuatore()->getCognome()|substr:0:1}</span>
                                 {/if}
-                            <div class="st-rev-footer">
-                                <span class="st-rev-stile">{$rec->getStile()|escape}</span>
-                                · {$rec->getTatuatore()->getNome()|escape} {$rec->getTatuatore()->getCognome()|escape}
                             </div>
                         </div>
                     {/foreach}

@@ -72,12 +72,6 @@ class Recensione
         $this->percorsoFoto = $percorsoFoto;
     }
 
-    public function getFotoArray(): array
-    {
-        if (empty($this->percorsoFoto)) return [];
-        return json_decode($this->percorsoFoto, true) ?? [];
-    }
-
     // Metodi getter
     public function getId(): ?int 
     {
@@ -117,6 +111,12 @@ class Recensione
     public function getFoto(): ?string 
     {
         return $this->percorsoFoto;
+    }
+
+    public function getFotoArray(): array
+    {
+        if (empty($this->percorsoFoto)) return [];
+        return json_decode($this->percorsoFoto, true) ?? [];
     }
 
     public function getStile(): string 
