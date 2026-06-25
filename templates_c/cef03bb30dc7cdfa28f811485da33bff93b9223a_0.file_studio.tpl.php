@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 10:46:45
+/* Smarty version 5.8.0, created on 2026-06-25 11:06:38
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d0715ceaf45_17678972',
+  'unifunc' => 'content_6a3d0bbeaa5fb0_76685761',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cef03bb30dc7cdfa28f811485da33bff93b9223a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782384344,
+      1 => 1782385546,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d0715ceaf45_17678972 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d0bbeaa5fb0_76685761 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13488381136a3d0715c60c63_77742596', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16059077596a3d0bbea63e18_22475464', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9906373266a3d0715c76d40_62189217', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14330531306a3d0bbea6b127_11072330', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2759292076a3d0715c77767_33398303', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16342510686a3d0bbea6bac9_88063695', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_13488381136a3d0715c60c63_77742596 extends \Smarty\Runtime\Block
+class Block_16059077596a3d0bbea63e18_22475464 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_9906373266a3d0715c76d40_62189217 extends \Smarty\Runtime\Block
+class Block_14330531306a3d0bbea6b127_11072330 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -63,18 +63,65 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_2759292076a3d0715c77767_33398303 extends \Smarty\Runtime\Block
+class Block_16342510686a3d0bbea6bac9_88063695 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 ?>
 
-<div class="st-page">
-        <div class="st-page">
-    <div class="st-bg">
-        <div class="st-blob st-blob-1"></div>
-        <div class="st-blob st-blob-2"></div>
-    </div>
+<div class="st-bg">
+    <div class="st-blob st-blob-1"></div>
+    <div class="st-blob st-blob-2"></div>
+        <svg class="st-tribal" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+
+                <g class="st-fish st-f1">
+            <path d="M 70,0 C 65,-30 15,-30 0,0 C 15,30 65,30 70,0"/>
+            <path d="M 2,0 L -22,-18 L -8,0 L -22,18 Z"/>
+            <circle cx="52" cy="-7" r="3.5"/>
+            <path d="M 35,-29 C 44,-46 60,-41 64,-28"/>
+        </g>
+
+                <g class="st-fish st-f2">
+            <path d="M 0,0 C 5,-38 55,-38 70,0 C 55,38 5,38 0,0"/>
+            <path d="M 68,0 L 92,-22 L 78,0 L 92,22 Z"/>
+            <circle cx="18" cy="-9" r="4.5"/>
+            <path d="M 35,-37 C 46,-55 62,-50 66,-36"/>
+        </g>
+
+                <g class="st-fish st-f3">
+            <path d="M 50,0 C 46,-20 10,-20 0,0 C 10,20 46,20 50,0"/>
+            <path d="M 1,0 L -16,-13 L -6,0 L -16,13 Z"/>
+            <circle cx="37" cy="-5" r="2.5"/>
+        </g>
+
+                <g class="st-fish st-f4">
+            <path d="M 60,0 C 56,-25 12,-25 0,0 C 12,25 56,25 60,0"/>
+            <path d="M 1,0 L -18,-15 L -7,0 L -18,15 Z"/>
+            <circle cx="44" cy="-6" r="3"/>
+            <path d="M 28,-24 C 36,-38 50,-35 54,-24"/>
+        </g>
+
+                <g class="st-fish st-f5">
+            <path d="M 42,0 C 38,-17 8,-17 0,0 C 8,17 38,17 42,0"/>
+            <path d="M 1,0 L -13,-11 L -5,0 L -13,11 Z"/>
+            <circle cx="31" cy="-4" r="2"/>
+        </g>
+
+                <g class="st-fish st-f6">
+            <path d="M 0,0 C 4,-32 48,-32 62,0 C 48,32 4,32 0,0"/>
+            <path d="M 60,0 L 82,-19 L 70,0 L 82,19 Z"/>
+            <circle cx="14" cy="-8" r="3.5"/>
+        </g>
+
+                <path class="st-w1" d="M-100,180 C 200,100 450,280 750,160 S 1150,80 1540,200"/>
+        <path class="st-w2" d="M-100,340 C 180,240 480,440 780,300 S 1180,200 1540,360"/>
+        <path class="st-w3" d="M-100,500 C 220,400 500,580 800,460 S 1200,360 1540,520"/>
+        <path class="st-w4" d="M-100,650 C 160,560 460,720 760,600 S 1160,500 1540,660"/>
+        <path class="st-w5" d="M-100,820 Q200,760 500,820 Q800,880 1100,820 Q1300,760 1600,820"/>
+        <path class="st-w6" d="M-100,860 Q200,800 500,860 Q800,920 1100,860 Q1300,800 1600,860"/>
+
+    </svg>
+</div>
 
     <div class="st-strip">
     <?php
