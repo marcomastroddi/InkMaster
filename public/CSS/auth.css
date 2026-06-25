@@ -150,6 +150,11 @@
     background: #161c20;
 }
 
+.im-input option {
+    background: #14191c;
+    color: #eef1f0;
+}
+
 /* ==========================================================================
    FIX AUTOFILL (Rimuove lo sfondo giallo del completamento automatico)
    ========================================================================== */
