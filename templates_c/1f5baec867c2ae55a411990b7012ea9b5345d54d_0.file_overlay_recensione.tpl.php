@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 18:47:16
+/* Smarty version 5.8.0, created on 2026-06-25 19:08:51
   from 'file:partials/overlay_recensione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d5b94bc2d98_18989263',
+  'unifunc' => 'content_6a3d60a3c7afd3_77231145',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f5baec867c2ae55a411990b7012ea9b5345d54d' => 
     array (
       0 => 'partials/overlay_recensione.tpl',
-      1 => 1782406031,
+      1 => 1782407265,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d5b94bc2d98_18989263 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d60a3c7afd3_77231145 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 if ($_smarty_tpl->getValue('mostra_overlay_recensione')) {?>
 <div class="rc-backdrop">
@@ -35,7 +35,7 @@ if ($_smarty_tpl->getValue('mostra_overlay_recensione')) {?>
 
         <?php if (!$_smarty_tpl->getValue('overlay_rec_step') || $_smarty_tpl->getValue('overlay_rec_step') === 'form') {?>
             <p class="rc-title">Lascia una recensione</p>
-            <form action="/compilaRecensione" method="post" class="rc-form">
+            <form action="/compilaRecensione" method="post" enctype="multipart/form-data" class="rc-form">
 
                 <div class="rc-field">
                     <label class="rc-label">Voto</label>
@@ -100,6 +100,11 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <div class="rc-field">
                     <label class="rc-label">Condividi la tua esperienza</label>
                     <textarea name="descrizione" class="rc-textarea" placeholder="Racconta come è andata..." rows="4"></textarea>
+                </div>
+
+                <div class="rc-field">
+                    <label class="rc-label">Foto del tatuaggio (opzionale)</label>
+                    <input type="file" name="foto" class="rc-file-input" accept="image/*">
                 </div>
 
                 <div class="rc-nav">

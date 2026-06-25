@@ -9,7 +9,7 @@
 
         {if !$overlay_rec_step || $overlay_rec_step === 'form'}
             <p class="rc-title">Lascia una recensione</p>
-            <form action="/compilaRecensione" method="post" class="rc-form">
+            <form action="/compilaRecensione" method="post" enctype="multipart/form-data" class="rc-form">
 
                 <div class="rc-field">
                     <label class="rc-label">Voto</label>
@@ -55,6 +55,11 @@
                 <div class="rc-field">
                     <label class="rc-label">Condividi la tua esperienza</label>
                     <textarea name="descrizione" class="rc-textarea" placeholder="Racconta come è andata..." rows="4"></textarea>
+                </div>
+
+                <div class="rc-field">
+                    <label class="rc-label">Foto del tatuaggio (opzionale)</label>
+                    <input type="file" name="foto" class="rc-file-input" accept="image/*">
                 </div>
 
                 <div class="rc-nav">
