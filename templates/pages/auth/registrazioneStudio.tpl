@@ -56,22 +56,22 @@
                     <div class="im-form-group">
                         <label class="im-label" for="posizione">Città</label>
                         <select id="posizione" name="posizione" class="im-input" required>
-                            <option value="" disabled selected>Seleziona la tua città</option>
-                            <option value="Roma">Roma</option>
+                            <option value="">— Seleziona città —</option>
                             <option value="Milano">Milano</option>
+                            <option value="Roma">Roma</option>
                             <option value="Napoli">Napoli</option>
                             <option value="Torino">Torino</option>
-                            <option value="Bologna">Bologna</option>
-                            <option value="Firenze">Firenze</option>
                             <option value="Palermo">Palermo</option>
                             <option value="Genova">Genova</option>
-                            <option value="Venezia">Venezia</option>
+                            <option value="Bologna">Bologna</option>
+                            <option value="Firenze">Firenze</option>
                             <option value="Bari">Bari</option>
                             <option value="Catania">Catania</option>
-                            <option value="Catanzaro">Catanzaro</option>
+                            <option value="Venezia">Venezia</option>
                             <option value="Pescara">Pescara</option>
                             <option value="Avezzano">Avezzano</option>
                             <option value="Popoli">Popoli</option>
+                            <option value="Catanzaro">Catanzaro</option>
                         </select>
                     </div>
 

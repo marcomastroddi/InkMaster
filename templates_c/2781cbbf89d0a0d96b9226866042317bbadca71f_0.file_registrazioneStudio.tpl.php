@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 17:00:56
+/* Smarty version 5.8.0, created on 2026-06-25 18:20:16
   from 'file:pages/auth/registrazioneStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d5ec81a60c2_44585212',
+  'unifunc' => 'content_6a3d71609e75e5_73645665',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2781cbbf89d0a0d96b9226866042317bbadca71f' => 
     array (
       0 => 'pages/auth/registrazioneStudio.tpl',
-      1 => 1782406844,
+      1 => 1782411601,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d5ec81a60c2_44585212 (\Smarty\Template $_smarty_tpl) {
+function content_6a3d71609e75e5_73645665 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13477112916a3d5ec819c128_65778253', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_961002946a3d71609c7c99_72407081', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19730968326a3d5ec81a42d8_23794075', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12819480206a3d71609e53e8_96613757', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17705134566a3d5ec81a54d4_25823990', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7718833286a3d71609e6900_57042355', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_13477112916a3d5ec819c128_65778253 extends \Smarty\Runtime\Block
+class Block_961002946a3d71609c7c99_72407081 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Registra il tuo studio — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_19730968326a3d5ec81a42d8_23794075 extends \Smarty\Runtime\Block
+class Block_12819480206a3d71609e53e8_96613757 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_17705134566a3d5ec81a54d4_25823990 extends \Smarty\Runtime\Block
+class Block_7718833286a3d71609e6900_57042355 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
@@ -115,22 +115,22 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\auth';
                     <div class="im-form-group">
                         <label class="im-label" for="posizione">Città</label>
                         <select id="posizione" name="posizione" class="im-input" required>
-                            <option value="" disabled selected>Seleziona la tua città</option>
-                            <option value="Roma">Roma</option>
+                            <option value="">— Seleziona città —</option>
                             <option value="Milano">Milano</option>
+                            <option value="Roma">Roma</option>
                             <option value="Napoli">Napoli</option>
                             <option value="Torino">Torino</option>
-                            <option value="Bologna">Bologna</option>
-                            <option value="Firenze">Firenze</option>
                             <option value="Palermo">Palermo</option>
                             <option value="Genova">Genova</option>
-                            <option value="Venezia">Venezia</option>
+                            <option value="Bologna">Bologna</option>
+                            <option value="Firenze">Firenze</option>
                             <option value="Bari">Bari</option>
                             <option value="Catania">Catania</option>
-                            <option value="Catanzaro">Catanzaro</option>
+                            <option value="Venezia">Venezia</option>
                             <option value="Pescara">Pescara</option>
                             <option value="Avezzano">Avezzano</option>
                             <option value="Popoli">Popoli</option>
+                            <option value="Catanzaro">Catanzaro</option>
                         </select>
                     </div>
 

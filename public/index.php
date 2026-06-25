@@ -397,7 +397,7 @@ switch ($page) {
             SessionManager::set('username', $_POST['username']);
             SessionManager::set('ruolo', 'studio');
             SessionManager::set('id_studio', $dati['idStudio']);
-            header('Location: /dashboard_studio');
+            header('Location: /dashboardStudio');
             exit;
         }
         View::render('auth/registrazioneStudio', $dati);
