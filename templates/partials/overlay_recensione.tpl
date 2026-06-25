@@ -39,12 +39,14 @@
                 </div>
 
                 <div class="rc-field">
-                    <label class="rc-label">Stile</label>
-                    <select name="stile" class="rc-select" required>
-                        <option value="">Seleziona stile</option>
-                        {foreach $rec_stili as $s}
-                            <option value="{$s->getNome()|escape}">{$s->getNome()|escape}</option>
-                        {/foreach}
+                    <label class="rc-label">Voto</label>
+                    <select name="voto" class="rc-select" required>
+                        <option value="">Seleziona voto</option>
+                        <option value="1">★ 1</option>
+                        <option value="2">★★ 2</option>
+                        <option value="3">★★★ 3</option>
+                        <option value="4">★★★★ 4</option>
+                        <option value="5">★★★★★ 5</option>
                     </select>
                 </div>
 

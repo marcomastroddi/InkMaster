@@ -277,7 +277,7 @@ switch ($page) {
         View::render('ricerca/studio', $datiStudio);
         break;
 
-    case 'compila_recensione':
+    case 'compilaRecensione':
         $dati = $controller5->compilaRecensione(
             (int)($_POST['voto'] ?? 0),
             $_POST['titolo'] ?? '',
