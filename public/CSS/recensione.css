@@ -99,23 +99,25 @@
 
 .rc-stars {
     display: flex;
-    gap: 6px;
     flex-direction: row-reverse;
     justify-content: flex-end;
+    gap: 4px;
 }
 
-.rc-star-label input { display: none; }
+.rc-stars input[type="radio"] {
+    display: none;
+}
 
-.rc-star-label span {
-    font-size: 1.6rem;
+.rc-stars label {
+    font-size: 2rem;
     color: #2a3330;
     cursor: pointer;
     transition: color .15s;
 }
 
-.rc-star-label:hover span,
-.rc-star-label:hover ~ .rc-star-label span,
-.rc-star-label input:checked ~ span {
+.rc-stars input:checked ~ label,
+.rc-stars label:hover,
+.rc-stars label:hover ~ label {
     color: #f5b942;
 }
 
@@ -178,4 +180,38 @@
     color: #6b736f;
     font-size: 0.9rem;
     margin-top: 8px;
+}
+
+.rc-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b736f' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.rc-select:focus {
+    border-color: #2fd8aa;
+    box-shadow: 0 0 0 3px rgba(47, 216, 170, .1);
+}
+
+.rc-input {
+    border-radius: 10px;
+}
+
+.rc-input:focus {
+    border-color: #2fd8aa;
+    box-shadow: 0 0 0 3px rgba(47, 216, 170, .1);
+}
+
+.rc-textarea {
+    border-radius: 10px;
+}
+
+.rc-textarea:focus {
+    border-color: #2fd8aa;
+    box-shadow: 0 0 0 3px rgba(47, 216, 170, .1);
 }

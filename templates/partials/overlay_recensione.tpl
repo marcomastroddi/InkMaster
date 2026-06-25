@@ -14,12 +14,16 @@
                 <div class="rc-field">
                     <label class="rc-label">Voto</label>
                     <div class="rc-stars">
-                        {for $i=1 to 5}
-                        <label class="rc-star-label">
-                            <input type="radio" name="voto" value="{$i}" required>
-                            <span>★</span>
-                        </label>
-                        {/for}
+                        <input type="radio" name="voto" id="s5" value="5" required>
+                        <label for="s5">★</label>
+                        <input type="radio" name="voto" id="s4" value="4">
+                        <label for="s4">★</label>
+                        <input type="radio" name="voto" id="s3" value="3">
+                        <label for="s3">★</label>
+                        <input type="radio" name="voto" id="s2" value="2">
+                        <label for="s2">★</label>
+                        <input type="radio" name="voto" id="s1" value="1">
+                        <label for="s1">★</label>
                     </div>
                 </div>
 
