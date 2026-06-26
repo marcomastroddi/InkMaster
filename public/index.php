@@ -438,17 +438,21 @@ switch ($page) {
 
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
-        $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
-        if ($dati['status'] === 'success') {
-            $destinazioni = [
-                'cliente'        => '/home',
-                'studio'         => '/dashboard_studio',
-                'amministratore' => '/dashboard_moderatore',
-            ];
-            header('Location: ' . ($destinazioni[$dati['ruolo']] ?? '/home'));
-            exit;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dati = $controllerAutenticazione->login($_POST['username'] ?? '', $_POST['password'] ?? '');
+            if ($dati['status'] === 'success') {
+                $destinazioni = [
+                    'cliente'        => '/home',
+                    'studio'         => '/dashboard_studio',
+                    'amministratore' => '/dashboard_moderatore',
+                ];
+                header('Location: ' . ($destinazioni[$dati['ruolo']] ?? '/home'));
+                exit;
+            }
+            View::render('auth/login', $dati);
+        } else {
+            View::render('auth/login', []);
         }
-        View::render('auth/login', $dati);
         break;
 
     case 'logout':

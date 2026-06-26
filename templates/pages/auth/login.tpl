@@ -25,7 +25,7 @@
                 <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
             </div>
 
-            <form action="/login_action" method="POST" class="im-form">
+            <form action="/login" method="POST" class="im-form">
                 <div class="im-form-group">
                     <label class="im-label" for="username">Username</label>
                     <input type="text" id="username" name="username" class="im-input" required placeholder="Inserisci il tuo username">
