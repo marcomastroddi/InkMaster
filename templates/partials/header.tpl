@@ -1,8 +1,10 @@
-{if $_sessione.ruolo != 'amministratore'}
+{if $_sessione.ruolo != 'amministratore' }
 <div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
-        <a href="/registrazioneStudio">Per gli artisti</a>
+        {if $_sessione.ruolo != 'studio'}
+            <a href="/registrazioneStudio">Per gli artisti</a>
+        {/if}
 
         {if $_sessione.username}
             <a href="/visualizza_profilo" class="im-nav-profilo">
@@ -16,8 +18,6 @@
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         {/if}
-
-        
     </div>
 </div>
 

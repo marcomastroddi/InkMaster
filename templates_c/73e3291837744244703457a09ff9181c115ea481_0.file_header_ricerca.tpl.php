@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 07:57:14
+/* Smarty version 5.8.0, created on 2026-06-26 15:43:47
   from 'file:partials/header_ricerca.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3cdf5a817714_94988612',
+  'unifunc' => 'content_6a3e9e33af6283_46506796',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73e3291837744244703457a09ff9181c115ea481' => 
     array (
       0 => 'partials/header_ricerca.tpl',
-      1 => 1782373354,
+      1 => 1782488112,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3cdf5a817714_94988612 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9e33af6283_46506796 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 ?><div class="im-nav im-nav--search">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
@@ -48,7 +48,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
         <?php } else { ?>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-        <span class="im-lang">🌐 <strong>ITA</strong></span>
+        
     </div>
 </div><?php }
 }

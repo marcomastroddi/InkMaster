@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 15:35:17
+/* Smarty version 5.8.0, created on 2026-06-26 15:43:22
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e9c35ef0150_13800002',
+  'unifunc' => 'content_6a3e9e1ab078b0_96962010',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9897b6a1b832c60055ee0f150949afbc102db3c4' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782488105,
+      1 => 1782488599,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,15 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e9c35ef0150_13800002 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9e1ab078b0_96962010 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
-        <a href="/registrazioneStudio">Per gli artisti</a>
+        <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'studio') {?>
+            <a href="/registrazioneStudio">Per gli artisti</a>
+        <?php }?>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
             <a href="/visualizza_profilo" class="im-nav-profilo">
@@ -42,8 +44,6 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-
-        
     </div>
 </div>
 
