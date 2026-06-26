@@ -57,7 +57,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                                {* ── APERTE prima ── *}
                 {foreach $data as $seg}
+                    {if $seg->getStato() != 'APERTA'}{continue}{/if}
                     {if $seg->getCliente()}
                         {assign var=utente value=$seg->getCliente()}
                         {assign var=tipo value='cliente'}
@@ -82,16 +84,51 @@
                             </div>
                         </td>
                         <td><span class="adm-motivo">{$seg->getMotivo()|escape}</span></td>
-                        <td>
-                            {if $seg->getStato() == 'APERTA'}
-                                <span class="adm-badge adm-badge--red">Aperta</span>
-                            {else}
-                                <span class="adm-badge adm-badge--muted">Chiusa</span>
-                            {/if}
-                        </td>
+                        <td><span class="adm-badge adm-badge--red">Aperta</span></td>
                         <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
                         <td>
                             <a href="/seleziona_utente?id={$utente->getId()}&tipo={$tipo}" class="adm-btn-ban">Banna</a>
+                        </td>
+                    </tr>
+                {/foreach}
+
+                {* ── separatore ── *}
+                <tr class="adm-table-sep-row">
+                    <td colspan="5"><span class="adm-table-sep-label">Già gestite</span></td>
+                </tr>
+
+                {* ── CHIUSE dopo ── *}
+                {foreach $data as $seg}
+                    {if $seg->getStato() == 'APERTA'}{continue}{/if}
+                    {if $seg->getCliente()}
+                        {assign var=utente value=$seg->getCliente()}
+                        {assign var=tipo value='cliente'}
+                        {assign var=nomeUtente value="`$utente->getNome()` `$utente->getCognome()`"}
+                        {assign var=iniziali value="`$utente->getNome()|substr:0:1``$utente->getCognome()|substr:0:1`"}
+                    {elseif $seg->getStudio()}
+                        {assign var=utente value=$seg->getStudio()}
+                        {assign var=tipo value='studio'}
+                        {assign var=nomeUtente value=$utente->getNome()}
+                        {assign var=iniziali value=$utente->getNome()|substr:0:2|upper}
+                    {else}
+                        {continue}
+                    {/if}
+                    <tr class="adm-row-chiusa">
+                        <td>
+                            <div class="adm-user-cell">
+                                <div class="adm-user-av adm-user-av--{$tipo}">{$iniziali|upper}</div>
+                                <div>
+                                    <div class="adm-user-name">{$nomeUtente|escape}</div>
+                                    <div class="adm-user-email">{$utente->getEmail()|escape}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="adm-motivo">{$seg->getMotivo()|escape}</span></td>
+                        <td><span class="adm-badge adm-badge--muted">Chiusa</span></td>
+                        <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
+                        <td class="adm-actions-cell">
+                            <a href="/seleziona_utente?id={$utente->getId()}&tipo={$tipo}" class="adm-btn-info">Info</a>
+                            <a href="#" class="adm-btn-sban">Sbanna</a>
                         </td>
                     </tr>
                 {/foreach}

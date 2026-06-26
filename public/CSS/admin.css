@@ -76,3 +76,12 @@
 
 .adm-empty { padding: 60px 24px; text-align: center; color: #4b534f; }
 .adm-empty-icon { font-size: 32px; margin-bottom: 12px; color: #2fd8aa; }
+
+.adm-table-sep-row td { padding: 8px 24px; background: rgba(255,255,255,.03); }
+.adm-table-sep-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #3f4a47; }
+.adm-row-chiusa td { opacity: .55; }
+.adm-actions-cell { display: flex; gap: 8px; align-items: center; }
+.adm-btn-info { font-size: 12px; font-weight: 700; color: #4fa3d1; background: rgba(79,163,209,.12); border: 1px solid rgba(79,163,209,.25); padding: 7px 14px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+.adm-btn-info:hover { background: rgba(79,163,209,.22); }
+.adm-btn-sban { font-size: 12px; font-weight: 700; color: #2fd8aa; background: rgba(47,216,170,.10); border: 1px solid rgba(47,216,170,.22); padding: 7px 14px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+.adm-btn-sban:hover { background: rgba(47,216,170,.18); }
