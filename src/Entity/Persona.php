@@ -4,16 +4,9 @@ namespace InkMaster\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-// Persona ora modella SOLO l'identità anagrafica (chi è la persona),
-// non l'autenticazione. Username e password vivono nelle sottoclassi
-// che fanno davvero login (Cliente, Amministratore).
 #[ORM\MappedSuperclass]
-//Per l'ereditarietà usiamo l'approccio "MappedSuperclass" che è più semplice e adatto al nostro caso, 
-//dato che non abbiamo bisogno di una tabella unica per tutte le persone, ma vogliamo che ogni tipo di persona (Cliente, Amministratore, Tatuatore) ne abbia una.
-
 abstract class Persona 
 {
-    // Ciascuna tabella figlia (tatuatore, cliente, amministratore) genererà il proprio ID auto-incrementale
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -25,7 +18,7 @@ abstract class Persona
     #[ORM\Column(type: 'string', length: 100)]
     protected string $cognome;
 
-    // Costruttore: solo i dati anagrafici comuni a tutte le persone
+    // Costruttore
     public function __construct(string $nome, string $cognome) 
     {
         $this->nome = $nome;
@@ -49,11 +42,6 @@ abstract class Persona
     }
 
     // Metodi setter
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
     public function setNome(string $nome): void 
     {
         $this->nome = $nome;

@@ -19,6 +19,7 @@ use InkMaster\Control\ControllerComune\GestioneProfilo;
 use InkMaster\Control\ControllerComune\Autenticazione;
 use InkMaster\Control\ControllerComune\Registrazione;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
+use InkMaster\Control\ControllerStudio\GestioneTeam;
 
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Foundation\PersistentManager;
@@ -55,7 +56,7 @@ $pagineProtette = [
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
-    'avvia_recensione', 'compila_recensione',
+    'avvia_recensione', 'compila_recensione', 'gestisci_team',
 ];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
@@ -577,99 +578,32 @@ switch ($page) {
             'nome_studio' => $studio ? $studio->getNome() : SessionManager::get('username', 'Studio')
         ]);
         break;
-
     
+    case 'gestisci_team':
+        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $result = $gt->visualizzaTeam();
+        View::render('studio/GestisciTeam', [
+            'tatuatori' => $result['tatuatori'],
+            'stili'     => $result['stili'],
+        ]);
+        break;
+    
+    case 'aggiungi_tatuatore':
+        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $gt->aggiungiTatuatore($_POST);
+        header('Location: /gestisci_team');
+        exit;
+
+    case 'elimina_tatuatore':
+        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $gt->eliminaTatuatore((int)($_POST['id'] ?? 0));
+        header('Location: /gestisci_team');
+        exit;
+        
     // ===== 404 =====
     default:
         View::render('errori/404', []);
         break;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
