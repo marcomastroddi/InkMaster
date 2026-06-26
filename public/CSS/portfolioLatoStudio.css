@@ -1,0 +1,422 @@
+/* ================================================================
+   PORTFOLIO STUDIO
+   ================================================================ */
+
+/* ── Sfondo comune ── */
+.im-portfolio-page,
+.im-portfolio-form-page {
+    position: relative;
+    min-height: calc(100vh - 76px);
+    background-color: #0a0c0d;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    overflow: hidden;
+}
+
+.im-portfolio-form-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    min-height: calc(100vh - 76px);
+}
+
+/* ── Decorazione: ruota geometrica blackwork ── */
+.im-portfolio-deco {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.im-portfolio-deco::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    width: 900px;
+    height: 900px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='white' stroke-width='0.4'%3E%3Ccircle cx='100' cy='100' r='95'/%3E%3Ccircle cx='100' cy='100' r='70'/%3E%3Ccircle cx='100' cy='100' r='45'/%3E%3Ccircle cx='100' cy='100' r='20'/%3E%3Cpolygon points='100,5 113,87 195,100 113,113 100,195 87,113 5,100 87,87'/%3E%3Cpolygon points='100,30 110,90 170,100 110,110 100,170 90,110 30,100 90,90'/%3E%3Cline x1='100' y1='5' x2='100' y2='195'/%3E%3Cline x1='5' y1='100' x2='195' y2='100'/%3E%3Cline x1='32' y1='32' x2='168' y2='168'/%3E%3Cline x1='168' y1='32' x2='32' y2='168'/%3E%3Ccircle cx='100' cy='5' r='2.5'/%3E%3Ccircle cx='195' cy='100' r='2.5'/%3E%3Ccircle cx='100' cy='195' r='2.5'/%3E%3Ccircle cx='5' cy='100' r='2.5'/%3E%3Ccircle cx='32' cy='32' r='2'/%3E%3Ccircle cx='168' cy='32' r='2'/%3E%3Ccircle cx='168' cy='168' r='2'/%3E%3Ccircle cx='32' cy='168' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.04;
+    animation: im-port-spin 150s linear infinite;
+}
+
+@keyframes im-port-spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Container portfolio ── */
+.im-portfolio-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+}
+
+@media (max-width: 640px) {
+    .im-portfolio-container { padding: 40px 20px 60px; }
+}
+
+/* ── Header ── */
+.im-portfolio-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.im-port-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2fd8aa;
+    margin-bottom: 8px;
+}
+
+.im-portfolio-title {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    color: #f0ece6;
+    margin: 0 0 6px;
+    line-height: 1.1;
+}
+
+.im-portfolio-subtitle {
+    font-size: 14px;
+    color: rgba(240,236,230,0.4);
+    margin: 0;
+}
+
+.im-btn-add {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.im-btn-add:hover {
+    background: #25c99c;
+    transform: translateY(-2px);
+}
+
+/* ── Griglia ── */
+.im-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .im-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+    .im-portfolio-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Card ── */
+.im-pub-card {
+    background: #141618;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.im-pub-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(47,216,170,0.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.im-pub-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.im-pub-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s;
+}
+
+.im-pub-card:hover .im-pub-img {
+    transform: scale(1.05);
+}
+
+.im-pub-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(10,12,13,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    color: rgba(240,236,230,0.75);
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.im-pub-card:hover .im-pub-delete {
+    opacity: 1;
+}
+
+.im-pub-delete:hover {
+    background: rgba(210,40,40,0.85);
+    border-color: transparent;
+    color: #fff;
+}
+
+.im-pub-info {
+    padding: 16px 18px;
+}
+
+.im-pub-titolo {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0ece6;
+    margin-bottom: 6px;
+}
+
+.im-pub-desc {
+    font-size: 13px;
+    color: rgba(240,236,230,0.45);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.im-pub-data {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(47,216,170,0.65);
+}
+
+/* ── Empty state ── */
+.im-portfolio-empty {
+    text-align: center;
+    padding: 100px 20px;
+    color: rgba(240,236,230,0.3);
+}
+
+.im-empty-icon {
+    font-size: 52px;
+    color: rgba(47,216,170,0.25);
+    margin-bottom: 20px;
+}
+
+.im-portfolio-empty p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* ── Form page ── */
+.im-pub-form-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+}
+
+.im-pub-form-card {
+    background: #1b1f23;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 40px 44px;
+}
+
+@media (max-width: 600px) {
+    .im-pub-form-card { padding: 28px 24px; }
+}
+
+.im-pub-form-header {
+    margin-bottom: 32px;
+}
+
+.im-back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: rgba(47,216,170,0.65);
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: color 0.2s;
+}
+
+.im-back-link:hover { color: #2fd8aa; }
+
+.im-pub-form-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #f0ece6;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.im-pub-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.im-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.im-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,236,230,0.5);
+}
+
+.im-input {
+    display: block;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #f0ece6;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.im-input:focus {
+    border-color: #2fd8aa;
+}
+
+.im-input::placeholder {
+    color: rgba(240,236,230,0.22);
+}
+
+textarea.im-input {
+    resize: none;
+    height: auto;
+}
+
+.im-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%232fd8aa' stroke-width='1.5' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+.im-select option {
+    background: #1a1c1e;
+    color: #f0ece6;
+}
+
+.im-feedback {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.im-feedback.err {
+    background: rgba(210,40,40,0.12);
+    border: 1px solid rgba(210,40,40,0.3);
+    color: #ff7070;
+}
+
+.im-feedback.ok {
+    background: rgba(47,216,170,0.1);
+    border: 1px solid rgba(47,216,170,0.3);
+    color: #2fd8aa;
+}
+
+.im-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.im-btn-cancel-link {
+    font-size: 14px;
+    color: rgba(240,236,230,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.im-btn-cancel-link:hover { color: #f0ece6; }
+
+.im-btn-submit-pub {
+    padding: 12px 28px;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.im-btn-submit-pub:hover {
+    background: #25c99c;
+    transform: translateY(-1px);
+}
+
+.im-btn-submit-pub:disabled {
+    opacity: 0.55;
+    cursor: default;
+    transform: none;
+}
+
+/*Form immagini*/
+.im-input-file {
+    padding: 10px 14px;
+    cursor: pointer;
+    color: rgba(240,236,230,0.6);
+}
+
+.im-input-file::file-selector-button {
+    background: rgba(47,216,170,0.15);
+    border: 1px solid rgba(47,216,170,0.4);
+    border-radius: 6px;
+    color: #2fd8aa;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.im-input-file::file-selector-button:hover {
+    background: rgba(47,216,170,0.25);
+}
