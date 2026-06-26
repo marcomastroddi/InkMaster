@@ -51,8 +51,8 @@ $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';
 // ── Rotte che richiedono il login ──
 $pagineProtette = [
     'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
-    'pubblica_recensione', 'elimina_recensione',
-    'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban', 'scarta_segnalazione', 'rimuovi_ban',
+    'elimina_recensione',
+    'dashboard_moderatore', 'accedi_segnalazioni', 'conferma_ban', 'scarta_segnalazione', 'rimuovi_ban',
     'form_segnalazione', 'invia_segnalazione',
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
@@ -69,7 +69,7 @@ if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
 
 // ── Rotte vietate agli studi loggati ──
 $pagineVietateStudio = [
-    'home', 'cerca', 'stili', 'avvia_ricerca', 'scegli_studio',
+    'home', 'avvia_ricerca', 'scegli_studio',
     'visualizza_recensioni', 'seleziona_posizione', 'seleziona_stile',
     'inserisci_testo_ricerca', 'portfolio_pubblico', 'dettagli_pubblicazione',
     'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData',
@@ -90,18 +90,10 @@ switch ($page) {
         View::render('ricerca/home', $controller->mostra_home());
         break;
 
-    case 'cerca':
-        View::render('ricerca/cerca', $controller->scegli_citta());
-        break;
-
     case 'seleziona_posizione':
         $dati = $controller->seleziona_posizione($_GET['citta'] ?? '');
         header('Content-Type: application/json');
         echo json_encode($dati);
-        break;
-
-    case 'stili':
-        View::render('ricerca/stili', $controller->apri_stili_disponibili());
         break;
 
     case 'seleziona_stile':
@@ -409,10 +401,6 @@ switch ($page) {
         View::render('ricerca/studio', $datiStudio);
         break;
 
-    case 'pubblica_recensione':
-        View::render('recensioni/conferma_recensione', $controller5->pubblicaRecensione());
-        break;
-
     case 'elimina_recensione':
         $dati = $controller5->eliminaRecensione((int)($_POST['id'] ?? 0));
         header('Content-Type: application/json');
@@ -439,13 +427,6 @@ switch ($page) {
     case 'accedi_segnalazioni':
         View::render('moderatore/segnalazioni', $controller6->accedi_segnalazioni());
         break;
-
-    case 'seleziona_utente':
-        View::render('moderatore/utente', $controller6->seleziona_utente(
-            (int)($_GET['id'] ?? 0),
-            $_GET['tipo'] ?? ''
-        ));
-        break;;
 
     case 'conferma_ban':
         $controller6->conferma_ban(
@@ -666,17 +647,6 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
-    // ===== DASHBOARD STUDIO (landing dopo il login dello studio) =====
-    case 'dashboard_studio':
-        $idStudio = SessionManager::get('id_studio');
-        $studio = $idStudio
-            ? PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $idStudio)
-            : null;
-        View::render('studio/dashboard_studio', [
-            'nome_studio' => $studio ? $studio->getNome() : SessionManager::get('username', 'Studio')
-        ]);
-        break;
-    
     case 'gestisci_team':
         $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
         $result = $gt->visualizzaTeam();
@@ -698,10 +668,6 @@ switch ($page) {
         header('Location: /gestisci_team');
         exit;
 
-    case 'storico_appuntamenti':
-        View::render('studio/StoricoAppuntamenti', $controller10->visualizzaStorico());
-        break;
-    
     case 'storico_appuntamenti':
         $stato = $_GET['stato'] ?? null;
         $dati = $controller10->visualizzaStorico($stato);

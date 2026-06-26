@@ -1,4 +1,5 @@
 {if $_sessione.ruolo != 'amministratore' }
+<div class="im-topbar">
 <div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
@@ -23,6 +24,7 @@
         {/if}
         </div>
         </div>
+</div>
 
 {if $_sessione.username}
 <div class="im-logout-overlay" id="im-logout-overlay">
@@ -39,11 +41,13 @@
 {/if}
 
 {else}
+<div class="im-topbar">
 <div class="im-nav im-nav--admin">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
         <a href="/dashboard_moderatore" class="im-btn-outline">Dashboard Admin</a>
         <a href="/logout" class="im-btn-outline">Esci</a>
     </div>
+</div>
 </div>
 {/if}

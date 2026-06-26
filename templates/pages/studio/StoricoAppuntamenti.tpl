@@ -48,12 +48,12 @@
 
                     <div class="im-richiesta-campo">
                         <div class="im-richiesta-label">Data</div>
-                        <div class="im-richiesta-valore">{$app->getData()->format('d/m/Y')}</div>
+                        <div class="im-richiesta-valore">{if $app->getData()}{$app->getData()->format('d/m/Y')}{else}—{/if}</div>
                     </div>
 
                     <div class="im-richiesta-campo">
                         <div class="im-richiesta-label">Orario</div>
-                        <div class="im-richiesta-valore">{$app->getOraInizio()->format('H:i')} – {$app->getOraFine()->format('H:i')}</div>
+                        <div class="im-richiesta-valore">{if $app->getOraInizio()}{$app->getOraInizio()->format('H:i')} – {$app->getOraFine()->format('H:i')}{else}—{/if}</div>
                     </div>
 
                     <div class="im-richiesta-campo">

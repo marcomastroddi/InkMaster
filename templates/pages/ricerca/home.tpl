@@ -126,14 +126,14 @@
             <div class="im-review-title">{$rec->getTitolo()}</div>
             <p class="im-review-text">{$rec->getDescrizione()}</p>
             <div class="im-review-meta">
-              {$rec->getStile()} · {$rec->getTatuatore()->getNome()} {$rec->getTatuatore()->getCognome()} · {$rec->getData()->format('M Y')}
+              {$rec->getStile()} · {if $rec->getTatuatore()}{$rec->getTatuatore()->getNome()} {$rec->getTatuatore()->getCognome()}{else}—{/if} · {if $rec->getData()}{$rec->getData()->format('M Y')}{else}—{/if}
             </div>
           </div>
           <div class="im-review-photo im-hatch">
             {if $rec->getFoto()}
               <img src="{$rec->getFoto()}" alt="{$rec->getTitolo()|escape}">
             {else}
-              <span class="im-review-mono">{$rec->getTatuatore()->getNome()|substr:0:1}{$rec->getTatuatore()->getCognome()|substr:0:1}</span>
+              <span class="im-review-mono">{if $rec->getTatuatore()}{$rec->getTatuatore()->getNome()|substr:0:1}{$rec->getTatuatore()->getCognome()|substr:0:1}{else}?{/if}</span>
             {/if}
           </div>
         </div>
