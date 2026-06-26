@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 20:13:27
+/* Smarty version 5.8.0, created on 2026-06-26 21:19:27
   from 'file:pages/profilo/areaPersonale.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ec147400df7_78100794',
+  'unifunc' => 'content_6a3ed0bf187d38_77297151',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5de946ccceb8c79f319ae29d96ac644ad3018d8' => 
     array (
       0 => 'pages/profilo/areaPersonale.tpl',
-      1 => 1782497119,
+      1 => 1782501563,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ec147400df7_78100794 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ed0bf187d38_77297151 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_871531556a3ec1473cbf86_82590598', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9339489736a3ed0bf15d7d1_22975557', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4596059806a3ec1473cff11_14190921', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13852489006a3ed0bf160690_99616183', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8025055596a3ec1473d0990_86636587', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20358522546a3ed0bf161274_12085260', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_871531556a3ec1473cbf86_82590598 extends \Smarty\Runtime\Block
+class Block_9339489736a3ed0bf15d7d1_22975557 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -51,7 +51,7 @@ Area personale — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_4596059806a3ec1473cff11_14190921 extends \Smarty\Runtime\Block
+class Block_13852489006a3ed0bf160690_99616183 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -63,13 +63,85 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8025055596a3ec1473d0990_86636587 extends \Smarty\Runtime\Block
+class Block_20358522546a3ed0bf161274_12085260 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
 ?>
 
 <div class="im-ap-page">
+
+<div class="im-ap-bg-layer">
+    <div class="im-ap-blob im-ap-blob-1"></div>
+    <div class="im-ap-blob im-ap-blob-2"></div>
+    <div class="im-ap-blob im-ap-blob-3"></div>
+
+    <svg class="im-ap-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+         xmlns="http://www.w3.org/2000/svg">
+
+                <g fill="none" stroke="#2fd8aa" stroke-linecap="round"
+           style="animation: im-geo-spin 60s linear infinite; transform-origin: 320px 450px;">
+            <circle cx="320" cy="450" r="120" stroke-width="0.5"/>
+            <circle cx="320" cy="330" r="120" stroke-width="0.5"/>
+            <circle cx="320" cy="570" r="120" stroke-width="0.5"/>
+            <circle cx="216" cy="390" r="120" stroke-width="0.5"/>
+            <circle cx="424" cy="390" r="120" stroke-width="0.5"/>
+            <circle cx="216" cy="510" r="120" stroke-width="0.5"/>
+            <circle cx="424" cy="510" r="120" stroke-width="0.5"/>
+            <circle cx="320" cy="450" r="240" stroke-width="0.3" opacity="0.6"/>
+            <circle cx="320" cy="450" r="360" stroke-width="0.2" opacity="0.35"/>
+            <polygon points="320,330 424,390 424,510 320,570 216,510 216,390" stroke-width="0.4" opacity="0.6"/>
+            <polygon points="320,314 428,503 212,503" stroke-width="0.3" opacity="0.5"/>
+            <polygon points="320,586 212,397 428,397" stroke-width="0.3" opacity="0.5"/>
+            <line x1="320" y1="450" x2="320" y2="90"  stroke-width="0.2" opacity="0.3"/>
+            <line x1="320" y1="450" x2="320" y2="810" stroke-width="0.2" opacity="0.3"/>
+            <line x1="320" y1="450" x2="680" y2="450" stroke-width="0.2" opacity="0.3"/>
+            <line x1="320" y1="450" x2="-40" y2="450" stroke-width="0.2" opacity="0.3"/>
+            <line x1="320" y1="450" x2="575" y2="195" stroke-width="0.2" opacity="0.25"/>
+            <line x1="320" y1="450" x2="65"  y2="195" stroke-width="0.2" opacity="0.25"/>
+            <line x1="320" y1="450" x2="575" y2="705" stroke-width="0.2" opacity="0.25"/>
+            <line x1="320" y1="450" x2="65"  y2="705" stroke-width="0.2" opacity="0.25"/>
+            <circle cx="320" cy="210" r="3" stroke-width="0.6" opacity="0.6"/>
+            <circle cx="320" cy="690" r="3" stroke-width="0.6" opacity="0.6"/>
+            <circle cx="80"  cy="330" r="2" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="560" cy="330" r="2" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="80"  cy="570" r="2" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="560" cy="570" r="2" stroke-width="0.5" opacity="0.5"/>
+        </g>
+
+                <g fill="none" stroke="#2fd8aa" stroke-linecap="round"
+           style="animation: im-geo-spin 80s linear infinite reverse; transform-origin: 1150px 400px;">
+            <circle cx="1150" cy="400" r="70"  stroke-width="0.5"/>
+            <circle cx="1150" cy="330" r="70"  stroke-width="0.5"/>
+            <circle cx="1150" cy="470" r="70"  stroke-width="0.5"/>
+            <circle cx="1089" cy="365" r="70"  stroke-width="0.5"/>
+            <circle cx="1211" cy="365" r="70"  stroke-width="0.5"/>
+            <circle cx="1089" cy="435" r="70"  stroke-width="0.5"/>
+            <circle cx="1211" cy="435" r="70"  stroke-width="0.5"/>
+            <circle cx="1150" cy="400" r="140" stroke-width="0.3" opacity="0.6"/>
+            <circle cx="1150" cy="400" r="210" stroke-width="0.2" opacity="0.35"/>
+            <polygon points="1150,330 1211,365 1211,435 1150,470 1089,435 1089,365" stroke-width="0.4" opacity="0.6"/>
+            <polygon points="1150,318 1213,428 1087,428" stroke-width="0.3" opacity="0.5"/>
+            <polygon points="1150,482 1087,372 1213,372" stroke-width="0.3" opacity="0.5"/>
+            <line x1="1150" y1="400" x2="1150" y2="190" stroke-width="0.2" opacity="0.3"/>
+            <line x1="1150" y1="400" x2="1150" y2="610" stroke-width="0.2" opacity="0.3"/>
+            <line x1="1150" y1="400" x2="940"  y2="400" stroke-width="0.2" opacity="0.3"/>
+            <line x1="1150" y1="400" x2="1360" y2="400" stroke-width="0.2" opacity="0.3"/>
+            <line x1="1150" y1="400" x2="1299" y2="251" stroke-width="0.2" opacity="0.25"/>
+            <line x1="1150" y1="400" x2="1001" y2="251" stroke-width="0.2" opacity="0.25"/>
+            <line x1="1150" y1="400" x2="1299" y2="549" stroke-width="0.2" opacity="0.25"/>
+            <line x1="1150" y1="400" x2="1001" y2="549" stroke-width="0.2" opacity="0.25"/>
+            <circle cx="1150" cy="260" r="2.5" stroke-width="0.6" opacity="0.6"/>
+            <circle cx="1150" cy="540" r="2.5" stroke-width="0.6" opacity="0.6"/>
+            <circle cx="1010" cy="330" r="1.5" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="1290" cy="330" r="1.5" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="1010" cy="470" r="1.5" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="1290" cy="470" r="1.5" stroke-width="0.5" opacity="0.5"/>
+        </g>
+
+    </svg>
+</div>
+
 <div class="im-ap-inner">
 
         <div class="im-ap-header">
@@ -105,26 +177,26 @@ $foreach0DoElse = false;
             <?php $_smarty_tpl->assign('stato', $_smarty_tpl->getValue('app')->getStato(), false, NULL);?>
             <div class="im-ap-booking-card">
 
-                                <div class="im-ap-studio-avatar">
+                <div class="im-ap-studio-avatar">
                     <?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');?>
 
                 </div>
 
-                                <div class="im-ap-booking-info">
+                <div class="im-ap-booking-info">
                     <div class="im-ap-studio-name"><?php echo $_smarty_tpl->getValue('app')->getStudio()->getNome();?>
 </div>
                     <div class="im-ap-booking-note"><?php echo (($tmp = $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('app')->getNote(),60,'...') ?? null)===null||$tmp==='' ? '—' ?? null : $tmp);?>
 </div>
                 </div>
 
-                                <div class="im-ap-booking-meta">
+                <div class="im-ap-booking-meta">
                     <div class="im-ap-booking-date"><?php echo $_smarty_tpl->getValue('app')->getData()->format('d/m/Y');?>
 </div>
-                    <div class="im-ap-booking-city"><?php echo (($tmp = $_smarty_tpl->getValue('app')->getStudio()->getPosizione() ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
+                    <div class="im-ap-booking-city"><?php echo (($tmp = $_smarty_tpl->getValue('app')->getStudio()->getPosizione()->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 </div>
                 </div>
 
-                                <?php if ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>
+                <?php if ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>
                     <span class="im-ap-badge im-ap-badge--attesa">In attesa</span>
                 <?php } elseif ($_smarty_tpl->getValue('stato') === 'CONFERMATO') {?>
                     <span class="im-ap-badge im-ap-badge--confermato">Confermato</span>
@@ -136,7 +208,7 @@ $foreach0DoElse = false;
                     <span class="im-ap-badge im-ap-badge--annullato">Annullato</span>
                 <?php }?>
 
-                                <div class="im-ap-actions">
+                <div class="im-ap-actions">
                     <?php if ($_smarty_tpl->getValue('stato') === 'DA_PAGARE') {?>
                         <a href="/avvia_pagamento?id=<?php echo $_smarty_tpl->getValue('app')->getId();?>
 " class="im-ap-btn-pay">
@@ -146,9 +218,7 @@ $foreach0DoElse = false;
                     <?php } elseif ($_smarty_tpl->getValue('stato') === 'COMPLETATO') {?>
                         <span class="im-ap-btn-paid">✓ Pagato</span>
                     <?php }?>
-                    <a href="#" class="im-ap-btn-chat" title="Chat">
-                        💬 Chat
-                    </a>
+                    <a href="#" class="im-ap-btn-chat" title="Chat">💬 Chat</a>
                 </div>
 
             </div>
