@@ -2,13 +2,7 @@
    AREA PERSONALE CLIENTE
    ========================================================================== */
 
-.im-ap-page {
-    position: relative;
-    min-height: calc(100vh - 80px);
-    padding: 48px 24px 80px;
-}
-
-/* ── Sfondo animato ── */
+/* ── Sfondo ── */
 .im-ap-bg-layer {
     position: fixed;
     inset: 0;
@@ -18,7 +12,6 @@
     pointer-events: none;
 }
 
-/* blob verdi sfumati */
 .im-ap-blob {
     position: absolute;
     border-radius: 50%;
@@ -43,21 +36,10 @@
     background: radial-gradient(circle, rgba(47,216,170,.07), transparent 70%);
     animation: ap-drift3 18s ease-in-out infinite;
 }
+@keyframes ap-drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(55px,38px)} }
+@keyframes ap-drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-45px,28px)} }
+@keyframes ap-drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-22px)} }
 
-@keyframes ap-drift1 {
-    0%,100% { transform: translate(0,0); }
-    50%      { transform: translate(55px, 38px); }
-}
-@keyframes ap-drift2 {
-    0%,100% { transform: translate(0,0); }
-    50%      { transform: translate(-45px, 28px); }
-}
-@keyframes ap-drift3 {
-    0%,100% { transform: translate(0,0); }
-    50%      { transform: translate(30px, -22px); }
-}
-
-/* SVG fine line geometrico */
 .im-ap-svg {
     position: absolute;
     inset: 0;
@@ -67,32 +49,30 @@
     pointer-events: none;
 }
 
-.im-ap-geo-group {
-    animation: im-geo-spin 60s linear infinite;
-    transform-origin: 720px 450px;
-}
-
 @keyframes im-geo-spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
 
+/* ── Layout ── */
 .im-ap-inner {
     position: relative;
     z-index: 1;
     max-width: 900px;
     margin: 0 auto;
+    padding: 48px 24px 80px;
 }
-/* ── Header profilo ── */
-.im-ap-header {
-    background: #101417;
-    border-radius: 16px;
+
+/* ── Header card ── */
+.im-ap-header-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
     padding: 32px 36px;
     display: flex;
     align-items: center;
     gap: 24px;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    margin-bottom: 48px;
 }
 
 .im-ap-avatar {
@@ -111,24 +91,7 @@
 
 .im-ap-header-info { flex: 1; }
 
-.im-ap-welcome {
-    font-size: 20px;
-    font-weight: 800;
-    color: #eef1f0;
-    margin-bottom: 6px;
-}
-
-.im-ap-meta {
-    font-size: 13px;
-    color: #8a9490;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.im-ap-meta span { display: flex; align-items: center; gap: 6px; }
-
-.im-ap-welcome-label {
+.im-ap-eyebrow {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .12em;
@@ -137,25 +100,31 @@
     margin-bottom: 6px;
 }
 
-.im-ap-gestisci {
-    font-size: 13px;
-    font-weight: 600;
-    color: #2fd8aa;
-    text-decoration: none;
-    border: 1px solid rgba(47,216,170,.3);
-    padding: 8px 18px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    white-space: nowrap;
+.im-ap-name {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 900;
+    color: #eef1f0;
+    letter-spacing: -.02em;
 }
 
-.im-ap-gestisci:hover { background: rgba(47,216,170,.1); }
+.im-ap-btn-gestisci {
+    font-size: 13px;
+    font-weight: 700;
+    color: #eef1f0;
+    border: 1px solid rgba(255,255,255,.22);
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s;
+}
+.im-ap-btn-gestisci:hover { background: rgba(255,255,255,.06); }
 
 /* ── Titoli sezione ── */
 .im-ap-section-title {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: #4b534f;
     margin: 0 0 20px;
@@ -163,103 +132,107 @@
     border-bottom: 1px solid rgba(255,255,255,.07);
 }
 
-/* ── Card prenotazione ── */
-.im-ap-bookings { margin-bottom: 48px; }
-
-.im-ap-booking-card {
-    background: #101417;
-    border-radius: 12px;
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: 52px 1fr auto auto auto;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: box-shadow 0.2s;
+/* ── Lista prenotazioni ── */
+.im-ap-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
 }
 
-.im-ap-booking-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+.im-ap-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
-.im-ap-studio-avatar {
-    width: 52px;
-    height: 52px;
+.im-ap-card-avatar {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #1a2228;
-    border: 1px solid #232b30;
+    background: #1a2e27;
+    border: 1px solid rgba(47,216,170,.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 800;
+    font-weight: 700;
+    font-size: 1rem;
     color: #2fd8aa;
     flex-shrink: 0;
 }
 
-.im-ap-booking-info { min-width: 0; }
+.im-ap-card-info { flex: 1; min-width: 0; }
 
-.im-ap-studio-name {
+.im-ap-card-name {
     font-size: 15px;
     font-weight: 700;
     color: #eef1f0;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.im-ap-booking-note {
+.im-ap-card-meta {
     font-size: 12px;
-    color: #6b7a75;
+    color: #6b8c80;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.im-ap-booking-meta {
+.im-ap-card-date {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    min-width: 80px;
-}
-
-.im-ap-booking-date {
+    align-items: flex-end;
+    gap: 2px;
     font-size: 12px;
     color: #8a9490;
     font-weight: 600;
+    min-width: 90px;
+    flex-shrink: 0;
 }
 
-.im-ap-booking-city {
+.im-ap-card-city {
     font-size: 11px;
     color: #4b534f;
+    font-weight: 400;
 }
 
-/* Status badges */
-.im-ap-badge {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-    white-space: nowrap;
-}
-
-.im-ap-badge--attesa    { background: rgba(255,193,7,.12);  color: #ffc107; }
-.im-ap-badge--confermato{ background: rgba(47,216,170,.12); color: #2fd8aa; }
-.im-ap-badge--pagare    { background: rgba(99,102,241,.12); color: #818cf8; }
-.im-ap-badge--completato{ background: rgba(34,197,94,.12);  color: #22c55e; }
-.im-ap-badge--annullato { background: rgba(230,57,70,.12);  color: #e63946; }
-
-/* Azioni */
-.im-ap-actions {
+.im-ap-card-actions {
     display: flex;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
 }
 
+/* ── Badge stato ── */
+.im-ap-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.im-ap-badge--attesa     { background: rgba(255,193,7,.12);  color: #ffc107; }
+.im-ap-badge--confermato { background: rgba(47,216,170,.12); color: #2fd8aa; }
+.im-ap-badge--pagare     { background: rgba(139,92,246,.12); color: #a78bfa; }
+.im-ap-badge--completato { background: rgba(34,197,94,.12);  color: #22c55e; }
+.im-ap-badge--annullato  { background: rgba(230,57,70,.12);  color: #e63946; }
+
+.im-ap-badge-paid {
+    font-size: 12px;
+    font-weight: 700;
+    color: #22c55e;
+}
+
+/* ── Bottoni azione ── */
 .im-ap-btn-pay {
     background: #2fd8aa;
     color: #0a0c0d;
@@ -267,137 +240,225 @@
     font-weight: 800;
     padding: 9px 18px;
     border: none;
-    border-radius: 8px;
+    border-radius: 999px;
     cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
     white-space: nowrap;
+    transition: opacity .15s;
+    font-family: inherit;
 }
+.im-ap-btn-pay:hover { opacity: .85; }
 
-.im-ap-btn-pay:hover { background: #37eec0; }
-
-.im-ap-btn-paid {
-    background: rgba(34,197,94,.12);
-    color: #22c55e;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 9px 18px;
-    border: 1px solid rgba(34,197,94,.2);
-    border-radius: 8px;
-    white-space: nowrap;
-}
-
-.im-ap-btn-chat {
+.im-ap-chat-link {
     font-size: 12px;
-    color: #8a9490;
+    color: #6b8c80;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.2s;
+    white-space: nowrap;
+    transition: color .15s;
 }
+.im-ap-chat-link:hover { color: #2fd8aa; }
 
-.im-ap-btn-chat:hover { color: #2fd8aa; }
-
-/* Empty state */
+/* ── Empty state ── */
 .im-ap-empty {
     text-align: center;
     padding: 40px 24px;
     color: #4b534f;
     font-size: 14px;
-    background: #101417;
-    border-radius: 12px;
+    border: 1px dashed rgba(255,255,255,.08);
+    border-radius: 14px;
+    margin-bottom: 48px;
 }
 
-/* ── Card recensione ── */
-.im-ap-reviews { margin-bottom: 48px; }
-
-.im-ap-review-grid {
+/* ── Griglia recensioni ── */
+.im-ap-rec-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
 
-.im-ap-review-card {
-    background: #101417;
-    border-radius: 12px;
+.im-ap-rec-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.im-ap-review-head {
+.im-ap-rec-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-.im-ap-review-avatar {
-    width: 32px;
-    height: 32px;
+.im-ap-rec-avatar {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: #2fd8aa;
-    color: #0a0c0d;
-    font-size: .75rem;
-    font-weight: 800;
+    background: #1a2e27;
+    border: 1px solid rgba(47,216,170,.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: .8rem;
+    font-weight: 700;
+    color: #2fd8aa;
     flex-shrink: 0;
 }
 
-.im-ap-review-meta { flex: 1; min-width: 0; }
-
-.im-ap-review-studio {
+.im-ap-rec-studio {
     font-size: 13px;
     font-weight: 700;
     color: #eef1f0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.im-ap-review-date {
+.im-ap-rec-date {
     font-size: 11px;
     color: #4b534f;
 }
 
-.im-ap-stars { color: #ffc107; font-size: 13px; margin-bottom: 8px; }
+.im-ap-stars { margin-bottom: 8px; }
 
-.im-ap-review-title {
+.im-ap-star { color: #4b534f; font-size: 14px; }
+.im-ap-star--on { color: #ffc107; }
+
+.im-ap-rec-title {
     font-size: 14px;
     font-weight: 700;
     color: #cdd3d1;
     margin-bottom: 4px;
 }
 
-.im-ap-review-desc {
+.im-ap-rec-desc {
     font-size: 13px;
-    color: #6b7a75;
+    color: #6b8c80;
     line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
-.im-ap-review-tag {
-    display: inline-block;
-    margin-top: 10px;
+/* ── Overlay pagamento ── */
+.im-pay-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.im-pay-overlay.aperta { display: flex; }
+
+.im-pay-modal {
+    background: #111a17;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 460px;
+    width: 100%;
+    animation: im-pay-in .25s ease;
+}
+@keyframes im-pay-in {
+    from { opacity: 0; transform: translateY(20px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+.im-pay-eyebrow {
     font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
     color: #2fd8aa;
-    background: rgba(47,216,170,.1);
-    padding: 3px 10px;
-    border-radius: 12px;
+    margin-bottom: 6px;
+}
+.im-pay-title {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #eef1f0;
+    margin-bottom: 16px;
+}
+.im-pay-amount {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #2fd8aa;
+    letter-spacing: -.03em;
+    margin-bottom: 28px;
 }
 
+.im-pay-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.im-pay-field label { font-size: 12px; font-weight: 600; color: #6b8c80; text-transform: uppercase; letter-spacing: .08em; }
+.im-pay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.im-pay-input {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #eef1f0;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color .15s;
+}
+.im-pay-input:focus { outline: none; border-color: #2fd8aa; }
+
+.im-pay-error {
+    color: #f87171;
+    font-size: 13px;
+    min-height: 18px;
+    margin-bottom: 8px;
+}
+
+.im-pay-actions { display: flex; gap: 12px; margin-top: 8px; }
+.im-pay-btn-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    padding: 12px;
+    color: #9aa3a0;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+}
+.im-pay-btn-confirm {
+    flex: 2;
+    background: #2fd8aa;
+    border: none;
+    border-radius: 999px;
+    padding: 12px;
+    color: #080e0c;
+    font-weight: 800;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity .15s;
+}
+.im-pay-btn-confirm:hover { opacity: .85; }
+.im-pay-btn-confirm:disabled { opacity: .5; cursor: default; }
+
+.im-pay-success-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(47,216,170,.15);
+    border: 2px solid #2fd8aa;
+    color: #2fd8aa;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.im-pay-success-desc {
+    font-size: 15px;
+    color: #9aa3a0;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* ── Responsive ── */
 @media (max-width: 700px) {
-    .im-ap-booking-card {
-        grid-template-columns: 48px 1fr;
-        grid-template-rows: auto auto auto;
-    }
-    .im-ap-booking-meta { grid-column: 2; }
-    .im-ap-actions { grid-column: 1 / -1; }
-    .im-ap-review-grid { grid-template-columns: 1fr; }
-    .im-ap-header { flex-direction: column; text-align: center; }
+    .im-ap-card { flex-wrap: wrap; }
+    .im-ap-card-date { min-width: auto; }
+    .im-ap-card-actions { width: 100%; }
+    .im-ap-rec-grid { grid-template-columns: 1fr; }
+    .im-ap-header-card { flex-direction: column; text-align: center; }
 }

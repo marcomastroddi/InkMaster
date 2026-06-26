@@ -59,6 +59,7 @@ $pagineProtette = [
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
     'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale', 'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento', 'abilita_pagamento',
+    'avvia_pagamento' , 'inserisci_dati_pagamento'
 ];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
@@ -74,7 +75,7 @@ $pagineVietateStudio = [
     'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData',
     'mostraRiepilogo', 'richiediAppuntamento', 'avvia_pagamento',
     'inserisci_dati_pagamento', 'avviaRecensione', 'compilaRecensione',
-    'visualizzaRecensione', 'area_personale',
+    'visualizzaRecensione', 'area_personale', 
 ];
 
 if (in_array($page, $pagineVietateStudio) && SessionManager::get('ruolo') === 'studio') {
@@ -252,20 +253,24 @@ switch ($page) {
 
     case 'avvia_pagamento':
         $appId = (int)($_GET['id'] ?? 0);
-        $dati  = $controller2->avvia_Pagamento($appId);
-        if ($dati['status'] === 'error') {
-            header('Location: /area_personale');
-            exit;
-        }
-        View::render('prenotazione/form_pagamento', $dati);
+        View::render('profilo/areaPersonale', array_merge(
+            $controller2->avvia_Pagamento($appId),
+            [
+                'appuntamenti' => PersistentManager::getInstance()->findAppuntamentiByClienteId((int)SessionManager::get('idUtente')),
+                'recensioni'   => PersistentManager::getInstance()->findRecensioniByClienteId((int)SessionManager::get('idUtente')),
+                'mostra_overlay_pagamento' => true,
+                'overlay_app_id' => $appId,
+            ]
+        ));
         break;
 
     case 'inserisci_dati_pagamento':
-        $dati = $controller2->inserisci_dati_pagamento([
-            'numero'       => $_POST['numero']       ?? '',
-            'scadenza'     => $_POST['scadenza']     ?? '',
-            'cvv'          => $_POST['cvv']          ?? '',
-            'intestatario' => $_POST['intestatario'] ?? ''
+        $dati = $controller2->inserisci_Dati_Pagamento([
+            'id_appuntamento' => $_POST['id_appuntamento'] ?? 0,
+            'numero'          => $_POST['numero']          ?? '',
+            'scadenza'        => $_POST['scadenza']        ?? '',
+            'cvv'             => $_POST['cvv']             ?? '',
+            'intestatario'    => $_POST['intestatario']    ?? '',
         ]);
         header('Content-Type: application/json');
         echo json_encode($dati);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 12:44:04
+/* Smarty version 5.8.0, created on 2026-06-26 22:11:03
   from 'file:pages/ricerca/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d06745f1500_57072711',
+  'unifunc' => 'content_6a3edcd7bcb501_99593583',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ba38efa615a71f87c34dd2e159ef644bf402eec1' => 
     array (
       0 => 'pages/ricerca/home.tpl',
-      1 => 1782381259,
+      1 => 1782503160,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d06745f1500_57072711 (\Smarty\Template $_smarty_tpl) {
+function content_6a3edcd7bcb501_99593583 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19672703126a3d06745d6db3_96326769', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14930937376a3edcd7b94ed9_70713824', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16742311186a3d06745d8444_74779286', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8112816476a3edcd7b97b19_98117489', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7708739886a3d06745d8986_57481140', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_164973936a3edcd7b98527_81908678', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_19672703126a3d06745d6db3_96326769 extends \Smarty\Runtime\Block
+class Block_14930937376a3edcd7b94ed9_70713824 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -51,7 +51,7 @@ Home — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_16742311186a3d06745d8444_74779286 extends \Smarty\Runtime\Block
+class Block_8112816476a3edcd7b97b19_98117489 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_7708739886a3d06745d8986_57481140 extends \Smarty\Runtime\Block
+class Block_164973936a3edcd7b98527_81908678 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -168,7 +168,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);
     <div class="im-section">
     <div class="im-section-head">
       <h2 class="im-h2">Tatuatori suggeriti</h2>
-      <a href="/avvia_ricerca" class="im-link">Vedi tutti →</a>
     </div>
     <div class="im-grid-wrap">
         <div class="im-grid">

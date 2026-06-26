@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 11:48:28
+/* Smarty version 5.8.0, created on 2026-06-26 22:54:53
   from 'file:pages/studio/StoricoAppuntamenti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e4aec1a5056_72058225',
+  'unifunc' => 'content_6a3ee71dafb884_73896340',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0e702885886178408eef34efc72b7b07d8c84f1d' => 
     array (
       0 => 'pages/studio/StoricoAppuntamenti.tpl',
-      1 => 1782467305,
+      1 => 1782502867,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e4aec1a5056_72058225 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ee71dafb884_73896340 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15116654606a3e4aec194e72_04417205', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5798389216a3ee71dae8a83_93304200', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18560015796a3e4aec196358_01737788', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13899776716a3ee71daea037_63161058', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10222840836a3e4aec196868_56660224', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8621094756a3ee71daea545_44430881', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_15116654606a3e4aec194e72_04417205 extends \Smarty\Runtime\Block
+class Block_5798389216a3ee71dae8a83_93304200 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -51,7 +51,7 @@ Storico Appuntamenti — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_18560015796a3e4aec196358_01737788 extends \Smarty\Runtime\Block
+class Block_13899776716a3ee71daea037_63161058 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_10222840836a3e4aec196868_56660224 extends \Smarty\Runtime\Block
+class Block_8621094756a3ee71daea545_44430881 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -84,7 +84,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
         <div class="im-storico-filtri">
             <a href="/storico_appuntamenti" class="im-filtro<?php if (!(true && (true && null !== ($_GET['stato'] ?? null)))) {?> im-filtro-attivo<?php }?>">Tutti</a>
             <a href="/storico_appuntamenti?stato=CONFERMATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'CONFERMATO') {?> im-filtro-attivo<?php }?>">Confermati</a>
-            <a href="/storico_appuntamenti?stato=IN_CORSO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'IN_CORSO') {?> im-filtro-attivo<?php }?>">In corso</a>
+            <a href="/storico_appuntamenti?stato=DA_PAGARE" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'DA_PAGARE') {?> im-filtro-attivo<?php }?>">Da pagare</a>
             <a href="/storico_appuntamenti?stato=COMPLETATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'COMPLETATO') {?> im-filtro-attivo<?php }?>">Completati</a>
             <a href="/storico_appuntamenti?stato=ANNULLATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'ANNULLATO') {?> im-filtro-attivo<?php }?>">Annullati</a>
             <a href="/storico_appuntamenti?stato=IN_ATTESA" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'IN_ATTESA') {?> im-filtro-attivo<?php }?>">In attesa</a>
@@ -140,7 +140,7 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getCl
                     <div class="im-storico-stato im-stato-<?php echo mb_strtolower((string) $_smarty_tpl->getValue('stato'), 'UTF-8');?>
 ">
                         <?php if ($_smarty_tpl->getValue('stato') === 'CONFERMATO') {?>Confermato
-                        <?php } elseif ($_smarty_tpl->getValue('stato') === 'IN_CORSO') {?>In corso
+                        <?php } elseif ($_smarty_tpl->getValue('stato') === 'DA_PAGARE') {?>Da pagare
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'COMPLETATO') {?>Completato
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'ANNULLATO') {?>Annullato
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>In attesa
