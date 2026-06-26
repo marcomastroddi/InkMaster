@@ -525,7 +525,7 @@ switch ($page) {
 
     // ===== INTERFACCIA 10 - GESTIONE CLIENTI =====
     case 'visualizza_clienti':
-        View::render('studio/clienti', $controller10->visualizzaClienti());
+        View::render('studio/AccettazioneClienti', $controller10->visualizzaClienti());
         break;
 
     case 'aggiorna_stato':
