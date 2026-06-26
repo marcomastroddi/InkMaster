@@ -51,7 +51,7 @@ $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';
 $pagineProtette = [
     'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
     'pubblica_recensione', 'elimina_recensione',
-    'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban',
+    'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban', 'scarta_segnalazione', 'rimuovi_ban',
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
@@ -381,16 +381,26 @@ switch ($page) {
         break;;
 
     case 'conferma_ban':
-        $dati = $controller6->conferma_ban(
+        $controller6->conferma_ban(
             $_POST['tipo']        ?? '',
             $_POST['durata']      ?? '',
             $_POST['motivazione'] ?? '',
             $_POST['gravita']     ?? '',
-            $_POST['descrizione'] ?? ''
+            $_POST['descrizione'] ?? '',
+            (int)($_POST['seg_id'] ?? 0)
         );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;
+        header('Location: /accedi_segnalazioni');
+        exit;
+
+    case 'scarta_segnalazione':
+        $controller6->scarta_segnalazione((int)($_POST['seg_id'] ?? 0));
+        header('Location: /accedi_segnalazioni');
+        exit;
+
+    case 'rimuovi_ban':
+        $controller6->rimuovi_ban((int)($_POST['id'] ?? 0), $_POST['tipo'] ?? '');
+        header('Location: /accedi_segnalazioni');
+        exit;
 
     // ===== INTERFACCIA 7.0 - REGISTRAZIONE (pubblica: cliente e studio) =====
 

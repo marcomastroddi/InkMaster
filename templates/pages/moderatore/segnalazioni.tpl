@@ -88,7 +88,8 @@
                             data-tipo="{$tipo}"
                             data-nome="{$nomeUtente|escape}"
                             data-email="{$utente->getEmail()|escape}"
-                            data-iniziali="{$iniziali|upper}">Banna</button>
+                            data-iniziali="{$iniziali|upper}"
+                            data-seg-id="{$seg->getId()}">Banna</button>
                         </td>
                     </tr>
                 {/foreach}
@@ -172,6 +173,7 @@
         </div>
 
         <form id="banForm" method="POST" action="/conferma_ban">
+            <input type="hidden" name="seg_id" id="banSegId">
 
             <div class="adm-modal-field">
                 <label class="adm-modal-label">TIPO DI BAN</label>
@@ -230,11 +232,16 @@
 
             <div class="adm-modal-footer">
                 <button type="button" class="adm-btn-annulla" id="closeBan2">Annulla</button>
+                <button type="button" class="adm-btn-scarta" id="btnScarta">✕ Scarta</button>
                 <button type="submit" class="adm-btn-conferma">✓ Conferma ban</button>
             </div>
         </form>
     </div>
 </div>
+
+<form id="scartaForm" method="POST" action="/scarta_segnalazione" style="display:none">
+    <input type="hidden" name="seg_id" id="scartaSegId">
+</form>
 
 {* ── MODAL INFO ── *}
 <div class="adm-overlay" id="infoModal">
@@ -344,9 +351,16 @@ document.querySelectorAll('.adm-btn-ban').forEach(btn => {
         document.getElementById('banAvatar').textContent  = this.dataset.iniziali;
         document.getElementById('banNome').textContent    = this.dataset.nome;
         document.getElementById('banEmail').textContent   = this.dataset.email;
+        document.getElementById('banSegId').value         = this.dataset.segId;
         fetch('/seleziona_utente?id=' + this.dataset.id + '&tipo=' + this.dataset.tipo);
         modal.classList.add('adm-overlay--open');
     });
+});
+
+document.getElementById('btnScarta').addEventListener('click', () => {
+    document.getElementById('scartaSegId').value = document.getElementById('banSegId').value;
+    modal.classList.remove('adm-overlay--open');
+    document.getElementById('scartaForm').submit();
 });
 
 [document.getElementById('closeBan'), document.getElementById('closeBan2')].forEach(el => {

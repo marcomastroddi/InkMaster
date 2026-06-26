@@ -6,6 +6,7 @@ use InkMaster\Foundation\SessionManager;
 use InkMaster\Entity\Ban;
 use InkMaster\Entity\Cliente;
 use InkMaster\Entity\Studio;
+use InkMaster\Entity\Segnalazione;
 
 class ModerazionePiattaforma
 {
@@ -57,10 +58,9 @@ class ModerazionePiattaforma
         ];
     }
 
-    public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione): array
+    public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione, int $segId): array
     {
         $utenteId   = SessionManager::get('utente_selezionato');
-        // Per ora 'cliente' (tappabuchi del #1); diventerà il tipo vero quando risolviamo seleziona_utente
         $utenteTipo = SessionManager::get('tipo_utente_selezionato', 'cliente');
 
         if ($utenteId === null) {
@@ -70,19 +70,31 @@ class ModerazionePiattaforma
         $ban = new Ban($utenteId, $utenteTipo, $tipo, $durata, $motivazione, $gravita, $descrizione);
         $this->pm->create($ban);
 
-        return [
-            'status'      => 'success',
-            'interfaccia' => 'Ban confermato',
-            'data'        => [
-                'ban_id'      => $ban->getId(),
-                'utente_id'   => $utenteId,
-                'tipo'        => $tipo,
-                'durata'      => $durata,
-                'motivazione' => $motivazione,
-                'gravita'     => $gravita,
-                'descrizione' => $descrizione
-            ]
-        ];
+        $segnalazione = $this->pm->read(Segnalazione::class, $segId);
+        if ($segnalazione !== null) {
+            $segnalazione->setStato('CHIUSA');
+            $this->pm->update();
+        }
+
+        return ['status' => 'success'];
+    }
+
+    public function scarta_segnalazione(int $segId): array
+    {
+        $segnalazione = $this->pm->read(Segnalazione::class, $segId);
+        if ($segnalazione !== null) {
+            $this->pm->delete($segnalazione);
+        }
+        return ['status' => 'success'];
+    }
+
+    public function rimuovi_ban(int $utenteId, string $tipo): array
+    {
+        $ban = $this->pm->findBanByUtente($utenteId, $tipo);
+        if ($ban !== null) {
+            $this->pm->delete($ban);
+        }
+        return ['status' => 'success'];
     }
 
     public function visualizzaDashboard(): array

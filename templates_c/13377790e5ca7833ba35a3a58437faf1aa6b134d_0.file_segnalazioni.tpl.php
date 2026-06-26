@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 12:51:59
+/* Smarty version 5.8.0, created on 2026-06-26 13:17:08
   from 'file:pages/moderatore/segnalazioni.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e75efc51207_49625060',
+  'unifunc' => 'content_6a3e7bd4ec3e62_46422462',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '13377790e5ca7833ba35a3a58437faf1aa6b134d' => 
     array (
       0 => 'pages/moderatore/segnalazioni.tpl',
-      1 => 1782478258,
+      1 => 1782479742,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e75efc51207_49625060 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e7bd4ec3e62_46422462 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21354000876a3e75efbf72d1_43138509', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3388780886a3e7bd4d88304_77061847', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18225900206a3e75efbfac51_18278212', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21403976986a3e7bd4d97be0_62599417', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12802114856a3e75efbfb4b9_55369328', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11202212916a3e7bd4d98646_96656903', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_21354000876a3e75efbf72d1_43138509 extends \Smarty\Runtime\Block
+class Block_3388780886a3e7bd4d88304_77061847 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -51,7 +51,7 @@ Segnalazioni — InkMaster Admin<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_18225900206a3e75efbfac51_18278212 extends \Smarty\Runtime\Block
+class Block_21403976986a3e7bd4d97be0_62599417 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_12802114856a3e75efbfb4b9_55369328 extends \Smarty\Runtime\Block
+class Block_11202212916a3e7bd4d98646_96656903 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -170,6 +170,8 @@ continue 1;
                             data-email="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('utente')->getEmail(), ENT_QUOTES, 'UTF-8', true);?>
 "
                             data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+"
+                            data-seg-id="<?php echo $_smarty_tpl->getValue('seg')->getId();?>
 ">Banna</button>
                         </td>
                     </tr>
@@ -223,10 +225,28 @@ continue 1;
                         <td class="adm-date"><?php echo $_smarty_tpl->getValue('seg')->getData()->format('d M Y');?>
 </td>
                         <td class="adm-actions-cell">
-                            <a href="/seleziona_utente?id=<?php echo $_smarty_tpl->getValue('utente')->getId();?>
-&tipo=<?php echo $_smarty_tpl->getValue('tipo');?>
-" class="adm-btn-info">Info</a>
-                            <a href="#" class="adm-btn-sban">Sbanna</a>
+                            <button type="button" class="adm-btn-info"
+                                data-motivo="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('seg')->getMotivo(), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-desc="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('seg')->getDescrizione() ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-data="<?php echo $_smarty_tpl->getValue('seg')->getData()->format('d M Y');?>
+"
+                                data-nome="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+"
+                                data-tipo="<?php echo $_smarty_tpl->getValue('tipo');?>
+">Info</button>
+                            <button type="button" class="adm-btn-sban"
+                                data-id="<?php echo $_smarty_tpl->getValue('utente')->getId();?>
+"
+                                data-tipo="<?php echo $_smarty_tpl->getValue('tipo');?>
+"
+                                data-nome="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+">Sbanna</button>
                         </td>
                     </tr>
                 <?php
@@ -260,6 +280,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         </div>
 
         <form id="banForm" method="POST" action="/conferma_ban">
+            <input type="hidden" name="seg_id" id="banSegId">
 
             <div class="adm-modal-field">
                 <label class="adm-modal-label">TIPO DI BAN</label>
@@ -318,7 +339,78 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
             <div class="adm-modal-footer">
                 <button type="button" class="adm-btn-annulla" id="closeBan2">Annulla</button>
+                <button type="button" class="adm-btn-scarta" id="btnScarta">✕ Scarta</button>
                 <button type="submit" class="adm-btn-conferma">✓ Conferma ban</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<form id="scartaForm" method="POST" action="/scarta_segnalazione" style="display:none">
+    <input type="hidden" name="seg_id" id="scartaSegId">
+</form>
+
+<div class="adm-overlay" id="infoModal">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <h2 class="adm-modal-title">Dettagli segnalazione</h2>
+            <button class="adm-modal-close" id="closeInfo">✕</button>
+        </div>
+
+        <div class="adm-modal-user">
+            <div class="adm-user-av" id="infoAvatar"></div>
+            <div>
+                <div class="adm-user-name" id="infoNome"></div>
+                <div class="adm-user-email" id="infoTipo"></div>
+            </div>
+        </div>
+
+        <div class="adm-modal-field">
+            <label class="adm-modal-label">MOTIVO SEGNALAZIONE</label>
+            <div id="infoMotivo" style="font-size:13px;color:#eef1f0;background:rgba(255,255,255,.05);border-radius:8px;padding:10px 14px;"></div>
+        </div>
+
+        <div class="adm-modal-field" id="infoDescField">
+            <label class="adm-modal-label">DESCRIZIONE</label>
+            <div id="infoDesc" style="font-size:13px;color:#9aa3a0;background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;"></div>
+        </div>
+
+        <div class="adm-modal-field">
+            <label class="adm-modal-label">DATA SEGNALAZIONE</label>
+            <div id="infoData" style="font-size:13px;color:#6b736f;font-family:ui-monospace,monospace;"></div>
+        </div>
+
+        <div class="adm-modal-footer">
+            <button type="button" class="adm-btn-annulla" style="flex:1" id="closeInfo2">Chiudi</button>
+        </div>
+    </div>
+</div>
+
+<div class="adm-overlay" id="sbanModal">
+    <div class="adm-modal" style="max-width:400px">
+        <div class="adm-modal-header">
+            <h2 class="adm-modal-title">Rimuovi ban</h2>
+            <button class="adm-modal-close" id="closeSban">✕</button>
+        </div>
+
+        <div class="adm-modal-user">
+            <div class="adm-user-av" id="sbanAvatar"></div>
+            <div>
+                <div class="adm-user-name" id="sbanNome"></div>
+            </div>
+        </div>
+
+        <p style="font-size:14px;color:#9aa3a0;margin:0 0 4px;">
+            Sei sicuro di voler rimuovere il ban per questo utente?<br>
+            <span style="font-size:12px;color:#4b534f;">L'utente potrà accedere nuovamente alla piattaforma.</span>
+        </p>
+
+        <form id="sbanForm" method="POST" action="/rimuovi_ban">
+            <input type="hidden" name="id" id="sbanId">
+            <input type="hidden" name="tipo" id="sbanTipo">
+            <div class="adm-modal-footer">
+                <button type="button" class="adm-btn-annulla" id="closeSban2">Annulla</button>
+                <button type="submit" class="adm-btn-conferma">✓ Conferma sbanna</button>
             </div>
         </form>
     </div>
@@ -365,15 +457,61 @@ document.querySelectorAll('.adm-btn-ban').forEach(btn => {
         document.getElementById('banAvatar').textContent  = this.dataset.iniziali;
         document.getElementById('banNome').textContent    = this.dataset.nome;
         document.getElementById('banEmail').textContent   = this.dataset.email;
+        document.getElementById('banSegId').value         = this.dataset.segId;
         fetch('/seleziona_utente?id=' + this.dataset.id + '&tipo=' + this.dataset.tipo);
         modal.classList.add('adm-overlay--open');
     });
+});
+
+document.getElementById('btnScarta').addEventListener('click', () => {
+    document.getElementById('scartaSegId').value = document.getElementById('banSegId').value;
+    modal.classList.remove('adm-overlay--open');
+    document.getElementById('scartaForm').submit();
 });
 
 [document.getElementById('closeBan'), document.getElementById('closeBan2')].forEach(el => {
     el.addEventListener('click', () => modal.classList.remove('adm-overlay--open'));
 });
 modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('adm-overlay--open'); });
+
+const infoModal = document.getElementById('infoModal');
+document.querySelectorAll('.adm-btn-info').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const av = document.getElementById('infoAvatar');
+        av.textContent = this.dataset.iniziali;
+        av.className = 'adm-user-av adm-user-av--' + this.dataset.tipo;
+        document.getElementById('infoNome').textContent   = this.dataset.nome;
+        document.getElementById('infoTipo').textContent   = this.dataset.tipo === 'studio' ? 'Studio' : 'Cliente';
+        document.getElementById('infoMotivo').textContent = this.dataset.motivo;
+        document.getElementById('infoData').textContent   = this.dataset.data;
+        const desc = this.dataset.desc;
+        const descField = document.getElementById('infoDescField');
+        if (desc) { document.getElementById('infoDesc').textContent = desc; descField.style.display = ''; }
+        else { descField.style.display = 'none'; }
+        infoModal.classList.add('adm-overlay--open');
+    });
+});
+[document.getElementById('closeInfo'), document.getElementById('closeInfo2')].forEach(el => {
+    el.addEventListener('click', () => infoModal.classList.remove('adm-overlay--open'));
+});
+infoModal.addEventListener('click', e => { if (e.target === infoModal) infoModal.classList.remove('adm-overlay--open'); });
+
+const sbanModal = document.getElementById('sbanModal');
+document.querySelectorAll('.adm-btn-sban').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const av = document.getElementById('sbanAvatar');
+        av.textContent = this.dataset.iniziali;
+        av.className = 'adm-user-av adm-user-av--' + this.dataset.tipo;
+        document.getElementById('sbanNome').textContent = this.dataset.nome;
+        document.getElementById('sbanId').value         = this.dataset.id;
+        document.getElementById('sbanTipo').value       = this.dataset.tipo;
+        sbanModal.classList.add('adm-overlay--open');
+    });
+});
+[document.getElementById('closeSban'), document.getElementById('closeSban2')].forEach(el => {
+    el.addEventListener('click', () => sbanModal.classList.remove('adm-overlay--open'));
+});
+sbanModal.addEventListener('click', e => { if (e.target === sbanModal) sbanModal.classList.remove('adm-overlay--open'); });
 
 <?php echo '</script'; ?>
 >
