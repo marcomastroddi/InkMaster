@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 11:27:27
+/* Smarty version 5.8.0, created on 2026-06-26 19:47:10
   from 'file:pages/ricerca/ElencoTatuatori.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d109f9f3c65_66944746',
+  'unifunc' => 'content_6a3ed73e9356f1_98129716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fe36d43598e003e833a34ce1013687f3e92f721' => 
     array (
       0 => 'pages/ricerca/ElencoTatuatori.tpl',
-      1 => 1782386769,
+      1 => 1782503226,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d109f9f3c65_66944746 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ed73e9356f1_98129716 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2859181516a3d109f98d869_73422460', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21094388726a3ed73e8f5733_23890145', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11430063226a3d109f9971d8_95736183', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13172750196a3ed73e8fa7a0_80255014', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21346126716a3d109f998474_80014448', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20862729976a3ed73e8fb400_14096010', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base_ricerca.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_2859181516a3d109f98d869_73422460 extends \Smarty\Runtime\Block
+class Block_21094388726a3ed73e8f5733_23890145 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Risultati ricerca — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_11430063226a3d109f9971d8_95736183 extends \Smarty\Runtime\Block
+class Block_13172750196a3ed73e8fa7a0_80255014 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_21346126716a3d109f998474_80014448 extends \Smarty\Runtime\Block
+class Block_20862729976a3ed73e8fb400_14096010 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -188,8 +188,13 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
 
             <div class="el-map-wrap">
-  <div class="el-map-head">I nostri studi in Italia</div>
-  <div class="el-map">
+    <div class="el-map-card">
+    <div class="el-map-head">
+      <span class="el-map-eyebrow">La nostra rete</span>
+      <h2 class="el-map-title">Inchiostro in tutta <span class="el-accent">Italia</span></h2>
+      <p class="el-map-sub">Studi verificati da Nord a Sud</p>
+    </div>
+    <div class="el-map">
     <svg class="el-map-svg" viewBox="0 0 220 275" xmlns="http://www.w3.org/2000/svg">
 
       <!-- PENISOLA ~280 punti -->
@@ -380,7 +385,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <text class="el-map-lbl" x="57"  y="197">Cagliari</text>
       <text class="el-map-lbl" x="88"  y="41" >Trento</text>
 
-    </svg>
+      </svg>
+    </div>
   </div>
 </div>
 

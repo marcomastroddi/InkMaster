@@ -77,8 +77,13 @@
     </div>
 
             <div class="el-map-wrap">
-  <div class="el-map-head">I nostri studi in Italia</div>
-  <div class="el-map">
+    <div class="el-map-card">
+    <div class="el-map-head">
+      <span class="el-map-eyebrow">La nostra rete</span>
+      <h2 class="el-map-title">Inchiostro in tutta <span class="el-accent">Italia</span></h2>
+      <p class="el-map-sub">Studi verificati da Nord a Sud</p>
+    </div>
+    <div class="el-map">
     <svg class="el-map-svg" viewBox="0 0 220 275" xmlns="http://www.w3.org/2000/svg">
 
       <!-- PENISOLA ~280 punti -->
@@ -269,7 +274,8 @@
       <text class="el-map-lbl" x="57"  y="197">Cagliari</text>
       <text class="el-map-lbl" x="88"  y="41" >Trento</text>
 
-    </svg>
+      </svg>
+    </div>
   </div>
 </div>
 
