@@ -176,12 +176,19 @@ class RicercaVisualizzaStudi
     
     public function visualizza_recensioni(int $studioId): array
     {
+        $studio = $this->pm->read(Studio::class, $studioId);
+        if ($studio === null) {
+            return ['status' => 'error', 'message' => 'Studio non trovato', 'data' => [], 'studio' => null];
+        }
+
         $recensioni = $this->pm->findRecensioniByStudioId($studioId);
+        usort($recensioni, fn($a, $b) => $b->getData() <=> $a->getData());
 
         return [
             'status'      => 'success',
             'interfaccia' => 'Lista recensioni studio',
-            'data'        => $recensioni
+            'data'        => $recensioni,
+            'studio'      => $studio,
         ];
     }
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 17:31:05
+/* Smarty version 5.8.0, created on 2026-06-26 16:08:53
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d49b93b7894_27592209',
+  'unifunc' => 'content_6a3e87f5978883_31670007',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b9331ff3296944963a8ea8e96c380336ccb4b48' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782401355,
+      1 => 1782482167,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d49b93b7894_27592209 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e87f5978883_31670007 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
-?><div class="im-nav">
+if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
+<div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
         <a href="/registrazioneStudio">Per gli artisti</a>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
-                        <a href="/visualizza_profilo" class="im-nav-profilo">
+            <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     <?php echo mb_strtoupper((string) $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('_sessione')['username'],1,'',true) ?? '', 'UTF-8');?>
 
@@ -38,7 +39,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
             </a>
             <a href="#" class="im-btn-outline" id="im-logout-btn">Esci</a>
         <?php } else { ?>
-                        <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
+            <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
 
@@ -59,5 +60,6 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
     </div>
 </div>
 <?php }
+}
 }
 }
