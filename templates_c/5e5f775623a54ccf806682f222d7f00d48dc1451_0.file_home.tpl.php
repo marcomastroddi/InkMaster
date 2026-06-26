@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:00:09
+/* Smarty version 5.8.0, created on 2026-06-26 21:46:53
   from 'file:pages/ricerca/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ee859ad26a4_81872537',
+  'unifunc' => 'content_6a3ef34d1a8693_38695255',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e5f775623a54ccf806682f222d7f00d48dc1451' => 
     array (
       0 => 'pages/ricerca/home.tpl',
-      1 => 1782507509,
+      1 => 1782510221,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ee859ad26a4_81872537 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef34d1a8693_38695255 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6378098076a3ee859192368_45303026', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18751970626a3ef34cb6a629_01072818', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17655741666a3ee8591f61c2_48766815', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_460520146a3ef34cb75df6_02703450', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4598112146a3ee8591f6b19_61401489', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8422195286a3ef34cb769b7_42041283', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_6378098076a3ee859192368_45303026 extends \Smarty\Runtime\Block
+class Block_18751970626a3ef34cb6a629_01072818 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Home — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_17655741666a3ee8591f61c2_48766815 extends \Smarty\Runtime\Block
+class Block_460520146a3ef34cb75df6_02703450 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_4598112146a3ee8591f6b19_61401489 extends \Smarty\Runtime\Block
+class Block_8422195286a3ef34cb769b7_42041283 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -262,10 +262,12 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
 </p>
             <div class="im-review-meta">
               <?php echo $_smarty_tpl->getValue('rec')->getStile();?>
- · <?php echo $_smarty_tpl->getValue('rec')->getTatuatore()->getNome();?>
- <?php echo $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome();?>
- · <?php echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');?>
-
+ · <?php if ($_smarty_tpl->getValue('rec')->getTatuatore()) {
+echo $_smarty_tpl->getValue('rec')->getTatuatore()->getNome();?>
+ <?php echo $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome();
+} else { ?>—<?php }?> · <?php if ($_smarty_tpl->getValue('rec')->getData()) {
+echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');
+} else { ?>—<?php }?>
             </div>
           </div>
           <div class="im-review-photo im-hatch">
@@ -274,9 +276,10 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
 " alt="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 ">
             <?php } else { ?>
-              <span class="im-review-mono"><?php echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
-echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);?>
-</span>
+              <span class="im-review-mono"><?php if ($_smarty_tpl->getValue('rec')->getTatuatore()) {
+echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
+echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);
+} else { ?>?<?php }?></span>
             <?php }?>
           </div>
         </div>

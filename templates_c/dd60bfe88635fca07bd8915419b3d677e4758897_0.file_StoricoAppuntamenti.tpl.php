@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 13:25:29
+/* Smarty version 5.8.0, created on 2026-06-26 21:46:27
   from 'file:pages/studio/StoricoAppuntamenti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e7dc96c2d35_56057226',
+  'unifunc' => 'content_6a3ef3332b0154_96876566',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dd60bfe88635fca07bd8915419b3d677e4758897' => 
     array (
       0 => 'pages/studio/StoricoAppuntamenti.tpl',
-      1 => 1782469138,
+      1 => 1782510182,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e7dc96c2d35_56057226 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef3332b0154_96876566 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5462228966a3e7dc9530538_20040427', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2879306836a3ef332e4e3c5_65973739', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18809896166a3e7dc954a883_01901421', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4843857186a3ef332e530c9_30000478', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13860664336a3e7dc954c900_38657369', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6982247126a3ef332e53df6_33548444', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_5462228966a3e7dc9530538_20040427 extends \Smarty\Runtime\Block
+class Block_2879306836a3ef332e4e3c5_65973739 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -51,7 +51,7 @@ Storico Appuntamenti — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_18809896166a3e7dc954a883_01901421 extends \Smarty\Runtime\Block
+class Block_4843857186a3ef332e530c9_30000478 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_13860664336a3e7dc954c900_38657369 extends \Smarty\Runtime\Block
+class Block_6982247126a3ef332e53df6_33548444 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -84,7 +84,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
         <div class="im-storico-filtri">
             <a href="/storico_appuntamenti" class="im-filtro<?php if (!(true && (true && null !== ($_GET['stato'] ?? null)))) {?> im-filtro-attivo<?php }?>">Tutti</a>
             <a href="/storico_appuntamenti?stato=CONFERMATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'CONFERMATO') {?> im-filtro-attivo<?php }?>">Confermati</a>
-            <a href="/storico_appuntamenti?stato=IN_CORSO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'IN_CORSO') {?> im-filtro-attivo<?php }?>">In corso</a>
+            <a href="/storico_appuntamenti?stato=DA_PAGARE" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'DA_PAGARE') {?> im-filtro-attivo<?php }?>">Da pagare</a>
             <a href="/storico_appuntamenti?stato=COMPLETATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'COMPLETATO') {?> im-filtro-attivo<?php }?>">Completati</a>
             <a href="/storico_appuntamenti?stato=ANNULLATO" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'ANNULLATO') {?> im-filtro-attivo<?php }?>">Annullati</a>
             <a href="/storico_appuntamenti?stato=IN_ATTESA" class="im-filtro<?php if ((true && (true && null !== ($_GET['stato'] ?? null))) && $_GET['stato'] === 'IN_ATTESA') {?> im-filtro-attivo<?php }?>">In attesa</a>
@@ -120,15 +120,17 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getCl
 
                     <div class="im-richiesta-campo">
                         <div class="im-richiesta-label">Data</div>
-                        <div class="im-richiesta-valore"><?php echo $_smarty_tpl->getValue('app')->getData()->format('d/m/Y');?>
-</div>
+                        <div class="im-richiesta-valore"><?php if ($_smarty_tpl->getValue('app')->getData()) {
+echo $_smarty_tpl->getValue('app')->getData()->format('d/m/Y');
+} else { ?>—<?php }?></div>
                     </div>
 
                     <div class="im-richiesta-campo">
                         <div class="im-richiesta-label">Orario</div>
-                        <div class="im-richiesta-valore"><?php echo $_smarty_tpl->getValue('app')->getOraInizio()->format('H:i');?>
- – <?php echo $_smarty_tpl->getValue('app')->getOraFine()->format('H:i');?>
-</div>
+                        <div class="im-richiesta-valore"><?php if ($_smarty_tpl->getValue('app')->getOraInizio()) {
+echo $_smarty_tpl->getValue('app')->getOraInizio()->format('H:i');?>
+ – <?php echo $_smarty_tpl->getValue('app')->getOraFine()->format('H:i');
+} else { ?>—<?php }?></div>
                     </div>
 
                     <div class="im-richiesta-campo">
@@ -140,7 +142,7 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getCl
                     <div class="im-storico-stato im-stato-<?php echo mb_strtolower((string) $_smarty_tpl->getValue('stato'), 'UTF-8');?>
 ">
                         <?php if ($_smarty_tpl->getValue('stato') === 'CONFERMATO') {?>Confermato
-                        <?php } elseif ($_smarty_tpl->getValue('stato') === 'IN_CORSO') {?>In corso
+                        <?php } elseif ($_smarty_tpl->getValue('stato') === 'DA_PAGARE') {?>Da pagare
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'COMPLETATO') {?>Completato
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'ANNULLATO') {?>Annullato
                         <?php } elseif ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>In attesa
