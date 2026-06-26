@@ -24,10 +24,12 @@ class AppuntamentoRepository
         return $this->em->getRepository(Appuntamento::class)->findBy(['studio' => $idStudio]);
     }
 
-    public function countPrenotazioniAttive(): int
+    public function findByStudioIdAndStato(int $idStudio, string $stato): array
     {
-        // Aggiusta 'CONFERMATO' a ciò che per te significa "prenotazione attiva"
-        return $this->em->getRepository(Appuntamento::class)->count(['stato' => 'CONFERMATO']);
+        return $this->em->getRepository(Appuntamento::class)->findBy(
+            ['studio' => $idStudio, 'stato' => $stato],
+            ['data' => 'DESC']
+        );
     }
 
     public function findByClienteId(int $idCliente): array
@@ -36,5 +38,11 @@ class AppuntamentoRepository
             ['cliente' => $idCliente],
             ['data' => 'DESC']
         );
+    }
+
+    public function countPrenotazioniAttive(): int
+    {
+        // Aggiusta 'CONFERMATO' a ciò che per te significa "prenotazione attiva"
+        return $this->em->getRepository(Appuntamento::class)->count(['stato' => 'CONFERMATO']);
     }
 }
