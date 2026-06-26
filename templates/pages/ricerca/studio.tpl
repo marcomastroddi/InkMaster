@@ -120,6 +120,15 @@
                 <div class="st-contact-row"><span class="st-ci">✉</span>{$data->getEmail()|escape}</div>
                 <a href="/prenota?id={$data->getId()}" class="st-cta">Prenota</a>
             </div>
+
+            {if $_sessione.ruolo == 'cliente'}
+            <div class="st-divider"></div>
+            <a href="/form_segnalazione?tipo=studio&id={$data->getId()}"
+               style="display:block;text-align:center;font-size:11px;font-weight:700;color:#4b534f;text-decoration:none;padding:6px 0;letter-spacing:.05em;transition:color .2s;"
+               onmouseover="this.style.color='#e05252'" onmouseout="this.style.color='#4b534f'">
+                ⚑ Segnala questo studio
+            </a>
+            {/if}
         </div>
     </aside>
 

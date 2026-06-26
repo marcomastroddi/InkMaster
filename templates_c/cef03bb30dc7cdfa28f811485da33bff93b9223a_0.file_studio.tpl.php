@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 07:12:32
+/* Smarty version 5.8.0, created on 2026-06-26 13:23:44
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e266036dae1_65770105',
+  'unifunc' => 'content_6a3e7d60a5d029_36692395',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cef03bb30dc7cdfa28f811485da33bff93b9223a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782457823,
+      1 => 1782480110,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3e266036dae1_65770105 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e7d60a5d029_36692395 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20937001656a3e265fbe4804_55170788', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14884970306a3e7d6083fde3_88852425', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5618251216a3e265fc4d2a0_83183613', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5324169746a3e7d60850313_22992476', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16959643656a3e265fc4db32_55821396', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4031030726a3e7d608545c7_28142768', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_20937001656a3e265fbe4804_55170788 extends \Smarty\Runtime\Block
+class Block_14884970306a3e7d6083fde3_88852425 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_5618251216a3e265fc4d2a0_83183613 extends \Smarty\Runtime\Block
+class Block_5324169746a3e7d60850313_22992476 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_16959643656a3e265fc4db32_55821396 extends \Smarty\Runtime\Block
+class Block_4031030726a3e7d608545c7_28142768 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -236,6 +236,16 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <a href="/prenota?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
 " class="st-cta">Prenota</a>
             </div>
+
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] == 'cliente') {?>
+            <div class="st-divider"></div>
+            <a href="/form_segnalazione?tipo=studio&id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
+"
+               style="display:block;text-align:center;font-size:11px;font-weight:700;color:#4b534f;text-decoration:none;padding:6px 0;letter-spacing:.05em;transition:color .2s;"
+               onmouseover="this.style.color='#e05252'" onmouseout="this.style.color='#4b534f'">
+                ⚑ Segnala questo studio
+            </a>
+            <?php }?>
         </div>
     </aside>
 

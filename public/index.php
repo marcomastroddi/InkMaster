@@ -52,6 +52,7 @@ $pagineProtette = [
     'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
     'pubblica_recensione', 'elimina_recensione',
     'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban', 'scarta_segnalazione', 'rimuovi_ban',
+    'form_segnalazione', 'invia_segnalazione',
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
@@ -503,8 +504,15 @@ switch ($page) {
             $_POST['tipo_target'] ?? '',
             (int)($_POST['id_target'] ?? 0)
         );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+        if ($dati['status'] === 'success') {
+            $ruolo = SessionManager::get('ruolo');
+            header('Location: ' . ($ruolo === 'studio' ? '/visualizza_clienti' : '/home'));
+            exit;
+        }
+        // errore: ritorna al form con messaggio
+        $formDati = $controller8->apriFormSegnalazione($_POST['tipo_target'] ?? '', (int)($_POST['id_target'] ?? 0));
+        $formDati['message'] = $dati['message'];
+        View::render('profilo/form_segnalazione', $formDati);
         break;
 
     // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
