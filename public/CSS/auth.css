@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. STRUTTURA WRAPPER GLOBALE E AUTENTICAZIONE
+   CSS SPECIFICO: REGISTRAZIONE CLIENTE (Tema: Twin Bouquet Fineline Layout)
    ========================================================================== */
 
 .im-auth-wrapper {
@@ -16,6 +16,53 @@
     background-size: 24px 24px;
 }
 
+/* DECORAZIONE SINISTRA: Ramo Fineline Specchiato */
+.im-cliente-theme.im-auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -12%;
+    transform: translateY(-50%) scaleX(-1); /* Specchia il disegno per bilanciare il lato sinistro */
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.12; /* Leggermente più basso per asimmetria artistica */
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-left 160s linear infinite;
+}
+
+/* DECORAZIONE DESTRA: Ramo Fineline Originale */
+.im-cliente-theme.im-auth-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -12%;
+    transform: translateY(-50%);
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.14;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-right 140s linear infinite;
+}
+
+/* Animazioni differenziate per velocità e rotazione */
+@keyframes im-tattoo-drift-left {
+    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
+    to { transform: translateY(-50%) scaleX(-1) rotate(-360deg); } /* Ruota in senso opposto */
+}
+
+@keyframes im-tattoo-drift-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
 .im-auth-container {
     position: relative;
     z-index: 2;
@@ -23,7 +70,7 @@
     max-width: 760px;
 }
 
-/* Struttura solida della card di login/registrazione */
+/* STRUTTURA CARD (Stabile, Solida e Pulita) */
 .im-auth-card {
     background: #101417; 
     border-radius: 16px;
@@ -49,20 +96,23 @@
     color: #8a9592;
 }
 
-
-/* ==========================================================================
-   2. ELEMENTI DEI FORM (INPUT, SELEZIONI, BOTTONI)
-   ========================================================================== */
-
 .im-form {
     margin-top: 20px;
 }
 
-/* Griglia standard a 2 colonne per i campi di registrazione */
 .im-form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+}
+
+@media (max-width: 680px) {
+    .im-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .im-auth-card {
+        padding: 32px 20px;
+    }
 }
 
 .im-form-group {
@@ -105,12 +155,31 @@
     color: #eef1f0;
 }
 
+/* ==========================================================================
+   FIX AUTOFILL (Rimuove lo sfondo giallo del completamento automatico)
+   ========================================================================== */
+
+/* Forza lo sfondo scuro e il testo chiaro quando i campi vengono auto-compilati */
+.im-input:-webkit-autofill,
+.im-input:-webkit-autofill:hover, 
+.im-input:-webkit-autofill:focus, 
+.im-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #eef1f0 !important; /* Mantiene il testo chiaro originale */
+    transition: background-color 5000000s ease-in-out 0s; /* Blocca il cambio di colore dello sfondo */
+    box-shadow: inset 0 0 0 1000px #14191c !important; /* Copre il giallo con il colore dell'input scuro */
+}
+
+/* Gestisce l'autofill quando l'input riceve anche il focus */
+.im-input:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 1000px #161c20 !important; /* Colore di focus scuro */
+    border-color: #2fd8aa !important; /* Mantiene il bordo brand color */
+}
+
 .im-input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1) opacity(0.5);
     cursor: pointer;
 }
 
-/* Pulsante di invio principale */
 .im-btn-submit {
     width: 100%;
     padding: 16px;
@@ -134,7 +203,6 @@
     transform: scale(0.99);
 }
 
-/* Footer della card con rimandi ipertestuali ad altre viste di autenticazione */
 .im-auth-footer {
     margin-top: 32px;
     text-align: center;
@@ -153,82 +221,8 @@
     text-decoration: underline;
 }
 
-
 /* ==========================================================================
-   3. WEBKIT AUTOFILL UTILITIES
-   ========================================================================== */
-
-/* Forza lo sfondo scuro e il testo chiaro quando i campi vengono auto-compilati dal browser */
-.im-input:-webkit-autofill,
-.im-input:-webkit-autofill:hover, 
-.im-input:-webkit-autofill:focus, 
-.im-input:-webkit-autofill:active {
-    -webkit-text-fill-color: #eef1f0 !important;
-    transition: background-color 5000000s ease-in-out 0s;
-    box-shadow: inset 0 0 0 1000px #14191c !important;
-}
-
-/* Gestisce l'autofill quando l'input riceve anche il focus attivo */
-.im-input:-webkit-autofill:focus {
-    box-shadow: inset 0 0 0 1000px #161c20 !important;
-    border-color: #2fd8aa !important;
-}
-
-
-/* ==========================================================================
-   4. TEMA 1: REGISTRAZIONE CLIENTE (Twin Bouquet Fineline)
-   ========================================================================== */
-
-/* Decorazione Sinistra: Ramo Fineline Specchiato */
-.im-cliente-theme.im-auth-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -12%;
-    transform: translateY(-50%) scaleX(-1);
-    width: 750px;
-    height: 750px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.12;
-    z-index: 1;
-    pointer-events: none;
-    animation: im-tattoo-drift-left 160s linear infinite;
-}
-
-/* Decorazione Destra: Ramo Fineline Originale */
-.im-cliente-theme.im-auth-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -12%;
-    transform: translateY(-50%);
-    width: 750px;
-    height: 750px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.14;
-    z-index: 1;
-    pointer-events: none;
-    animation: im-tattoo-drift-right 140s linear infinite;
-}
-
-/* Animazioni differenziate per asimmetria artistica nei movimenti */
-@keyframes im-tattoo-drift-left {
-    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
-    to   { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
-}
-
-@keyframes im-tattoo-drift-right {
-    from { transform: translateY(-50%) rotate(0deg); }
-    to   { transform: translateY(-50%) rotate(360deg); }
-}
-
-
-/* ==========================================================================
-   5. TEMA 2: REGISTRAZIONE STUDIO (Tribale Fullback)
+   AGGIUNTA: REGISTRAZIONE STUDIO - TEMA TRIBALE FULLBACK
    ========================================================================== */
 
 /* Applica il macro-disegno tribale fineline sullo sfondo dello studio */
@@ -261,55 +255,56 @@
     animation: im-tribal-drift-right 150s linear infinite;
 }
 
-/* Animazioni di rotazione iper-lente dedicate per i grandi pezzi tribali */
+/* Animazioni di rotazione lentissime dedicate per i grandi pezzi tribali */
 @keyframes im-tribal-drift-left {
     from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
-    to   { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
+    to { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
 }
 
 @keyframes im-tribal-drift-right {
     from { transform: translateY(-50%) rotate(0deg); }
-    to   { transform: translateY(-50%) rotate(360deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
 }
 
-/* Regolazione altezza textarea descrizione interna al form Studio */
+/* Forziamo l'altezza automatica per la textarea della descrizione */
 .im-studio-theme .textarea.im-input {
     min-height: 100px;
     padding-top: 12px;
 }
 
-
 /* ==========================================================================
-   6. TEMA 3: SCHERMATA LOGIN (Drago Tradizionale Orientale Irezumi)
+   AGGIUNTA A AUTH.CSS: NUOVO DRAGO TRADIZIONALE GIAPPONESE (IREZUMI / YAKUZA)
    ========================================================================== */
 
-/* Ripristino larghezza contenuta specifica per la card di login */
+/* 1. RIPRISTINO LARGHEZZA CARD */
 .im-login-card {
     max-width: 480px !important;
     margin: 0 auto;
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Evita che il testo vada sotto lo sfondo */
 }
 
-/* Background con Drago serpentino yakuza e onde tradizionali */
+/* 2. BACKGROUND CON DRAGO TRADIZIONALE ORIENTALE (SERPENTINO CON ONDE) */
 .im-login-theme.im-auth-wrapper::before,
 .im-login-theme.im-auth-wrapper::after {
     content: ''; 
     width: 750px;
     height: 950px;
+    /* Nuovo SVG: Drago Irezumi dettagliato con corpo serpentino, baffi lunghi, artigli e onde di sfondo */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.35' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Onde e Nuvole di sfondo (Irezumi Background) --%3E%3Cpath d='M20 140 C 30 135, 40 145, 50 140 C 60 135, 70 145, 80 140' opacity='0.4'/%3E%3Cpath d='M10 110 C 25 105, 30 120, 45 115 C 60 110, 75 125, 90 115' opacity='0.4'/%3E%3Cpath d='M15 30 C 30 25, 40 35, 55 30' opacity='0.3'/%3E%3C!-- Corpo Serpentino del Drago (Spirale Yakuza) --%3E%3Cpath d='M50 20 C65 15, 85 25, 75 45 C65 65, 35 40, 25 65 C12 90, 45 105, 70 95 C95 85, 85 120, 60 135 C45 145, 25 135, 30 120' stroke-width='0.5'/%3E%3Cpath d='M53 23 C66 19, 81 27, 72 44 C63 61, 37 44, 28 66 C16 88, 44 101, 67 92 C91 83, 81 116, 58 131 C45 139, 29 131, 33 121' opacity='0.7'/%3E%3C!-- Testa del Drago con Corna e Baffi --%3E%3Cpath d='M50 20 L46 15 L40 18 L44 22 L38 24 L45 27 Z' fill='%232fd8aa' fill-opacity='0.1'/%3E%3Cpath d='M48 18 C40 15, 35 22, 28 20' stroke-width='0.5' /%3E%3C!-- Baffo Lungo --%3E%3Cpath d='M52 19 C58 12, 65 10, 75 12' stroke-width='0.5' /%3E%3C!-- Secondo Baffo --%3E%3C!-- Artigli e Zampe (Stile Giapponese a 3 artigli) --%3E%3Cpath d='M68 46 L74 49 M74 49 L78 46 M74 49 L76 54' /%3E%3Cpath d='M28 66 L22 64 M22 64 L18 67 M22 64 L20 59' /%3E%3Cpath d='M72 95 L78 98 L82 95' /%3E%3C!-- Fiamma della Coda --%3E%3Cpath d='M30 120 C20 115, 15 125, 10 122 C12 128, 20 130, 28 123' fill='%232fd8aa' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.18;
+    opacity: 0.18; /* Perfetto bilanciamento: si vede chiaramente ma non disturba la lettura */
     position: absolute;
     top: 50%;
     z-index: 1;
     pointer-events: none;
 }
 
+/* 3. POSIZIONAMENTO SINISTRA E DESTRA (Sfumato e specchiato) */
 .im-login-theme.im-auth-wrapper::before {
     left: -8%;
-    transform: translateY(-50%) scaleX(-1);
+    transform: translateY(-50%) scaleX(-1); /* Specchiato a sinistra */
     animation: im-yakuza-drift-left 25s ease-in-out infinite;
 }
 
@@ -319,9 +314,9 @@
     animation: im-yakuza-drift-right 22s ease-in-out infinite;
 }
 
-/* Movimento organico e sinuoso (Respiro/Fumo) per il layout a Draghi */
+/* 4. ANIMAZIONE FLUIDA E SNELLA (Effetto fumo/respiro) */
 @keyframes im-yakuza-drift-left {
-    0%   { transform: translateY(-50%) scaleX(-1) rotate(0deg) translateX(0); }
+    0%   { transform: translateY(-50%) scaleX(-1) rotate(0deg) translate0); }
     50%  { transform: translateY(-48%) scaleX(-1) rotate(-4deg) translateX(15px); }
     100% { transform: translateY(-50%) scaleX(-1) rotate(0deg) translateX(0); }
 }
@@ -330,20 +325,4 @@
     0%   { transform: translateY(-50%) rotate(0deg) translateX(0); }
     50%  { transform: translateY(-52%) rotate(4deg) translateX(-15px); }
     100% { transform: translateY(-50%) rotate(0deg) translateX(0); }
-}
-
-
-/* ==========================================================================
-   7. MEDIA QUERIES (RESPONSIVE LAYOUT)
-   ========================================================================== */
-
-@media (max-width: 680px) {
-    /* La griglia collassa su colonna singola per schermi mobile */
-    .im-form-grid {
-        grid-template-columns: 1fr;
-    }
-    /* Ridotto il padding interno della card per massimizzare l'area di input */
-    .im-auth-card {
-        padding: 32px 20px;
-    }
 }

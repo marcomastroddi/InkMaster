@@ -1,8 +1,8 @@
 /* ==========================================================================
-   1. SFONDO, LIVELLI E ANIMAZIONI DRIFT
+   AREA PERSONALE CLIENTE
    ========================================================================== */
 
-/* Layer di sfondo fisso */
+/* ── Sfondo ── */
 .im-ap-bg-layer {
     position: fixed;
     inset: 0;
@@ -12,59 +12,34 @@
     pointer-events: none;
 }
 
-/* Base comune per i blob sfocati */
 .im-ap-blob {
     position: absolute;
     border-radius: 50%;
     filter: blur(28px);
     pointer-events: none;
 }
-
-/* Blob 1 (In alto a sinistra) */
 .im-ap-blob-1 {
-    width: 560px; 
-    height: 560px;
-    left: -160px; 
-    top: -200px;
+    width: 560px; height: 560px;
+    left: -160px; top: -200px;
     background: radial-gradient(circle, rgba(47,216,170,.16), transparent 70%);
     animation: ap-drift1 21s ease-in-out infinite;
 }
-
-/* Blob 2 (In alto a destra) */
 .im-ap-blob-2 {
-    width: 480px; 
-    height: 480px;
-    right: -130px; 
-    top: 80px;
+    width: 480px; height: 480px;
+    right: -130px; top: 80px;
     background: radial-gradient(circle, rgba(47,216,170,.10), transparent 70%);
     animation: ap-drift2 25s ease-in-out infinite;
 }
-
-/* Blob 3 (In basso al centro) */
 .im-ap-blob-3 {
-    width: 340px; 
-    height: 340px;
-    left: 40%; 
-    bottom: -60px;
+    width: 340px; height: 340px;
+    left: 40%; bottom: -60px;
     background: radial-gradient(circle, rgba(47,216,170,.07), transparent 70%);
     animation: ap-drift3 18s ease-in-out infinite;
 }
+@keyframes ap-drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(55px,38px)} }
+@keyframes ap-drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-45px,28px)} }
+@keyframes ap-drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-22px)} }
 
-/* Animazioni di fluttuazione (Drift) dei singoli blob dello sfondo */
-@keyframes ap-drift1 { 
-    0%, 100% { transform: translate(0,0); } 
-    50%      { transform: translate(55px,38px); } 
-}
-@keyframes ap-drift2 { 
-    0%, 100% { transform: translate(0,0); } 
-    50%      { transform: translate(-45px,28px); } 
-}
-@keyframes ap-drift3 { 
-    0%, 100% { transform: translate(0,0); } 
-    50%      { transform: translate(30px,-22px); } 
-}
-
-/* SVG Geometrici decorativi di background */
 .im-ap-svg {
     position: absolute;
     inset: 0;
@@ -74,18 +49,12 @@
     pointer-events: none;
 }
 
-/* Animazione di rotazione per geometrie di sfondo */
 @keyframes im-geo-spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
 
-
-/* ==========================================================================
-   2. CONTENITORE E HEADER CARD CLIENTE
-   ========================================================================== */
-
-/* Wrapper del contenuto centrale */
+/* ── Layout ── */
 .im-ap-inner {
     position: relative;
     z-index: 1;
@@ -94,7 +63,7 @@
     padding: 48px 24px 80px;
 }
 
-/* Card profilo principale del cliente */
+/* ── Header card ── */
 .im-ap-header-card {
     background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.08);
@@ -106,7 +75,6 @@
     margin-bottom: 48px;
 }
 
-/* Iniziale utente / Avatar grande */
 .im-ap-avatar {
     width: 72px;
     height: 72px;
@@ -121,9 +89,7 @@
     flex-shrink: 0;
 }
 
-.im-ap-header-info { 
-    flex: 1; 
-}
+.im-ap-header-info { flex: 1; }
 
 .im-ap-eyebrow {
     font-size: 11px;
@@ -141,7 +107,6 @@
     letter-spacing: -.02em;
 }
 
-/* Pulsante modifica/gestione profilo */
 .im-ap-btn-gestisci {
     font-size: 13px;
     font-weight: 700;
@@ -153,17 +118,9 @@
     white-space: nowrap;
     transition: background .2s;
 }
+.im-ap-btn-gestisci:hover { background: rgba(255,255,255,.06); }
 
-.im-ap-btn-gestisci:hover { 
-    background: rgba(255,255,255,.06); 
-}
-
-
-/* ==========================================================================
-   3. SEZIONE PRENOTAZIONI (CARDS E STATI)
-   ========================================================================== */
-
-/* Intestazione delle sotto-sezioni */
+/* ── Titoli sezione ── */
 .im-ap-section-title {
     font-size: 11px;
     font-weight: 700;
@@ -175,7 +132,7 @@
     border-bottom: 1px solid rgba(255,255,255,.07);
 }
 
-/* Lista verticale appuntamenti */
+/* ── Lista prenotazioni ── */
 .im-ap-lista {
     display: flex;
     flex-direction: column;
@@ -183,7 +140,6 @@
     margin-bottom: 48px;
 }
 
-/* Singola card appuntamento */
 .im-ap-card {
     background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.08);
@@ -194,7 +150,6 @@
     gap: 16px;
 }
 
-/* Mini avatar dello studio associato alla prenotazione */
 .im-ap-card-avatar {
     width: 48px;
     height: 48px;
@@ -210,10 +165,7 @@
     flex-shrink: 0;
 }
 
-.im-ap-card-info { 
-    flex: 1; 
-    min-width: 0; 
-}
+.im-ap-card-info { flex: 1; min-width: 0; }
 
 .im-ap-card-name {
     font-size: 15px;
@@ -225,7 +177,6 @@
     text-overflow: ellipsis;
 }
 
-/* Meta informazioni (es. descrizione o dettagli rapidi) */
 .im-ap-card-meta {
     font-size: 12px;
     color: #6b8c80;
@@ -234,7 +185,6 @@
     text-overflow: ellipsis;
 }
 
-/* Blocco orario/data allineato a destra */
 .im-ap-card-date {
     display: flex;
     flex-direction: column;
@@ -253,7 +203,6 @@
     font-weight: 400;
 }
 
-/* Box azioni a fine card (Badge o Bottoni) */
 .im-ap-card-actions {
     display: flex;
     align-items: center;
@@ -261,22 +210,7 @@
     flex-shrink: 0;
 }
 
-/* Empty state se l'utente non ha prenotazioni o recensioni */
-.im-ap-empty {
-    text-align: center;
-    padding: 40px 24px;
-    color: #4b534f;
-    font-size: 14px;
-    border: 1px dashed rgba(255,255,255,.08);
-    border-radius: 14px;
-    margin-bottom: 48px;
-}
-
-
-/* ==========================================================================
-   4. BADGES STATO INTERFACCIA
-   ========================================================================== */
-
+/* ── Badge stato ── */
 .im-ap-badge {
     font-size: 11px;
     font-weight: 700;
@@ -286,27 +220,19 @@
     border-radius: 999px;
     white-space: nowrap;
 }
-
-/* Varianti cromatiche dei badge in base allo stato approvativo */
 .im-ap-badge--attesa     { background: rgba(255,193,7,.12);  color: #ffc107; }
 .im-ap-badge--confermato { background: rgba(47,216,170,.12); color: #2fd8aa; }
 .im-ap-badge--pagare     { background: rgba(139,92,246,.12); color: #a78bfa; }
 .im-ap-badge--completato { background: rgba(34,197,94,.12);  color: #22c55e; }
 .im-ap-badge--annullato  { background: rgba(230,57,70,.12);  color: #e63946; }
 
-/* Testo di conferma saldo avvenuto */
 .im-ap-badge-paid {
     font-size: 12px;
     font-weight: 700;
     color: #22c55e;
 }
 
-
-/* ==========================================================================
-   5. BOTTONI D'AZIONE RAPIDA
-   ========================================================================== */
-
-/* Pulsante Paga Ora */
+/* ── Bottoni azione ── */
 .im-ap-btn-pay {
     background: #2fd8aa;
     color: #0a0c0d;
@@ -320,12 +246,8 @@
     transition: opacity .15s;
     font-family: inherit;
 }
+.im-ap-btn-pay:hover { opacity: .85; }
 
-.im-ap-btn-pay:hover { 
-    opacity: .85; 
-}
-
-/* Collegamento ipertestuale alla chat con lo studio */
 .im-ap-chat-link {
     font-size: 12px;
     color: #6b8c80;
@@ -333,24 +255,26 @@
     white-space: nowrap;
     transition: color .15s;
 }
+.im-ap-chat-link:hover { color: #2fd8aa; }
 
-.im-ap-chat-link:hover { 
-    color: #2fd8aa; 
+/* ── Empty state ── */
+.im-ap-empty {
+    text-align: center;
+    padding: 40px 24px;
+    color: #4b534f;
+    font-size: 14px;
+    border: 1px dashed rgba(255,255,255,.08);
+    border-radius: 14px;
+    margin-bottom: 48px;
 }
 
-
-/* ==========================================================================
-   6. GRIGLIA RECENSIONI RILASCIATE
-   ========================================================================== */
-
-/* Layout griglia a 2 colonne */
+/* ── Griglia recensioni ── */
 .im-ap-rec-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
 
-/* Box recensione */
 .im-ap-rec-card {
     background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.08);
@@ -391,19 +315,10 @@
     color: #4b534f;
 }
 
-/* Gestione icone delle stelle di valutazione */
-.im-ap-stars { 
-    margin-bottom: 8px; 
-}
+.im-ap-stars { margin-bottom: 8px; }
 
-.im-ap-star { 
-    color: #4b534f; 
-    font-size: 14px; 
-}
-
-.im-ap-star--on { 
-    color: #ffc107; 
-}
+.im-ap-star { color: #4b534f; font-size: 14px; }
+.im-ap-star--on { color: #ffc107; }
 
 .im-ap-rec-title {
     font-size: 14px;
@@ -418,12 +333,7 @@
     line-height: 1.5;
 }
 
-
-/* ==========================================================================
-   7. INTERFACCIA E MODALE DI PAGAMENTO (CHECKOUT OVERLAY)
-   ========================================================================== */
-
-/* Sfondo scuro oscurato fisso */
+/* ── Overlay pagamento ── */
 .im-pay-overlay {
     display: none;
     position: fixed;
@@ -434,13 +344,8 @@
     justify-content: center;
     padding: 24px;
 }
+.im-pay-overlay.aperta { display: flex; }
 
-/* Classe d'attivazione dinamica per visualizzazione */
-.im-pay-overlay.aperta { 
-    display: flex; 
-}
-
-/* Finestra modale di checkout */
 .im-pay-modal {
     background: #111a17;
     border: 1px solid rgba(255,255,255,.1);
@@ -450,8 +355,6 @@
     width: 100%;
     animation: im-pay-in .25s ease;
 }
-
-/* Animazione d'ingresso della modale a comparsa verso l'alto */
 @keyframes im-pay-in {
     from { opacity: 0; transform: translateY(20px) scale(.97); }
     to   { opacity: 1; transform: none; }
@@ -465,15 +368,12 @@
     color: #2fd8aa;
     margin-bottom: 6px;
 }
-
 .im-pay-title {
     font-size: 1.7rem;
     font-weight: 900;
     color: #eef1f0;
     margin-bottom: 16px;
 }
-
-/* Visualizzazione importo in evidenza */
 .im-pay-amount {
     font-size: 2.2rem;
     font-weight: 900;
@@ -482,28 +382,9 @@
     margin-bottom: 28px;
 }
 
-/* Campi del form di pagamento */
-.im-pay-field { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 6px; 
-    margin-bottom: 16px; 
-}
-
-.im-pay-field label { 
-    font-size: 12px; 
-    font-weight: 600; 
-    color: #6b8c80; 
-    text-transform: uppercase; 
-    letter-spacing: .08em; 
-}
-
-/* Struttura form inline a 2 colonne (Es. Scadenza e CVV) */
-.im-pay-row { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 14px; 
-}
+.im-pay-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.im-pay-field label { font-size: 12px; font-weight: 600; color: #6b8c80; text-transform: uppercase; letter-spacing: .08em; }
+.im-pay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
 .im-pay-input {
     background: rgba(255,255,255,.06);
@@ -515,13 +396,8 @@
     font-family: inherit;
     transition: border-color .15s;
 }
+.im-pay-input:focus { outline: none; border-color: #2fd8aa; }
 
-.im-pay-input:focus { 
-    outline: none; 
-    border-color: #2fd8aa; 
-}
-
-/* Elemento per stringhe di errore di convalida della carta */
 .im-pay-error {
     color: #f87171;
     font-size: 13px;
@@ -529,13 +405,7 @@
     margin-bottom: 8px;
 }
 
-/* Pulsantiera del carrello/checkout */
-.im-pay-actions { 
-    display: flex; 
-    gap: 12px; 
-    margin-top: 8px; 
-}
-
+.im-pay-actions { display: flex; gap: 12px; margin-top: 8px; }
 .im-pay-btn-cancel {
     flex: 1;
     background: transparent;
@@ -548,7 +418,6 @@
     font-family: inherit;
     cursor: pointer;
 }
-
 .im-pay-btn-confirm {
     flex: 2;
     background: #2fd8aa;
@@ -562,17 +431,9 @@
     cursor: pointer;
     transition: opacity .15s;
 }
+.im-pay-btn-confirm:hover { opacity: .85; }
+.im-pay-btn-confirm:disabled { opacity: .5; cursor: default; }
 
-.im-pay-btn-confirm:hover { 
-    opacity: .85; 
-}
-
-.im-pay-btn-confirm:disabled { 
-    opacity: .5; 
-    cursor: default; 
-}
-
-/* Elementi grafici post-transazione completata con successo */
 .im-pay-success-icon {
     width: 72px;
     height: 72px;
@@ -586,7 +447,6 @@
     justify-content: center;
     margin: 0 auto;
 }
-
 .im-pay-success-desc {
     font-size: 15px;
     color: #9aa3a0;
@@ -594,33 +454,11 @@
     margin-top: 12px;
 }
 
-
-/* ==========================================================================
-   8. RESPONSIVE DESIGN (BREAKPOINT SMARTPHONE)
-   ========================================================================== */
+/* ── Responsive ── */
 @media (max-width: 700px) {
-    /* La card appuntamento collassa in verticale */
-    .im-ap-card { 
-        flex-wrap: wrap; 
-    }
-    
-    .im-ap-card-date { 
-        min-width: auto; 
-    }
-    
-    /* Il contenitore bottoni prende l'intera riga */
-    .im-ap-card-actions { 
-        width: 100%; 
-    }
-    
-    /* Le recensioni passano da 2 colonne ad una lista a colonna singola */
-    .im-ap-rec-grid { 
-        grid-template-columns: 1fr; 
-    }
-    
-    /* L'header del profilo si centra riallineando gli elementi in colonna */
-    .im-ap-header-card { 
-        flex-direction: column; 
-        text-align: center; 
-    }
+    .im-ap-card { flex-wrap: wrap; }
+    .im-ap-card-date { min-width: auto; }
+    .im-ap-card-actions { width: 100%; }
+    .im-ap-rec-grid { grid-template-columns: 1fr; }
+    .im-ap-header-card { flex-direction: column; text-align: center; }
 }

@@ -1,786 +1,124 @@
-/* ==========================================================================
-   1. RESET GLOBALI E STRUTTURA PAGINA ADMIN
-   ========================================================================== */
-
-/* Nasconde il nav base quando l'admin è su pagine admin (hanno già adm-topbar) */
-.im-nav--admin { 
-    display: none !important; 
-}
-
-/* Le pagine admin hanno il loro topbar fixed — annulla il padding del body globale */
-body { 
-    padding-top: 0 !important; 
-}
-
-/* Contenitore principale della pagina Admin */
-.adm-page { 
-    min-height: 100vh; 
-    background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.10), transparent 60%), #0a0c0d; 
-    color: #eef1f0; 
-    font-family: 'Archivo', sans-serif; 
-    position: relative; 
-}
-
-
-/* ==========================================================================
-   2. TOPBAR (BARRA DI NAVIGAZIONE SUPERIORE)
-   ========================================================================== */
-
-/* Barra principale superiore fissa */
-.adm-topbar { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    z-index: 200; 
-    display: flex; 
-    align-items: center; 
-    gap: 20px; 
-    padding: 0 48px; 
-    height: 68px; 
-    border-bottom: 1px solid rgba(255,255,255,.07); 
-    background: rgba(10,12,13,.92); 
-    backdrop-filter: blur(14px); 
-}
-
-.adm-topbar-logo { 
-    font-size: 18px; 
-    font-weight: 900; 
-    letter-spacing: -.02em; 
-    color: #2fd8aa; 
-    white-space: nowrap; 
-}
-
-.adm-topbar-title { 
-    font-size: 14px; 
-    font-weight: 700; 
-    color: #2fd8aa; 
-    letter-spacing: .12em; 
-    text-transform: uppercase; 
-    flex: 1; 
-}
-
-/* Blocco destro della topbar (icone e utente) */
-.adm-topbar-right { 
-    display: flex; 
-    align-items: center; 
-    gap: 18px; 
-}
-
-.adm-topbar-icon { 
-    font-size: 18px; 
-    color: #6b736f; 
-    cursor: pointer; 
-    position: relative; 
-    transition: color .2s; 
-    text-decoration: none; 
-}
-
-.adm-topbar-icon:hover { 
-    color: #eef1f0; 
-}
-
-/* Badge di notifica rosso sopra l'icona */
-.adm-topbar-badge { 
-    position: absolute; 
-    top: -4px; 
-    right: -5px; 
-    width: 16px; 
-    height: 16px; 
-    border-radius: 50%; 
-    background: #e05252; 
-    font-size: 9px; 
-    font-weight: 800; 
-    color: #fff; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
-
-/* Separatore verticale tra i blocchi */
-.adm-topbar-sep { 
-    width: 1px; 
-    height: 24px; 
-    background: rgba(255,255,255,.1); 
-}
-
-/* Info Utente loggato nella topbar */
-.adm-topbar-user { 
-    display: flex; 
-    align-items: center; 
-    gap: 9px; 
-}
-
-.adm-topbar-avatar { 
-    width: 34px; 
-    height: 34px; 
-    border-radius: 50%; 
-    background: radial-gradient(circle, rgba(47,216,170,.25), rgba(47,216,170,.05)); 
-    border: 1px solid rgba(47,216,170,.4); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 13px; 
-    font-weight: 900; 
-    color: #2fd8aa; 
-}
-
-.adm-topbar-uname { 
-    font-size: 13px; 
-    font-weight: 600; 
-    color: #cdd3d1; 
-}
-
-.adm-topbar-logout { 
-    font-size: 12px; 
-    color: #4b534f; 
-    text-decoration: none; 
-    transition: color .2s; 
-}
-
-.adm-topbar-logout:hover { 
-    color: #e05252; 
-}
-
-
-/* ==========================================================================
-   3. LAYOUT CORPO PRINCIPALE ED ELEMENTI INTRODUTTIVI
-   ========================================================================== */
-
-/* Contenitore principale del contenuto */
-.adm-body { 
-    position: relative; 
-    z-index: 1; 
-    max-width: 1280px; 
-    margin: 0 auto; 
-    padding: 108px 48px 80px; 
-}
-
-/* Sezione di Benvenuto / Intestazione Pagina */
-.adm-welcome { 
-    margin-bottom: 32px; 
-}
-
-.adm-section-label { 
-    font-size: 11px; 
-    font-weight: 700; 
-    letter-spacing: .1em; 
-    text-transform: uppercase; 
-    color: #4b534f; 
-    margin-bottom: 6px; 
-}
-
-.adm-welcome-title { 
-    font-size: 26px; 
-    font-weight: 900; 
-    letter-spacing: -.02em; 
-}
-
-.adm-welcome-title span { 
-    color: #2fd8aa; 
-}
-
-.adm-welcome-sub { 
-    font-size: 14px; 
-    color: #6b736f; 
-    margin-top: 6px; 
-}
-
-
-/* ==========================================================================
-   4. DASHBOARD COMPONENTI: GRID KPI E GRAFICI
-   ========================================================================== */
-
-/* Griglia KPI (4 Colonne) */
-.adm-kpi-row { 
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 16px; 
-    margin-bottom: 28px; 
-}
-
-/* Card KPI Standard */
-.adm-kpi-card { 
-    background: #101417; 
-    border: 1px solid rgba(255,255,255,.07); 
-    border-radius: 14px; 
-    padding: 22px 24px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 6px; 
-}
-
-/* Variante Card KPI con stato di Alert/Criticità */
-.adm-kpi-card--alert { 
-    border-color: rgba(224,82,82,.2); 
-    background: linear-gradient(135deg, #101417, #160f0f); 
-}
-
-.adm-kpi-top { 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-}
-
-.adm-kpi-label { 
-    font-size: 12px; 
-    font-weight: 600; 
-    color: #6b736f; 
-}
-
-.adm-kpi-icon { 
-    font-size: 16px; 
-}
-
-.adm-kpi-value { 
-    font-size: 32px; 
-    font-weight: 900; 
-    letter-spacing: -.03em; 
-    line-height: 1; 
-}
-
-/* Trend percentuali di andamento */
-.adm-kpi-trend { 
-    font-size: 11px; 
-    font-weight: 700; 
-}
-
-.adm-kpi-trend--up { 
-    color: #2fd8aa; 
-}
-
-.adm-kpi-trend--alert { 
-    color: #e05252; 
-}
-
-/* Griglia Grafici (2 Colonne) */
-.adm-charts-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
-}
-
-.adm-chart-card { 
-    background: #101417; 
-    border: 1px solid rgba(255,255,255,.07); 
-    border-radius: 14px; 
-    padding: 24px 26px; 
-}
-
-.adm-chart-title { 
-    font-size: 13px; 
-    font-weight: 800; 
-    color: #cdd3d1; 
-    margin-bottom: 18px; 
-}
-
-/* Canvas wrapper per i grafici js (Chart.js / ApexCharts) */
-.adm-chart-wrap { 
-    position: relative; 
-    height: 200px; 
-}
-
-
-/* ==========================================================================
-   5. TABELLE DI GESTIONE (UTENTI / SEGNALAZIONI)
-   ========================================================================== */
-
-/* Card contenitore della tabella */
-.adm-table-card { 
-    background: #101417; 
-    border: 1px solid rgba(255,255,255,.07); 
-    border-radius: 14px; 
-    overflow: hidden; 
-}
-
-/* Header interno alla card tabella */
-.adm-table-head { 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    padding: 20px 24px; 
-    border-bottom: 1px solid rgba(255,255,255,.07); 
-}
-
-.adm-table-title { 
-    font-size: 15px; 
-    font-weight: 800; 
-}
-
-.adm-table-count { 
-    font-size: 12px; 
-    color: #6b736f; 
-}
-
-/* Struttura Tabella HTML nativa */
-.adm-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-}
-
-.adm-table thead th { 
-    font-size: 11px; 
-    font-weight: 700; 
-    color: #4b534f; 
-    text-transform: uppercase; 
-    letter-spacing: .08em; 
-    padding: 12px 24px; 
-    text-align: left; 
-    border-bottom: 1px solid rgba(255,255,255,.06); 
-}
-
-.adm-table tbody tr { 
-    border-bottom: 1px solid rgba(255,255,255,.05); 
-    transition: background .15s; 
-}
-
-.adm-table tbody tr:last-child { 
-    border-bottom: none; 
-}
-
-.adm-table tbody tr:hover { 
-    background: rgba(255,255,255,.03); 
-}
-
-.adm-table td { 
-    padding: 14px 24px; 
-    font-size: 13px; 
-    vertical-align: middle; 
-}
-
-/* Componente Utente dentro la cella */
-.adm-user-cell { 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-}
-
-.adm-user-av { 
-    width: 36px; 
-    height: 36px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 12px; 
-    font-weight: 800; 
-    flex-shrink: 0; 
-}
-
-/* Varianti colore per tipologia avatar utente */
-.adm-user-av--cliente { 
-    background: rgba(79,163,209,.15); 
-    color: #4fa3d1; 
-    border: 1px solid rgba(79,163,209,.3); 
-}
-
-.adm-user-av--studio { 
-    background: rgba(47,216,170,.12); 
-    color: #2fd8aa; 
-    border: 1px solid rgba(47,216,170,.25); 
-}
-
-.adm-user-name { 
-    font-size: 13px; 
-    font-weight: 700; 
-    color: #eef1f0; 
-}
-
-.adm-user-email { 
-    font-size: 11px; 
-    color: #4b534f; 
-    margin-top: 2px; 
-}
-
-/* Dettagli testo all'interno delle celle */
-.adm-motivo { 
-    font-size: 12px; 
-    color: #9aa3a0; 
-}
-
-.adm-date { 
-    font-size: 12px; 
-    color: #6b736f; 
-    font-family: ui-monospace, monospace; 
-}
-
-/* Righe speciali e stati di riga */
-.adm-table-sep-row td { 
-    padding: 8px 24px; 
-    background: rgba(255,255,255,.03); 
-}
-
-.adm-table-sep-label { 
-    font-size: 10px; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: .1em; 
-    color: #3f4a47; 
-}
-
-.adm-row-chiusa td { 
-    opacity: .55; 
-}
-
-/* Cella contenente i tasti d'azione a fine riga */
-.adm-actions-cell { 
-    display: flex; 
-    gap: 8px; 
-    align-items: center; 
-}
-
-/* Placeholder stato vuoto per la tabella */
-.adm-empty { 
-    padding: 60px 24px; 
-    text-align: center; 
-    color: #4b534f; 
-}
-
-.adm-empty-icon { 
-    font-size: 32px; 
-    margin-bottom: 12px; 
-    color: #2fd8aa; 
-}
-
-
-/* ==========================================================================
-   6. INTERFACCIA MODALE E OVERLAYS
-   ========================================================================== */
-
-/* Sfondo oscurato fisso dietro la modale */
-.adm-overlay { 
-    display: none; 
-    position: fixed; 
-    inset: 0; 
-    background: rgba(0,0,0,.65); 
-    z-index: 100; 
-    align-items: center; 
-    justify-content: center; 
-    backdrop-filter: blur(4px); 
-}
-
-/* Classe di attivazione via JS per mostrare la modale */
-.adm-overlay--open { 
-    display: flex; 
-}
-
-/* Box della finestra modale */
-.adm-modal { 
-    background: #131a1e; 
-    border: 1px solid rgba(255,255,255,.09); 
-    border-radius: 16px; 
-    width: 100%; 
-    max-width: 480px; 
-    max-height: 90vh; 
-    overflow-y: auto; 
-    padding: 28px 30px; 
-}
-
-.adm-modal-header { 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    margin-bottom: 20px; 
-}
-
-.adm-modal-title { 
-    font-size: 17px; 
-    font-weight: 900; 
-}
-
-/* Informazioni utente concentrate dentro la modale */
-.adm-modal-user { 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-    padding: 14px 16px; 
-    background: rgba(255,255,255,.04); 
-    border-radius: 10px; 
-    margin-bottom: 22px; 
-}
-
-/* Campi, etichette e form all'interno della modale */
-.adm-modal-field { 
-    margin-bottom: 18px; 
-}
-
-.adm-modal-label { 
-    font-size: 10px; 
-    font-weight: 800; 
-    letter-spacing: .1em; 
-    text-transform: uppercase; 
-    color: #4b534f; 
-    display: block; 
-    margin-bottom: 8px; 
-}
-
-/* Elementi di input e selezione (Form) */
-.adm-radio-group { 
-    display: flex; 
-    gap: 10px; 
-}
-
-.adm-radio-opt { 
-    display: flex; 
-    align-items: center; 
-    gap: 7px; 
-    font-size: 13px; 
-    font-weight: 600; 
-    color: #9aa3a0; 
-    background: rgba(255,255,255,.05); 
-    border: 1px solid rgba(255,255,255,.09); 
-    border-radius: 8px; 
-    padding: 9px 16px; 
-    cursor: pointer; 
-}
-
-.adm-radio-opt:has(input:checked) { 
-    border-color: rgba(47,216,170,.4); 
-    color: #2fd8aa; 
-    background: rgba(47,216,170,.08); 
-}
-
-.adm-durata-row { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-}
-
-.adm-input-num { 
-    width: 70px; 
-    background: rgba(255,255,255,.06); 
-    border: 1px solid rgba(255,255,255,.1); 
-    border-radius: 8px; 
-    padding: 9px 12px; 
-    color: #eef1f0; 
-    font-size: 15px; 
-    font-weight: 700; 
-    font-family: inherit; 
-    text-align: center; 
-}
-
-.adm-durata-unit { 
-    font-size: 13px; 
-    color: #6b736f; 
-}
-
-.adm-durata-scade { 
-    font-size: 11px; 
-    color: #4b534f; 
-    margin-top: 6px; 
-}
-
-/* Menu a tendina Select customizzato con SVG inline */
-.adm-select { 
-    width: 100%; 
-    background: #1a2228; 
-    border: 1px solid rgba(47,216,170,.2); 
-    border-radius: 8px; 
-    padding: 10px 14px; 
-    color: #9aa3a0; 
-    font-size: 13px; 
-    font-family: inherit; 
-    appearance: none; 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232fd8aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); 
-    background-repeat: no-repeat; 
-    background-position: right 14px center; 
-    cursor: pointer; 
-}
-
-.adm-select:focus { 
-    outline: none; 
-    border-color: #2fd8aa; 
-}
-
-/* Pulsanti opzione gravità */
-.adm-gravita-group { 
-    display: flex; 
-    gap: 8px; 
-}
-
-.adm-grav-btn { 
-    flex: 1; 
-    padding: 8px 0; 
-    border: 1px solid rgba(255,255,255,.1); 
-    border-radius: 8px; 
-    background: rgba(255,255,255,.04); 
-    color: #6b736f; 
-    font-size: 12px; 
-    font-weight: 700; 
-    cursor: pointer; 
-    font-family: inherit; 
-    transition: all .15s; 
-}
-
-.adm-grav-btn--sel { 
-    border-color: #e05252; 
-    background: rgba(224,82,82,.15); 
-    color: #e05252; 
-}
-
-.adm-textarea { 
-    width: 100%; 
-    background: rgba(255,255,255,.06); 
-    border: 1px solid rgba(255,255,255,.1); 
-    border-radius: 8px; 
-    padding: 10px 14px; 
-    color: #eef1f0; 
-    font-size: 13px; 
-    font-family: inherit; 
-    resize: none; 
-    box-sizing: border-box; 
-}
-
-.adm-check-opt { 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-size: 13px; 
-    color: #9aa3a0; 
-    margin-bottom: 8px; 
-    cursor: pointer; 
-}
-
-/* Footer della modale adibito ai pulsanti d'azione finale */
-.adm-modal-footer { 
-    display: flex; 
-    gap: 10px; 
-    margin-top: 24px; 
-    padding-top: 20px; 
-    border-top: 1px solid rgba(255,255,255,.07); 
-}
-
-
-/* ==========================================================================
-   7. PULSANTI, BADGES E STATI INTERATTIVI (BOTTONI)
-   ========================================================================== */
-
-/* Badges di stato generici */
-.adm-badge { 
-    font-size: 10px; 
-    font-weight: 700; 
-    padding: 3px 10px; 
-    border-radius: 999px; 
-}
-
-.adm-badge--red { 
-    background: rgba(224,82,82,.15); 
-    color: #e05252; 
-}
-
-.adm-badge--muted { 
-    background: rgba(255,255,255,.06); 
-    color: #4b534f; 
-}
-
-/* Bottone Chiudi Modale (X in alto a destra) */
-.adm-modal-close { 
-    background: none; 
-    border: none; 
-    color: #4b534f; 
-    font-size: 18px; 
-    cursor: pointer; 
-    padding: 4px 8px; 
-}
-
-.adm-modal-close:hover { 
-    color: #eef1f0; 
-}
-
-/* Pulsante Ban definitivo (Rosso pieno) */
-.adm-btn-ban { 
-    font-size: 12px; 
-    font-weight: 700; 
-    color: #fff; 
-    background: #e05252; 
-    padding: 7px 16px; 
-    border-radius: 8px; 
-    text-decoration: none; 
-    transition: background .2s; 
-}
-
-.adm-btn-ban:hover { 
-    background: #c94040; 
-}
-
-/* Pulsante Info/Dettagli (Azzurro Outline) */
-.adm-btn-info { 
-    font-size: 12px; 
-    font-weight: 700; 
-    color: #4fa3d1; 
-    background: rgba(79,163,209,.12); 
-    border: 1px solid rgba(79,163,209,.25); 
-    padding: 7px 14px; 
-    border-radius: 8px; 
-    text-decoration: none; 
-    transition: background .2s; 
-}
-
-.adm-btn-info:hover { 
-    background: rgba(79,163,209,.22); 
-}
-
-/* Pulsante Sblocca/Sban (Verde Brand Outline) */
-.adm-btn-sban { 
-    font-size: 12px; 
-    font-weight: 700; 
-    color: #2fd8aa; 
-    background: rgba(47,216,170,.10); 
-    border: 1px solid rgba(47,216,170,.22); 
-    padding: 7px 14px; 
-    border-radius: 8px; 
-    text-decoration: none; 
-    transition: background .2s; 
-}
-
-.adm-btn-sban:hover { 
-    background: rgba(47,216,170,.18); 
-}
-
-/* Pulsanti interni al footer modale */
-.adm-btn-annulla { 
-    flex: 1; 
-    padding: 12px; 
-    border: 1px solid rgba(255,255,255,.12); 
-    border-radius: 8px; 
-    background: transparent; 
-    color: #9aa3a0; 
-    font-size: 14px; 
-    font-weight: 700; 
-    cursor: pointer; 
-    font-family: inherit; 
-}
-
-.adm-btn-scarta { 
-    flex: 1; 
-    padding: 12px; 
-    border: 1px solid rgba(224,82,82,.25); 
-    border-radius: 8px; 
-    background: rgba(224,82,82,.08); 
-    color: #e05252; 
-    font-size: 14px; 
-    font-weight: 700; 
-    cursor: pointer; 
-    font-family: inherit; 
-}
-
-.adm-btn-scarta:hover { 
-    background: rgba(224,82,82,.18); 
-}
-
-.adm-btn-conferma { 
-    flex: 2; 
-    padding: 12px; 
-    border: none; 
-    border-radius: 8px; 
-    background: #2fd8aa; 
-    color: #0a0c0d; 
-    font-size: 14px; 
-    font-weight: 800; 
-    cursor: pointer; 
-    font-family: inherit; 
-}
-
-.adm-btn-conferma:hover { 
-    background: #37eec0; 
-}
+/* nasconde il nav base quando l'admin è su pagine admin (hanno già adm-topbar) */
+.im-nav--admin { display: none !important; }
+/* le pagine admin hanno il loro topbar fixed — annulla il padding del body globale */
+body { padding-top: 0 !important; }
+
+/* ── pagina ── */
+.adm-page { min-height: 100vh; background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.10), transparent 60%), #0a0c0d; color: #eef1f0; font-family: 'Archivo', sans-serif; position: relative; }
+
+/* ── topbar ── */
+.adm-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; gap: 20px; padding: 0 48px; height: 68px; border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(10,12,13,.92); backdrop-filter: blur(14px); }
+.adm-topbar-logo { font-size: 18px; font-weight: 900; letter-spacing: -.02em; color: #2fd8aa; white-space: nowrap; }
+.adm-topbar-title { font-size: 14px; font-weight: 700; color: #2fd8aa; letter-spacing: .12em; text-transform: uppercase; flex: 1; }
+.adm-topbar-right { display: flex; align-items: center; gap: 18px; }
+.adm-topbar-icon { font-size: 18px; color: #6b736f; cursor: pointer; position: relative; transition: color .2s; text-decoration: none; }
+.adm-topbar-icon:hover { color: #eef1f0; }
+.adm-topbar-badge { position: absolute; top: -4px; right: -5px; width: 16px; height: 16px; border-radius: 50%; background: #e05252; font-size: 9px; font-weight: 800; color: #fff; display: flex; align-items: center; justify-content: center; }
+.adm-topbar-sep { width: 1px; height: 24px; background: rgba(255,255,255,.1); }
+.adm-topbar-user { display: flex; align-items: center; gap: 9px; }
+.adm-topbar-avatar { width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle, rgba(47,216,170,.25), rgba(47,216,170,.05)); border: 1px solid rgba(47,216,170,.4); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: #2fd8aa; }
+.adm-topbar-uname { font-size: 13px; font-weight: 600; color: #cdd3d1; }
+.adm-topbar-logout { font-size: 12px; color: #4b534f; text-decoration: none; transition: color .2s; }
+.adm-topbar-logout:hover { color: #e05252; }
+
+/* ── body ── */
+.adm-body { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 108px 48px 80px; }
+
+/* ── welcome ── */
+.adm-welcome { margin-bottom: 32px; }
+.adm-section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #4b534f; margin-bottom: 6px; }
+.adm-welcome-title { font-size: 26px; font-weight: 900; letter-spacing: -.02em; }
+.adm-welcome-title span { color: #2fd8aa; }
+
+/* ── KPI grid ── */
+.adm-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.adm-kpi-card { background: #101417; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+.adm-kpi-card--alert { border-color: rgba(224,82,82,.2); background: linear-gradient(135deg, #101417, #160f0f); }
+.adm-kpi-top { display: flex; align-items: center; justify-content: space-between; }
+.adm-kpi-label { font-size: 12px; font-weight: 600; color: #6b736f; }
+.adm-kpi-icon { font-size: 16px; }
+.adm-kpi-value { font-size: 32px; font-weight: 900; letter-spacing: -.03em; line-height: 1; }
+.adm-kpi-trend { font-size: 11px; font-weight: 700; }
+.adm-kpi-trend--up { color: #2fd8aa; }
+.adm-kpi-trend--alert { color: #e05252; }
+
+/* ── charts grid ── */
+.adm-charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.adm-chart-card { background: #101417; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 24px 26px; }
+.adm-chart-title { font-size: 13px; font-weight: 800; color: #cdd3d1; margin-bottom: 18px; }
+.adm-chart-wrap { position: relative; height: 200px; }
+
+.adm-welcome-sub { font-size: 14px; color: #6b736f; margin-top: 6px; }
+
+.adm-table-card { background: #101417; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; overflow: hidden; }
+.adm-table-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.adm-table-title { font-size: 15px; font-weight: 800; }
+.adm-table-count { font-size: 12px; color: #6b736f; }
+
+.adm-table { width: 100%; border-collapse: collapse; }
+.adm-table thead th { font-size: 11px; font-weight: 700; color: #4b534f; text-transform: uppercase; letter-spacing: .08em; padding: 12px 24px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.06); }
+.adm-table tbody tr { border-bottom: 1px solid rgba(255,255,255,.05); transition: background .15s; }
+.adm-table tbody tr:last-child { border-bottom: none; }
+.adm-table tbody tr:hover { background: rgba(255,255,255,.03); }
+.adm-table td { padding: 14px 24px; font-size: 13px; vertical-align: middle; }
+
+.adm-user-cell { display: flex; align-items: center; gap: 12px; }
+.adm-user-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+.adm-user-av--cliente { background: rgba(79,163,209,.15); color: #4fa3d1; border: 1px solid rgba(79,163,209,.3); }
+.adm-user-av--studio { background: rgba(47,216,170,.12); color: #2fd8aa; border: 1px solid rgba(47,216,170,.25); }
+.adm-user-name { font-size: 13px; font-weight: 700; color: #eef1f0; }
+.adm-user-email { font-size: 11px; color: #4b534f; margin-top: 2px; }
+
+.adm-motivo { font-size: 12px; color: #9aa3a0; }
+.adm-date { font-size: 12px; color: #6b736f; font-family: ui-monospace, monospace; }
+
+.adm-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.adm-badge--red { background: rgba(224,82,82,.15); color: #e05252; }
+.adm-badge--muted { background: rgba(255,255,255,.06); color: #4b534f; }
+
+.adm-btn-ban { font-size: 12px; font-weight: 700; color: #fff; background: #e05252; padding: 7px 16px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+.adm-btn-ban:hover { background: #c94040; }
+
+.adm-empty { padding: 60px 24px; text-align: center; color: #4b534f; }
+.adm-empty-icon { font-size: 32px; margin-bottom: 12px; color: #2fd8aa; }
+
+.adm-table-sep-row td { padding: 8px 24px; background: rgba(255,255,255,.03); }
+.adm-table-sep-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #3f4a47; }
+.adm-row-chiusa td { opacity: .55; }
+.adm-actions-cell { display: flex; gap: 8px; align-items: center; }
+.adm-btn-info { font-size: 12px; font-weight: 700; color: #4fa3d1; background: rgba(79,163,209,.12); border: 1px solid rgba(79,163,209,.25); padding: 7px 14px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+.adm-btn-info:hover { background: rgba(79,163,209,.22); }
+.adm-btn-sban { font-size: 12px; font-weight: 700; color: #2fd8aa; background: rgba(47,216,170,.10); border: 1px solid rgba(47,216,170,.22); padding: 7px 14px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+.adm-btn-sban:hover { background: rgba(47,216,170,.18); }
+
+/* ── modal overlay ── */
+.adm-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+.adm-overlay--open { display: flex; }
+.adm-modal { background: #131a1e; border: 1px solid rgba(255,255,255,.09); border-radius: 16px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 28px 30px; }
+.adm-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.adm-modal-title { font-size: 17px; font-weight: 900; }
+.adm-modal-close { background: none; border: none; color: #4b534f; font-size: 18px; cursor: pointer; padding: 4px 8px; }
+.adm-modal-close:hover { color: #eef1f0; }
+.adm-modal-user { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: rgba(255,255,255,.04); border-radius: 10px; margin-bottom: 22px; }
+.adm-modal-field { margin-bottom: 18px; }
+.adm-modal-label { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #4b534f; display: block; margin-bottom: 8px; }
+.adm-radio-group { display: flex; gap: 10px; }
+.adm-radio-opt { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #9aa3a0; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); border-radius: 8px; padding: 9px 16px; cursor: pointer; }
+.adm-radio-opt:has(input:checked) { border-color: rgba(47,216,170,.4); color: #2fd8aa; background: rgba(47,216,170,.08); }
+.adm-durata-row { display: flex; align-items: center; gap: 10px; }
+.adm-input-num { width: 70px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 9px 12px; color: #eef1f0; font-size: 15px; font-weight: 700; font-family: inherit; text-align: center; }
+.adm-durata-unit { font-size: 13px; color: #6b736f; }
+.adm-durata-scade { font-size: 11px; color: #4b534f; margin-top: 6px; }
+.adm-select { width: 100%; background: #1a2228; border: 1px solid rgba(47,216,170,.2); border-radius: 8px; padding: 10px 14px; color: #9aa3a0; font-size: 13px; font-family: inherit; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232fd8aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+.adm-select:focus { outline: none; border-color: #2fd8aa; }
+.adm-gravita-group { display: flex; gap: 8px; }
+.adm-grav-btn { flex: 1; padding: 8px 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(255,255,255,.04); color: #6b736f; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .15s; }
+.adm-grav-btn--sel { border-color: #e05252; background: rgba(224,82,82,.15); color: #e05252; }
+.adm-textarea { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 10px 14px; color: #eef1f0; font-size: 13px; font-family: inherit; resize: none; box-sizing: border-box; }
+.adm-check-opt { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #9aa3a0; margin-bottom: 8px; cursor: pointer; }
+.adm-modal-footer { display: flex; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.07); }
+.adm-btn-annulla { flex: 1; padding: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; background: transparent; color: #9aa3a0; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.adm-btn-scarta { flex: 1; padding: 12px; border: 1px solid rgba(224,82,82,.25); border-radius: 8px; background: rgba(224,82,82,.08); color: #e05252; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.adm-btn-scarta:hover { background: rgba(224,82,82,.18); }
+.adm-btn-conferma { flex: 2; padding: 12px; border: none; border-radius: 8px; background: #2fd8aa; color: #0a0c0d; font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.adm-btn-conferma:hover { background: #37eec0; }

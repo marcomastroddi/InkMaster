@@ -1,639 +1,267 @@
-/* ==========================================================================
-   1. NAV SEARCH (Sfondo e bordo gestiti da .im-topbar in layout.css)
-   ========================================================================== */
+/* nav search — sfondo e bordo gestiti da .im-topbar in layout.css */
+.im-nav-search { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 580px; margin: 0 40px; }
+.im-nav-search-box { display: flex; align-items: center; gap: 12px; background: #13171a; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 0 20px; height: 44px; flex: 1; }
+.im-search-icon { font-size: 17px; color: #6b736f; }
+.im-nav-search-box input { all: unset; flex: 1; font-size: 15px; color: #eef1f0; font-family: inherit; }
+.im-nav-search-box input::placeholder { color: #6b736f; }
+.im-nav-search-btn { padding: 0 22px; height: 44px; background: #2fd8aa; color: #0a0c0d; border: none; border-radius: 999px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
 
-.im-nav-search { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    flex: 1; 
-    max-width: 580px; 
-    margin: 0 40px; 
-}
+/* pagina e sfondo */
+.el-page { min-height: 100vh; background: radial-gradient(1100px 500px at 60% -4%, rgba(47,216,170,.11), transparent 60%), #0a0c0d; position: relative; overflow: hidden; }
+.el-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.el-blob { position: absolute; border-radius: 50%; filter: blur(28px); }
+.el-blob-1 { width: 500px; height: 500px; right: -100px; top: -80px; background: radial-gradient(circle, rgba(47,216,170,.15), transparent 70%); animation: el-drift1 20s ease-in-out infinite; }
+.el-blob-2 { width: 380px; height: 380px; left: -80px; bottom: 100px; background: radial-gradient(circle, rgba(47,216,170,.09), transparent 70%); animation: el-drift2 25s ease-in-out infinite; }
+.el-lines { position: absolute; top: 0; left: 0; width: 100%; height: 400px; }
+.el-lines path { fill: none; }
+.el-l1 { stroke: #2fd8aa; stroke-width: 1.2; stroke-dasharray: 14 16; stroke-opacity: .4; animation: el-dash 8s linear infinite; }
+.el-l2 { stroke: #2fd8aa; stroke-width: 1; stroke-dasharray: 8 20; stroke-opacity: .25; animation: el-dash 12s linear infinite; animation-delay: -3s; }
 
-.im-nav-search-box { 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-    background: #13171a; 
-    border: 1px solid rgba(255, 255, 255, .14); 
-    border-radius: 999px; 
-    padding: 0 20px; 
-    height: 44px; 
-    flex: 1; 
-}
+/* toolbar */
+.el-toolbar { max-width: 1360px; margin: 0 auto; padding: 24px 48px 0; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+.el-count { font-size: 13px; color: #6b736f; }
+.el-count strong { color: #9aa3a0; }
+.el-stili-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.el-chip { font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); color: #9aa3a0; text-decoration: none; transition: border-color .15s, color .15s, background .15s; }
+.el-chip:hover { border-color: #2fd8aa; color: #2fd8aa; }
+.el-chip--attivo { background: rgba(47,216,170,.12); border-color: #2fd8aa; color: #2fd8aa; }
 
-.im-search-icon { 
-    font-size: 17px; 
-    color: #6b736f; 
-}
+/* layout */
+.el-body { max-width: 1360px; margin: 0 auto; padding: 20px 48px 60px; display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: start; position: relative; z-index: 1; }
 
-.im-nav-search-box input { 
-    all: unset; 
-    flex: 1; 
-    font-size: 15px; 
-    color: #eef1f0; 
-    font-family: inherit; 
-}
+/* lista */
+.el-list { display: flex; flex-direction: column; gap: 14px; }
+.el-empty { padding: 60px 0; text-align: center; color: #6b736f; font-size: 15px; }
 
-.im-nav-search-box input::placeholder { 
-    color: #6b736f; 
-}
-
-.im-nav-search-btn { 
-    padding: 0 22px; 
-    height: 44px; 
-    background: #2fd8aa; 
-    color: #0a0c0d; 
-    border: none; 
-    border-radius: 999px; 
-    font-size: 15px; 
-    font-weight: 800; 
-    cursor: pointer; 
-    font-family: inherit; 
-}
-
-
-/* ==========================================================================
-   2. PAGINA, SFONDO E BLOB DECORATIVI
-   ========================================================================== */
-
-/* Fix: overflow spostato su .el-bg per non rompere il position: sticky */
-.el-page { 
-    min-height: 100vh; 
-    background: radial-gradient(1100px 500px at 60% -4%, rgba(47, 216, 170, .11), transparent 60%), #0a0c0d; 
-    position: relative; 
-    overflow: visible; 
-}
-
-.el-bg { 
-    position: absolute; 
-    inset: 0; 
-    pointer-events: none; 
-    z-index: 0; 
-    overflow: hidden; 
-}
-
-.el-blob { 
-    position: absolute; 
-    border-radius: 50%; 
-    filter: blur(28px); 
-}
-
-.el-blob-1 { 
-    width: 500px; 
-    height: 500px; 
-    right: -100px; 
-    top: -80px; 
-    background: radial-gradient(circle, rgba(47, 216, 170, .15), transparent 70%); 
-    animation: el-drift1 20s ease-in-out infinite; 
-}
-
-.el-blob-2 { 
-    width: 380px; 
-    height: 380px; 
-    left: -80px; 
-    bottom: 100px; 
-    background: radial-gradient(circle, rgba(47, 216, 170, .09), transparent 70%); 
-    animation: el-drift2 25s ease-in-out infinite; 
-}
-
-.el-lines { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 400px; 
-}
-
-.el-lines path { 
-    fill: none; 
-}
-
-.el-l1 { 
-    stroke: #2fd8aa; 
-    stroke-width: 1.2; 
-    stroke-dasharray: 14 16; 
-    stroke-opacity: .4; 
-    animation: el-dash 8s linear infinite; 
-}
-
-.el-l2 { 
-    stroke: #2fd8aa; 
-    stroke-width: 1; 
-    stroke-dasharray: 8 20; 
-    stroke-opacity: .25; 
-    animation: el-dash 12s linear infinite; 
-    animation-delay: -3s; 
-}
-
-
-/* ==========================================================================
-   3. TOOLBAR E CHIPS FILTRI
-   ========================================================================== */
-
-.el-toolbar { 
-    max-width: 1360px; 
-    margin: 0 auto; 
-    padding: 24px 48px 0; 
-    position: relative; 
-    z-index: 1; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 14px; 
-}
-
-.el-count { 
-    font-size: 13px; 
-    color: #6b736f; 
-}
-
-.el-count strong { 
-    color: #9aa3a0; 
-}
-
-.el-stili-chips { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 8px; 
-}
-
-.el-chip { 
-    font-size: 12px; 
-    font-weight: 600; 
-    padding: 6px 16px; 
-    border-radius: 999px; 
-    border: 1px solid rgba(255, 255, 255, .12); 
-    color: #9aa3a0; 
-    text-decoration: none; 
-    transition: border-color .15s, color .15s, background .15s; 
-}
-
-.el-chip:hover { 
-    border-color: #2fd8aa; 
-    color: #2fd8aa; 
-}
-
-.el-chip--attivo { 
-    background: rgba(47, 216, 170, .12); 
-    border-color: #2fd8aa; 
-    color: #2fd8aa; 
-}
-
-
-/* ==========================================================================
-   4. DISTRIBUZIONE LAYOUT MAIN BODY
-   ========================================================================== */
-
-.el-body { 
-    max-width: 1360px; 
-    margin: 0 auto; 
-    padding: 20px 48px 60px; 
-    display: grid; 
-    grid-template-columns: 1fr 360px; 
-    gap: 28px; 
-    align-items: start; 
-    position: relative; 
-    z-index: 1; 
-}
-
-.el-list { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 14px; 
-}
-
-.el-empty { 
-    padding: 60px 0; 
-    text-align: center; 
-    color: #6b736f; 
-    font-size: 15px; 
-}
-
-
-/* ==========================================================================
-   5. SCHEDA RISULTATO (CARD ARTISTA / STUDIO)
-   ========================================================================== */
-
+/* ── card ── */
 .el-card {
-    display: grid;
-    grid-template-columns: 60px 1fr 190px;
-    gap: 0 22px;
-    align-items: stretch;
-    background: #101417;
-    border: 1px solid rgba(255, 255, 255, .08);
-    border-radius: 14px;
-    padding: 22px 24px;
-    color: inherit;
-    transition: border-color .18s, box-shadow .18s;
+  display: grid;
+  grid-template-columns: 60px 1fr 190px;
+  gap: 0 22px;
+  align-items: stretch;
+  background: #101417;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 22px 24px;
+  color: inherit;
+  transition: border-color .18s, box-shadow .18s;
 }
-
 .el-card:hover {
-    border-color: rgba(47, 216, 170, .35);
-    box-shadow: 0 0 0 1px rgba(47, 216, 170, .12);
+  border-color: rgba(47,216,170,.35);
+  box-shadow: 0 0 0 1px rgba(47,216,170,.12);
 }
 
 .el-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 35%, rgba(47, 216, 170, .22), rgba(47, 216, 170, .05));
-    border: 1px solid rgba(47, 216, 170, .35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 800;
-    color: #2fd8aa;
-    flex-shrink: 0;
-    align-self: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, rgba(47,216,170,.22), rgba(47,216,170,.05));
+  border: 1px solid rgba(47,216,170,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #2fd8aa;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .el-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
 }
-
 .el-nome {
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: -.01em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 .el-desc {
-    font-size: 13px;
-    color: #9aa3a0;
-    line-height: 1.45;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  font-size: 13px;
+  color: #9aa3a0;
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
-
 .el-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
-
 .el-tag {
-    font-size: 11px;
-    font-weight: 700;
-    color: #2fd8aa;
-    background: rgba(47, 216, 170, .1);
-    border: 1px solid rgba(47, 216, 170, .2);
-    padding: 3px 9px;
-    border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #2fd8aa;
+  background: rgba(47,216,170,.1);
+  border: 1px solid rgba(47,216,170,.2);
+  padding: 3px 9px;
+  border-radius: 999px;
 }
-
 .el-tat {
-    font-size: 12px;
-    color: #6b736f;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 12px;
+  color: #6b736f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-
-/* ==========================================================================
-   6. COLONNA METADATI CARD (RATING, LOCATION, CTA)
-   ========================================================================== */
-
+/* colonna meta: sequenziale dall'alto al basso */
 .el-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding-left: 22px;
-    border-left: 1px solid rgba(255, 255, 255, .07);
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-left: 22px;
+  border-left: 1px solid rgba(255,255,255,.07);
+  gap: 10px;
 }
-
 .el-rating {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
-
 .el-stars {
-    font-size: 15px;
-    color: #f5b942;
-    letter-spacing: 2px;
+  font-size: 15px;
+  color: #f5b942;
+  letter-spacing: 2px;
 }
-
 .el-rating-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: #6b736f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #6b736f;
 }
-.el-rating-num {
-    font-size: 12px;
-    font-weight: 700;
-    color: #f5b942;
-    margin-left: 4px;
-    vertical-align: middle;
-}
-
 .el-location {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-
-.el-pin { 
-    font-size: 14px; 
-}
-
+.el-pin { font-size: 14px; }
 .el-city {
-    font-size: 13px;
-    font-weight: 600;
-    color: #cdd3d1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cdd3d1;
 }
-
 .el-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #0a0c0d;
-    background: #2fd8aa;
-    padding: 7px 16px;
-    border-radius: 999px;
-    align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0a0c0d;
+  background: #2fd8aa;
+  padding: 7px 16px;
+  border-radius: 999px;
+  align-self: flex-start;
 }
+/* mappa decorativa */
+.el-map-wrap { position: sticky; top: 20px; }
+.el-map-title { font-size: 13px; font-weight: 700; color: #9aa3a0; margin-bottom: 10px; }
+.el-map { width: 100%; height: 480px; border-radius: 14px; border: 1px solid rgba(47,216,170,.2); background: #0d1114; overflow: hidden; }
+.el-map-inner { width: 100%; height: 100%; position: relative; background: radial-gradient(ellipse at 50% 50%, rgba(47,216,170,.06), transparent 70%), repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(47,216,170,.05) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(47,216,170,.05) 40px); }
+.el-map-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: rgba(47,216,170,.5); border: 1px solid #2fd8aa; transform: translate(-50%,-50%); }
+.el-map-dot--active { width: 14px; height: 14px; background: #2fd8aa; box-shadow: 0 0 12px rgba(47,216,170,.7); animation: el-pulse 2s ease-in-out infinite; }
+.el-map-label-city { position: absolute; font-size: 11px; font-weight: 700; color: #2fd8aa; transform: translate(-50%, 10px); white-space: nowrap; }
 
+/* paginazione */
+.el-pagination { max-width: 1360px; margin: 0 auto; padding: 0 48px 60px; display: flex; justify-content: center; align-items: center; gap: 8px; position: relative; z-index: 1; }
+.el-pag-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; font-size: 14px; font-weight: 700; border: 1px solid rgba(255,255,255,.14); background: #101417; color: #9aa3a0; cursor: pointer; text-decoration: none; transition: all .15s; }
+.el-pag-btn:hover, .el-pag-btn.active { border-color: #2fd8aa; color: #2fd8aa; }
+.el-pag-btn.active { background: rgba(47,216,170,.1); }
 
-/* ==========================================================================
-   7. COLONNA DECORATIVA INTERATTIVA (MAPPA DI RICERCA ACCATTIVANTE)
-   ========================================================================== */
-
-.el-map-wrap { 
-    position: sticky; 
-    top: 20px; 
-}
-
-.el-map-card {
-    background: #101417;
-    border: 1px solid rgba(255, 255, 255, .08);
-    border-radius: 14px;
-    padding: 22px 22px 24px;
-    transition: border-color .18s, box-shadow .18s;
-}
-
-.el-map-card:hover {
-    border-color: rgba(47, 216, 170, .35);
-    box-shadow: 0 0 0 1px rgba(47, 216, 170, .12);
-}
-
-.el-map-head { 
-    margin-bottom: 16px; 
-}
-
-.el-map-eyebrow {
-    display: inline-flex; 
-    align-items: center; 
-    gap: 7px;
-    font-size: 10px; 
-    font-weight: 800; 
-    letter-spacing: .16em; 
-    text-transform: uppercase;
-    color: #2fd8aa; 
-    margin-bottom: 9px;
-}
-
-.el-map-eyebrow::before {
-    content: ""; 
-    width: 6px; 
-    height: 6px; 
-    border-radius: 50%;
-    background: #2fd8aa; 
-    box-shadow: 0 0 8px rgba(47, 216, 170, .7);
-}
-
-.el-map-title {
-    font-size: 19px; 
-    font-weight: 900; 
-    letter-spacing: -.01em; 
-    color: #eef1f0; 
-    line-height: 1.15;
-}
-
-.el-map-title .el-accent { 
-    color: #2fd8aa; 
-}
-
-.el-map-sub { 
-    margin-top: 6px; 
-    font-size: 12px; 
-    color: #6b736f; 
-}
-
-/* Unificazione e ottimizzazione del contenitore Mappa */
-.el-map {
-    width: 100%; 
-    height: 420px;
-    border-radius: 10px;
-    border: 1px solid rgba(47, 216, 170, .18);
-    background: radial-gradient(ellipse at 50% 40%, rgba(47, 216, 170, .06), transparent 70%), #0d1114;
-    overflow: hidden; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 14px;
-}
-
-/* Elementi SVG Interni alla Mappa */
-.el-map-svg { 
-    width: 100%; 
-    height: 100%; 
-}
-
-.el-map-land { 
-    fill: rgba(47, 216, 170, 0.07); 
-    stroke: #2fd8aa; 
-    stroke-width: 1; 
-    stroke-opacity: 0.55; 
-    stroke-linejoin: round; 
-}
-
-.el-map-city-dot { 
-    fill: #2fd8aa; 
-    opacity: 0.75; 
-}
-
-.el-map-city-dot--main { 
-    fill: #2fd8aa; 
-    opacity: 1; 
-    filter: drop-shadow(0 0 5px rgba(47, 216, 170, 0.8)); 
-}
-
-.el-map-city-ring { 
-    fill: none; 
-    stroke: #2fd8aa; 
-    stroke-width: 0.8; 
-    opacity: 0.35; 
-    animation: el-pulse 2.5s ease-in-out infinite; 
-}
-
-.el-map-lbl { 
-    font-size: 5.5px; 
-    fill: #9aa3a0; 
-    font-family: 'Archivo', sans-serif; 
-    font-weight: 600; 
-}
-
-.el-map-lbl--main { 
-    fill: #2fd8aa; 
-    font-size: 6.5px; 
-    font-weight: 800; 
-}
-
-
-/* ==========================================================================
-   8. SISTEMI DI PAGINAZIONE (STANDARD E SINGOLA PAGINA)
-   ========================================================================== */
-
-/* Paginazione classica numerica */
-.el-pagination { 
-    max-width: 1360px; 
-    margin: 0 auto; 
-    padding: 0 48px 60px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 8px; 
-    position: relative; 
-    z-index: 1; 
-}
-
-.el-pag-btn { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 10px; 
-    font-size: 14px; 
-    font-weight: 700; 
-    border: 1px solid rgba(255, 255, 255, .14); 
-    background: #101417; 
-    color: #9aa3a0; 
-    cursor: pointer; 
-    text-decoration: none; 
-    transition: all .15s; 
-}
-
-.el-pag-btn:hover, 
-.el-pag-btn.active { 
-    border-color: #2fd8aa; 
-    color: #2fd8aa; 
-}
-
-.el-pag-btn.active { 
-    background: rgba(47, 216, 170, .1); 
-}
-
-/* Paginazione a singola pagina / Resoconto risultati */
-.el-pagination-single { 
-    max-width: 1360px; 
-    margin: 0 auto; 
-    padding: 0 48px 60px; 
-    text-align: center; 
-    position: relative; 
-    z-index: 1; 
-}
-
-.el-pag-chip { 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-    background: rgba(47, 216, 170, .08); 
-    border: 1px solid rgba(47, 216, 170, .28); 
-    color: #2fd8aa; 
-    font-size: 13px; 
-    font-weight: 700; 
-    padding: 11px 24px; 
-    border-radius: 999px; 
-    letter-spacing: .02em; 
-}
-
-.el-pag-chip-dot { 
-    width: 7px; 
-    height: 7px; 
-    border-radius: 50%; 
-    background: #2fd8aa; 
-    box-shadow: 0 0 8px rgba(47, 216, 170, .7); 
-    display: inline-block; 
-}
-
-
-/* ==========================================================================
-   9. ANIMAZIONI CSS
-   ========================================================================== */
-
-@keyframes el-drift1 { 
-    0%, 100% { transform: translate(0, 0); } 
-    50% { transform: translate(-40px, 30px); } 
-}
-
-@keyframes el-drift2 { 
-    0%, 100% { transform: translate(0, 0); } 
-    50% { transform: translate(30px, -20px); } 
-}
-
-@keyframes el-dash { 
-    to { stroke-dashoffset: -280; } 
-}
-
-@keyframes el-pulse { 
-    0%, 100% { box-shadow: 0 0 8px rgba(47, 216, 170, .6); } 
-    50% { box-shadow: 0 0 20px rgba(47, 216, 170, .9); } 
-}
-
-
-/* ==========================================================================
-   10. MEDIA QUERIES (RESPONSIVE ENGINE)
-   ========================================================================== */
+/* animazioni */
+@keyframes el-drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,30px); } }
+@keyframes el-drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px,-20px); } }
+@keyframes el-dash { to { stroke-dashoffset: -280; } }
+@keyframes el-pulse { 0%,100% { box-shadow: 0 0 8px rgba(47,216,170,.6); } 50% { box-shadow: 0 0 20px rgba(47,216,170,.9); } }
 
 @media (max-width: 1024px) {
-    .el-body { 
-        grid-template-columns: 1fr; 
-    }
-    .el-map-wrap { 
-        position: static; 
-    }
-    .el-map { 
-        height: 320px; 
-    }
+  .el-body { grid-template-columns: 1fr; }
+  .el-map-wrap { position: static; }
+  .el-map { height: 280px; }
 }
-
 @media (max-width: 640px) {
-    .el-toolbar, 
-    .el-body, 
-    .el-pagination,
-    .el-pagination-single { 
-        padding-left: 20px; 
-        padding-right: 20px; 
-    }
-    .el-card { 
-        grid-template-columns: 56px 1fr; 
-    }
-    .el-meta { 
-        display: none; 
-    }
+  .el-toolbar, .el-body, .el-pagination { padding-left: 20px; padding-right: 20px; }
+  .el-card { grid-template-columns: 56px 1fr; }
+  .el-meta { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+/* mappa SVG */
+.el-map { width: 100%; height: 480px; border-radius: 14px; border: 1px solid rgba(47,216,170,.2); background: #0d1114; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.el-map-svg { width: 100%; height: 100%; padding: 20px; }
+.el-map-city-lbl { font-size: 6px; fill: #9aa3a0; font-family: 'Archivo', sans-serif; }
+.el-map-city-lbl--main { fill: #2fd8aa; font-weight: 700; font-size: 7px; }
+
+/* paginazione singola pagina */
+.el-pagination-single { max-width: 1360px; margin: 0 auto; padding: 0 48px 60px; text-align: center; font-size: 13px; color: #6b736f; position: relative; z-index: 1; }
+.el-pagination-single strong { color: #9aa3a0; }
+
+/* mappa SVG aggiornata */
+.el-map { width: 100%; height: 480px; border-radius: 14px; border: 1px solid rgba(47,216,170,.2); background: #0d1114; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.el-map-svg { width: 100%; height: 100%; }
+.el-map-land { fill: rgba(47,216,170,0.07); stroke: #2fd8aa; stroke-width: 1; stroke-opacity: 0.55; stroke-linejoin: round; }
+.el-map-city-dot { fill: #2fd8aa; opacity: 0.75; }
+.el-map-city-dot--main { fill: #2fd8aa; opacity: 1; filter: drop-shadow(0 0 5px rgba(47,216,170,0.8)); }
+.el-map-city-ring { fill: none; stroke: #2fd8aa; stroke-width: 0.8; opacity: 0.35; animation: el-pulse 2.5s ease-in-out infinite; }
+.el-map-lbl { font-size: 5.5px; fill: #9aa3a0; font-family: 'Archivo', sans-serif; font-weight: 600; }
+.el-map-lbl--main { fill: #2fd8aa; font-size: 6.5px; font-weight: 800; }
+
+/* paginazione singola pagina - chip visibile */
+.el-pagination-single { max-width: 1360px; margin: 0 auto; padding: 0 48px 60px; text-align: center; position: relative; z-index: 1; }
+.el-pag-chip { display: inline-flex; align-items: center; gap: 8px; background: rgba(47,216,170,.08); border: 1px solid rgba(47,216,170,.28); color: #2fd8aa; font-size: 13px; font-weight: 700; padding: 11px 24px; border-radius: 999px; letter-spacing: .02em; }
+.el-pag-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: #2fd8aa; box-shadow: 0 0 8px rgba(47,216,170,.7); display: inline-block; }
+
+/* ── card mappa: header accattivante + simmetria con le card a sinistra ── */
+.el-map-wrap { position: sticky; top: 20px; }
+.el-map-card {
+  background: #101417;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 22px 22px 24px;
+  transition: border-color .18s, box-shadow .18s;
+}
+.el-map-card:hover {
+  border-color: rgba(47,216,170,.35);
+  box-shadow: 0 0 0 1px rgba(47,216,170,.12);
+}
+.el-map-head { margin-bottom: 16px; }
+.el-map-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+  color: #2fd8aa; margin-bottom: 9px;
+}
+.el-map-eyebrow::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: #2fd8aa; box-shadow: 0 0 8px rgba(47,216,170,.7);
+}
+.el-map-title {
+  font-size: 19px; font-weight: 900; letter-spacing: -.01em; color: #eef1f0; line-height: 1.15;
+}
+.el-map-title .el-accent { color: #2fd8aa; }
+.el-map-sub { margin-top: 6px; font-size: 12px; color: #6b736f; }
+.el-map {
+  width: 100%; height: 420px;
+  border-radius: 10px;
+  border: 1px solid rgba(47,216,170,.18);
+  background: radial-gradient(ellipse at 50% 40%, rgba(47,216,170,.06), transparent 70%), #0d1114;
+  overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 14px;
+}
+@media (max-width: 1024px) {
+  .el-map-wrap { position: static; }
+  .el-map { height: 320px; }
 }
 
-@media (prefers-reduced-motion: reduce) { 
-    * { 
-        animation: none !important; 
-    } 
-}
+/* ── fix: mappa sticky (overflow:hidden su .el-page rompe lo sticky → spostato su .el-bg) ── */
+.el-page { overflow: visible; }
+.el-bg   { overflow: hidden; }
+

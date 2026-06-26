@@ -1,8 +1,4 @@
-/* ==========================================================================
-   1. STRUTTURA PAGINA BASE E SFONDI (BLOBS)
-   ========================================================================== */
-
-/* Contenitore principale della pagina */
+/* ── Pagina base ── */
 .im-richieste-page {
     position: relative;
     min-height: 100vh;
@@ -10,7 +6,7 @@
     background: #080e0c;
 }
 
-/* Wrapper fisso per i blob di sfondo (condiviso con login/home) */
+/* ── Blob sfondo (stesso stile login/home) ── */
 .im-hero-bg {
     position: fixed;
     inset: 0;
@@ -18,7 +14,6 @@
     z-index: 0;
 }
 
-/* Base generica per le sfere sfumate animate */
 .im-blob {
     position: absolute;
     border-radius: 50%;
@@ -27,7 +22,6 @@
     animation: im-blob-float 8s ease-in-out infinite alternate;
 }
 
-/* Primo blob (in alto a sinistra) */
 .im-blob-1 {
     width: 520px;
     height: 520px;
@@ -37,7 +31,6 @@
     animation-duration: 9s;
 }
 
-/* Secondo blob (in basso a destra) */
 .im-blob-2 {
     width: 480px;
     height: 480px;
@@ -48,7 +41,6 @@
     animation-delay: -3s;
 }
 
-/* Terzo blob (centrale, più sfocato/tenue) */
 .im-blob-3 {
     width: 300px;
     height: 300px;
@@ -60,13 +52,12 @@
     animation-delay: -6s;
 }
 
-/* Animazione di fluttuazione e microscatto per i blob */
 @keyframes im-blob-float {
     0%   { transform: translate(0, 0) scale(1); }
     100% { transform: translate(30px, 20px) scale(1.06); }
 }
 
-/* Elemento grafico/disegno decorativo di background */
+/* ── Disegno decorativo ── */
 .im-richieste-deco {
     position: fixed;
     right: 0;
@@ -80,18 +71,12 @@
     animation: im-deco-breathe 7s ease-in-out infinite alternate;
 }
 
-/* Animazione effetto "respiro" per l'elemento decorativo */
 @keyframes im-deco-breathe {
     0%   { transform: scale(1)     translateY(0px); }
     100% { transform: scale(1.03)  translateY(-12px); }
 }
 
-
-/* ==========================================================================
-   2. LAYOUT CONTENUTO E TIPOGRAFIA (HEADER)
-   ========================================================================== */
-
-/* Wrapper del contenuto sopra lo sfondo */
+/* ── Contenuto ── */
 .im-richieste-content {
     position: relative;
     z-index: 1;
@@ -99,7 +84,7 @@
     max-width: 1100px;
 }
 
-/* Micro-titolo superiore (Eyebrow) */
+/* ── Eyebrow e titolo ── */
 .im-dash-eyebrow {
     font-size: 12px;
     text-transform: uppercase;
@@ -108,7 +93,6 @@
     margin-bottom: 12px;
 }
 
-/* Titolo principale della dashboard (responsivo con clamp) */
 .im-dash-title {
     font-size: clamp(28px, 4vw, 48px);
     font-weight: 800;
@@ -116,12 +100,7 @@
     margin: 0 0 8px;
 }
 
-
-/* ==========================================================================
-   3. LISTA RICHIESTE E COMPONENTI CARD
-   ========================================================================== */
-
-/* Contenitore della lista di card */
+/* ── Lista richieste ── */
 .im-richieste-lista {
     display: flex;
     flex-direction: column;
@@ -130,7 +109,6 @@
     max-width: 900px;
 }
 
-/* Singola card richiesta (effetto frosted glass) */
 .im-richiesta-card {
     display: flex;
     align-items: center;
@@ -143,19 +121,17 @@
     transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s;
 }
 
-/* Stato hover della card */
 .im-richiesta-card:hover {
     border-color: rgba(47, 216, 170, 0.3);
     background: rgba(255, 255, 255, 0.06);
 }
 
-/* Classe di utility per l'animazione di rimozione via JS */
 .im-richiesta-rimossa {
     opacity: 0;
     transform: translateX(40px);
 }
 
-/* Avatar circolare del cliente (Iniziali) */
+/* ── Avatar ── */
 .im-richiesta-avatar {
     flex-shrink: 0;
     width: 48px;
@@ -170,7 +146,7 @@
     justify-content: center;
 }
 
-/* Blocco info anagrafiche utente */
+/* ── Info cliente ── */
 .im-richiesta-cliente {
     flex-shrink: 0;
     min-width: 140px;
@@ -188,18 +164,16 @@
     margin-top: 2px;
 }
 
-/* Campi generici di informazione nella card */
+/* ── Campi ── */
 .im-richiesta-campo {
     flex: 1;
     min-width: 100px;
 }
 
-/* Campo specifico dedicato alla descrizione dell'idea (più largo) */
 .im-richiesta-idea {
     flex: 2;
 }
 
-/* Etichetta piccola del campo (es. "DATA", "IDEA") */
 .im-richiesta-label {
     font-size: 11px;
     text-transform: uppercase;
@@ -208,25 +182,18 @@
     margin-bottom: 4px;
 }
 
-/* Testo effettivo del campo informativo */
 .im-richiesta-valore {
     font-size: 14px;
     color: #c8ddd7;
 }
 
-
-/* ==========================================================================
-   4. ELEMENTI DI INTERAZIONE (BOTTONI E AZIONI)
-   ========================================================================== */
-
-/* Contenitore dei bottoni di gestione */
+/* ── Bottoni ── */
 .im-richiesta-azioni {
     display: flex;
     gap: 8px;
     flex-shrink: 1;
 }
 
-/* Base comune per i bottoni Accetta e Rifiuta */
 .im-btn-accetta,
 .im-btn-rifiuta {
     display: flex;
@@ -241,20 +208,17 @@
     transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-/* Bottone Accetta (Stile Brand Verde) */
 .im-btn-accetta {
     background: #2fd8aa;
     color: #0d1f1a;
 }
 
-/* Bottone Rifiuta (Stile Red/Spia semi-trasparente) */
 .im-btn-rifiuta {
     background: rgba(255, 80, 80, 0.15);
     color: #ff6b6b;
     border: 1px solid rgba(255, 80, 80, 0.3) !important;
 }
 
-/* Hovers e Active states per i bottoni principali */
 .im-btn-accetta:hover,
 .im-btn-rifiuta:hover {
     opacity: 0.85;
@@ -266,14 +230,12 @@
     transform: translateY(0);
 }
 
-/* Allineamento icone SVG dentro i bottoni principali */
 .im-btn-accetta svg,
 .im-btn-rifiuta svg {
     width: 16px;
     height: 16px;
 }
 
-/* Bottone Segnala (Quadrato, iconico, outline) */
 .im-btn-segnala {
     display: flex;
     align-items: center;
@@ -290,27 +252,20 @@
     cursor: pointer;
     transition: color .2s, border-color .2s, background .2s;
 }
-
-/* Hover Bottone Segnala (Cambio in rosso distruttivo) */
 .im-btn-segnala:hover {
     color: #e05252;
     border-color: rgba(224,82,82,.35);
     background: rgba(224,82,82,.07);
 }
 
-
-/* ==========================================================================
-   5. STATI DELLA PAGINA E UTILITY NAVIGAZIONE
-   ========================================================================== */
-
-/* Messaggio di placeholder quando la lista è vuota */
+/* ── Stato vuoto ── */
 .im-nessuna {
     color: #5a7a70;
     font-size: 16px;
     margin-top: 40px;
 }
 
-/* Link ipertestuale di ritorno alla dashboard/home */
+/* ── Link back ── */
 .im-btn-back {
     display: inline-block;
     margin-top: 40px;
@@ -324,34 +279,26 @@
     opacity: 0.7;
 }
 
-
-/* ==========================================================================
-   6. RESPONSIVE DESIGN (BREAKPOINT MOBILE/TABLET)
-   ========================================================================== */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-    /* Riduzione del padding sul content principale */
     .im-richieste-content {
         padding: 40px 24px;
     }
 
-    /* La card va a capo trasformandosi in un layout verticale/ibrido */
     .im-richiesta-card {
         flex-wrap: wrap;
         gap: 14px;
     }
 
-    /* Il testo dell'idea prende tutto lo spazio orizzontale disponibile */
     .im-richiesta-idea {
         flex: 1 1 100%;
     }
 
-    /* I bottoni d'azione si spostano a tutta larghezza, allineati a destra */
     .im-richiesta-azioni {
         flex: 1 1 100%;
         justify-content: flex-end;
     }
 
-    /* Adattamento dell'immagine decorativa di sfondo sui dispositivi piccoli */
     .im-richieste-deco {
         width: 80vw;
         opacity: 0.5;
