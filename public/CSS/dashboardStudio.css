@@ -1,22 +1,18 @@
 /* ==========================================================================
    DASHBOARD STUDIO — sfondo: Grande Onda Irezumi (singola forma fullpage)
    ========================================================================== */
-/* 1. Metti a .im-page solo il colore nero di base */
 .im-page { 
     min-height: 100vh; 
     background: #0a0c0d; 
 }
 
-/* 2. Applica il gradiente radiale direttamente dentro al wrap della dashboard */
 .im-dash-wrap {
     position: relative;
     min-height: calc(100vh - 80px);
-    /* Il gradiente ora è stampato direttamente qui sopra! */
     background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d; 
     overflow: hidden;
 }
 
-/* SVG a tutto schermo, fisso dietro al contenuto */
 .im-dash-bg {
     position: fixed;
     inset: 0;
@@ -38,7 +34,6 @@
     100% { transform: translateY(8px) translateX(-10px) scaleY(0.98); }
 }
 
-/* Contenuto sopra allo sfondo */
 .im-dash-content {
     position: relative;
     z-index: 1;
@@ -47,7 +42,6 @@
     padding: 60px 40px 80px;
 }
 
-/* Intestazione */
 .im-dash-eyebrow {
     font-size: 12px;
     font-weight: 700;
@@ -71,6 +65,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
+
+.im-dash-grid .im-dash-card:nth-child(4) { grid-column: 1; }
+.im-dash-grid .im-dash-card:nth-child(5) { grid-column: 2; }
 
 @media (max-width: 860px) { .im-dash-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .im-dash-grid { grid-template-columns: 1fr; } }
