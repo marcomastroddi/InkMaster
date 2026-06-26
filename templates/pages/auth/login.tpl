@@ -25,6 +25,12 @@
                 <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
             </div>
 
+            {if isset($message) && $message}
+            <div style="background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);border-radius:10px;padding:12px 16px;font-size:13px;color:#e05252;margin-bottom:20px;">
+                {$message|escape}
+            </div>
+            {/if}
+
             <form action="/login" method="POST" class="im-form">
                 <div class="im-form-group">
                     <label class="im-label" for="username">Username</label>

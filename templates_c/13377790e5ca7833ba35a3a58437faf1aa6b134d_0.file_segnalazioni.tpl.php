@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 13:17:08
+/* Smarty version 5.8.0, created on 2026-06-26 15:09:42
   from 'file:pages/moderatore/segnalazioni.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e7bd4ec3e62_46422462',
+  'unifunc' => 'content_6a3e963697bed9_88916274',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '13377790e5ca7833ba35a3a58437faf1aa6b134d' => 
     array (
       0 => 'pages/moderatore/segnalazioni.tpl',
-      1 => 1782479742,
+      1 => 1782486571,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e7bd4ec3e62_46422462 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e963697bed9_88916274 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3388780886a3e7bd4d88304_77061847', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9646014826a3e963692bdb0_83309302', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21403976986a3e7bd4d97be0_62599417', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18303483416a3e963692f6f8_16398666', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11202212916a3e7bd4d98646_96656903', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1943445376a3e963692ff64_29832127', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_3388780886a3e7bd4d88304_77061847 extends \Smarty\Runtime\Block
+class Block_9646014826a3e963692bdb0_83309302 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -51,7 +51,7 @@ Segnalazioni — InkMaster Admin<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_21403976986a3e7bd4d97be0_62599417 extends \Smarty\Runtime\Block
+class Block_18303483416a3e963692f6f8_16398666 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_11202212916a3e7bd4d98646_96656903 extends \Smarty\Runtime\Block
+class Block_1943445376a3e963692ff64_29832127 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -283,28 +283,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <input type="hidden" name="seg_id" id="banSegId">
 
             <div class="adm-modal-field">
-                <label class="adm-modal-label">TIPO DI BAN</label>
-                <div class="adm-radio-group">
-                    <label class="adm-radio-opt" id="optTemp">
-                        <input type="radio" name="tipo" value="temporaneo" checked> Temporaneo
-                    </label>
-                    <label class="adm-radio-opt" id="optPerm">
-                        <input type="radio" name="tipo" value="permanente"> Permanente
-                    </label>
-                </div>
-            </div>
-
-            <div class="adm-modal-field" id="durataField">
-                <label class="adm-modal-label">DURATA</label>
-                <div class="adm-durata-row">
-                    <input type="number" id="banGiorni" value="7" min="1" max="365" class="adm-input-num">
-                    <span class="adm-durata-unit">Giorni</span>
-                </div>
-                <div class="adm-durata-scade" id="scadeInfo"></div>
-                <input type="hidden" name="durata" id="durataHidden" value="7 giorni">
-            </div>
-
-            <div class="adm-modal-field">
                 <label class="adm-modal-label">CATEGORIA MOTIVAZIONE</label>
                 <select name="motivazione" class="adm-select" required>
                     <option value="">— Seleziona una categoria —</option>
@@ -330,11 +308,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <div class="adm-modal-field">
                 <label class="adm-modal-label">DESCRIZIONE MOTIVAZIONE</label>
                 <textarea name="descrizione" class="adm-textarea" rows="3" placeholder="Descrici il motivo del ban in dettaglio..."></textarea>
-            </div>
-
-            <div class="adm-modal-field">
-                <label class="adm-modal-label">AZIONI AGGIUNTIVE</label>
-                <label class="adm-check-opt"><input type="checkbox" name="nascondi_contenuti" value="1"> Nascondi contenuti esistenti</label>
             </div>
 
             <div class="adm-modal-footer">
@@ -419,30 +392,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 <?php echo '<script'; ?>
 >
 
-const modal   = document.getElementById('banModal');
-const form    = document.getElementById('banForm');
-const giorni  = document.getElementById('banGiorni');
-const durHid  = document.getElementById('durataHidden');
-const scadeEl = document.getElementById('scadeInfo');
-const durField= document.getElementById('durataField');
-
-function updateScade() {
-    const g = parseInt(giorni.value) || 1;
-    durHid.value = g + ' giorni';
-    const d = new Date(); d.setDate(d.getDate() + g);
-    scadeEl.textContent = 'Scade il ' + d.toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
-}
-updateScade();
-giorni.addEventListener('input', updateScade);
-
-document.querySelectorAll('input[name="tipo"]').forEach(r => {
-    r.addEventListener('change', () => {
-        const perm = r.value === 'permanente';
-        durField.style.display = perm ? 'none' : '';
-        if (perm) durHid.value = 'permanente';
-        else updateScade();
-    });
-});
+const modal = document.getElementById('banModal');
 
 document.querySelectorAll('.adm-grav-btn').forEach(btn => {
     btn.addEventListener('click', () => {

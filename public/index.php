@@ -436,8 +436,6 @@ switch ($page) {
 
     case 'conferma_ban':
         $controller6->conferma_ban(
-            $_POST['tipo']        ?? '',
-            $_POST['durata']      ?? '',
             $_POST['motivazione'] ?? '',
             $_POST['gravita']     ?? '',
             $_POST['descrizione'] ?? '',

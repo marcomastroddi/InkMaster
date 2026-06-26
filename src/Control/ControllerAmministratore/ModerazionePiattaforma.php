@@ -58,7 +58,7 @@ class ModerazionePiattaforma
         ];
     }
 
-    public function conferma_ban(string $tipo, string $durata, string $motivazione, string $gravita, string $descrizione, int $segId): array
+    public function conferma_ban(string $motivazione, string $gravita, string $descrizione, int $segId): array
     {
         $utenteId   = SessionManager::get('utente_selezionato');
         $utenteTipo = SessionManager::get('tipo_utente_selezionato', 'cliente');
@@ -67,7 +67,7 @@ class ModerazionePiattaforma
             return ['status' => 'error', 'message' => 'Nessun utente selezionato'];
         }
 
-        $ban = new Ban($utenteId, $utenteTipo, $tipo, $durata, $motivazione, $gravita, $descrizione);
+        $ban = new Ban($utenteId, $utenteTipo, 'permanente', 'permanente', $motivazione, $gravita, $descrizione);
         $this->pm->create($ban);
 
         $segnalazione = $this->pm->read(Segnalazione::class, $segId);
@@ -94,6 +94,11 @@ class ModerazionePiattaforma
         if ($ban !== null) {
             $this->pm->delete($ban);
         }
+
+        foreach ($this->pm->findSegnalazioniChiuseByTarget($utenteId, $tipo) as $seg) {
+            $this->pm->delete($seg);
+        }
+
         return ['status' => 'success'];
     }
 
@@ -108,6 +113,9 @@ class ModerazionePiattaforma
         $percentualeClienti = $totaleUtenti > 0 ? round(($totaleClienti / $totaleUtenti) * 100) : 0;
         $percentualeStudi   = $totaleUtenti > 0 ? round(($totaleStudi   / $totaleUtenti) * 100) : 0;
 
+        $stiliRaw = $this->pm->countTatuatoriPerStile();
+        $appRaw   = $this->pm->countAppuntamentiPerStato();
+
         return [
             'status' => 'success',
             'data'   => [
@@ -120,7 +128,11 @@ class ModerazionePiattaforma
                 'tipo_utenti' => [
                     'clienti_percentuale' => $percentualeClienti,
                     'studi_percentuale'   => $percentualeStudi
-                ]
+                ],
+                'stili_labels' => json_encode(array_column($stiliRaw, 'nome')),
+                'stili_values' => json_encode(array_column($stiliRaw, 'cnt')),
+                'app_labels'   => json_encode(array_column($appRaw, 'stato')),
+                'app_values'   => json_encode(array_column($appRaw, 'cnt')),
             ]
         ];
     }

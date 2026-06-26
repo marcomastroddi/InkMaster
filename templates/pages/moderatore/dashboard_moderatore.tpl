@@ -87,12 +87,12 @@
         <div class="adm-charts-grid">
 
             <div class="adm-chart-card">
-                <div class="adm-chart-title">Nuove registrazioni — ultimi 6 mesi</div>
+                <div class="adm-chart-title">Utenti registrati</div>
                 <div class="adm-chart-wrap"><canvas id="chartRegistrazioni"></canvas></div>
             </div>
 
             <div class="adm-chart-card">
-                <div class="adm-chart-title">Stili più cercati</div>
+                <div class="adm-chart-title">Stili più praticati</div>
                 <div class="adm-chart-wrap"><canvas id="chartStili"></canvas></div>
             </div>
 
@@ -121,60 +121,69 @@ const red   = '#e05252';
 const muted = '#3f4a47';
 
 new Chart(document.getElementById('chartRegistrazioni'), {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: ['Dic','Gen','Feb','Mar','Apr','Mag'],
-        datasets: [
-            { label: 'Utenti', data: [210,260,310,420,490,590], borderColor: blue, backgroundColor: 'rgba(79,163,209,.12)', tension: .4, fill: true, pointRadius: 3 },
-            { label: 'Studi',  data: [12,18,22,31,38,48],       borderColor: green, backgroundColor: 'rgba(47,216,170,.08)', tension: .4, fill: true, pointRadius: 3 }
-        ]
+        labels: ['Clienti', 'Studi'],
+        datasets: [{
+            data: [{$data['kpi']['utenti_registrati']}, {$data['kpi']['studi_registrati']}],
+            backgroundColor: [blue, green],
+            borderRadius: 6
+        }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 } } } },
-        scales: { x: { ticks: { font: { size: 10 } } }, y: { ticks: { font: { size: 10 } } } }
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { font: { size: 12 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 
 new Chart(document.getElementById('chartStili'), {
     type: 'bar',
     data: {
-        labels: ['Fine Line','Realistico','Tradizionale','Maori','Old School','Altro'],
-        datasets: [{ label: 'Ricerche', data: [1800,1540,1120,720,580,340], backgroundColor: blue, borderRadius: 4 }]
+        labels: {$data['stili_labels']},
+        datasets: [{ label: 'Tatuatori', data: {$data['stili_values']}, backgroundColor: blue, borderRadius: 4 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 } } } }
+        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 
 new Chart(document.getElementById('chartUtenti'), {
     type: 'doughnut',
     data: {
-        labels: ['Clienti', 'Studi', 'Non registrati'],
+        labels: [
+            'Clienti — {$data['tipo_utenti']['clienti_percentuale']}%',
+            'Studi — {math equation="100 - a" a=$data['tipo_utenti']['clienti_percentuale']}%'
+        ],
         datasets: [{
-            data: [{$data['tipo_utenti']['clienti_percentuale']}, {$data['tipo_utenti']['studi_percentuale']}, {math equation="100 - a - b" a=$data['tipo_utenti']['clienti_percentuale'] b=$data['tipo_utenti']['studi_percentuale']}],
-            backgroundColor: [blue, green, muted],
+            data: [{$data['tipo_utenti']['clienti_percentuale']}, {math equation="100 - a" a=$data['tipo_utenti']['clienti_percentuale']}],
+            backgroundColor: [blue, green],
             borderWidth: 0,
             hoverOffset: 6
         }]
     },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
-        plugins: { legend: { position: 'right', labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 }, padding: 14 } } }
+    options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
+        plugins: {
+            legend: { position: 'right', labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 }, padding: 14 } },
+            tooltip: { callbacks: { label: ctx => ctx.label } }
+        }
     }
 });
 
 new Chart(document.getElementById('chartPrenotazioni'), {
     type: 'bar',
     data: {
-        labels: ['Feb','Mar','Apr','Mag'],
-        datasets: [
-            { label: 'Completate', data: [180,240,310,390], backgroundColor: green, borderRadius: 4 },
-            { label: 'Cancellate', data: [22,18,28,14],     backgroundColor: red,   borderRadius: 4 }
-        ]
+        labels: {$data['app_labels']},
+        datasets: [{
+            label: 'Appuntamenti',
+            data: {$data['app_values']},
+            backgroundColor: [blue, green, muted, '#f0a500', red],
+            borderRadius: 4
+        }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 } } } },
-        scales: { x: { ticks: { font: { size: 10 } } }, y: { ticks: { font: { size: 10 } } } }
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 </script>
