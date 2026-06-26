@@ -383,9 +383,9 @@ switch ($page) {
                 if ($_FILES['foto']['error'][$i] === 0) {
                     $ext = pathinfo($_FILES['foto']['name'][$i], PATHINFO_EXTENSION);
                     $nomeFile = uniqid('foto_') . '.' . $ext;
-                    $destinazione = __DIR__ . '/img/' . $nomeFile;
+                    $destinazione = __DIR__ . '/img/recensioni/' . $nomeFile;
                     if (move_uploaded_file($tmp, $destinazione)) {
-                        $percorsi[] = '/img/' . $nomeFile;
+                        $percorsi[] = '/img/recensioni/' . $nomeFile;
                     }
                 }
             }
