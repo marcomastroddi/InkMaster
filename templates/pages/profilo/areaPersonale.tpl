@@ -84,7 +84,7 @@
                 {elseif $stato === 'ANNULLATO'}
                     <span class="im-ap-badge im-ap-badge--annullato">Annullato</span>
                 {/if}
-                <a href="#" class="im-ap-chat-link">💬 Chat</a>
+                
             </div>
         </div>
         {/foreach}

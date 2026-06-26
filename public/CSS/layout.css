@@ -8,7 +8,7 @@ a { text-decoration: none; color: inherit; }
 .im-logo span, .im-accent { color: #2fd8aa; }
 .im-nav-right { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 500; color: #aeb6b3; line-height: 1; }
 .im-nav-right > a:not(.im-nav-profilo) { display: inline-flex; align-items: center; }
-.im-btn-outline { font-weight: 700; color: #eef1f0; border: 1px solid rgba(255,255,255,.22); padding: 9px 20px; border-radius: 999px; }
+.im-btn-outline { font-weight: 700; color: #eef1f0; border: 1px solid rgba(255,255,255,.22); padding: 9px 20px; border-radius: 999px; transition: background .15s, border-color .15s; }
 .im-lang { display: flex; align-items: center; gap: 6px; color: #cdd3d1; }
 
 /* Profilo nella topbar */
@@ -24,7 +24,7 @@ a { text-decoration: none; color: inherit; }
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--accent, #2fd8aa); /* verde InkMaster */
+    background: var(--accent, #2fd8aa);
     color: #0a0c0d;
     font-weight: 700;
     font-size: 0.9rem;
@@ -78,3 +78,12 @@ a { text-decoration: none; color: inherit; }
 .im-footer-col-title { color: #cdd3d1; font-weight: 700; margin-bottom: 3px; }
 .im-copyright { border-top: 1px solid rgba(255,255,255,.06); padding: 20px 60px; font-size: 12px; color: #4b534f; text-align: center; }
 
+.im-btn-prenotazioni {
+    background: #2fd8aa !important;
+    color: #080e0c !important;
+    border-color: #2fd8aa !important;
+}
+.im-btn-prenotazioni:hover {
+    background: #37eec0 !important;
+    border-color: #37eec0 !important;
+}

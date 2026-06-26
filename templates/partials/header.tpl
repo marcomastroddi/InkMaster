@@ -8,7 +8,7 @@
 
         {if $_sessione.username}
             {if $_sessione.ruolo === 'cliente'}
-                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+                <a href="/area_personale" class="im-btn-outline im-btn-prenotazioni">Le mie prenotazioni</a>
             {/if}
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
