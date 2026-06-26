@@ -120,6 +120,16 @@
                 <div class="st-contact-row"><span class="st-ci">✉</span>{$data->getEmail()|escape}</div>
                 <a href="/prenota?id={$data->getId()}" class="st-cta">Prenota</a>
             </div>
+
+            {if $_sessione.ruolo == 'cliente'}
+            <div class="st-divider"></div>
+            <button type="button"
+                    onclick="document.getElementById('sgn-overlay').style.display='flex'"
+                    style="display:block;width:100%;text-align:center;font-size:11px;font-weight:700;color:#4b534f;background:none;border:none;cursor:pointer;padding:6px 0;letter-spacing:.05em;transition:color .2s;font-family:inherit;"
+                    onmouseover="this.style.color='#e05252'" onmouseout="this.style.color='#4b534f'">
+                ⚑ Segnala questo studio
+            </button>
+            {/if}
         </div>
     </aside>
 
@@ -382,5 +392,56 @@
 {/if}
 
 {include file='partials/overlay_recensione.tpl'}
+
+{if $_sessione.ruolo == 'cliente'}
+<div id="sgn-overlay" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#101417;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:36px 40px;width:100%;max-width:480px;position:relative;">
+        <button type="button" onclick="document.getElementById('sgn-overlay').style.display='none'"
+                style="position:absolute;top:14px;right:16px;background:none;border:none;color:#5a7a70;font-size:20px;cursor:pointer;line-height:1;">✕</button>
+
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4b534f;margin-bottom:6px;">Moderazione</div>
+        <h2 style="font-size:20px;font-weight:900;color:#eef1f0;margin:0 0 4px;">Segnala questo studio</h2>
+        <p style="font-size:13px;color:#6b736f;margin:0 0 24px;">Stai segnalando: <strong style="color:#2fd8aa;">{$data->getNome()|escape}</strong></p>
+
+        <form method="POST" action="/invia_segnalazione">
+            <input type="hidden" name="tipo_target" value="studio">
+            <input type="hidden" name="id_target"   value="{$data->getId()}">
+
+            <div style="margin-bottom:20px;">
+                <div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4b534f;margin-bottom:10px;">Motivo</div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    {foreach ['Contenuto Inappropriato','Spam o Truffa','Comportamento Scorretto','Mancata Presentazione (No-Show)'] as $opt}
+                    <label style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#9aa3a0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 16px;cursor:pointer;">
+                        <input type="radio" name="motivo" value="{$opt|escape}" required style="accent-color:#2fd8aa;">
+                        {$opt|escape}
+                    </label>
+                    {/foreach}
+                </div>
+            </div>
+
+            <div style="margin-bottom:4px;">
+                <div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4b534f;margin-bottom:10px;">Descrizione (opzionale)</div>
+                <textarea name="descrizione" rows="4"
+                    style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:12px 16px;color:#eef1f0;font-size:13px;font-family:inherit;resize:vertical;min-height:90px;box-sizing:border-box;"
+                    placeholder="Aggiungi dettagli per aiutare i moderatori..."></textarea>
+            </div>
+
+            <div style="display:flex;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);margin-top:20px;">
+                <button type="button" onclick="document.getElementById('sgn-overlay').style.display='none'"
+                        style="flex:1;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:transparent;color:#9aa3a0;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">Annulla</button>
+                <button type="submit"
+                        style="flex:2;padding:12px;border:none;border-radius:10px;background:#e05252;color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">⚑ Invia segnalazione</button>
+            </div>
+        </form>
+    </div>
+</div>
+{literal}
+<script>
+document.getElementById('sgn-overlay').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+});
+</script>
+{/literal}
+{/if}
 
 {/block}

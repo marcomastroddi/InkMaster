@@ -34,4 +34,13 @@
     </div>
 </div>
 {/if}
+
+{else}
+<div class="im-nav im-nav--admin">
+    <a href="/home" class="im-logo">INK<span>MASTER</span></a>
+    <div class="im-nav-right">
+        <a href="/dashboard_moderatore" class="im-btn-outline">Dashboard Admin</a>
+        <a href="/logout" class="im-btn-outline">Esci</a>
+    </div>
+</div>
 {/if}

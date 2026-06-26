@@ -176,28 +176,6 @@
             <input type="hidden" name="seg_id" id="banSegId">
 
             <div class="adm-modal-field">
-                <label class="adm-modal-label">TIPO DI BAN</label>
-                <div class="adm-radio-group">
-                    <label class="adm-radio-opt" id="optTemp">
-                        <input type="radio" name="tipo" value="temporaneo" checked> Temporaneo
-                    </label>
-                    <label class="adm-radio-opt" id="optPerm">
-                        <input type="radio" name="tipo" value="permanente"> Permanente
-                    </label>
-                </div>
-            </div>
-
-            <div class="adm-modal-field" id="durataField">
-                <label class="adm-modal-label">DURATA</label>
-                <div class="adm-durata-row">
-                    <input type="number" id="banGiorni" value="7" min="1" max="365" class="adm-input-num">
-                    <span class="adm-durata-unit">Giorni</span>
-                </div>
-                <div class="adm-durata-scade" id="scadeInfo"></div>
-                <input type="hidden" name="durata" id="durataHidden" value="7 giorni">
-            </div>
-
-            <div class="adm-modal-field">
                 <label class="adm-modal-label">CATEGORIA MOTIVAZIONE</label>
                 <select name="motivazione" class="adm-select" required>
                     <option value="">— Seleziona una categoria —</option>
@@ -223,11 +201,6 @@
             <div class="adm-modal-field">
                 <label class="adm-modal-label">DESCRIZIONE MOTIVAZIONE</label>
                 <textarea name="descrizione" class="adm-textarea" rows="3" placeholder="Descrici il motivo del ban in dettaglio..."></textarea>
-            </div>
-
-            <div class="adm-modal-field">
-                <label class="adm-modal-label">AZIONI AGGIUNTIVE</label>
-                <label class="adm-check-opt"><input type="checkbox" name="nascondi_contenuti" value="1"> Nascondi contenuti esistenti</label>
             </div>
 
             <div class="adm-modal-footer">
@@ -313,30 +286,7 @@
 
 <script>
 {literal}
-const modal   = document.getElementById('banModal');
-const form    = document.getElementById('banForm');
-const giorni  = document.getElementById('banGiorni');
-const durHid  = document.getElementById('durataHidden');
-const scadeEl = document.getElementById('scadeInfo');
-const durField= document.getElementById('durataField');
-
-function updateScade() {
-    const g = parseInt(giorni.value) || 1;
-    durHid.value = g + ' giorni';
-    const d = new Date(); d.setDate(d.getDate() + g);
-    scadeEl.textContent = 'Scade il ' + d.toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
-}
-updateScade();
-giorni.addEventListener('input', updateScade);
-
-document.querySelectorAll('input[name="tipo"]').forEach(r => {
-    r.addEventListener('change', () => {
-        const perm = r.value === 'permanente';
-        durField.style.display = perm ? 'none' : '';
-        if (perm) durHid.value = 'permanente';
-        else updateScade();
-    });
-});
+const modal = document.getElementById('banModal');
 
 document.querySelectorAll('.adm-grav-btn').forEach(btn => {
     btn.addEventListener('click', () => {

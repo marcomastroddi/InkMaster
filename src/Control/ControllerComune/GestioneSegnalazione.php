@@ -74,29 +74,21 @@ class GestioneSegnalazione
         }
 
         try {
-        // Creazione dell'oggetto Segnalazione con la data in tempo reale (new DateTime())
         $segnalazione = new Segnalazione($motivo, $descrizione, new DateTime());
-        
-        // Associazione dinamica del Mittente (Chi sta segnalando)
-        if ($ruoloMittente === 'cliente') {
-            // Usiamo il read generico del PersistentManager per caricare l'entità Cliente
-            $mittente = $this->pm->read(Cliente::class, $idMittente);
-            if ($mittente) {
-                $segnalazione->setCliente($mittente);
-            } else {
-                return ['status' => 'error', 'message' => 'Cliente mittente non trovato.'];
-            }
-        } elseif ($ruoloMittente === 'studio' || $ruoloMittente === 'tatuatore') {
-            // Usiamo il read generico per caricare lo Studio
-            $mittente = $this->pm->read(Studio::class, $idMittente);
-            if ($mittente) {
-                $segnalazione->setStudio($mittente);
-            } else {
-                return ['status' => 'error', 'message' => 'Studio mittente non trovato.'];
-            }
+
+        // Salviamo il TARGET (chi viene segnalato), non il mittente
+        if ($ruoloMittente === 'cliente' && $tipoTarget === 'studio') {
+            $target = $this->pm->read(Studio::class, $idTarget);
+            if (!$target) return ['status' => 'error', 'message' => 'Studio segnalato non trovato.'];
+            $segnalazione->setStudio($target);
+        } elseif (($ruoloMittente === 'studio' || $ruoloMittente === 'tatuatore') && $tipoTarget === 'cliente') {
+            $target = $this->pm->read(Cliente::class, $idTarget);
+            if (!$target) return ['status' => 'error', 'message' => 'Cliente segnalato non trovato.'];
+            $segnalazione->setCliente($target);
+        } else {
+            return ['status' => 'error', 'message' => 'Combinazione mittente/target non valida.'];
         }
 
-        // CRUD Create: usiamo il metodo generico del PersistentManager
         $this->pm->create($segnalazione);
 
         return [

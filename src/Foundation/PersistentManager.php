@@ -222,6 +222,38 @@ class PersistentManager
         ]);
     }
 
+    /** Conta i tatuatori per ogni stile (usato nei grafici dashboard). */
+    public function countTatuatoriPerStile(): array
+    {
+        return $this->em->createQueryBuilder()
+            ->select('s.nome, COUNT(t.id) as cnt')
+            ->from(\InkMaster\Entity\Tatuatore::class, 't')
+            ->join('t.stili', 's')
+            ->groupBy('s.id, s.nome')
+            ->orderBy('cnt', 'DESC')
+            ->getQuery()->getResult();
+    }
+
+    /** Conta gli appuntamenti per stato (usato nei grafici dashboard). */
+    public function countAppuntamentiPerStato(): array
+    {
+        return $this->em->createQueryBuilder()
+            ->select('a.stato, COUNT(a.id) as cnt')
+            ->from(\InkMaster\Entity\Appuntamento::class, 'a')
+            ->groupBy('a.stato')
+            ->getQuery()->getResult();
+    }
+
+    /** Trova tutte le segnalazioni CHIUSE che hanno come target l'utente indicato. */
+    public function findSegnalazioniChiuseByTarget(int $utenteId, string $tipo): array
+    {
+        $campo = $tipo === 'cliente' ? 'cliente' : 'studio';
+        return $this->em->getRepository(\InkMaster\Entity\Segnalazione::class)->findBy([
+            $campo  => $utenteId,
+            'stato' => 'CHIUSA',
+        ]);
+    }
+
     /** KPI: numero clienti registrati. */
     public function countClienti(): int
     {

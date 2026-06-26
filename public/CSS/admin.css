@@ -1,3 +1,6 @@
+/* nasconde il nav base quando l'admin è su pagine admin (hanno già adm-topbar) */
+.im-nav--admin { display: none !important; }
+
 /* ── pagina ── */
 .adm-page { min-height: 100vh; background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.10), transparent 60%), #0a0c0d; color: #eef1f0; font-family: 'Archivo', sans-serif; position: relative; }
 

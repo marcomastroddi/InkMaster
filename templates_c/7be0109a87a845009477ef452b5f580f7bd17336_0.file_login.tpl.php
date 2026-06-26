@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 07:12:53
+/* Smarty version 5.8.0, created on 2026-06-26 15:03:47
   from 'file:pages/auth/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e26758b89e9_23276961',
+  'unifunc' => 'content_6a3e94d3639f75_78007453',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7be0109a87a845009477ef452b5f580f7bd17336' => 
     array (
       0 => 'pages/auth/login.tpl',
-      1 => 1782457823,
+      1 => 1782486164,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e26758b89e9_23276961 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e94d3639f75_78007453 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12214174426a3e26758b4133_56068235', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13071448106a3e94d357a133_15490973', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_291176106a3e26758b7997_74168675', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16804333036a3e94d35b5945_93084568', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_800750586a3e26758b8374_72071076', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10636659446a3e94d35b6c77_93529034', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_12214174426a3e26758b4133_56068235 extends \Smarty\Runtime\Block
+class Block_13071448106a3e94d357a133_15490973 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Accedi — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_291176106a3e26758b7997_74168675 extends \Smarty\Runtime\Block
+class Block_16804333036a3e94d35b5945_93084568 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_800750586a3e26758b8374_72071076 extends \Smarty\Runtime\Block
+class Block_10636659446a3e94d35b6c77_93529034 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -83,6 +83,13 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <h1 class="im-title-auth">Accedi</h1>
                 <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
             </div>
+
+            <?php if ((true && ($_smarty_tpl->hasVariable('message') && null !== ($_smarty_tpl->getValue('message') ?? null))) && $_smarty_tpl->getValue('message')) {?>
+            <div style="background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);border-radius:10px;padding:12px 16px;font-size:13px;color:#e05252;margin-bottom:20px;">
+                <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('message'), ENT_QUOTES, 'UTF-8', true);?>
+
+            </div>
+            <?php }?>
 
             <form action="/login" method="POST" class="im-form">
                 <div class="im-form-group">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 14:25:14
+/* Smarty version 5.8.0, created on 2026-06-26 15:17:26
   from 'file:partials/footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3be8ca59e668_47553661',
+  'unifunc' => 'content_6a3e9806a19e91_45864747',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5485022e6b97edff504f30807c80407bca608428' => 
     array (
       0 => 'partials/footer.tpl',
-      1 => 1782311109,
+      1 => 1782487017,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3be8ca59e668_47553661 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9806a19e91_45864747 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 ?><div class="im-footer">
     <div class="im-footer-top">
@@ -34,12 +34,6 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <span>info@inkmaster.it</span>
                 <span>+39 06 1234 5678</span>
                 <span>Roma, IT</span>
-            </div>
-            <div class="im-footer-col">
-                <span class="im-footer-col-title">Piattaforma</span>
-                <a href="/cerca">Per gli artisti</a>
-                <a href="#">Come funziona</a>
-                <a href="#">Assistenza</a>
             </div>
         </div>
     </div>

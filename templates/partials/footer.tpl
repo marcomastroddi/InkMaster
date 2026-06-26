@@ -11,12 +11,6 @@
                 <span>+39 06 1234 5678</span>
                 <span>Roma, IT</span>
             </div>
-            <div class="im-footer-col">
-                <span class="im-footer-col-title">Piattaforma</span>
-                <a href="/cerca">Per gli artisti</a>
-                <a href="#">Come funziona</a>
-                <a href="#">Assistenza</a>
-            </div>
         </div>
     </div>
     <div class="im-copyright">© {$smarty.now|date_format:'%Y'} InkMaster — Tutti i diritti riservati</div>

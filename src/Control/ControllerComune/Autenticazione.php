@@ -47,7 +47,15 @@ class Autenticazione
         }
 
         // Sfruttiamo il metodo getRuolo
-        $ruolo = $utente->getRuolo(); 
+        $ruolo = $utente->getRuolo();
+
+        // Controllo ban (solo cliente e studio possono essere bannati)
+        if (in_array($ruolo, ['cliente', 'studio'])) {
+            $ban = $this->pm->findBanByUtente($utente->getId(), $ruolo);
+            if ($ban !== null) {
+                return ['status' => 'error', 'message' => 'Il tuo account è stato sospeso. Contatta il supporto.'];
+            }
+        }
 
         // Salvataggio dei dati in sessione
         SessionManager::set('username', $username);

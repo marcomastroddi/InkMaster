@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 12:51:31
+/* Smarty version 5.8.0, created on 2026-06-26 15:19:13
   from 'file:pages/moderatore/dashboard_moderatore.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e75d3873b56_84002357',
+  'unifunc' => 'content_6a3e9871c575e3_80982051',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f52d8e34b1356c28b903b717e9cf230c0455a06d' => 
     array (
       0 => 'pages/moderatore/dashboard_moderatore.tpl',
-      1 => 1782478250,
+      1 => 1782487144,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e75d3873b56_84002357 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9871c575e3_80982051 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3224217516a3e75d3854b25_72885302', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12487678446a3e9871c1ec73_00663527', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17650121936a3e75d3859107_78874851', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_890930486a3e9871c229b1_90307637', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16159301806a3e75d38599a7_87988220', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12021837086a3e9871c23244_38131692', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_3224217516a3e75d3854b25_72885302 extends \Smarty\Runtime\Block
+class Block_12487678446a3e9871c1ec73_00663527 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -53,7 +53,7 @@ Dashboard Amministratore — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_17650121936a3e75d3859107_78874851 extends \Smarty\Runtime\Block
+class Block_890930486a3e9871c229b1_90307637 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -69,7 +69,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_16159301806a3e75d38599a7_87988220 extends \Smarty\Runtime\Block
+class Block_12021837086a3e9871c23244_38131692 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -156,12 +156,12 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <div class="adm-charts-grid">
 
             <div class="adm-chart-card">
-                <div class="adm-chart-title">Nuove registrazioni — ultimi 6 mesi</div>
+                <div class="adm-chart-title">Utenti registrati</div>
                 <div class="adm-chart-wrap"><canvas id="chartRegistrazioni"></canvas></div>
             </div>
 
             <div class="adm-chart-card">
-                <div class="adm-chart-title">Stili più cercati</div>
+                <div class="adm-chart-title">Stili più praticati</div>
                 <div class="adm-chart-wrap"><canvas id="chartStili"></canvas></div>
             </div>
 
@@ -191,63 +191,79 @@ const red   = '#e05252';
 const muted = '#3f4a47';
 
 new Chart(document.getElementById('chartRegistrazioni'), {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: ['Dic','Gen','Feb','Mar','Apr','Mag'],
-        datasets: [
-            { label: 'Utenti', data: [210,260,310,420,490,590], borderColor: blue, backgroundColor: 'rgba(79,163,209,.12)', tension: .4, fill: true, pointRadius: 3 },
-            { label: 'Studi',  data: [12,18,22,31,38,48],       borderColor: green, backgroundColor: 'rgba(47,216,170,.08)', tension: .4, fill: true, pointRadius: 3 }
-        ]
+        labels: ['Clienti', 'Studi'],
+        datasets: [{
+            data: [<?php echo $_smarty_tpl->getValue('data')['kpi']['utenti_registrati'];?>
+, <?php echo $_smarty_tpl->getValue('data')['kpi']['studi_registrati'];?>
+],
+            backgroundColor: [blue, green],
+            borderRadius: 6
+        }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 } } } },
-        scales: { x: { ticks: { font: { size: 10 } } }, y: { ticks: { font: { size: 10 } } } }
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { font: { size: 12 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 
 new Chart(document.getElementById('chartStili'), {
     type: 'bar',
     data: {
-        labels: ['Fine Line','Realistico','Tradizionale','Maori','Old School','Altro'],
-        datasets: [{ label: 'Ricerche', data: [1800,1540,1120,720,580,340], backgroundColor: blue, borderRadius: 4 }]
+        labels: <?php echo $_smarty_tpl->getValue('data')['stili_labels'];?>
+,
+        datasets: [{ label: 'Tatuatori', data: <?php echo $_smarty_tpl->getValue('data')['stili_values'];?>
+, backgroundColor: blue, borderRadius: 4 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 } } } }
+        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 
 new Chart(document.getElementById('chartUtenti'), {
     type: 'doughnut',
     data: {
-        labels: ['Clienti', 'Studi', 'Non registrati'],
+        labels: [
+            'Clienti — <?php echo $_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale'];?>
+%',
+            'Studi — <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('math')->handle(array('equation'=>"100 - a",'a'=>$_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale']), $_smarty_tpl);?>
+%'
+        ],
         datasets: [{
             data: [<?php echo $_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale'];?>
-, <?php echo $_smarty_tpl->getValue('data')['tipo_utenti']['studi_percentuale'];?>
-, <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('math')->handle(array('equation'=>"100 - a - b",'a'=>$_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale'],'b'=>$_smarty_tpl->getValue('data')['tipo_utenti']['studi_percentuale']), $_smarty_tpl);?>
+, <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('math')->handle(array('equation'=>"100 - a",'a'=>$_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale']), $_smarty_tpl);?>
 ],
-            backgroundColor: [blue, green, muted],
+            backgroundColor: [blue, green],
             borderWidth: 0,
             hoverOffset: 6
         }]
     },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
-        plugins: { legend: { position: 'right', labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 }, padding: 14 } } }
+    options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
+        plugins: {
+            legend: { position: 'right', labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 }, padding: 14 } },
+            tooltip: { callbacks: { label: ctx => ctx.label } }
+        }
     }
 });
 
 new Chart(document.getElementById('chartPrenotazioni'), {
     type: 'bar',
     data: {
-        labels: ['Feb','Mar','Apr','Mag'],
-        datasets: [
-            { label: 'Completate', data: [180,240,310,390], backgroundColor: green, borderRadius: 4 },
-            { label: 'Cancellate', data: [22,18,28,14],     backgroundColor: red,   borderRadius: 4 }
-        ]
+        labels: <?php echo $_smarty_tpl->getValue('data')['app_labels'];?>
+,
+        datasets: [{
+            label: 'Appuntamenti',
+            data: <?php echo $_smarty_tpl->getValue('data')['app_values'];?>
+,
+            backgroundColor: [blue, green, muted, '#f0a500', red],
+            borderRadius: 4
+        }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#9aa3a0', boxWidth: 12, font: { size: 11 } } } },
-        scales: { x: { ticks: { font: { size: 10 } } }, y: { ticks: { font: { size: 10 } } } }
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { font: { size: 9 } } }, y: { ticks: { font: { size: 10 }, stepSize: 1 } } }
     }
 });
 <?php echo '</script'; ?>

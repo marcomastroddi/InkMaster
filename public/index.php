@@ -52,6 +52,7 @@ $pagineProtette = [
     'portfolio_studio', 'form_pubblicazione', 'pubblica_pubblicazione', 'elimina_pubblicazione',
     'pubblica_recensione', 'elimina_recensione',
     'dashboard_moderatore', 'accedi_segnalazioni', 'seleziona_utente', 'conferma_ban', 'scarta_segnalazione', 'rimuovi_ban',
+    'form_segnalazione', 'invia_segnalazione',
     'visualizza_profilo', 'modifica_dati', 'cambia_password',
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
@@ -121,7 +122,22 @@ switch ($page) {
         break;
 
     case 'visualizza_recensioni':
-        View::render('ricerca/recensioni', $controller->visualizza_recensioni((int)($_GET['id'] ?? 0)));
+        $studioId = (int)($_GET['id'] ?? 0);
+        $page     = max(1, (int)($_GET['page'] ?? 1));
+        $perPage  = 10;
+        $result   = $controller->visualizza_recensioni($studioId);
+        $tutteRec = $result['data'] ?? [];
+        $totale   = count($tutteRec);
+        $totPagine = (int)ceil($totale / $perPage);
+        $recPagina = array_slice($tutteRec, ($page - 1) * $perPage, $perPage);
+        View::render('ricerca/recensioni', [
+            'studio'    => $result['studio'],
+            'recensioni'=> $recPagina,
+            'pagina'    => $page,
+            'totPagine' => $totPagine,
+            'studioId'  => $studioId,
+            'totale'    => $totale,
+        ]);
         break;
 
     // ===== INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO =====
@@ -420,8 +436,6 @@ switch ($page) {
 
     case 'conferma_ban':
         $controller6->conferma_ban(
-            $_POST['tipo']        ?? '',
-            $_POST['durata']      ?? '',
             $_POST['motivazione'] ?? '',
             $_POST['gravita']     ?? '',
             $_POST['descrizione'] ?? '',
@@ -541,8 +555,15 @@ switch ($page) {
             $_POST['tipo_target'] ?? '',
             (int)($_POST['id_target'] ?? 0)
         );
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+        if ($dati['status'] === 'success') {
+            $ruolo = SessionManager::get('ruolo');
+            header('Location: ' . ($ruolo === 'studio' ? '/visualizza_clienti' : '/home'));
+            exit;
+        }
+        // errore: ritorna al form con messaggio
+        $formDati = $controller8->apriFormSegnalazione($_POST['tipo_target'] ?? '', (int)($_POST['id_target'] ?? 0));
+        $formDati['message'] = $dati['message'];
+        View::render('profilo/form_segnalazione', $formDati);
         break;
 
     // ===== INTERFACCIA 9 - GESTIONE PROFILO =====
