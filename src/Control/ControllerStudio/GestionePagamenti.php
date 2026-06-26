@@ -1,9 +1,9 @@
 <?php
+
 namespace InkMaster\Control\ControllerStudio;
 
 use InkMaster\Foundation\PersistentManager;
 use InkMaster\Foundation\SessionManager;
-use InkMaster\Entity\Appuntamento;
 
 class GestionePagamenti
 {
@@ -16,47 +16,36 @@ class GestionePagamenti
 
     public function visualizzaPagamenti(): array
     {
-        $idStudio = (int) SessionManager::get('id_studio', 1);
-
-        if (!$idStudio) {
-            return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];
-        }
+        $idStudio = (int)SessionManager::get('id_studio');
 
         $confermati  = $this->pm->findAppuntamentiByStudioIdAndStato($idStudio, 'CONFERMATO');
-        $daPagare    = $this->pm->findAppuntamentiByStudioIdAndStato($idStudio, 'DA_PAGARE');
-        $completati  = $this->pm->findAppuntamentiByStudioIdAndStato($idStudio, 'COMPLETATO');
+        $da_pagare   = $this->pm->findAppuntamentiByStudioIdAndStato($idStudio, 'DA_PAGARE');
+        $tot_mese    = $this->pm->totalePagatiByStudioMese($idStudio);
+        $tot_anno    = $this->pm->totalePagatiByStudioAnno($idStudio);
+        $tot_sempre  = $this->pm->totalePagatiByStudio($idStudio);
+        $n_completati = $this->pm->countCompletatiByStudio($idStudio);
 
-        $totMese   = $this->pm->totalePagatiByStudioMese($idStudio);
-        $totAnno   = $this->pm->totalePagatiByStudioAnno($idStudio);
-        $totSempre = $this->pm->totalePagatiByStudio($idStudio);
-
-        return [
-            'status'       => 'success',
-            'confermati'   => $confermati,
-            'da_pagare'    => $daPagare,
-            'tot_mese'     => $totMese,
-            'tot_anno'     => $totAnno,
-            'tot_sempre'   => $totSempre,
-            'n_completati' => count($completati),
-        ];
+        return compact('confermati', 'da_pagare', 'tot_mese', 'tot_anno', 'tot_sempre', 'n_completati');
     }
 
     public function abilitaPagamento(int $idAppuntamento, float $costo): array
     {
-        $appuntamento = $this->pm->read(Appuntamento::class, $idAppuntamento);
+        $app = $this->pm->read(\InkMaster\Entity\Appuntamento::class, $idAppuntamento);
 
-        if ($appuntamento === null) {
+        if (!$app || $app->getStudio()->getId() !== (int)SessionManager::get('id_studio')) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato.'];
         }
-
-        if ($appuntamento->getStato() !== 'CONFERMATO') {
-            return ['status' => 'error', 'message' => 'Solo gli appuntamenti confermati possono essere abilitati al pagamento.'];
+        if ($app->getStato() !== 'CONFERMATO') {
+            return ['status' => 'error', 'message' => 'Stato non valido.'];
+        }
+        if ($costo <= 0) {
+            return ['status' => 'error', 'message' => 'Importo non valido.'];
         }
 
-        $appuntamento->setStato('DA_PAGARE');
-        $appuntamento->setCosto($costo);
+        $app->setStato('DA_PAGARE');
+        $app->setCosto($costo);
         $this->pm->update();
 
-        return ['status' => 'success', 'message' => 'Pagamento abilitato per €' . number_format($costo, 2)];
+        return ['status' => 'success'];
     }
 }

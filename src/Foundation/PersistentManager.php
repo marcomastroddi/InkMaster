@@ -203,41 +203,83 @@ class PersistentManager
         return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
     }
 
-    /** Appuntamenti di uno studio filtrati per stato. */
+    /** Recensioni scritte da un cliente (area personale). */
+    public function findRecensioniByClienteId(int $idCliente): array
+    {
+        return $this->recensioneRepository->findByClienteId($idCliente);
+    }
+
+        /** Appuntamenti di uno studio filtrati per stato. */
     public function findAppuntamentiByStudioIdAndStato(int $idStudio, string $stato): array
     {
-        return $this->em->getRepository(\InkMaster\Entity\Appuntamento::class)
-            ->findBy(['studio' => $idStudio, 'stato' => $stato], ['data' => 'ASC']);
+        return $this->appuntamentoRepository->findByStudioIdAndStato($idStudio, $stato);
     }
 
-    /** KPI pagamenti: totale da sempre. */
-    public function totalePagatiByStudio(int $idStudio): float
-    {
-        return $this->pagamentoRepository->totalePagatiByStudio($idStudio);
-    }
-
-    /** KPI pagamenti: totale mese corrente. */
-    public function totalePagatiByStudioMese(int $idStudio): float
-    {
-        return $this->pagamentoRepository->totalePagatiByStudioMese($idStudio);
-    }
-
-    /** KPI pagamenti: totale anno corrente. */
-    public function totalePagatiByStudioAnno(int $idStudio): float
-    {
-        return $this->pagamentoRepository->totalePagatiByStudioAnno($idStudio);
-    }
-
-    /** Prenotazioni di un cliente (area personale). */
+    /** Appuntamenti di un cliente. */
     public function findAppuntamentiByClienteId(int $idCliente): array
     {
         return $this->appuntamentoRepository->findByClienteId($idCliente);
     }
 
-    /** Recensioni scritte da un cliente (area personale). */
-    public function findRecensioniByClienteId(int $idCliente): array
+    /** Totale incassato (COMPLETATO) da uno studio — tutto il periodo. */
+    public function totalePagatiByStudio(int $idStudio): float
     {
-        return $this->recensioneRepository->findByClienteId($idCliente);
+        $result = $this->em->createQueryBuilder()
+            ->select('SUM(a.costo)')
+            ->from(\InkMaster\Entity\Appuntamento::class, 'a')
+            ->where('a.studio = :idStudio')
+            ->andWhere('a.stato = :stato')
+            ->setParameter('idStudio', $idStudio)
+            ->setParameter('stato', 'COMPLETATO')
+            ->getQuery()->getSingleScalarResult();
+        return (float)($result ?? 0);
+    }
+
+    /** Totale incassato questo mese. */
+    public function totalePagatiByStudioMese(int $idStudio): float
+    {
+        $inizio = new \DateTime('first day of this month 00:00:00');
+        $fine   = new \DateTime('last day of this month 23:59:59');
+        $result = $this->em->createQueryBuilder()
+            ->select('SUM(a.costo)')
+            ->from(\InkMaster\Entity\Appuntamento::class, 'a')
+            ->where('a.studio = :idStudio')
+            ->andWhere('a.stato = :stato')
+            ->andWhere('a.data BETWEEN :inizio AND :fine')
+            ->setParameter('idStudio', $idStudio)
+            ->setParameter('stato', 'COMPLETATO')
+            ->setParameter('inizio', $inizio)
+            ->setParameter('fine', $fine)
+            ->getQuery()->getSingleScalarResult();
+        return (float)($result ?? 0);
+    }
+
+    /** Totale incassato quest'anno. */
+    public function totalePagatiByStudioAnno(int $idStudio): float
+    {
+        $inizio = new \DateTime('first day of january this year 00:00:00');
+        $fine   = new \DateTime('last day of december this year 23:59:59');
+        $result = $this->em->createQueryBuilder()
+            ->select('SUM(a.costo)')
+            ->from(\InkMaster\Entity\Appuntamento::class, 'a')
+            ->where('a.studio = :idStudio')
+            ->andWhere('a.stato = :stato')
+            ->andWhere('a.data BETWEEN :inizio AND :fine')
+            ->setParameter('idStudio', $idStudio)
+            ->setParameter('stato', 'COMPLETATO')
+            ->setParameter('inizio', $inizio)
+            ->setParameter('fine', $fine)
+            ->getQuery()->getSingleScalarResult();
+        return (float)($result ?? 0);
+    }
+
+    /** Numero appuntamenti completati (pagati). */
+    public function countCompletatiByStudio(int $idStudio): int
+    {
+        return (int)$this->em->getRepository(\InkMaster\Entity\Appuntamento::class)->count([
+            'studio' => $idStudio,
+            'stato'  => 'COMPLETATO',
+        ]);
     }
     // ==================================================================
     // MODERAZIONE — ModerazionePiattaforma (segnalazioni + KPI dashboard)

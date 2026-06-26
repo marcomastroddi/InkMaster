@@ -650,10 +650,10 @@ switch ($page) {
     case 'visualizza_pagamenti':
         View::render('studio/pagamenti', $controller12->visualizzaPagamenti());
         break;
-    
+
     case 'abilita_pagamento':
         $dati = $controller12->abilitaPagamento(
-            (int)($_POST['id_appuntamento'] ?? 0),
+            (int)($_POST['id'] ?? 0),
             (float)($_POST['costo'] ?? 0)
         );
         header('Content-Type: application/json');
