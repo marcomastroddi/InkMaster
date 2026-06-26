@@ -262,3 +262,8 @@
   .el-map-wrap { position: static; }
   .el-map { height: 320px; }
 }
+
+/* ── fix: mappa sticky (overflow:hidden su .el-page rompe lo sticky → spostato su .el-bg) ── */
+.el-page { overflow: visible; }
+.el-bg   { overflow: hidden; }
+

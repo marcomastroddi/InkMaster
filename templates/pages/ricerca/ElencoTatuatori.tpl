@@ -240,8 +240,7 @@
       "/>
 
       <!-- Roma -->
-      <circle class="el-map-city-dot el-map-city-dot--main" cx="105" cy="138" r="4"/>
-      <circle class="el-map-city-ring"                       cx="105" cy="138" r="7"/>
+      <circle class="el-map-city-dot" cx="105" cy="138" r="4"/>
       <!-- altre città -->
       <circle class="el-map-city-dot" cx="57"  cy="58"  r="3"/>
       <circle class="el-map-city-dot" cx="35"  cy="67"  r="3"/>
@@ -258,7 +257,7 @@
       <circle class="el-map-city-dot" cx="54"  cy="199" r="3"/>
       <circle class="el-map-city-dot" cx="85"  cy="43"  r="3"/>
 
-      <text class="el-map-lbl el-map-lbl--main" x="108" y="136">Roma</text>
+      <text class="el-map-lbl" x="108" y="136">Roma</text>
       <text class="el-map-lbl" x="60"  y="56" >Milano</text>
       <text class="el-map-lbl" x="15"  y="65" >Torino</text>
       <text class="el-map-lbl" x="105" y="60" >Venezia</text>
@@ -281,23 +280,13 @@
 
   </div>{* fine el-body *}
 
-  {* paginazione *}
-  {if $totale > 10}
-  <div class="el-pagination">
-    <a href="#" class="el-pag-btn">‹</a>
-    <a href="#" class="el-pag-btn active">1</a>
-    <a href="#" class="el-pag-btn">2</a>
-    <a href="#" class="el-pag-btn">3</a>
-    <a href="#" class="el-pag-btn">›</a>
-  </div>
-  {else}
+  {* tutti i risultati in un'unica lista, nessuna paginazione *}
   <div class="el-pagination-single">
     <span class="el-pag-chip">
       <span class="el-pag-chip-dot"></span>
       {$totale} {if $totale == 1}risultato trovato{else}risultati trovati{/if}
     </span>
   </div>
-  {/if}
 
 </div>
 

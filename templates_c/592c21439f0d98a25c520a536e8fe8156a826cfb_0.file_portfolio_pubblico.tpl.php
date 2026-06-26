@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 15:08:15
+/* Smarty version 5.8.0, created on 2026-06-26 19:55:52
   from 'file:pages/portfolio/portfolio_pubblico.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e95df8313d0_87531313',
+  'unifunc' => 'content_6a3ed94814ff84_83680616',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '592c21439f0d98a25c520a536e8fe8156a826cfb' => 
     array (
       0 => 'pages/portfolio/portfolio_pubblico.tpl',
-      1 => 1782486486,
+      1 => 1782502153,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e95df8313d0_87531313 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ed94814ff84_83680616 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9179684326a3e95df7ecc79_63387671', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17455322306a3ed94811c3c3_57365677', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3003399166a3e95df7f3d80_48214000', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15477569446a3ed94812b8f4_15021143', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5790454106a3e95df7f8617_47558176', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20481410226a3ed9481303c9_42884972', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_9179684326a3e95df7ecc79_63387671 extends \Smarty\Runtime\Block
+class Block_17455322306a3ed94811c3c3_57365677 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
@@ -51,7 +51,7 @@ Portfolio — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_3003399166a3e95df7f3d80_48214000 extends \Smarty\Runtime\Block
+class Block_15477569446a3ed94812b8f4_15021143 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
@@ -59,6 +59,17 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
 
 <link rel="stylesheet" href="/CSS/home.css">
 <style>
+/* ── sfondo ── */
+.ppub-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(47,216,170,.13), transparent 70%), #080e0c; }
+.ppub-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .18; animation: ppub-float 10s ease-in-out infinite alternate; }
+.ppub-blob-1 { width: 560px; height: 560px; background: radial-gradient(circle, #2fd8aa, #0d6e52); top: -180px; left: -160px; animation-duration: 9s; }
+.ppub-blob-2 { width: 480px; height: 480px; background: radial-gradient(circle, #1aab85, #083d2a); bottom: -140px; right: -120px; animation-duration: 12s; animation-delay: -4s; }
+.ppub-blob-3 { width: 320px; height: 320px; background: radial-gradient(circle, #2fd8aa, #0a1f19); top: 45%; left: 58%; opacity: .10; animation-duration: 15s; animation-delay: -7s; }
+@keyframes ppub-float { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,24px) scale(1.07); } }
+
+/* ── contenuto ── */
+.ppub-wrap { position: relative; z-index: 1; }
 .ppub-page { min-height: 60vh; padding: 60px; max-width: 1320px; margin: 0 auto; }
 .ppub-header { margin-bottom: 42px; }
 .ppub-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #2fd8aa; margin-bottom: 10px; }
@@ -94,7 +105,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_5790454106a3e95df7f8617_47558176 extends \Smarty\Runtime\Block
+class Block_20481410226a3ed9481303c9_42884972 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\portfolio';
