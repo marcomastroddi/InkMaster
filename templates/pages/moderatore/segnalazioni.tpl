@@ -87,7 +87,12 @@
                         <td><span class="adm-badge adm-badge--red">Aperta</span></td>
                         <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
                         <td>
-                            <a href="/seleziona_utente?id={$utente->getId()}&tipo={$tipo}" class="adm-btn-ban">Banna</a>
+                            <button type="button" class="adm-btn-ban"
+                            data-id="{$utente->getId()}"
+                            data-tipo="{$tipo}"
+                            data-nome="{$nomeUtente|escape}"
+                            data-email="{$utente->getEmail()|escape}"
+                            data-iniziali="{$iniziali|upper}">Banna</button>
                         </td>
                     </tr>
                 {/foreach}
@@ -143,4 +148,137 @@
         </div>
     </div>
 </div>
+
+{* ── MODAL BANNA ── *}
+<div class="adm-overlay" id="banModal">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <h2 class="adm-modal-title">Banna utente</h2>
+            <button class="adm-modal-close" id="closeBan">✕</button>
+        </div>
+
+        <div class="adm-modal-user">
+            <div class="adm-user-av adm-user-av--cliente" id="banAvatar"></div>
+            <div>
+                <div class="adm-user-name" id="banNome"></div>
+                <div class="adm-user-email" id="banEmail"></div>
+            </div>
+        </div>
+
+        <form id="banForm" method="POST" action="/conferma_ban">
+
+            <div class="adm-modal-field">
+                <label class="adm-modal-label">TIPO DI BAN</label>
+                <div class="adm-radio-group">
+                    <label class="adm-radio-opt" id="optTemp">
+                        <input type="radio" name="tipo" value="temporaneo" checked> Temporaneo
+                    </label>
+                    <label class="adm-radio-opt" id="optPerm">
+                        <input type="radio" name="tipo" value="permanente"> Permanente
+                    </label>
+                </div>
+            </div>
+
+            <div class="adm-modal-field" id="durataField">
+                <label class="adm-modal-label">DURATA</label>
+                <div class="adm-durata-row">
+                    <input type="number" id="banGiorni" value="7" min="1" max="365" class="adm-input-num">
+                    <span class="adm-durata-unit">Giorni</span>
+                </div>
+                <div class="adm-durata-scade" id="scadeInfo"></div>
+                <input type="hidden" name="durata" id="durataHidden" value="7 giorni">
+            </div>
+
+            <div class="adm-modal-field">
+                <label class="adm-modal-label">CATEGORIA MOTIVAZIONE</label>
+                <select name="motivazione" class="adm-select" required>
+                    <option value="">— Seleziona una categoria —</option>
+                    <option value="Spam">Spam</option>
+                    <option value="Contenuto inappropriato">Contenuto inappropriato</option>
+                    <option value="Comportamento offensivo">Comportamento offensivo</option>
+                    <option value="Frode">Frode</option>
+                    <option value="Violazione termini">Violazione termini</option>
+                </select>
+            </div>
+
+            <div class="adm-modal-field">
+                <label class="adm-modal-label">GRAVITÀ</label>
+                <div class="adm-gravita-group">
+                    <button type="button" class="adm-grav-btn" data-val="bassa">Bassa</button>
+                    <button type="button" class="adm-grav-btn" data-val="media">Media</button>
+                    <button type="button" class="adm-grav-btn adm-grav-btn--sel" data-val="alta">Alta</button>
+                    <button type="button" class="adm-grav-btn" data-val="critica">Critica</button>
+                </div>
+                <input type="hidden" name="gravita" id="gravitaInput" value="alta">
+            </div>
+
+            <div class="adm-modal-field">
+                <label class="adm-modal-label">DESCRIZIONE MOTIVAZIONE</label>
+                <textarea name="descrizione" class="adm-textarea" rows="3" placeholder="Descrici il motivo del ban in dettaglio..."></textarea>
+            </div>
+
+            <div class="adm-modal-field">
+                <label class="adm-modal-label">AZIONI AGGIUNTIVE</label>
+                <label class="adm-check-opt"><input type="checkbox" name="nascondi_contenuti" value="1"> Nascondi contenuti esistenti</label>
+            </div>
+
+            <div class="adm-modal-footer">
+                <button type="button" class="adm-btn-annulla" id="closeBan2">Annulla</button>
+                <button type="submit" class="adm-btn-conferma">✓ Conferma ban</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+{literal}
+const modal   = document.getElementById('banModal');
+const form    = document.getElementById('banForm');
+const giorni  = document.getElementById('banGiorni');
+const durHid  = document.getElementById('durataHidden');
+const scadeEl = document.getElementById('scadeInfo');
+const durField= document.getElementById('durataField');
+
+function updateScade() {
+    const g = parseInt(giorni.value) || 1;
+    durHid.value = g + ' giorni';
+    const d = new Date(); d.setDate(d.getDate() + g);
+    scadeEl.textContent = 'Scade il ' + d.toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
+}
+updateScade();
+giorni.addEventListener('input', updateScade);
+
+document.querySelectorAll('input[name="tipo"]').forEach(r => {
+    r.addEventListener('change', () => {
+        const perm = r.value === 'permanente';
+        durField.style.display = perm ? 'none' : '';
+        if (perm) durHid.value = 'permanente';
+        else updateScade();
+    });
+});
+
+document.querySelectorAll('.adm-grav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.adm-grav-btn').forEach(b => b.classList.remove('adm-grav-btn--sel'));
+        btn.classList.add('adm-grav-btn--sel');
+        document.getElementById('gravitaInput').value = btn.dataset.val;
+    });
+});
+
+document.querySelectorAll('.adm-btn-ban').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.getElementById('banAvatar').textContent  = this.dataset.iniziali;
+        document.getElementById('banNome').textContent    = this.dataset.nome;
+        document.getElementById('banEmail').textContent   = this.dataset.email;
+        fetch('/seleziona_utente?id=' + this.dataset.id + '&tipo=' + this.dataset.tipo);
+        modal.classList.add('adm-overlay--open');
+    });
+});
+
+[document.getElementById('closeBan'), document.getElementById('closeBan2')].forEach(el => {
+    el.addEventListener('click', () => modal.classList.remove('adm-overlay--open'));
+});
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('adm-overlay--open'); });
+{/literal}
+</script>
 {/block}
