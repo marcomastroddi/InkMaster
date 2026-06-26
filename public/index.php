@@ -56,10 +56,26 @@ $pagineProtette = [
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
     'avvia_recensione', 'compila_recensione',
-]; 
+];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
     View::render('auth/login', ['message' => 'Devi effettuare il login']);
+    exit;
+}
+
+// ── Rotte vietate agli studi loggati ──
+$pagineVietateStudio = [
+    'home', 'cerca', 'stili', 'avvia_ricerca', 'scegli_studio',
+    'visualizza_recensioni', 'seleziona_posizione', 'seleziona_stile',
+    'inserisci_testo_ricerca', 'portfolio_pubblico', 'dettagli_pubblicazione',
+    'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData',
+    'mostraRiepilogo', 'richiediAppuntamento', 'avvia_pagamento',
+    'inserisci_dati_pagamento', 'avviaRecensione', 'compilaRecensione',
+    'visualizzaRecensione',
+];
+
+if (in_array($page, $pagineVietateStudio) && SessionManager::get('ruolo') === 'studio') {
+    header('Location: /dashboardStudio');
     exit;
 }
 

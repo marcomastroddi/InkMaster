@@ -115,8 +115,6 @@ class GestioneProfilo
         }
 
         $utente->setPassword(password_hash($nuovaPassword, PASSWORD_BCRYPT));
-
-        $utente->setPassword($nuovaPassword);
         $this->pm->update();
 
         return [
