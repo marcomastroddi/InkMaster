@@ -17,7 +17,7 @@ class GestioneCalendario
 
     public function visualizzaCalendario(int $mese, int $anno): array
     {
-        $idStudio = SessionManager::get('id_studio', 1);
+        $idStudio = SessionManager::get('id_studio');
 
         if (!$idStudio) {
             return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];
@@ -57,7 +57,7 @@ class GestioneCalendario
 
     public function visualizzaAppuntamentiDelGiorno(string $data): array
     {
-        $idStudio = SessionManager::get('id_studio', 1);
+        $idStudio = SessionManager::get('id_studio');
 
         if (!$idStudio) {
             return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];

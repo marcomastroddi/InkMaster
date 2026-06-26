@@ -40,4 +40,26 @@ class RecensioneRepository
             ['data' => 'DESC']
         );
     }
+
+    /** Restituisce [studio_id => media_voto] per gli studi richiesti, in una sola query. */
+    public function findMediaVotiByStudiIds(array $ids): array
+    {
+        if (empty($ids)) {
+            return [];
+        }
+        $rows = $this->em->createQueryBuilder()
+            ->select('IDENTITY(r.studio) AS studio_id, AVG(r.voto) AS media')
+            ->from(Recensione::class, 'r')
+            ->where('r.studio IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->groupBy('r.studio')
+            ->getQuery()
+            ->getScalarResult();
+
+        $result = [];
+        foreach ($rows as $row) {
+            $result[(int)$row['studio_id']] = round((float)$row['media'], 1);
+        }
+        return $result;
+    }
 }

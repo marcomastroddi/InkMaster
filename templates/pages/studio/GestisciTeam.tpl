@@ -23,7 +23,7 @@
                     <div class="im-team-avatar">{$t->getNome()|substr:0:1|upper}{$t->getCognome()|substr:0:1|upper}</div>
                     <div class="im-team-info">
                         <span class="im-team-name">{$t->getNome()|escape} {$t->getCognome()|escape}</span>
-                        <span class="im-team-dob">{$t->getDataNascita()->format('d/m/Y')}</span>
+                        <span class="im-team-dob">{if $t->getDataNascita()}{$t->getDataNascita()->format('d/m/Y')}{else}—{/if}</span>
                         <div class="im-team-stili">
                             {foreach $t->getStili() as $s}
                                 <span class="im-team-chip">{$s->getNome()|escape}</span>

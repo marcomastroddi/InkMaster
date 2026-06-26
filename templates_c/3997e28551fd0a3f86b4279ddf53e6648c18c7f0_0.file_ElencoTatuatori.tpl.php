@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:08:30
+/* Smarty version 5.8.0, created on 2026-06-26 22:42:39
   from 'file:pages/ricerca/ElencoTatuatori.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3eea4eb190e0_08705990',
+  'unifunc' => 'content_6a3f005fdd4696_23781950',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3997e28551fd0a3f86b4279ddf53e6648c18c7f0' => 
     array (
       0 => 'pages/ricerca/ElencoTatuatori.tpl',
-      1 => 1782507509,
+      1 => 1782513744,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3eea4eb190e0_08705990 (\Smarty\Template $_smarty_tpl) {
+function content_6a3f005fdd4696_23781950 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7626454246a3eea4dee48f5_25204833', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5109253156a3f005fba4210_33250344', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9596216656a3eea4e14d5d2_18404024', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14473343266a3f005fbc7ec5_80201333', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7096170286a3eea4e154c11_03053788', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15253629206a3f005fbc93d5_23403520', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base_ricerca.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_7626454246a3eea4dee48f5_25204833 extends \Smarty\Runtime\Block
+class Block_5109253156a3f005fba4210_33250344 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Risultati ricerca — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_9596216656a3eea4e14d5d2_18404024 extends \Smarty\Runtime\Block
+class Block_14473343266a3f005fbc7ec5_80201333 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_7096170286a3eea4e154c11_03053788 extends \Smarty\Runtime\Block
+class Block_15253629206a3f005fbc93d5_23403520 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -88,9 +88,32 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 </strong> <?php if ($_smarty_tpl->getValue('totale') == 1) {?>studio trovato<?php } else { ?>studi trovati<?php }?>
       <?php if ($_smarty_tpl->getValue('filtri_correnti')['testo']) {?> per "<strong><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('filtri_correnti')['testo'], ENT_QUOTES, 'UTF-8', true);?>
 </strong>"<?php }?>
-      <?php if ($_smarty_tpl->getValue('filtri_correnti')['citta']) {?> a <strong><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('filtri_correnti')['citta'], ENT_QUOTES, 'UTF-8', true);?>
-</strong><?php }?>
+      a <strong><?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['citta'] ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+</strong>
     </p>
+    <div class="el-stili-chips">
+      <a href="/avvia_ricerca?citta=<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['citta'] ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+&testo=<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['testo'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+"
+         class="el-chip<?php if (!$_smarty_tpl->getValue('filtri_correnti')['stile']) {?> el-chip--attivo<?php }?>">Tutti</a>
+      <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('stili'), 's');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('s')->value) {
+$foreach0DoElse = false;
+?>
+        <a href="/avvia_ricerca?citta=<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['citta'] ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+&testo=<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['testo'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+&stile=<?php echo rawurlencode((string)$_smarty_tpl->getValue('s')->getNome());?>
+"
+           class="el-chip<?php if ($_smarty_tpl->getValue('filtri_correnti')['stile'] === $_smarty_tpl->getValue('s')->getNome()) {?> el-chip--attivo<?php }?>">
+          <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('s')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+
+        </a>
+      <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+    </div>
   </div>
 
   <div class="el-body">
@@ -101,9 +124,9 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
       <?php } else { ?>
         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('data'), 'studio');
-$foreach0DoElse = true;
+$foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('studio')->value) {
-$foreach0DoElse = false;
+$foreach1DoElse = false;
 ?>
           <?php $_smarty_tpl->assign('nomeStudio', $_smarty_tpl->getValue('studio')->getNome(), false, NULL);?>
           <a href="/scegli_studio?id=<?php echo $_smarty_tpl->getValue('studio')->getId();?>
@@ -123,18 +146,18 @@ $foreach0DoElse = false;
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('studio')->getTatuatori(), 'tat', true);
 $_smarty_tpl->getVariable('tat')->iteration = 0;
-$foreach1DoElse = true;
+$foreach2DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('tat')->value) {
-$foreach1DoElse = false;
+$foreach2DoElse = false;
 $_smarty_tpl->getVariable('tat')->iteration++;
 $_smarty_tpl->getVariable('tat')->last = $_smarty_tpl->getVariable('tat')->iteration === $_smarty_tpl->getVariable('tat')->total;
-$foreach1Backup = clone $_smarty_tpl->getVariable('tat');
+$foreach2Backup = clone $_smarty_tpl->getVariable('tat');
 ?>
                   <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('tat')->getStili(), 'st');
-$foreach2DoElse = true;
+$foreach3DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('st')->value) {
-$foreach2DoElse = false;
+$foreach3DoElse = false;
 ?>
                     <span class="el-tag"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('st')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
 </span>
@@ -142,7 +165,7 @@ $foreach2DoElse = false;
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <?php
-$_smarty_tpl->setVariable('tat', $foreach1Backup);
+$_smarty_tpl->setVariable('tat', $foreach2Backup);
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
               </div>
@@ -150,18 +173,18 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('studio')->getTatuatori(), 'tat', true);
 $_smarty_tpl->getVariable('tat')->iteration = 0;
-$foreach3DoElse = true;
+$foreach4DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('tat')->value) {
-$foreach3DoElse = false;
+$foreach4DoElse = false;
 $_smarty_tpl->getVariable('tat')->iteration++;
 $_smarty_tpl->getVariable('tat')->last = $_smarty_tpl->getVariable('tat')->iteration === $_smarty_tpl->getVariable('tat')->total;
-$foreach3Backup = clone $_smarty_tpl->getVariable('tat');
+$foreach4Backup = clone $_smarty_tpl->getVariable('tat');
 ?>
                   <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('tat')->getNome(), ENT_QUOTES, 'UTF-8', true);?>
  <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('tat')->getCognome(), ENT_QUOTES, 'UTF-8', true);
 if (!$_smarty_tpl->getVariable('tat')->last) {?>, <?php }?>
                 <?php
-$_smarty_tpl->setVariable('tat', $foreach3Backup);
+$_smarty_tpl->setVariable('tat', $foreach4Backup);
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
               </div>
@@ -169,7 +192,25 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
             <div class="el-meta">
               <div class="el-rating">
-                <div class="el-stars">★★★★★</div>
+                <?php $_smarty_tpl->assign('sid', $_smarty_tpl->getValue('studio')->getId(), false, NULL);?>
+                <?php $_smarty_tpl->assign('media', ($_smarty_tpl->getValue('medie_voti')[$_smarty_tpl->getValue('sid')] ?? 0), false, NULL);?>
+                <div class="el-stars">
+                  <?php if ($_smarty_tpl->getValue('media') > 0) {?>
+                    <?php
+$_smarty_tpl->assign('i', null);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? 5+1 - (1) : 1-(5)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
+                      <?php if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('media')) {?>★<?php } else { ?><span style="opacity:.25">★</span><?php }?>
+                    <?php }
+}
+?>
+                    <span class="el-rating-num"><?php echo $_smarty_tpl->getValue('media');?>
+</span>
+                  <?php } else { ?>
+                    <span style="opacity:.3">★★★★★</span>
+                  <?php }?>
+                </div>
                 <div class="el-rating-label">Valutazione</div>
               </div>
               <div class="el-location">

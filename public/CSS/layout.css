@@ -1,8 +1,9 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #0a0c0d; color: #eef1f0; }
+body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #0a0c0d; color: #eef1f0; padding-top: 76px; }
 a { text-decoration: none; color: inherit; }
 
 /* topbar */
+.im-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: rgba(10,12,13,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.06); }
 .im-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 60px; max-width: 1320px; margin: 0 auto; min-height: 76px; }
 .im-logo { font-weight: 900; letter-spacing: -.02em; font-size: 22px; }
 .im-logo span, .im-accent { color: #2fd8aa; }

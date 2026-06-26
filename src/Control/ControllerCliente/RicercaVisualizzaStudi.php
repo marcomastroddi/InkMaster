@@ -106,19 +106,10 @@ class RicercaVisualizzaStudi
     //metdo da usare con avvia_ricerca per determinare i criteri di ricerca in base ai parametri forniti (città, stile e testo). Restituisce un array con i criteri di ricerca.
     private function prepara_criteri_ricerca(string $citta, string $stile, string $testo): array
     {
-        // priorità 1: se c'è testo, vince su tutto il resto
-        if (!empty($testo)) {
-            return [
-                'tipo'  => 'testo',
-                'testo' => $testo
-            ];
-        }
-
-        // priorità 2: nessun testo -> usiamo città + eventuale stile
         return [
-            'tipo'  => 'posizione',
             'citta' => $citta,
-            'stile' => $stile !== '' ? $stile : null
+            'testo' => $testo !== '' ? $testo : null,
+            'stile' => $stile !== '' ? $stile : null,
         ];
     }
 
@@ -129,16 +120,26 @@ class RicercaVisualizzaStudi
         $stile = !empty($_GET['stile']) ? trim($_GET['stile']) : '';
         $testo = !empty($_GET['testo']) ? trim($_GET['testo']) : '';
 
+        // Validazione: se la ricerca è per città, deve essere un valore enum valido
+        if ($testo === '' && Citta::tryFrom($citta) === null) {
+            return ['status' => 'not_found'];
+        }
+
         // Pulisce i filtri vecchi dalla sessione
         SessionManager::set('filtri_ricerca', []);
 
         $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
         $tatuatori = $this->pm->findAvailableStudios($criteri);
 
+        $ids = array_map(fn(Studio $s) => $s->getId(), $tatuatori);
+        $medie = $this->pm->findMediaVotiByStudiIds($ids);
+
         return [
             'status'          => 'success',
             'interfaccia'     => 'Lista tatuatori',
             'data'            => $tatuatori,
+            'medie_voti'      => $medie,
+            'stili'           => $this->pm->findAvailableStyles(),
             'filtri_correnti' => ['citta' => $citta, 'stile' => $stile, 'testo' => $testo],
         ];
     }

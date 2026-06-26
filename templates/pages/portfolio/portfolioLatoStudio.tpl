@@ -36,7 +36,7 @@
                     {if $pub->getDescrizione()}
                     <div class="im-pub-desc">{$pub->getDescrizione()|truncate:80:'...'|escape}</div>
                     {/if}
-                    <div class="im-pub-data">{$pub->getData()->format('d/m/Y')}</div>
+                    <div class="im-pub-data">{if $pub->getData()}{$pub->getData()->format('d/m/Y')}{else}—{/if}</div>
                 </div>
             </div>
             {/foreach}

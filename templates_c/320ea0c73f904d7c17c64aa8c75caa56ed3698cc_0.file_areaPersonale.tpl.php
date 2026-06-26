@@ -1,14 +1,75 @@
-{extends file='layouts/base.tpl'}
+<?php
+/* Smarty version 5.8.0, created on 2026-06-26 21:53:10
+  from 'file:pages/profilo/areaPersonale.tpl' */
 
-{block name="title"}Area Personale — InkMaster{/block}
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.8.0',
+  'unifunc' => 'content_6a3ef4c6d146f6_53741205',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '320ea0c73f904d7c17c64aa8c75caa56ed3698cc' => 
+    array (
+      0 => 'pages/profilo/areaPersonale.tpl',
+      1 => 1782510123,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6a3ef4c6d146f6_53741205 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
+$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
+?>
 
-{block name="extra_css"}
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13056485126a3ef4c6b45e99_55663402', "title");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20954548946a3ef4c6b75e00_45905700', "extra_css");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19169032976a3ef4c6b78e21_43825054', "content");
+$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
+}
+/* {block "title"} */
+class Block_13056485126a3ef4c6b45e99_55663402 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
+?>
+Area Personale — InkMaster<?php
+}
+}
+/* {/block "title"} */
+/* {block "extra_css"} */
+class Block_20954548946a3ef4c6b75e00_45905700 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
+?>
+
     <link rel="stylesheet" href="/CSS/areaPersonale.css">
-{/block}
+<?php
+}
+}
+/* {/block "extra_css"} */
+/* {block "content"} */
+class Block_19169032976a3ef4c6b78e21_43825054 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
+?>
 
-{block name="content"}
 
-{* ── Sfondo ── *}
 <div class="im-ap-bg-layer">
     <div class="im-ap-blob im-ap-blob-1"></div>
     <div class="im-ap-blob im-ap-blob-2"></div>
@@ -40,90 +101,127 @@
 
 <div class="im-ap-inner">
 
-    {* ── Header card ── *}
-    <div class="im-ap-header-card">
-        <div class="im-ap-avatar">{$_sessione.username|substr:0:1|upper}</div>
+        <div class="im-ap-header-card">
+        <div class="im-ap-avatar"><?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('_sessione')['username'], (int) 0, (int) 1) ?? '', 'UTF-8');?>
+</div>
         <div class="im-ap-header-info">
             <div class="im-ap-eyebrow">Area Personale</div>
-            <h1 class="im-ap-name">Bentornato, {$_sessione.username}</h1>
+            <h1 class="im-ap-name">Bentornato, <?php echo $_smarty_tpl->getValue('_sessione')['username'];?>
+</h1>
         </div>
         <a href="/visualizza_profilo" class="im-ap-btn-gestisci">Gestisci profilo</a>
     </div>
 
-    {* ── Prenotazioni ── *}
-    <div class="im-ap-section-title">Le mie prenotazioni</div>
+        <div class="im-ap-section-title">Le mie prenotazioni</div>
 
-    {if $appuntamenti|count > 0}
+    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('appuntamenti')) > 0) {?>
     <div class="im-ap-lista">
-        {foreach $appuntamenti as $app}
-        {assign var="stato" value=$app->getStato()}
-        <div class="im-ap-card" id="apcard-{$app->getId()}">
-            <div class="im-ap-card-avatar">{if $app->getStudio()}{$app->getStudio()->getNome()|substr:0:1|upper}{else}?{/if}</div>
+        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('appuntamenti'), 'app');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('app')->value) {
+$foreach0DoElse = false;
+?>
+        <?php $_smarty_tpl->assign('stato', $_smarty_tpl->getValue('app')->getStato(), false, NULL);?>
+        <div class="im-ap-card" id="apcard-<?php echo $_smarty_tpl->getValue('app')->getId();?>
+">
+            <div class="im-ap-card-avatar"><?php if ($_smarty_tpl->getValue('app')->getStudio()) {
+echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');
+} else { ?>?<?php }?></div>
             <div class="im-ap-card-info">
-                <div class="im-ap-card-name">{if $app->getStudio()}{$app->getStudio()->getNome()}{else}—{/if}</div>
-                <div class="im-ap-card-meta">{$app->getNote()|truncate:60:'…'}</div>
+                <div class="im-ap-card-name"><?php if ($_smarty_tpl->getValue('app')->getStudio()) {
+echo $_smarty_tpl->getValue('app')->getStudio()->getNome();
+} else { ?>—<?php }?></div>
+                <div class="im-ap-card-meta"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('app')->getNote(),60,'…');?>
+</div>
             </div>
             <div class="im-ap-card-date">
-                {$app->getData()|date_format:'%d/%m/%Y'}
-                <span class="im-ap-card-city">{if $app->getStudio() && $app->getStudio()->getPosizione()}{$app->getStudio()->getPosizione()->value}{/if}</span>
+                <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('app')->getData(),'%d/%m/%Y');?>
+
+                <span class="im-ap-card-city"><?php if ($_smarty_tpl->getValue('app')->getStudio() && $_smarty_tpl->getValue('app')->getStudio()->getPosizione()) {
+echo $_smarty_tpl->getValue('app')->getStudio()->getPosizione()->value;
+}?></span>
             </div>
             <div class="im-ap-card-actions">
-                {if $stato === 'IN_ATTESA'}
+                <?php if ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>
                     <span class="im-ap-badge im-ap-badge--attesa">In attesa</span>
-                {elseif $stato === 'CONFERMATO'}
+                <?php } elseif ($_smarty_tpl->getValue('stato') === 'CONFERMATO') {?>
                     <span class="im-ap-badge im-ap-badge--confermato">Confermato</span>
-                {elseif $stato === 'DA_PAGARE'}
+                <?php } elseif ($_smarty_tpl->getValue('stato') === 'DA_PAGARE') {?>
                     <span class="im-ap-badge im-ap-badge--pagare">Da pagare</span>
                     <button class="im-ap-btn-pay"
-                            onclick="apriPagamento({$app->getId()}, {$app->getCosto()})">
-                        Paga €{$app->getCosto()|string_format:"%.2f"}
+                            onclick="apriPagamento(<?php echo $_smarty_tpl->getValue('app')->getId();?>
+, <?php echo $_smarty_tpl->getValue('app')->getCosto();?>
+)">
+                        Paga €<?php echo sprintf("%.2f",$_smarty_tpl->getValue('app')->getCosto());?>
+
                     </button>
-                {elseif $stato === 'COMPLETATO'}
+                <?php } elseif ($_smarty_tpl->getValue('stato') === 'COMPLETATO') {?>
                     <span class="im-ap-badge im-ap-badge--completato">Completato</span>
                     <span class="im-ap-badge-paid">✓ Pagato</span>
-                {elseif $stato === 'ANNULLATO'}
+                <?php } elseif ($_smarty_tpl->getValue('stato') === 'ANNULLATO') {?>
                     <span class="im-ap-badge im-ap-badge--annullato">Annullato</span>
-                {/if}
+                <?php }?>
                 
             </div>
         </div>
-        {/foreach}
+        <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
-    {else}
+    <?php } else { ?>
     <div class="im-ap-empty">Nessuna prenotazione trovata.</div>
-    {/if}
+    <?php }?>
 
-    {* ── Recensioni ── *}
-    <div class="im-ap-section-title" style="margin-top:56px;">Le mie recensioni</div>
+        <div class="im-ap-section-title" style="margin-top:56px;">Le mie recensioni</div>
 
-    {if $recensioni|count > 0}
+    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('recensioni')) > 0) {?>
     <div class="im-ap-rec-grid">
-        {foreach $recensioni as $rec}
+        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('recensioni'), 'rec');
+$foreach1DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('rec')->value) {
+$foreach1DoElse = false;
+?>
         <div class="im-ap-rec-card">
             <div class="im-ap-rec-header">
-                <div class="im-ap-rec-avatar">{if $rec->getStudio()}{$rec->getStudio()->getNome()|substr:0:1|upper}{else}?{/if}</div>
+                <div class="im-ap-rec-avatar"><?php if ($_smarty_tpl->getValue('rec')->getStudio()) {
+echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('rec')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');
+} else { ?>?<?php }?></div>
                 <div>
-                    <div class="im-ap-rec-studio">{if $rec->getStudio()}{$rec->getStudio()->getNome()}{else}—{/if}</div>
-                    <div class="im-ap-rec-date">{$rec->getData()|date_format:'%b %Y'}</div>
+                    <div class="im-ap-rec-studio"><?php if ($_smarty_tpl->getValue('rec')->getStudio()) {
+echo $_smarty_tpl->getValue('rec')->getStudio()->getNome();
+} else { ?>—<?php }?></div>
+                    <div class="im-ap-rec-date"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('rec')->getData(),'%b %Y');?>
+</div>
                 </div>
             </div>
             <div class="im-ap-stars">
-                {for $s=1 to 5}
-                    {if $s <= $rec->getVoto()}<span class="im-ap-star im-ap-star--on">★</span>{else}<span class="im-ap-star">★</span>{/if}
-                {/for}
+                <?php
+$_smarty_tpl->assign('s', null);$_smarty_tpl->tpl_vars['s']->step = 1;$_smarty_tpl->tpl_vars['s']->total = (int) ceil(($_smarty_tpl->tpl_vars['s']->step > 0 ? 5+1 - (1) : 1-(5)+1)/abs($_smarty_tpl->tpl_vars['s']->step));
+if ($_smarty_tpl->tpl_vars['s']->total > 0) {
+for ($_smarty_tpl->tpl_vars['s']->value = 1, $_smarty_tpl->tpl_vars['s']->iteration = 1;$_smarty_tpl->tpl_vars['s']->iteration <= $_smarty_tpl->tpl_vars['s']->total;$_smarty_tpl->tpl_vars['s']->value += $_smarty_tpl->tpl_vars['s']->step, $_smarty_tpl->tpl_vars['s']->iteration++) {
+$_smarty_tpl->tpl_vars['s']->first = $_smarty_tpl->tpl_vars['s']->iteration === 1;$_smarty_tpl->tpl_vars['s']->last = $_smarty_tpl->tpl_vars['s']->iteration === $_smarty_tpl->tpl_vars['s']->total;?>
+                    <?php if ($_smarty_tpl->getValue('s') <= $_smarty_tpl->getValue('rec')->getVoto()) {?><span class="im-ap-star im-ap-star--on">★</span><?php } else { ?><span class="im-ap-star">★</span><?php }?>
+                <?php }
+}
+?>
             </div>
-            {if $rec->getTitolo()}<div class="im-ap-rec-title">{$rec->getTitolo()|escape}</div>{/if}
-            {if $rec->getDescrizione()}<div class="im-ap-rec-desc">{$rec->getDescrizione()|escape|truncate:120:'…'}</div>{/if}
+            <?php if ($_smarty_tpl->getValue('rec')->getTitolo()) {?><div class="im-ap-rec-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+</div><?php }?>
+            <?php if ($_smarty_tpl->getValue('rec')->getDescrizione()) {?><div class="im-ap-rec-desc"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('truncate')(htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getDescrizione(), ENT_QUOTES, 'UTF-8', true),120,'…');?>
+</div><?php }?>
         </div>
-        {/foreach}
+        <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
-    {else}
+    <?php } else { ?>
     <div class="im-ap-empty">Nessuna recensione ancora.</div>
-    {/if}
+    <?php }?>
 
 </div>
 
-{* ── Overlay pagamento ── *}
 <div class="im-pay-overlay" id="im-pay-overlay">
     <div class="im-pay-modal">
 
@@ -181,7 +279,8 @@
     </div>
 </div>
 
-<script>
+<?php echo '<script'; ?>
+>
 var _payAppId = 0;
 
 function apriPagamento(id, costo) {
@@ -261,6 +360,11 @@ function chiudiSuccesso() { chiudiPagamento(); }
 document.getElementById('im-pay-overlay').addEventListener('click', function(e){
     if (e.target === this) chiudiPagamento();
 });
-</script>
+<?php echo '</script'; ?>
+>
 
-{/block}
+<?php
+}
+}
+/* {/block "content"} */
+}

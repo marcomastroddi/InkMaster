@@ -143,6 +143,12 @@ class PersistentManager
         return $this->recensioneRepository->findByStudioId($idStudio);
     }
 
+    /** Media voti per un insieme di studi — una sola query. Ritorna [studio_id => media]. */
+    public function findMediaVotiByStudiIds(array $ids): array
+    {
+        return $this->recensioneRepository->findMediaVotiByStudiIds($ids);
+    }
+
     // ==================================================================
     // PORTFOLIO — GestionePortfolio (studio) + VisualizzaPortfolio (pubblico)
     // ==================================================================

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 14:01:16
+/* Smarty version 5.8.0, created on 2026-06-26 21:46:44
   from 'file:pages/studio/AccettazioneClienti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e862c6fcba2_49876297',
+  'unifunc' => 'content_6a3ef3448dc7e7_04581116',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c04b188e7b59649411915c05d6218477b970150b' => 
     array (
       0 => 'pages/studio/AccettazioneClienti.tpl',
-      1 => 1782481960,
+      1 => 1782510143,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e862c6fcba2_49876297 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef3448dc7e7_04581116 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12886089906a3e862c618fe3_79896693', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13503626236a3ef3448397b0_13885344', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3580262036a3e862c630fc4_77757241', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9076179226a3ef34484fa61_60044135', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15382839416a3e862c634855_27919249', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17007977066a3ef344850c96_30193066', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_12886089906a3e862c618fe3_79896693 extends \Smarty\Runtime\Block
+class Block_13503626236a3ef3448397b0_13885344 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -51,7 +51,7 @@ Richieste — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_3580262036a3e862c630fc4_77757241 extends \Smarty\Runtime\Block
+class Block_9076179226a3ef34484fa61_60044135 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_15382839416a3e862c634855_27919249 extends \Smarty\Runtime\Block
+class Block_17007977066a3ef344850c96_30193066 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\studio';
@@ -136,15 +136,17 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getCl
 
                         <div class="im-richiesta-campo">
                             <div class="im-richiesta-label">Giorno richiesta</div>
-                            <div class="im-richiesta-valore"><?php echo $_smarty_tpl->getValue('app')->getData()->format('d/m/Y');?>
-</div>
+                            <div class="im-richiesta-valore"><?php if ($_smarty_tpl->getValue('app')->getData()) {
+echo $_smarty_tpl->getValue('app')->getData()->format('d/m/Y');
+} else { ?>—<?php }?></div>
                         </div>
 
                         <div class="im-richiesta-campo">
                             <div class="im-richiesta-label">Orario</div>
-                            <div class="im-richiesta-valore"><?php echo $_smarty_tpl->getValue('app')->getOraInizio()->format('H:i');?>
- – <?php echo $_smarty_tpl->getValue('app')->getOraFine()->format('H:i');?>
-</div>
+                            <div class="im-richiesta-valore"><?php if ($_smarty_tpl->getValue('app')->getOraInizio()) {
+echo $_smarty_tpl->getValue('app')->getOraInizio()->format('H:i');?>
+ – <?php echo $_smarty_tpl->getValue('app')->getOraFine()->format('H:i');
+} else { ?>—<?php }?></div>
                         </div>
 
                         <div class="im-richiesta-campo im-richiesta-idea">

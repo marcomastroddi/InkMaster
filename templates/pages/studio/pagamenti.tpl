@@ -4,9 +4,6 @@
 
 {block name="extra_css"}
     <link rel="stylesheet" href="/CSS/pagamenti.css">
-    <style>
-        .im-nav { background: rgba(8,14,12,0.96); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
-    </style>
 {/block}
 
 {block name="content"}
@@ -81,7 +78,7 @@
                     <div class="im-pag-card-name">{$app->getCliente()->getNome()} {$app->getCliente()->getCognome()}</div>
                     <div class="im-pag-card-meta">
                         {$app->getData()|date_format:'%d/%m/%Y'}
-                        · {$app->getTatuatore()->getNome()} {$app->getTatuatore()->getCognome()}
+                        · {if $app->getTatuatore()}{$app->getTatuatore()->getNome()} {$app->getTatuatore()->getCognome()}{else}—{/if}
                     </div>
                 </div>
                 <span class="im-pag-badge">In attesa</span>
@@ -109,7 +106,7 @@
                     <div class="im-pag-card-name">{$app->getCliente()->getNome()} {$app->getCliente()->getCognome()}</div>
                     <div class="im-pag-card-meta">
                         {$app->getData()|date_format:'%d/%m/%Y'}
-                        · {$app->getTatuatore()->getNome()} {$app->getTatuatore()->getCognome()}
+                        · {if $app->getTatuatore()}{$app->getTatuatore()->getNome()} {$app->getTatuatore()->getCognome()}{else}—{/if}
                     </div>
                 </div>
                 <div class="im-pag-form">

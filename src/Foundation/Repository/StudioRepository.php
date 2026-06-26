@@ -4,8 +4,7 @@ namespace InkMaster\Foundation\Repository;
 use Doctrine\ORM\EntityRepository;
 use InkMaster\Entity\Studio;
 use InkMaster\Enum\Citta; 
-use InkMaster\Entity\Pubblicazione;
-use InkMaster\Entity\Tatuaggio;
+use InkMaster\Entity\PubblicazioneTatuaggio;
 use DateTime;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
@@ -25,22 +24,26 @@ class StudioRepository extends EntityRepository
      */
     public function findAvailableStudios(array $criteri): array
     {
+        $citta = \InkMaster\Enum\Citta::tryFrom($criteri['citta'] ?? '');
+        if ($citta === null) {
+            return [];
+        }
+
         $qb = $this->em->createQueryBuilder();
-        $qb->select('s')->from(Studio::class, 's');
+        $qb->select('s')->distinct()->from(Studio::class, 's')
+           ->where('s.posizione = :citta')
+           ->setParameter('citta', $citta);
 
-        if (($criteri['tipo'] ?? '') === 'testo') {
-            $qb->where('s.nome LIKE :testo OR s.descrizione LIKE :testo')
-            ->setParameter('testo', '%' . $criteri['testo'] . '%');
-        } else {
-            $qb->where('s.posizione = :citta')
-            ->setParameter('citta', \InkMaster\Enum\Citta::from($criteri['citta']));
+        if (!empty($criteri['testo'])) {
+            $qb->andWhere('s.nome LIKE :testo OR s.descrizione LIKE :testo')
+               ->setParameter('testo', '%' . $criteri['testo'] . '%');
+        }
 
-            if (!empty($criteri['stile'])) {
-                $qb->join('s.tatuatori', 't')
-                ->join('t.stili', 'st')
-                ->andWhere('st.nome = :stile')
-                ->setParameter('stile', $criteri['stile']);
-            }
+        if (!empty($criteri['stile'])) {
+            $qb->join('s.tatuatori', 't')
+               ->join('t.stili', 'st')
+               ->andWhere('st.nome = :stile')
+               ->setParameter('stile', $criteri['stile']);
         }
 
         return $qb->getQuery()->getResult();
@@ -48,7 +51,7 @@ class StudioRepository extends EntityRepository
 
     public function findPortfolioByStudioId(int $idStudio): array
     {
-        return $this->em->getRepository(Pubblicazione::class)
+        return $this->em->getRepository(PubblicazioneTatuaggio::class)
             ->findBy(['studio' => $idStudio]);
     }
 
