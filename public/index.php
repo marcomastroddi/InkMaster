@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors', 0);
+error_reporting(0);
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/../vendor/autoload.php';
 $entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
@@ -319,7 +319,10 @@ switch ($page) {
         'titolo'        => $_POST['titolo']      ?? '',
         'descrizione'   => $_POST['descrizione'] ?? '',
         'percorso_foto' => $percorsoFoto,
-        'stile'         => $_POST['stile']       ?? ''
+        'stile'         => $_POST['stile']       ?? '',
+        'posizione'     => $_POST['posizione']   ?? '',
+        'grandezza'     => $_POST['grandezza']   ?? '',
+        'costo'         => $_POST['costo']       ?? '',
     ]);
 
     if ($dati['status'] === 'success') {

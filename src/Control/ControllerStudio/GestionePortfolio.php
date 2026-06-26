@@ -16,7 +16,7 @@ class GestionePortfolio {
     public function apriPortfolio(): array
     {
         // Il portfolio è legato allo studio loggato, non al singolo tatuatore
-        $idStudio = SessionManager::get('id_studio', 1); 
+        $idStudio = SessionManager::get('id_studio'); 
 
         if(!$idStudio)
         {
@@ -60,7 +60,7 @@ class GestionePortfolio {
 
     public function pubblicaPubblicazione(array $datiForm): array
     {
-        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
+        $idStudio = SessionManager::get('id_studio'); // 1 fittizio per il test
 
         // Generiamo in automatico data e ora correnti
         $dataCorrente = new \DateTime();

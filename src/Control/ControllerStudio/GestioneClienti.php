@@ -20,7 +20,7 @@ class GestioneClienti
 
     public function visualizzaClienti(): array
     {
-        $idStudio = SessionManager::get('id_studio', 1); // 1 fittizio per il test
+        $idStudio = SessionManager::get('id_studio');
 
         if (!$idStudio) {
             return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];
