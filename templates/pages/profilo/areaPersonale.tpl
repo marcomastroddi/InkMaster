@@ -91,11 +91,8 @@
             {$smarty.session.username|substr:0:1|upper}
         </div>
         <div class="im-ap-header-info">
+            <div class="im-ap-welcome-label">Area personale</div>
             <div class="im-ap-welcome">Bentornato, {$smarty.session.username}</div>
-            <div class="im-ap-meta">
-                <span>✉ {$smarty.session.email|default:''}</span>
-                <span>📍 {$smarty.session.posizione|default:''}</span>
-            </div>
         </div>
         <a href="/visualizza_profilo" class="im-ap-gestisci">Gestisci profilo</a>
     </div>

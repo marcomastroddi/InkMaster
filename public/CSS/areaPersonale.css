@@ -128,6 +128,15 @@
 
 .im-ap-meta span { display: flex; align-items: center; gap: 6px; }
 
+.im-ap-welcome-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #2fd8aa;
+    margin-bottom: 6px;
+}
+
 .im-ap-gestisci {
     font-size: 13px;
     font-weight: 600;
