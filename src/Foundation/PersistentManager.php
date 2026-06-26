@@ -213,6 +213,15 @@ class PersistentManager
         return $this->segnalazioneRepository->findAllSegnalazioni();
     }
 
+    /** Trova il ban attivo di un utente per id e tipo ('cliente'|'studio'). */
+    public function findBanByUtente(int $utenteId, string $tipo): ?\InkMaster\Entity\Ban
+    {
+        return $this->em->getRepository(\InkMaster\Entity\Ban::class)->findOneBy([
+            'utenteId'   => $utenteId,
+            'utenteTipo' => $tipo,
+        ]);
+    }
+
     /** KPI: numero clienti registrati. */
     public function countClienti(): int
     {

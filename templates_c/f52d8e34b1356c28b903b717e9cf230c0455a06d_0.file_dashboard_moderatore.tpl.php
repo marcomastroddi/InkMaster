@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 10:05:50
+/* Smarty version 5.8.0, created on 2026-06-26 12:51:31
   from 'file:pages/moderatore/dashboard_moderatore.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e4efe369c26_58357597',
+  'unifunc' => 'content_6a3e75d3873b56_84002357',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f52d8e34b1356c28b903b717e9cf230c0455a06d' => 
     array (
       0 => 'pages/moderatore/dashboard_moderatore.tpl',
-      1 => 1782468345,
+      1 => 1782478250,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e4efe369c26_58357597 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e75d3873b56_84002357 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15251305876a3e4efe33a136_92047847', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3224217516a3e75d3854b25_72885302', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12164020336a3e4efe33dd52_06646357', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17650121936a3e75d3859107_78874851', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14714595386a3e4efe33e608_44378669', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16159301806a3e75d38599a7_87988220', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_15251305876a3e4efe33a136_92047847 extends \Smarty\Runtime\Block
+class Block_3224217516a3e75d3854b25_72885302 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -53,7 +53,7 @@ Dashboard Amministratore — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_12164020336a3e4efe33dd52_06646357 extends \Smarty\Runtime\Block
+class Block_17650121936a3e75d3859107_78874851 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -69,7 +69,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_14714595386a3e4efe33e608_44378669 extends \Smarty\Runtime\Block
+class Block_16159301806a3e75d38599a7_87988220 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
@@ -83,6 +83,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
     </div>
 
         <header class="adm-topbar">
+        <div class="adm-topbar-logo">InkMaster</div>
         <div class="adm-topbar-title">Dashboard Amministratore</div>
         <div class="adm-topbar-right">
             <a href="/accedi_segnalazioni" class="adm-topbar-icon" title="Segnalazioni">
@@ -93,15 +94,11 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <?php }?>
             </a>
             <div class="adm-topbar-sep"></div>
-            <div class="adm-topbar-user">
-                <div class="adm-topbar-avatar"><?php echo mb_strtoupper((string) substr((string) (($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'A' ?? null : $tmp), (int) 0, (int) 1) ?? '', 'UTF-8');?>
+            <div class="adm-topbar-avatar"><?php echo mb_strtoupper((string) substr((string) (($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'A' ?? null : $tmp), (int) 0, (int) 1) ?? '', 'UTF-8');?>
 </div>
-                <div>
-                    <div class="adm-topbar-uname"><?php echo htmlspecialchars((string)(($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
-</div>
-                    <a href="/logout" class="adm-topbar-logout">Esci</a>
-                </div>
-            </div>
+            <span class="adm-topbar-uname"><?php echo htmlspecialchars((string)(($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+</span>
+            <a href="/logout" class="adm-topbar-logout">Esci</a>
         </div>
     </header>
 

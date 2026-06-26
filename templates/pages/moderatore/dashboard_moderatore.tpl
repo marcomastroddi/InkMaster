@@ -19,6 +19,7 @@
 
     {* topbar *}
     <header class="adm-topbar">
+        <div class="adm-topbar-logo">InkMaster</div>
         <div class="adm-topbar-title">Dashboard Amministratore</div>
         <div class="adm-topbar-right">
             <a href="/accedi_segnalazioni" class="adm-topbar-icon" title="Segnalazioni">
@@ -28,13 +29,9 @@
                 {/if}
             </a>
             <div class="adm-topbar-sep"></div>
-            <div class="adm-topbar-user">
-                <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
-                <div>
-                    <div class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</div>
-                    <a href="/logout" class="adm-topbar-logout">Esci</a>
-                </div>
-            </div>
+            <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
+            <span class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</span>
+            <a href="/logout" class="adm-topbar-logout">Esci</a>
         </div>
     </header>
 

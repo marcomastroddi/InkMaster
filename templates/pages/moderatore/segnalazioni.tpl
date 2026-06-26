@@ -21,13 +21,9 @@
         <div class="adm-topbar-right">
             <a href="/dashboard_moderatore" class="adm-topbar-icon" title="Dashboard">⬅</a>
             <div class="adm-topbar-sep"></div>
-            <div class="adm-topbar-user">
-                <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
-                <div>
-                    <div class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</div>
-                    <a href="/logout" class="adm-topbar-logout">Esci</a>
-                </div>
-            </div>
+            <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
+            <span class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</span>
+            <a href="/logout" class="adm-topbar-logout">Esci</a>
         </div>
     </header>
 
@@ -92,7 +88,8 @@
                             data-tipo="{$tipo}"
                             data-nome="{$nomeUtente|escape}"
                             data-email="{$utente->getEmail()|escape}"
-                            data-iniziali="{$iniziali|upper}">Banna</button>
+                            data-iniziali="{$iniziali|upper}"
+                            data-seg-id="{$seg->getId()}">Banna</button>
                         </td>
                     </tr>
                 {/foreach}
@@ -132,8 +129,18 @@
                         <td><span class="adm-badge adm-badge--muted">Chiusa</span></td>
                         <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
                         <td class="adm-actions-cell">
-                            <a href="/seleziona_utente?id={$utente->getId()}&tipo={$tipo}" class="adm-btn-info">Info</a>
-                            <a href="#" class="adm-btn-sban">Sbanna</a>
+                            <button type="button" class="adm-btn-info"
+                                data-motivo="{$seg->getMotivo()|escape}"
+                                data-desc="{$seg->getDescrizione()|default:''|escape}"
+                                data-data="{$seg->getData()->format('d M Y')}"
+                                data-nome="{$nomeUtente|escape}"
+                                data-iniziali="{$iniziali|upper}"
+                                data-tipo="{$tipo}">Info</button>
+                            <button type="button" class="adm-btn-sban"
+                                data-id="{$utente->getId()}"
+                                data-tipo="{$tipo}"
+                                data-nome="{$nomeUtente|escape}"
+                                data-iniziali="{$iniziali|upper}">Sbanna</button>
                         </td>
                     </tr>
                 {/foreach}
@@ -166,6 +173,7 @@
         </div>
 
         <form id="banForm" method="POST" action="/conferma_ban">
+            <input type="hidden" name="seg_id" id="banSegId">
 
             <div class="adm-modal-field">
                 <label class="adm-modal-label">TIPO DI BAN</label>
@@ -224,7 +232,80 @@
 
             <div class="adm-modal-footer">
                 <button type="button" class="adm-btn-annulla" id="closeBan2">Annulla</button>
+                <button type="button" class="adm-btn-scarta" id="btnScarta">✕ Scarta</button>
                 <button type="submit" class="adm-btn-conferma">✓ Conferma ban</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<form id="scartaForm" method="POST" action="/scarta_segnalazione" style="display:none">
+    <input type="hidden" name="seg_id" id="scartaSegId">
+</form>
+
+{* ── MODAL INFO ── *}
+<div class="adm-overlay" id="infoModal">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <h2 class="adm-modal-title">Dettagli segnalazione</h2>
+            <button class="adm-modal-close" id="closeInfo">✕</button>
+        </div>
+
+        <div class="adm-modal-user">
+            <div class="adm-user-av" id="infoAvatar"></div>
+            <div>
+                <div class="adm-user-name" id="infoNome"></div>
+                <div class="adm-user-email" id="infoTipo"></div>
+            </div>
+        </div>
+
+        <div class="adm-modal-field">
+            <label class="adm-modal-label">MOTIVO SEGNALAZIONE</label>
+            <div id="infoMotivo" style="font-size:13px;color:#eef1f0;background:rgba(255,255,255,.05);border-radius:8px;padding:10px 14px;"></div>
+        </div>
+
+        <div class="adm-modal-field" id="infoDescField">
+            <label class="adm-modal-label">DESCRIZIONE</label>
+            <div id="infoDesc" style="font-size:13px;color:#9aa3a0;background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;"></div>
+        </div>
+
+        <div class="adm-modal-field">
+            <label class="adm-modal-label">DATA SEGNALAZIONE</label>
+            <div id="infoData" style="font-size:13px;color:#6b736f;font-family:ui-monospace,monospace;"></div>
+        </div>
+
+        <div class="adm-modal-footer">
+            <button type="button" class="adm-btn-annulla" style="flex:1" id="closeInfo2">Chiudi</button>
+        </div>
+    </div>
+</div>
+
+{* ── MODAL SBANNA ── *}
+<div class="adm-overlay" id="sbanModal">
+    <div class="adm-modal" style="max-width:400px">
+        <div class="adm-modal-header">
+            <h2 class="adm-modal-title">Rimuovi ban</h2>
+            <button class="adm-modal-close" id="closeSban">✕</button>
+        </div>
+
+        <div class="adm-modal-user">
+            <div class="adm-user-av" id="sbanAvatar"></div>
+            <div>
+                <div class="adm-user-name" id="sbanNome"></div>
+            </div>
+        </div>
+
+        <p style="font-size:14px;color:#9aa3a0;margin:0 0 4px;">
+            Sei sicuro di voler rimuovere il ban per questo utente?<br>
+            <span style="font-size:12px;color:#4b534f;">L'utente potrà accedere nuovamente alla piattaforma.</span>
+        </p>
+
+        <form id="sbanForm" method="POST" action="/rimuovi_ban">
+            <input type="hidden" name="id" id="sbanId">
+            <input type="hidden" name="tipo" id="sbanTipo">
+            <div class="adm-modal-footer">
+                <button type="button" class="adm-btn-annulla" id="closeSban2">Annulla</button>
+                <button type="submit" class="adm-btn-conferma">✓ Conferma sbanna</button>
             </div>
         </form>
     </div>
@@ -270,15 +351,61 @@ document.querySelectorAll('.adm-btn-ban').forEach(btn => {
         document.getElementById('banAvatar').textContent  = this.dataset.iniziali;
         document.getElementById('banNome').textContent    = this.dataset.nome;
         document.getElementById('banEmail').textContent   = this.dataset.email;
+        document.getElementById('banSegId').value         = this.dataset.segId;
         fetch('/seleziona_utente?id=' + this.dataset.id + '&tipo=' + this.dataset.tipo);
         modal.classList.add('adm-overlay--open');
     });
+});
+
+document.getElementById('btnScarta').addEventListener('click', () => {
+    document.getElementById('scartaSegId').value = document.getElementById('banSegId').value;
+    modal.classList.remove('adm-overlay--open');
+    document.getElementById('scartaForm').submit();
 });
 
 [document.getElementById('closeBan'), document.getElementById('closeBan2')].forEach(el => {
     el.addEventListener('click', () => modal.classList.remove('adm-overlay--open'));
 });
 modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('adm-overlay--open'); });
+
+const infoModal = document.getElementById('infoModal');
+document.querySelectorAll('.adm-btn-info').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const av = document.getElementById('infoAvatar');
+        av.textContent = this.dataset.iniziali;
+        av.className = 'adm-user-av adm-user-av--' + this.dataset.tipo;
+        document.getElementById('infoNome').textContent   = this.dataset.nome;
+        document.getElementById('infoTipo').textContent   = this.dataset.tipo === 'studio' ? 'Studio' : 'Cliente';
+        document.getElementById('infoMotivo').textContent = this.dataset.motivo;
+        document.getElementById('infoData').textContent   = this.dataset.data;
+        const desc = this.dataset.desc;
+        const descField = document.getElementById('infoDescField');
+        if (desc) { document.getElementById('infoDesc').textContent = desc; descField.style.display = ''; }
+        else { descField.style.display = 'none'; }
+        infoModal.classList.add('adm-overlay--open');
+    });
+});
+[document.getElementById('closeInfo'), document.getElementById('closeInfo2')].forEach(el => {
+    el.addEventListener('click', () => infoModal.classList.remove('adm-overlay--open'));
+});
+infoModal.addEventListener('click', e => { if (e.target === infoModal) infoModal.classList.remove('adm-overlay--open'); });
+
+const sbanModal = document.getElementById('sbanModal');
+document.querySelectorAll('.adm-btn-sban').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const av = document.getElementById('sbanAvatar');
+        av.textContent = this.dataset.iniziali;
+        av.className = 'adm-user-av adm-user-av--' + this.dataset.tipo;
+        document.getElementById('sbanNome').textContent = this.dataset.nome;
+        document.getElementById('sbanId').value         = this.dataset.id;
+        document.getElementById('sbanTipo').value       = this.dataset.tipo;
+        sbanModal.classList.add('adm-overlay--open');
+    });
+});
+[document.getElementById('closeSban'), document.getElementById('closeSban2')].forEach(el => {
+    el.addEventListener('click', () => sbanModal.classList.remove('adm-overlay--open'));
+});
+sbanModal.addEventListener('click', e => { if (e.target === sbanModal) sbanModal.classList.remove('adm-overlay--open'); });
 {/literal}
 </script>
 {/block}
