@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 12:04:09
+/* Smarty version 5.8.0, created on 2026-06-26 15:34:42
   from 'file:pages/portfolio/portfolio_pubblico.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e6ab9843f79_79774801',
+  'unifunc' => 'content_6a3e9c124e1825_12316237',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4f53b30daf5651c4b99cbb0a97a9d464b8cd4e33' => 
     array (
       0 => 'pages/portfolio/portfolio_pubblico.tpl',
-      1 => 1782457823,
+      1 => 1782487879,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e6ab9843f79_79774801 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9c124e1825_12316237 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5211085536a3e6ab97fe594_14964543', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12691665916a3e9c124acb79_60247813', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14173750866a3e6ab9807766_27342743', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_691144786a3e9c124b20f5_03029380', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8749744556a3e6ab9809578_29960826', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10720937186a3e9c124b46f1_41481688', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_5211085536a3e6ab97fe594_14964543 extends \Smarty\Runtime\Block
+class Block_12691665916a3e9c124acb79_60247813 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
@@ -51,96 +51,153 @@ Portfolio — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_14173750866a3e6ab9807766_27342743 extends \Smarty\Runtime\Block
+class Block_691144786a3e9c124b20f5_03029380 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
 ?>
 
-    <link rel="stylesheet" href="/CSS/portfolio.css">
+<link rel="stylesheet" href="/CSS/home.css">
+<style>
+/* ── sfondo ── */
+.ppub-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(47,216,170,.13), transparent 70%), #080e0c; }
+.ppub-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .18; animation: ppub-float 10s ease-in-out infinite alternate; }
+.ppub-blob-1 { width: 560px; height: 560px; background: radial-gradient(circle, #2fd8aa, #0d6e52); top: -180px; left: -160px; animation-duration: 9s; }
+.ppub-blob-2 { width: 480px; height: 480px; background: radial-gradient(circle, #1aab85, #083d2a); bottom: -140px; right: -120px; animation-duration: 12s; animation-delay: -4s; }
+.ppub-blob-3 { width: 320px; height: 320px; background: radial-gradient(circle, #2fd8aa, #0a1f19); top: 45%; left: 58%; opacity: .10; animation-duration: 15s; animation-delay: -7s; }
+@keyframes ppub-float { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,24px) scale(1.07); } }
+
+/* ── contenuto ── */
+.ppub-wrap { position: relative; z-index: 1; }
+.ppub-page { min-height: 60vh; padding: 60px; max-width: 1320px; margin: 0 auto; }
+.ppub-header { margin-bottom: 42px; }
+.ppub-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #2fd8aa; margin-bottom: 10px; }
+.ppub-title { font-size: 2.2rem; font-weight: 900; letter-spacing: -.02em; }
+.ppub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.ppub-card { position: relative; border-radius: 14px; overflow: hidden; cursor: pointer; aspect-ratio: 1 / 1.1; background: #101417; border: 1px solid rgba(255,255,255,.08); }
+.ppub-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.ppub-card:hover img { transform: scale(1.04); }
+.ppub-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 20px; }
+.ppub-card:hover .ppub-card-overlay { opacity: 1; }
+.ppub-card-title { font-size: 15px; font-weight: 700; color: #eef1f0; }
+.ppub-empty { text-align: center; color: #6b736f; padding: 80px 0; font-size: 15px; }
+.ppub-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.82); z-index: 900; align-items: center; justify-content: center; padding: 24px; }
+.ppub-overlay.aperto { display: flex; }
+.ppub-modal { position: relative; background: #111516; border: 1px solid rgba(255,255,255,.1); border-radius: 18px; max-width: 840px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; max-height: 90vh; }
+.ppub-modal-img { overflow: hidden; min-height: 340px; }
+.ppub-modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ppub-modal-body { padding: 36px 32px; display: flex; flex-direction: column; overflow-y: auto; }
+.ppub-modal-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #2fd8aa; margin-bottom: 12px; }
+.ppub-modal-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -.02em; margin-bottom: 16px; }
+.ppub-modal-desc { font-size: 14px; color: #9aa3a0; line-height: 1.7; flex: 1; }
+.ppub-modal-date { margin-top: 24px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b736f; letter-spacing: .08em; }
+.ppub-modal-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #9aa3a0; cursor: pointer; z-index: 910; line-height: 1; background: none; border: none; font-family: inherit; padding: 4px; }
+.ppub-modal-close:hover { color: #eef1f0; }
+@media (max-width: 640px) {
+    .ppub-modal { grid-template-columns: 1fr; }
+    .ppub-modal-img { min-height: 220px; max-height: 260px; }
+    .ppub-page { padding: 30px 20px; }
+}
+</style>
 <?php
 }
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8749744556a3e6ab9809578_29960826 extends \Smarty\Runtime\Block
+class Block_10720937186a3e9c124b46f1_41481688 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
 ?>
 
-<div class="pf-bg">
-    <div class="pf-blob pf-blob-1"></div>
-    <div class="pf-blob pf-blob-2"></div>
-    <svg class="pf-geo" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-        <polygon class="pf-geo-1" points="100,50 160,150 40,150"/>
-        <polygon class="pf-geo-2" points="650,80 720,200 580,200"/>
-        <rect class="pf-geo-3" x="680" y="400" width="60" height="60" rx="8"/>
-        <polygon class="pf-geo-4" points="60,380 110,460 10,460"/>
-        <circle class="pf-geo-5" cx="400" cy="520" r="40"/>
-        <rect class="pf-geo-6" x="300" y="60" width="40" height="40" rx="6"/>
-    </svg>
-</div>
-
-<div class="pf-page">
-    <div class="pf-header">
-        <a href="/scegli_studio?id=<?php echo $_smarty_tpl->getValue('studioId');?>
-" class="pf-back">← Torna allo studio</a>
-        <h1 class="pf-title">Portfolio</h1>
+<div class="ppub-page">
+    <div class="ppub-header">
+        <div class="ppub-eyebrow">Portfolio</div>
+        <h1 class="ppub-title">Opere realizzate</h1>
     </div>
 
-    <div class="pf-grid">
-        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('pubblica'), 'pub');
+    <?php if ($_smarty_tpl->getValue('status') === 'error' || ( !$_smarty_tpl->hasVariable('data') || empty($_smarty_tpl->getValue('data')))) {?>
+        <div class="ppub-empty">Nessuna pubblicazione disponibile.</div>
+    <?php } else { ?>
+        <div class="ppub-grid">
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('data'), 'pub');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('pub')->value) {
 $foreach0DoElse = false;
 ?>
-            <a href="/dettagli_pubblicazione?id=<?php echo $_smarty_tpl->getValue('pub')->getId();?>
-" class="pf-slot">
+            <div class="ppub-card"
+                 data-titolo="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+"
+                 data-img="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getPercorsoImmagine(), ENT_QUOTES, 'UTF-8', true);?>
+"
+                 data-desc="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('pub')->getDescrizione() ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+"
+                 data-data="<?php echo $_smarty_tpl->getValue('pub')->getData()->format('d/m/Y');?>
+">
                 <img src="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getPercorsoImmagine(), ENT_QUOTES, 'UTF-8', true);?>
 " alt="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
-">
-                <div class="pf-label"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
-</div>
-            </a>
-        <?php
-}
-if ($foreach0DoElse) {
-?>
-            <p class="pf-empty">Nessuna pubblicazione disponibile.</p>
-        <?php
+" loading="lazy">
+                <div class="ppub-card-overlay">
+                    <span class="ppub-card-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('pub')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
+</span>
+                </div>
+            </div>
+            <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-    </div>
-
-    <?php if ($_smarty_tpl->getValue('totPagine') > 1) {?>
-    <div class="pf-pagination">
-        <?php if ($_smarty_tpl->getValue('pagina') > 1) {?>
-            <a href="/portfolio_pubblico?id=<?php echo $_smarty_tpl->getValue('studioId');?>
-&page=<?php echo $_smarty_tpl->getValue('pagina')-1;?>
-" class="pf-page-btn">← Precedente</a>
-        <?php }?>
-        <?php
-$_smarty_tpl->assign('i', null);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->getValue('totPagine')+1 - (1) : 1-($_smarty_tpl->getValue('totPagine'))+1)/abs($_smarty_tpl->tpl_vars['i']->step));
-if ($_smarty_tpl->tpl_vars['i']->total > 0) {
-for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
-$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
-            <a href="/portfolio_pubblico?id=<?php echo $_smarty_tpl->getValue('studioId');?>
-&page=<?php echo $_smarty_tpl->getValue('i');?>
-" class="pf-page-btn <?php if ($_smarty_tpl->getValue('i') === $_smarty_tpl->getValue('pagina')) {?>pf-page-btn--active<?php }?>"><?php echo $_smarty_tpl->getValue('i');?>
-</a>
-        <?php }
-}
-?>
-        <?php if ($_smarty_tpl->getValue('pagina') < $_smarty_tpl->getValue('totPagine')) {?>
-            <a href="/portfolio_pubblico?id=<?php echo $_smarty_tpl->getValue('studioId');?>
-&page=<?php echo $_smarty_tpl->getValue('pagina')+1;?>
-" class="pf-page-btn">Successiva →</a>
-        <?php }?>
-    </div>
+        </div>
     <?php }?>
 </div>
+
+<div id="ppub-overlay" class="ppub-overlay" role="dialog" aria-modal="true">
+    <div class="ppub-modal">
+        <button id="ppub-close" class="ppub-modal-close" aria-label="Chiudi">✕</button>
+        <div class="ppub-modal-img">
+            <img id="ppub-modal-img" src="" alt="">
+        </div>
+        <div class="ppub-modal-body">
+            <div class="ppub-modal-eyebrow">Opera</div>
+            <h2 id="ppub-modal-title" class="ppub-modal-title"></h2>
+            <p id="ppub-modal-desc" class="ppub-modal-desc"></p>
+            <div id="ppub-modal-date" class="ppub-modal-date"></div>
+        </div>
+    </div>
+</div>
+
+<?php echo '<script'; ?>
+>
+(function () {
+    var overlay = document.getElementById('ppub-overlay');
+    var closeBtn = document.getElementById('ppub-close');
+    var imgEl    = document.getElementById('ppub-modal-img');
+    var titleEl  = document.getElementById('ppub-modal-title');
+    var descEl   = document.getElementById('ppub-modal-desc');
+    var dateEl   = document.getElementById('ppub-modal-date');
+
+    function openModal(card) {
+        imgEl.src           = card.dataset.img;
+        imgEl.alt           = card.dataset.titolo;
+        titleEl.textContent = card.dataset.titolo;
+        descEl.textContent  = card.dataset.desc || 'Nessuna descrizione.';
+        dateEl.textContent  = card.dataset.data ? '📅 ' + card.dataset.data : '';
+        overlay.classList.add('aperto');
+    }
+    function closeModal() {
+        overlay.classList.remove('aperto');
+        imgEl.src = '';
+    }
+
+    document.querySelectorAll('.ppub-card').forEach(function (card) {
+        card.addEventListener('click', function () { openModal(card); });
+    });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+})();
+<?php echo '</script'; ?>
+>
 <?php
 }
 }

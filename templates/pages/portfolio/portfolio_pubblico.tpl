@@ -5,6 +5,17 @@
 {block name="extra_css"}
 <link rel="stylesheet" href="/CSS/home.css">
 <style>
+/* ── sfondo ── */
+.ppub-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(47,216,170,.13), transparent 70%), #080e0c; }
+.ppub-blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .18; animation: ppub-float 10s ease-in-out infinite alternate; }
+.ppub-blob-1 { width: 560px; height: 560px; background: radial-gradient(circle, #2fd8aa, #0d6e52); top: -180px; left: -160px; animation-duration: 9s; }
+.ppub-blob-2 { width: 480px; height: 480px; background: radial-gradient(circle, #1aab85, #083d2a); bottom: -140px; right: -120px; animation-duration: 12s; animation-delay: -4s; }
+.ppub-blob-3 { width: 320px; height: 320px; background: radial-gradient(circle, #2fd8aa, #0a1f19); top: 45%; left: 58%; opacity: .10; animation-duration: 15s; animation-delay: -7s; }
+@keyframes ppub-float { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,24px) scale(1.07); } }
+
+/* ── contenuto ── */
+.ppub-wrap { position: relative; z-index: 1; }
 .ppub-page { min-height: 60vh; padding: 60px; max-width: 1320px; margin: 0 auto; }
 .ppub-header { margin-bottom: 42px; }
 .ppub-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #2fd8aa; margin-bottom: 10px; }

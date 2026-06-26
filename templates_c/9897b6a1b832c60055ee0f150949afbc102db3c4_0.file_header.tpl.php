@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 14:41:18
+/* Smarty version 5.8.0, created on 2026-06-26 15:35:17
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e8f8eadc2c3_00164943',
+  'unifunc' => 'content_6a3e9c35ef0150_13800002',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9897b6a1b832c60055ee0f150949afbc102db3c4' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782484835,
+      1 => 1782488105,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e8f8eadc2c3_00164943 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e9c35ef0150_13800002 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
@@ -43,7 +43,7 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
 
-        <span class="im-lang">🌐 <strong>ITA</strong></span>
+        
     </div>
 </div>
 

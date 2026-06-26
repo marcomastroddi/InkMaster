@@ -339,7 +339,8 @@ switch ($page) {
         $totPagine = (int)ceil($totale / $perPage);
         $pubPagina = array_slice($tuttePub, ($page - 1) * $perPage, $perPage);
         View::render('portfolio/portfolio_pubblico', [
-            'pubblica'  => $pubPagina,
+            'data'      => $pubPagina,
+            'status'    => empty($pubPagina) ? 'empty' : 'success',
             'pagina'    => $page,
             'totPagine' => $totPagine,
             'studioId'  => $studioId,

@@ -17,7 +17,7 @@
             <a href="/login" class="im-btn-outline">Accedi</a>
         {/if}
 
-        <span class="im-lang">🌐 <strong>ITA</strong></span>
+        
     </div>
 </div>
 
