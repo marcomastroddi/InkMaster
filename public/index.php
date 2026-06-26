@@ -580,17 +580,18 @@ switch ($page) {
         break;
 
     case 'modifica_dati':
-        $dati = $controller9->modificaDati([
-            'nome'         => $_POST['nome']         ?? '',
-            'cognome'      => $_POST['cognome']       ?? '',
-            'email'        => $_POST['email']         ?? '',
-            'data_nascita' => $_POST['data_nascita']  ?? '',
-            'posizione'    => $_POST['posizione']     ?? '',
-            'username'     => $_POST['username']      ?? '',
-        ]);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
-        break;    
+    $dati = $controller9->modificaDati([
+        'nome'        => $_POST['nome']        ?? '',
+        'cognome'     => $_POST['cognome']     ?? '',
+        'username'    => $_POST['username']    ?? '',
+        'email'       => $_POST['email']       ?? '',
+        'telefono'    => $_POST['telefono']    ?? '',
+        'posizione'   => $_POST['posizione']   ?? '',
+        'descrizione' => $_POST['descrizione'] ?? '',
+    ]);
+    header('Content-Type: application/json');
+    echo json_encode($dati);
+    break;  
 
     case 'cambia_password':
         $dati = $controller9->cambiaPassword(
