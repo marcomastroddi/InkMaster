@@ -54,8 +54,8 @@ class Studio
     #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Appuntamento::class)]
     private Collection $appuntamenti;
 
-    // 3. Relazione con Pubblicazione (Un studio ha molte pubblicazioni, 1 a molti)
-    #[ORM\OneToMany(mappedBy: 'studio', targetEntity: Pubblicazione::class)]
+    // 3. Relazione con PubblicazioneTatuaggio (Un studio ha molte pubblicazioni, 1 a molti)
+    #[ORM\OneToMany(mappedBy: 'studio', targetEntity: PubblicazioneTatuaggio::class)]
     private Collection $pubblicazioni;
 
     // Costruttore
@@ -160,10 +160,8 @@ class Studio
         return $this->appuntamenti;
     }
     
-    /**
-     * @return Collection<int, Pubblicazione>
-     */
-    public function getPubblicazioni(): Collection 
+    /** @return Collection<int, PubblicazioneTatuaggio> */
+    public function getPubblicazioni(): Collection
     {
         return $this->pubblicazioni;
     }

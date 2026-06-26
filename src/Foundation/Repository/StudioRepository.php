@@ -4,8 +4,7 @@ namespace InkMaster\Foundation\Repository;
 use Doctrine\ORM\EntityRepository;
 use InkMaster\Entity\Studio;
 use InkMaster\Enum\Citta; 
-use InkMaster\Entity\Pubblicazione;
-use InkMaster\Entity\Tatuaggio;
+use InkMaster\Entity\PubblicazioneTatuaggio;
 use DateTime;
 use InkMaster\Entity\Tatuatore;
 use InkMaster\Entity\Stile;
@@ -52,7 +51,7 @@ class StudioRepository extends EntityRepository
 
     public function findPortfolioByStudioId(int $idStudio): array
     {
-        return $this->em->getRepository(Pubblicazione::class)
+        return $this->em->getRepository(PubblicazioneTatuaggio::class)
             ->findBy(['studio' => $idStudio]);
     }
 

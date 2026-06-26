@@ -68,12 +68,15 @@ class GestionePortfolio {
 
         // Impacchettiamo tutto il pacchetto di informazioni da dare al Foundation
         $infoPubblicazione = [
-        'titolo'        => $datiForm['titolo'] ?? 'Senza Titolo',
-        'descrizione'   => $datiForm['descrizione'] ?? 'Senza Descrizione',
-        'percorso_foto' => $datiForm['percorso_foto'] ?? 'Senza Foto',
-        'stile_scelto'  => $datiForm['stile'], 
-        'data'          => $dataCorrente,
-        'ora'           => $oraCorrente
+            'titolo'        => $datiForm['titolo']       ?? 'Senza Titolo',
+            'descrizione'   => $datiForm['descrizione']  ?? null,
+            'percorso_foto' => $datiForm['percorso_foto'] ?? 'Senza Foto',
+            'stile_id'      => $datiForm['stile']        ?? null,
+            'posizione'     => $datiForm['posizione']    ?? null,
+            'grandezza'     => $datiForm['grandezza']    ?? null,
+            'costo'         => $datiForm['costo']        ?? null,
+            'data'          => $dataCorrente,
+            'ora'           => $oraCorrente,
         ];
 
         // Chiamata al Foundation per salvare la pubblicazione nel database grazie al metodo savePubblicazione()

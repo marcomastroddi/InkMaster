@@ -25,10 +25,9 @@ class Stile
     #[ORM\ManyToMany(targetEntity: Tatuatore::class, mappedBy: 'stili')]
     private Collection $tatuatori;
 
-    // Relazione 2 (Inversa): I tatuaggi caratterizzati da questo stile
-    // Nota: 'stili' è il nome dell'attributo dentro la classe Tatuaggio
-    #[ORM\ManyToMany(targetEntity: Tatuaggio::class, mappedBy: 'stili')]
-    private Collection $tatuaggi;
+    // Relazione 2 (Inversa): Le pubblicazioni che usano questo stile
+    #[ORM\ManyToMany(targetEntity: PubblicazioneTatuaggio::class, mappedBy: 'stili')]
+    private Collection $pubblicazioni;
 
 
     // Costruttore
@@ -38,8 +37,8 @@ class Stile
         $this->descrizione = $descrizione;
         
         // Inizializzazione obbligatoria delle collezioni per le relazioni ManyToMany
-        $this->tatuatori = new ArrayCollection();
-        $this->tatuaggi = new ArrayCollection();
+        $this->tatuatori    = new ArrayCollection();
+        $this->pubblicazioni = new ArrayCollection();
     }
 
     // Metodi getter
@@ -66,12 +65,10 @@ class Stile
         return $this->tatuatori;
     }
 
-    /**
-     * @return Collection<int, Tatuaggio>
-     */
-    public function getTatuaggi(): Collection 
+    /** @return Collection<int, PubblicazioneTatuaggio> */
+    public function getPubblicazioni(): Collection
     {
-        return $this->tatuaggi;
+        return $this->pubblicazioni;
     }
 
     // Metodi setter

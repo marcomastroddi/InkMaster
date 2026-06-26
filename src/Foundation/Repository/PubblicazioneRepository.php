@@ -1,12 +1,9 @@
 <?php
-
 namespace InkMaster\Foundation\Repository;
 
-use InkMaster\Foundation\PersistentManager;
-use InkMaster\Entity\Pubblicazione;
+use InkMaster\Entity\PubblicazioneTatuaggio;
 use InkMaster\Entity\Studio;
-use InkMaster\Entity\Tatuaggio;
-use InkMaster\Enum\Citta;
+use InkMaster\Entity\Stile;
 use DateTime;
 
 class PubblicazioneRepository
@@ -18,27 +15,40 @@ class PubblicazioneRepository
         $this->em = $entityManager;
     }
 
-    public function findDettagliPubblicazione(int $idPubblicazione): ?Pubblicazione
+    public function findDettagliPubblicazione(int $idPubblicazione): ?PubblicazioneTatuaggio
     {
-        return $this->em->find(Pubblicazione::class, $idPubblicazione);
+        return $this->em->find(PubblicazioneTatuaggio::class, $idPubblicazione);
     }
 
     public function savePubblicazione(int $idStudio, array $infoPubblicazione): bool
     {
-        $studio = $this->em->find(\InkMaster\Entity\Studio::class, $idStudio);
+        $studio = $this->em->find(Studio::class, $idStudio);
 
         if ($studio === null) {
             return false;
         }
 
-        $pubblicazione = new \InkMaster\Entity\Pubblicazione(
+        $pubblicazione = new PubblicazioneTatuaggio(
             $infoPubblicazione['titolo'],
             $infoPubblicazione['data'],
             $infoPubblicazione['ora'],
             $studio,
             $infoPubblicazione['percorso_foto'],
-            $infoPubblicazione['descrizione']
+            $infoPubblicazione['descrizione'] ?? null,
+            $infoPubblicazione['posizione']   ?? null,
+            $infoPubblicazione['grandezza']   ?? null,
+            isset($infoPubblicazione['costo']) && $infoPubblicazione['costo'] !== ''
+                ? (float) $infoPubblicazione['costo']
+                : null
         );
+
+        // Collega lo stile se è stato passato un ID valido
+        if (!empty($infoPubblicazione['stile_id'])) {
+            $stile = $this->em->find(Stile::class, (int) $infoPubblicazione['stile_id']);
+            if ($stile !== null) {
+                $pubblicazione->addStile($stile);
+            }
+        }
 
         $this->em->persist($pubblicazione);
         $this->em->flush();
@@ -48,7 +58,7 @@ class PubblicazioneRepository
 
     public function deletePubblicazione(int $idPubblicazione): bool
     {
-        $pubblicazione = $this->em->find(\InkMaster\Entity\Pubblicazione::class, $idPubblicazione);
+        $pubblicazione = $this->em->find(PubblicazioneTatuaggio::class, $idPubblicazione);
 
         if ($pubblicazione === null) {
             return false;
