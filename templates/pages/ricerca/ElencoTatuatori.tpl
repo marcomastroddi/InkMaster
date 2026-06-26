@@ -24,8 +24,18 @@
       {assign var=totale value=$data|count}
       <strong>{$totale}</strong> {if $totale == 1}studio trovato{else}studi trovati{/if}
       {if $filtri_correnti.testo} per "<strong>{$filtri_correnti.testo|escape}</strong>"{/if}
-      {if $filtri_correnti.citta} a <strong>{$filtri_correnti.citta|escape}</strong>{/if}
+      a <strong>{$filtri_correnti.citta|default:'Roma'|escape}</strong>
     </p>
+    <div class="el-stili-chips">
+      <a href="/avvia_ricerca?citta={$filtri_correnti.citta|default:'Roma'|escape}&testo={$filtri_correnti.testo|default:''|escape}"
+         class="el-chip{if !$filtri_correnti.stile} el-chip--attivo{/if}">Tutti</a>
+      {foreach $stili as $s}
+        <a href="/avvia_ricerca?citta={$filtri_correnti.citta|default:'Roma'|escape}&testo={$filtri_correnti.testo|default:''|escape}&stile={$s->getNome()|escape:'url'}"
+           class="el-chip{if $filtri_correnti.stile === $s->getNome()} el-chip--attivo{/if}">
+          {$s->getNome()|escape}
+        </a>
+      {/foreach}
+    </div>
   </div>
 
   <div class="el-body">

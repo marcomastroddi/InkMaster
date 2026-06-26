@@ -3,6 +3,8 @@
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
 
     <form action="/avvia_ricerca" method="get" class="im-nav-search">
+        <input type="hidden" name="citta" value="{$filtri_correnti.citta|default:'Roma'|escape}">
+        <input type="hidden" name="stile" value="{$filtri_correnti.stile|default:''|escape}">
         <div class="im-nav-search-box">
             <span class="im-search-icon">⌕</span>
             <input type="text" name="testo" autocomplete="off"

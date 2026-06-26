@@ -106,19 +106,10 @@ class RicercaVisualizzaStudi
     //metdo da usare con avvia_ricerca per determinare i criteri di ricerca in base ai parametri forniti (città, stile e testo). Restituisce un array con i criteri di ricerca.
     private function prepara_criteri_ricerca(string $citta, string $stile, string $testo): array
     {
-        // priorità 1: se c'è testo, vince su tutto il resto
-        if (!empty($testo)) {
-            return [
-                'tipo'  => 'testo',
-                'testo' => $testo
-            ];
-        }
-
-        // priorità 2: nessun testo -> usiamo città + eventuale stile
         return [
-            'tipo'  => 'posizione',
             'citta' => $citta,
-            'stile' => $stile !== '' ? $stile : null
+            'testo' => $testo !== '' ? $testo : null,
+            'stile' => $stile !== '' ? $stile : null,
         ];
     }
 
@@ -144,6 +135,7 @@ class RicercaVisualizzaStudi
             'status'          => 'success',
             'interfaccia'     => 'Lista tatuatori',
             'data'            => $tatuatori,
+            'stili'           => $this->pm->findAvailableStyles(),
             'filtri_correnti' => ['citta' => $citta, 'stile' => $stile, 'testo' => $testo],
         ];
     }

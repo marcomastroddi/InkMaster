@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:53:40
+/* Smarty version 5.8.0, created on 2026-06-26 21:58:39
   from 'file:partials/header_ricerca.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ef4e457d053_30921049',
+  'unifunc' => 'content_6a3ef60fc17aa0_28980729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73e3291837744244703457a09ff9181c115ea481' => 
     array (
       0 => 'partials/header_ricerca.tpl',
-      1 => 1782510709,
+      1 => 1782511086,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,17 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ef4e457d053_30921049 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef60fc17aa0_28980729 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 ?><div class="im-topbar">
 <div class="im-nav im-nav--search">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
 
     <form action="/avvia_ricerca" method="get" class="im-nav-search">
+        <input type="hidden" name="citta" value="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['citta'] ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+">
+        <input type="hidden" name="stile" value="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('filtri_correnti')['stile'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+">
         <div class="im-nav-search-box">
             <span class="im-search-icon">⌕</span>
             <input type="text" name="testo" autocomplete="off"

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:46:53
+/* Smarty version 5.8.0, created on 2026-06-26 22:07:46
   from 'file:pages/ricerca/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ef34d1a8693_38695255',
+  'unifunc' => 'content_6a3ef8325c62e8_17970550',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e5f775623a54ccf806682f222d7f00d48dc1451' => 
     array (
       0 => 'pages/ricerca/home.tpl',
-      1 => 1782510221,
+      1 => 1782511634,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ef34d1a8693_38695255 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef8325c62e8_17970550 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18751970626a3ef34cb6a629_01072818', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12249687326a3ef832333200_57259934', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_460520146a3ef34cb75df6_02703450', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_491275326a3ef83233a066_31978681', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8422195286a3ef34cb769b7_42041283', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4635277456a3ef83233b5d8_51809789', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_18751970626a3ef34cb6a629_01072818 extends \Smarty\Runtime\Block
+class Block_12249687326a3ef832333200_57259934 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Home — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_460520146a3ef34cb75df6_02703450 extends \Smarty\Runtime\Block
+class Block_491275326a3ef83233a066_31978681 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8422195286a3ef34cb769b7_42041283 extends \Smarty\Runtime\Block
+class Block_4635277456a3ef83233b5d8_51809789 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -119,8 +119,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             </div>
           </div>
           <button type="submit" class="im-search-submit">Cerca</button>
-          <input type="hidden" name="citta" id="im-citta-val" value="<?php echo (($tmp = $_smarty_tpl->getValue('citta_corrente') ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp);?>
+          <input type="hidden" name="citta"  id="im-citta-val"  value="<?php echo (($tmp = $_smarty_tpl->getValue('citta_corrente') ?? null)===null||$tmp==='' ? 'Roma' ?? null : $tmp);?>
 ">
+          <input type="hidden" name="stile"  id="im-stile-val"  value="">
         </div>
       </form>
 

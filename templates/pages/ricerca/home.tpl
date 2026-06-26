@@ -53,7 +53,8 @@
             </div>
           </div>
           <button type="submit" class="im-search-submit">Cerca</button>
-          <input type="hidden" name="citta" id="im-citta-val" value="{$citta_corrente|default:'Roma'}">
+          <input type="hidden" name="citta"  id="im-citta-val"  value="{$citta_corrente|default:'Roma'}">
+          <input type="hidden" name="stile"  id="im-stile-val"  value="">
         </div>
       </form>
 

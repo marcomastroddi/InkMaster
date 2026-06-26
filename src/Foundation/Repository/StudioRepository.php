@@ -25,26 +25,26 @@ class StudioRepository extends EntityRepository
      */
     public function findAvailableStudios(array $criteri): array
     {
+        $citta = \InkMaster\Enum\Citta::tryFrom($criteri['citta'] ?? '');
+        if ($citta === null) {
+            return [];
+        }
+
         $qb = $this->em->createQueryBuilder();
-        $qb->select('s')->from(Studio::class, 's');
+        $qb->select('s')->distinct()->from(Studio::class, 's')
+           ->where('s.posizione = :citta')
+           ->setParameter('citta', $citta);
 
-        if (($criteri['tipo'] ?? '') === 'testo') {
-            $qb->where('s.nome LIKE :testo OR s.descrizione LIKE :testo')
-            ->setParameter('testo', '%' . $criteri['testo'] . '%');
-        } else {
-            $citta = \InkMaster\Enum\Citta::tryFrom($criteri['citta'] ?? '');
-            if ($citta === null) {
-                return [];
-            }
-            $qb->where('s.posizione = :citta')
-            ->setParameter('citta', $citta);
+        if (!empty($criteri['testo'])) {
+            $qb->andWhere('s.nome LIKE :testo OR s.descrizione LIKE :testo')
+               ->setParameter('testo', '%' . $criteri['testo'] . '%');
+        }
 
-            if (!empty($criteri['stile'])) {
-                $qb->join('s.tatuatori', 't')
-                ->join('t.stili', 'st')
-                ->andWhere('st.nome = :stile')
-                ->setParameter('stile', $criteri['stile']);
-            }
+        if (!empty($criteri['stile'])) {
+            $qb->join('s.tatuatori', 't')
+               ->join('t.stili', 'st')
+               ->andWhere('st.nome = :stile')
+               ->setParameter('stile', $criteri['stile']);
         }
 
         return $qb->getQuery()->getResult();
