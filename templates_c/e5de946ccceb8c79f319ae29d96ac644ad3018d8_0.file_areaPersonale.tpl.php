@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:19:27
+/* Smarty version 5.8.0, created on 2026-06-26 21:31:20
   from 'file:pages/profilo/areaPersonale.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ed0bf187d38_77297151',
+  'unifunc' => 'content_6a3ed388aa59e4_06228396',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5de946ccceb8c79f319ae29d96ac644ad3018d8' => 
     array (
       0 => 'pages/profilo/areaPersonale.tpl',
-      1 => 1782501563,
+      1 => 1782502207,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ed0bf187d38_77297151 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ed388aa59e4_06228396 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9339489736a3ed0bf15d7d1_22975557', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4871753826a3ed388a7b144_94446216', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13852489006a3ed0bf160690_99616183', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15026232626a3ed388a7dc36_93788003', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20358522546a3ed0bf161274_12085260', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11352700126a3ed388a7e693_97255299', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_9339489736a3ed0bf15d7d1_22975557 extends \Smarty\Runtime\Block
+class Block_4871753826a3ed388a7b144_94446216 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -51,7 +51,7 @@ Area personale — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_13852489006a3ed0bf160690_99616183 extends \Smarty\Runtime\Block
+class Block_15026232626a3ed388a7dc36_93788003 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_20358522546a3ed0bf161274_12085260 extends \Smarty\Runtime\Block
+class Block_11352700126a3ed388a7e693_97255299 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -150,14 +150,9 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 
         </div>
         <div class="im-ap-header-info">
+            <div class="im-ap-welcome-label">Area personale</div>
             <div class="im-ap-welcome">Bentornato, <?php echo $_SESSION['username'];?>
 </div>
-            <div class="im-ap-meta">
-                <span>✉ <?php echo (($tmp = $_SESSION['email'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</span>
-                <span>📍 <?php echo (($tmp = $_SESSION['posizione'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</span>
-            </div>
         </div>
         <a href="/visualizza_profilo" class="im-ap-gestisci">Gestisci profilo</a>
     </div>
