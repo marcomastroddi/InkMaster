@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 08:17:38
+/* Smarty version 5.8.0, created on 2026-06-26 07:12:59
   from 'file:pages/auth/registrazioneStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ce42233a3c6_37247318',
+  'unifunc' => 'content_6a3e267b82e0a0_61038630',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4275f86821198441564504a72ddf85c285eafd54' => 
     array (
       0 => 'pages/auth/registrazioneStudio.tpl',
-      1 => 1782373354,
+      1 => 1782457823,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ce42233a3c6_37247318 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e267b82e0a0_61038630 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_418761836a3ce422330e93_18801511', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8309537236a3e267b829758_76444298', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14614663176a3ce4223391c6_77124897', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6805930176a3e267b82cfc9_89317937', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4328004036a3ce422339c65_12893428', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6842270706a3e267b82d9b3_74296500', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_418761836a3ce422330e93_18801511 extends \Smarty\Runtime\Block
+class Block_8309537236a3e267b829758_76444298 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Registra il tuo studio — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_14614663176a3ce4223391c6_77124897 extends \Smarty\Runtime\Block
+class Block_6805930176a3e267b82cfc9_89317937 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_4328004036a3ce422339c65_12893428 extends \Smarty\Runtime\Block
+class Block_6842270706a3e267b82d9b3_74296500 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -84,7 +84,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <p class="im-subtitle">Entra nella rete di InkMaster e mostra le tue opere a migliaia di clienti.</p>
             </div>
 
-            <form action="/registrazione/registraStudio" method="POST" class="im-form">
+            <form action="/registraStudio" method="POST" class="im-form">
                 <div class="im-form-grid">
                     
                     <div class="im-form-group">
@@ -113,8 +113,25 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                     </div>
                     
                     <div class="im-form-group">
-                        <label class="im-label" for="posizione">Sede / Posizione</label>
-                        <input type="text" id="posizione" name="posizione" class="im-input" required placeholder="Indirizzo completo, Città">
+                        <label class="im-label" for="posizione">Città</label>
+                        <select id="posizione" name="posizione" class="im-input" required>
+                            <option value="">— Seleziona città —</option>
+                            <option value="Milano">Milano</option>
+                            <option value="Roma">Roma</option>
+                            <option value="Napoli">Napoli</option>
+                            <option value="Torino">Torino</option>
+                            <option value="Palermo">Palermo</option>
+                            <option value="Genova">Genova</option>
+                            <option value="Bologna">Bologna</option>
+                            <option value="Firenze">Firenze</option>
+                            <option value="Bari">Bari</option>
+                            <option value="Catania">Catania</option>
+                            <option value="Venezia">Venezia</option>
+                            <option value="Pescara">Pescara</option>
+                            <option value="Avezzano">Avezzano</option>
+                            <option value="Popoli">Popoli</option>
+                            <option value="Catanzaro">Catanzaro</option>
+                        </select>
                     </div>
 
                     <div class="im-form-group">

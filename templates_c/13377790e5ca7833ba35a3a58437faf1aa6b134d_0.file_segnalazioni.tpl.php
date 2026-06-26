@@ -1,13 +1,75 @@
-{extends file='layouts/base.tpl'}
+<?php
+/* Smarty version 5.8.0, created on 2026-06-26 13:17:08
+  from 'file:pages/moderatore/segnalazioni.tpl' */
 
-{block name="title"}Segnalazioni — InkMaster Admin{/block}
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.8.0',
+  'unifunc' => 'content_6a3e7bd4ec3e62_46422462',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '13377790e5ca7833ba35a3a58437faf1aa6b134d' => 
+    array (
+      0 => 'pages/moderatore/segnalazioni.tpl',
+      1 => 1782479742,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6a3e7bd4ec3e62_46422462 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
+?>
 
-{block name="extra_css"}
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3388780886a3e7bd4d88304_77061847', "title");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21403976986a3e7bd4d97be0_62599417', "extra_css");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11202212916a3e7bd4d98646_96656903', "content");
+$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
+}
+/* {block "title"} */
+class Block_3388780886a3e7bd4d88304_77061847 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
+Segnalazioni — InkMaster Admin<?php
+}
+}
+/* {/block "title"} */
+/* {block "extra_css"} */
+class Block_21403976986a3e7bd4d97be0_62599417 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
+
     <link rel="stylesheet" href="/CSS/home.css">
     <link rel="stylesheet" href="/CSS/admin.css">
-{/block}
+<?php
+}
+}
+/* {/block "extra_css"} */
+/* {block "content"} */
+class Block_11202212916a3e7bd4d98646_96656903 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
 
-{block name="content"}
 <div class="adm-page">
 
     <div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
@@ -21,8 +83,10 @@
         <div class="adm-topbar-right">
             <a href="/dashboard_moderatore" class="adm-topbar-icon" title="Dashboard">⬅</a>
             <div class="adm-topbar-sep"></div>
-            <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
-            <span class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</span>
+            <div class="adm-topbar-avatar"><?php echo mb_strtoupper((string) substr((string) (($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'A' ?? null : $tmp), (int) 0, (int) 1) ?? '', 'UTF-8');?>
+</div>
+            <span class="adm-topbar-uname"><?php echo htmlspecialchars((string)(($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+</span>
             <a href="/logout" class="adm-topbar-logout">Esci</a>
         </div>
     </header>
@@ -38,10 +102,11 @@
         <div class="adm-table-card">
             <div class="adm-table-head">
                 <span class="adm-table-title">Gestione utenti</span>
-                <span class="adm-table-count">👥 {$data|count} segnalazioni</span>
+                <span class="adm-table-count">👥 <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('data'));?>
+ segnalazioni</span>
             </div>
 
-            {if $data}
+            <?php if ($_smarty_tpl->getValue('data')) {?>
             <table class="adm-table">
                 <thead>
                     <tr>
@@ -53,110 +118,152 @@
                     </tr>
                 </thead>
                 <tbody>
-                                {* ── APERTE prima ── *}
-                {foreach $data as $seg}
-                    {if $seg->getStato() != 'APERTA'}{continue}{/if}
-                    {if $seg->getCliente()}
-                        {assign var=utente value=$seg->getCliente()}
-                        {assign var=tipo value='cliente'}
-                        {assign var=nomeUtente value="`$utente->getNome()` `$utente->getCognome()`"}
-                        {assign var=iniziali value="`$utente->getNome()|substr:0:1``$utente->getCognome()|substr:0:1`"}
-                    {elseif $seg->getStudio()}
-                        {assign var=utente value=$seg->getStudio()}
-                        {assign var=tipo value='studio'}
-                        {assign var=nomeUtente value=$utente->getNome()}
-                        {assign var=iniziali value=$utente->getNome()|substr:0:2|upper}
-                    {else}
-                        {continue}
-                    {/if}
+                                                <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('data'), 'seg');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('seg')->value) {
+$foreach0DoElse = false;
+?>
+                    <?php if ($_smarty_tpl->getValue('seg')->getStato() != 'APERTA') {
+continue 1;
+}?>
+                    <?php if ($_smarty_tpl->getValue('seg')->getCliente()) {?>
+                        <?php $_smarty_tpl->assign('utente', $_smarty_tpl->getValue('seg')->getCliente(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('tipo', 'cliente', false, NULL);?>
+                        <?php $_smarty_tpl->assign('nomeUtente', ((string)$_smarty_tpl->getValue('utente')->getNome())." ".((string)$_smarty_tpl->getValue('utente')->getCognome()), false, NULL);?>
+                        <?php $_smarty_tpl->assign('iniziali', ((string)(substr((string) $_smarty_tpl->getValue('utente')->getNome(), (int) 0, (int) 1))).((string)(substr((string) $_smarty_tpl->getValue('utente')->getCognome(), (int) 0, (int) 1))), false, NULL);?>
+                    <?php } elseif ($_smarty_tpl->getValue('seg')->getStudio()) {?>
+                        <?php $_smarty_tpl->assign('utente', $_smarty_tpl->getValue('seg')->getStudio(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('tipo', 'studio', false, NULL);?>
+                        <?php $_smarty_tpl->assign('nomeUtente', $_smarty_tpl->getValue('utente')->getNome(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('iniziali', mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('utente')->getNome(), (int) 0, (int) 2) ?? '', 'UTF-8'), false, NULL);?>
+                    <?php } else { ?>
+                        <?php continue 1;?>
+                    <?php }?>
                     <tr>
                         <td>
                             <div class="adm-user-cell">
-                                <div class="adm-user-av adm-user-av--{$tipo}">{$iniziali|upper}</div>
+                                <div class="adm-user-av adm-user-av--<?php echo $_smarty_tpl->getValue('tipo');?>
+"><?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+</div>
                                 <div>
-                                    <div class="adm-user-name">{$nomeUtente|escape}</div>
-                                    <div class="adm-user-email">{$utente->getEmail()|escape}</div>
+                                    <div class="adm-user-name"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+</div>
+                                    <div class="adm-user-email"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('utente')->getEmail(), ENT_QUOTES, 'UTF-8', true);?>
+</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="adm-motivo">{$seg->getMotivo()|escape}</span></td>
+                        <td><span class="adm-motivo"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('seg')->getMotivo(), ENT_QUOTES, 'UTF-8', true);?>
+</span></td>
                         <td><span class="adm-badge adm-badge--red">Aperta</span></td>
-                        <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
+                        <td class="adm-date"><?php echo $_smarty_tpl->getValue('seg')->getData()->format('d M Y');?>
+</td>
                         <td>
                             <button type="button" class="adm-btn-ban"
-                            data-id="{$utente->getId()}"
-                            data-tipo="{$tipo}"
-                            data-nome="{$nomeUtente|escape}"
-                            data-email="{$utente->getEmail()|escape}"
-                            data-iniziali="{$iniziali|upper}"
-                            data-seg-id="{$seg->getId()}">Banna</button>
+                            data-id="<?php echo $_smarty_tpl->getValue('utente')->getId();?>
+"
+                            data-tipo="<?php echo $_smarty_tpl->getValue('tipo');?>
+"
+                            data-nome="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+"
+                            data-email="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('utente')->getEmail(), ENT_QUOTES, 'UTF-8', true);?>
+"
+                            data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+"
+                            data-seg-id="<?php echo $_smarty_tpl->getValue('seg')->getId();?>
+">Banna</button>
                         </td>
                     </tr>
-                {/foreach}
+                <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
-                {* ── separatore ── *}
-                <tr class="adm-table-sep-row">
+                                <tr class="adm-table-sep-row">
                     <td colspan="5"><span class="adm-table-sep-label">Già gestite</span></td>
                 </tr>
 
-                {* ── CHIUSE dopo ── *}
-                {foreach $data as $seg}
-                    {if $seg->getStato() == 'APERTA'}{continue}{/if}
-                    {if $seg->getCliente()}
-                        {assign var=utente value=$seg->getCliente()}
-                        {assign var=tipo value='cliente'}
-                        {assign var=nomeUtente value="`$utente->getNome()` `$utente->getCognome()`"}
-                        {assign var=iniziali value="`$utente->getNome()|substr:0:1``$utente->getCognome()|substr:0:1`"}
-                    {elseif $seg->getStudio()}
-                        {assign var=utente value=$seg->getStudio()}
-                        {assign var=tipo value='studio'}
-                        {assign var=nomeUtente value=$utente->getNome()}
-                        {assign var=iniziali value=$utente->getNome()|substr:0:2|upper}
-                    {else}
-                        {continue}
-                    {/if}
+                                <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('data'), 'seg');
+$foreach1DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('seg')->value) {
+$foreach1DoElse = false;
+?>
+                    <?php if ($_smarty_tpl->getValue('seg')->getStato() == 'APERTA') {
+continue 1;
+}?>
+                    <?php if ($_smarty_tpl->getValue('seg')->getCliente()) {?>
+                        <?php $_smarty_tpl->assign('utente', $_smarty_tpl->getValue('seg')->getCliente(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('tipo', 'cliente', false, NULL);?>
+                        <?php $_smarty_tpl->assign('nomeUtente', ((string)$_smarty_tpl->getValue('utente')->getNome())." ".((string)$_smarty_tpl->getValue('utente')->getCognome()), false, NULL);?>
+                        <?php $_smarty_tpl->assign('iniziali', ((string)(substr((string) $_smarty_tpl->getValue('utente')->getNome(), (int) 0, (int) 1))).((string)(substr((string) $_smarty_tpl->getValue('utente')->getCognome(), (int) 0, (int) 1))), false, NULL);?>
+                    <?php } elseif ($_smarty_tpl->getValue('seg')->getStudio()) {?>
+                        <?php $_smarty_tpl->assign('utente', $_smarty_tpl->getValue('seg')->getStudio(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('tipo', 'studio', false, NULL);?>
+                        <?php $_smarty_tpl->assign('nomeUtente', $_smarty_tpl->getValue('utente')->getNome(), false, NULL);?>
+                        <?php $_smarty_tpl->assign('iniziali', mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('utente')->getNome(), (int) 0, (int) 2) ?? '', 'UTF-8'), false, NULL);?>
+                    <?php } else { ?>
+                        <?php continue 1;?>
+                    <?php }?>
                     <tr class="adm-row-chiusa">
                         <td>
                             <div class="adm-user-cell">
-                                <div class="adm-user-av adm-user-av--{$tipo}">{$iniziali|upper}</div>
+                                <div class="adm-user-av adm-user-av--<?php echo $_smarty_tpl->getValue('tipo');?>
+"><?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+</div>
                                 <div>
-                                    <div class="adm-user-name">{$nomeUtente|escape}</div>
-                                    <div class="adm-user-email">{$utente->getEmail()|escape}</div>
+                                    <div class="adm-user-name"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+</div>
+                                    <div class="adm-user-email"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('utente')->getEmail(), ENT_QUOTES, 'UTF-8', true);?>
+</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="adm-motivo">{$seg->getMotivo()|escape}</span></td>
+                        <td><span class="adm-motivo"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('seg')->getMotivo(), ENT_QUOTES, 'UTF-8', true);?>
+</span></td>
                         <td><span class="adm-badge adm-badge--muted">Chiusa</span></td>
-                        <td class="adm-date">{$seg->getData()->format('d M Y')}</td>
+                        <td class="adm-date"><?php echo $_smarty_tpl->getValue('seg')->getData()->format('d M Y');?>
+</td>
                         <td class="adm-actions-cell">
                             <button type="button" class="adm-btn-info"
-                                data-motivo="{$seg->getMotivo()|escape}"
-                                data-desc="{$seg->getDescrizione()|default:''|escape}"
-                                data-data="{$seg->getData()->format('d M Y')}"
-                                data-nome="{$nomeUtente|escape}"
-                                data-iniziali="{$iniziali|upper}"
-                                data-tipo="{$tipo}">Info</button>
+                                data-motivo="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('seg')->getMotivo(), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-desc="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('seg')->getDescrizione() ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-data="<?php echo $_smarty_tpl->getValue('seg')->getData()->format('d M Y');?>
+"
+                                data-nome="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+"
+                                data-tipo="<?php echo $_smarty_tpl->getValue('tipo');?>
+">Info</button>
                             <button type="button" class="adm-btn-sban"
-                                data-id="{$utente->getId()}"
-                                data-tipo="{$tipo}"
-                                data-nome="{$nomeUtente|escape}"
-                                data-iniziali="{$iniziali|upper}">Sbanna</button>
+                                data-id="<?php echo $_smarty_tpl->getValue('utente')->getId();?>
+"
+                                data-tipo="<?php echo $_smarty_tpl->getValue('tipo');?>
+"
+                                data-nome="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('nomeUtente'), ENT_QUOTES, 'UTF-8', true);?>
+"
+                                data-iniziali="<?php echo mb_strtoupper((string) $_smarty_tpl->getValue('iniziali') ?? '', 'UTF-8');?>
+">Sbanna</button>
                         </td>
                     </tr>
-                {/foreach}
+                <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 </tbody>
             </table>
-            {else}
+            <?php } else { ?>
             <div class="adm-empty">
                 <div class="adm-empty-icon">✓</div>
                 <p>Nessuna segnalazione aperta.</p>
             </div>
-            {/if}
+            <?php }?>
         </div>
     </div>
 </div>
 
-{* ── MODAL BANNA ── *}
 <div class="adm-overlay" id="banModal">
     <div class="adm-modal">
         <div class="adm-modal-header">
@@ -243,7 +350,6 @@
     <input type="hidden" name="seg_id" id="scartaSegId">
 </form>
 
-{* ── MODAL INFO ── *}
 <div class="adm-overlay" id="infoModal">
     <div class="adm-modal">
         <div class="adm-modal-header">
@@ -280,7 +386,6 @@
     </div>
 </div>
 
-{* ── MODAL SBANNA ── *}
 <div class="adm-overlay" id="sbanModal">
     <div class="adm-modal" style="max-width:400px">
         <div class="adm-modal-header">
@@ -311,8 +416,9 @@
     </div>
 </div>
 
-<script>
-{literal}
+<?php echo '<script'; ?>
+>
+
 const modal   = document.getElementById('banModal');
 const form    = document.getElementById('banForm');
 const giorni  = document.getElementById('banGiorni');
@@ -406,6 +512,11 @@ document.querySelectorAll('.adm-btn-sban').forEach(btn => {
     el.addEventListener('click', () => sbanModal.classList.remove('adm-overlay--open'));
 });
 sbanModal.addEventListener('click', e => { if (e.target === sbanModal) sbanModal.classList.remove('adm-overlay--open'); });
-{/literal}
-</script>
-{/block}
+
+<?php echo '</script'; ?>
+>
+<?php
+}
+}
+/* {/block "content"} */
+}

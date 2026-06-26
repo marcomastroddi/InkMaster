@@ -1,56 +1,123 @@
-{extends file='layouts/base.tpl'}
+<?php
+/* Smarty version 5.8.0, created on 2026-06-26 12:51:31
+  from 'file:pages/moderatore/dashboard_moderatore.tpl' */
 
-{block name="title"}Dashboard Amministratore — InkMaster{/block}
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.8.0',
+  'unifunc' => 'content_6a3e75d3873b56_84002357',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f52d8e34b1356c28b903b717e9cf230c0455a06d' => 
+    array (
+      0 => 'pages/moderatore/dashboard_moderatore.tpl',
+      1 => 1782478250,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6a3e75d3873b56_84002357 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
+?>
 
-{block name="extra_css"}
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3224217516a3e75d3854b25_72885302', "title");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17650121936a3e75d3859107_78874851', "extra_css");
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16159301806a3e75d38599a7_87988220', "content");
+?>
+
+<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
+}
+/* {block "title"} */
+class Block_3224217516a3e75d3854b25_72885302 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
+Dashboard Amministratore — InkMaster<?php
+}
+}
+/* {/block "title"} */
+/* {block "extra_css"} */
+class Block_17650121936a3e75d3859107_78874851 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
+
     <link rel="stylesheet" href="/CSS/home.css">
     <link rel="stylesheet" href="/CSS/admin.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-{/block}
+    <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"><?php echo '</script'; ?>
+>
+<?php
+}
+}
+/* {/block "extra_css"} */
+/* {block "content"} */
+class Block_16159301806a3e75d38599a7_87988220 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\moderatore';
+?>
 
-{block name="content"}
 <div class="adm-page">
 
-    {* background blobs *}
-    <div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
+        <div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
         <div class="im-blob im-blob-1" style="width:600px;height:600px;left:-180px;top:-200px;"></div>
         <div class="im-blob im-blob-2" style="width:500px;height:500px;right:-120px;top:80px;animation-delay:-4s;"></div>
     </div>
 
-    {* topbar *}
-    <header class="adm-topbar">
+        <header class="adm-topbar">
         <div class="adm-topbar-logo">InkMaster</div>
         <div class="adm-topbar-title">Dashboard Amministratore</div>
         <div class="adm-topbar-right">
             <a href="/accedi_segnalazioni" class="adm-topbar-icon" title="Segnalazioni">
                 🔔
-                {if $data['kpi']['segnalazioni_aperte'] > 0}
-                    <span class="adm-topbar-badge">{$data['kpi']['segnalazioni_aperte']}</span>
-                {/if}
+                <?php if ($_smarty_tpl->getValue('data')['kpi']['segnalazioni_aperte'] > 0) {?>
+                    <span class="adm-topbar-badge"><?php echo $_smarty_tpl->getValue('data')['kpi']['segnalazioni_aperte'];?>
+</span>
+                <?php }?>
             </a>
             <div class="adm-topbar-sep"></div>
-            <div class="adm-topbar-avatar">{$smarty.session.username|default:'A'|substr:0:1|upper}</div>
-            <span class="adm-topbar-uname">{$smarty.session.username|default:'Admin'|escape}</span>
+            <div class="adm-topbar-avatar"><?php echo mb_strtoupper((string) substr((string) (($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'A' ?? null : $tmp), (int) 0, (int) 1) ?? '', 'UTF-8');?>
+</div>
+            <span class="adm-topbar-uname"><?php echo htmlspecialchars((string)(($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+</span>
             <a href="/logout" class="adm-topbar-logout">Esci</a>
         </div>
     </header>
 
-    {* body *}
-    <div class="adm-body">
+        <div class="adm-body">
 
         <div class="adm-welcome">
             <div class="adm-section-label">Pannello di controllo</div>
-            <h1 class="adm-welcome-title">Bentornato, <span>{$smarty.session.username|default:'Amministratore'|escape}</span></h1>
+            <h1 class="adm-welcome-title">Bentornato, <span><?php echo htmlspecialchars((string)(($tmp = $_SESSION['username'] ?? null)===null||$tmp==='' ? 'Amministratore' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
+</span></h1>
         </div>
 
-        {* KPI *}
-        <div class="adm-kpi-row">
+                <div class="adm-kpi-row">
             <div class="adm-kpi-card">
                 <div class="adm-kpi-top">
                     <span class="adm-kpi-label">Utenti registrati</span>
                     <span class="adm-kpi-icon">👤</span>
                 </div>
-                <div class="adm-kpi-value">{$data['kpi']['utenti_registrati']}</div>
+                <div class="adm-kpi-value"><?php echo $_smarty_tpl->getValue('data')['kpi']['utenti_registrati'];?>
+</div>
                 <div class="adm-kpi-trend adm-kpi-trend--up">↑ clienti attivi</div>
             </div>
             <div class="adm-kpi-card">
@@ -58,7 +125,8 @@
                     <span class="adm-kpi-label">Studi registrati</span>
                     <span class="adm-kpi-icon">🏪</span>
                 </div>
-                <div class="adm-kpi-value">{$data['kpi']['studi_registrati']}</div>
+                <div class="adm-kpi-value"><?php echo $_smarty_tpl->getValue('data')['kpi']['studi_registrati'];?>
+</div>
                 <div class="adm-kpi-trend adm-kpi-trend--up">↑ studi attivi</div>
             </div>
             <div class="adm-kpi-card">
@@ -66,7 +134,8 @@
                     <span class="adm-kpi-label">Prenotazioni attive</span>
                     <span class="adm-kpi-icon">📅</span>
                 </div>
-                <div class="adm-kpi-value">{$data['kpi']['prenotazioni_attive']}</div>
+                <div class="adm-kpi-value"><?php echo $_smarty_tpl->getValue('data')['kpi']['prenotazioni_attive'];?>
+</div>
                 <div class="adm-kpi-trend adm-kpi-trend--up">↑ in corso</div>
             </div>
             <div class="adm-kpi-card adm-kpi-card--alert">
@@ -74,17 +143,17 @@
                     <span class="adm-kpi-label">Segnalazioni aperte</span>
                     <span class="adm-kpi-icon">⚠</span>
                 </div>
-                <div class="adm-kpi-value">{$data['kpi']['segnalazioni_aperte']}</div>
-                {if $data['kpi']['segnalazioni_aperte'] > 0}
+                <div class="adm-kpi-value"><?php echo $_smarty_tpl->getValue('data')['kpi']['segnalazioni_aperte'];?>
+</div>
+                <?php if ($_smarty_tpl->getValue('data')['kpi']['segnalazioni_aperte'] > 0) {?>
                     <a href="/accedi_segnalazioni" class="adm-kpi-trend adm-kpi-trend--alert" style="text-decoration:none;">→ Gestisci ora</a>
-                {else}
+                <?php } else { ?>
                     <div class="adm-kpi-trend adm-kpi-trend--up">✓ Nessuna aperta</div>
-                {/if}
+                <?php }?>
             </div>
         </div>
 
-        {* grafici 2x2 *}
-        <div class="adm-charts-grid">
+                <div class="adm-charts-grid">
 
             <div class="adm-chart-card">
                 <div class="adm-chart-title">Nuove registrazioni — ultimi 6 mesi</div>
@@ -110,7 +179,8 @@
     </div>
 </div>
 
-<script>
+<?php echo '<script'; ?>
+>
 Chart.defaults.color = '#6b736f';
 Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
 Chart.defaults.font.family = "'Archivo', sans-serif";
@@ -152,7 +222,10 @@ new Chart(document.getElementById('chartUtenti'), {
     data: {
         labels: ['Clienti', 'Studi', 'Non registrati'],
         datasets: [{
-            data: [{$data['tipo_utenti']['clienti_percentuale']}, {$data['tipo_utenti']['studi_percentuale']}, {math equation="100 - a - b" a=$data['tipo_utenti']['clienti_percentuale'] b=$data['tipo_utenti']['studi_percentuale']}],
+            data: [<?php echo $_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale'];?>
+, <?php echo $_smarty_tpl->getValue('data')['tipo_utenti']['studi_percentuale'];?>
+, <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('math')->handle(array('equation'=>"100 - a - b",'a'=>$_smarty_tpl->getValue('data')['tipo_utenti']['clienti_percentuale'],'b'=>$_smarty_tpl->getValue('data')['tipo_utenti']['studi_percentuale']), $_smarty_tpl);?>
+],
             backgroundColor: [blue, green, muted],
             borderWidth: 0,
             hoverOffset: 6
@@ -177,5 +250,10 @@ new Chart(document.getElementById('chartPrenotazioni'), {
         scales: { x: { ticks: { font: { size: 10 } } }, y: { ticks: { font: { size: 10 } } } }
     }
 });
-</script>
-{/block}
+<?php echo '</script'; ?>
+>
+<?php
+}
+}
+/* {/block "content"} */
+}

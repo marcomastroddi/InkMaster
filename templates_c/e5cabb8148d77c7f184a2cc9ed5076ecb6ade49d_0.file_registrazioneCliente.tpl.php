@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 08:17:41
+/* Smarty version 5.8.0, created on 2026-06-26 07:12:51
   from 'file:pages/auth/registrazioneCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ce425b578b5_89273709',
+  'unifunc' => 'content_6a3e26733a75a5_56313724',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5cabb8148d77c7f184a2cc9ed5076ecb6ade49d' => 
     array (
       0 => 'pages/auth/registrazioneCliente.tpl',
-      1 => 1782373354,
+      1 => 1782457823,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ce425b578b5_89273709 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e26733a75a5_56313724 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7469504676a3ce425b52b20_25042004', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2491430816a3e267339f160_05444770', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4265617186a3ce425b567b5_93230756', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10174513916a3e26733a2a74_57834604', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8061185306a3ce425b571d9_76092444', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6332853096a3e26733a3429_48094928', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_7469504676a3ce425b52b20_25042004 extends \Smarty\Runtime\Block
+class Block_2491430816a3e267339f160_05444770 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Registrati come cliente — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_4265617186a3ce425b567b5_93230756 extends \Smarty\Runtime\Block
+class Block_10174513916a3e26733a2a74_57834604 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_8061185306a3ce425b571d9_76092444 extends \Smarty\Runtime\Block
+class Block_6332853096a3e26733a3429_48094928 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -84,7 +84,11 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <p class="im-subtitle">Trova i migliori artisti e prenota il tuo prossimo tatuaggio in pochi clic.</p>
             </div>
 
-            <form action="/registrazione_cliente_action" method="POST" class="im-form">
+            <form action="/registraCliente" method="POST" class="im-form">
+                <?php if ((true && ($_smarty_tpl->hasVariable('message') && null !== ($_smarty_tpl->getValue('message') ?? null))) && $_smarty_tpl->getValue('message')) {?>
+                    <div class="im-alert im-alert-error"><?php echo $_smarty_tpl->getValue('message');?>
+</div>
+                <?php }?>
                 <div class="im-form-grid">
                     <div class="im-form-group">
                         <label class="im-label" for="nome">Nome</label>

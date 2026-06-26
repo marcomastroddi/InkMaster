@@ -1,10 +1,10 @@
+{if $_sessione.ruolo != 'amministratore'}
 <div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
         <a href="/registrazioneStudio">Per gli artisti</a>
 
         {if $_sessione.username}
-            {* Utente loggato: avatar + nome, poi "Esci" che apre il popup *}
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     {$_sessione.username|truncate:1:'':true|upper}
@@ -13,7 +13,6 @@
             </a>
             <a href="#" class="im-btn-outline" id="im-logout-btn">Esci</a>
         {else}
-            {* Utente ospite: link classici *}
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         {/if}
@@ -23,7 +22,6 @@
 </div>
 
 {if $_sessione.username}
-{* Popup di logout: nascosto finché non si clicca "Esci" (vedi .im-logout-overlay in layout.css) *}
 <div class="im-logout-overlay" id="im-logout-overlay">
     <div class="im-logout-modal">
         <div class="im-logout-eyebrow">CI DISPIACE VEDERTI ANDARE</div>
@@ -35,4 +33,5 @@
         </div>
     </div>
 </div>
+{/if}
 {/if}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 07:42:42
+/* Smarty version 5.8.0, created on 2026-06-26 07:12:53
   from 'file:pages/auth/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3cdbf2b75f93_45211863',
+  'unifunc' => 'content_6a3e26758b89e9_23276961',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7be0109a87a845009477ef452b5f580f7bd17336' => 
     array (
       0 => 'pages/auth/login.tpl',
-      1 => 1782373354,
+      1 => 1782457823,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3cdbf2b75f93_45211863 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e26758b89e9_23276961 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5576191506a3cdbf2b53ad4_80287886', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12214174426a3e26758b4133_56068235', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14221683846a3cdbf2b74a08_91360396', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_291176106a3e26758b7997_74168675', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17122888426a3cdbf2b75757_31804121', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_800750586a3e26758b8374_72071076', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_5576191506a3cdbf2b53ad4_80287886 extends \Smarty\Runtime\Block
+class Block_12214174426a3e26758b4133_56068235 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -51,7 +51,7 @@ Accedi — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_14221683846a3cdbf2b74a08_91360396 extends \Smarty\Runtime\Block
+class Block_291176106a3e26758b7997_74168675 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_17122888426a3cdbf2b75757_31804121 extends \Smarty\Runtime\Block
+class Block_800750586a3e26758b8374_72071076 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\auth';
@@ -84,7 +84,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
                 <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
             </div>
 
-            <form action="/login_action" method="POST" class="im-form">
+            <form action="/login" method="POST" class="im-form">
                 <div class="im-form-group">
                     <label class="im-label" for="username">Username</label>
                     <input type="text" id="username" name="username" class="im-input" required placeholder="Inserisci il tuo username">
