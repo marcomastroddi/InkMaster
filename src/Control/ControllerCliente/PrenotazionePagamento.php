@@ -172,7 +172,7 @@ class PrenotazionePagamento {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
         }
 
-        $appuntamento->setStato('ACCETTATO');
+        $appuntamento->setStato('CONFERMATO');
         $this->pm->update();
 
 
@@ -191,8 +191,9 @@ class PrenotazionePagamento {
         if ($appuntamento === null) {
             return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
         }
-
-        $this->pm->delete($appuntamento);
+        
+        $appuntamento->setStato('ANNULLATO');
+        $this->pm->update();
 
         return [
             'status'      => 'success',

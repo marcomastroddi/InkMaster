@@ -56,7 +56,7 @@ $pagineProtette = [
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
-    'avvia_recensione', 'compila_recensione', 'gestisci_team',
+    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti',
 ];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
@@ -603,7 +603,13 @@ switch ($page) {
     case 'storico_appuntamenti':
         View::render('studio/StoricoAppuntamenti', $controller10->visualizzaStorico());
         break;
-        
+    
+    case 'storico_appuntamenti':
+        $stato = $_GET['stato'] ?? null;
+        $dati = $controller10->visualizzaStorico($stato);
+        View::render('studio/StoricoAppuntamenti', $dati);
+        break;
+
     // ===== 404 =====
     default:
         View::render('errori/404', []);
