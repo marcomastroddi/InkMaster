@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 20:13:24
+/* Smarty version 5.8.0, created on 2026-06-26 23:07:36
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ec144ccb030_65804295',
+  'unifunc' => 'content_6a3eea18bb5cc7_78614205',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b9331ff3296944963a8ea8e96c380336ccb4b48' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782497601,
+      1 => 1782507985,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ec144ccb030_65804295 (\Smarty\Template $_smarty_tpl) {
+function content_6a3eea18bb5cc7_78614205 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
@@ -32,7 +32,7 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
             <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
-                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+                <a href="/area_personale" class="im-btn-outline im-btn-prenotazioni">Le mie prenotazioni</a>
             <?php }?>
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
