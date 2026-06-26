@@ -43,13 +43,15 @@ class GestioneProfilo
         }
 
         if ($utente instanceof Cliente) {
-            $data['email']         = $utente->getEmail();
-            $data['data_nascita']  = $utente->getDataNascita()->format('Y-m-d');
-            $data['posizione']     = $utente->getPosizione() ?? '';
+            $data['email']        = $utente->getEmail();
+            $data['data_nascita'] = $utente->getDataNascita()->format('Y-m-d');
+            $data['posizione']    = $utente->getPosizione()?->value ?? '';
+        } elseif ($utente instanceof \InkMaster\Entity\Studio) {
+            $data['email']     = $utente->getEmail();
+            $data['posizione'] = $utente->getPosizione()?->value ?? '';
         }
-
         return ['status' => 'success', 'data' => $data];
-    }
+            }
 
     public function modificaDati(array $dati): array
     {

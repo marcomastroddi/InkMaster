@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 18:39:15
+/* Smarty version 5.8.0, created on 2026-06-26 09:16:38
   from 'file:pages/profilo/profiloCliente.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d59b3af81b5_67033074',
+  'unifunc' => 'content_6a3e27561f0435_61739553',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '500dd670db3b9c58f43efce5bdab3af5f56e1317' => 
     array (
       0 => 'pages/profilo/profiloCliente.tpl',
-      1 => 1782405406,
+      1 => 1782458191,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d59b3af81b5_67033074 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e27561f0435_61739553 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_693332506a3d59b3ae9c53_12191064', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3957743616a3e27561bcd67_80827838', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13692777676a3d59b3aecd98_07051507', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16498268306a3e27561be473_75246954', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_18334624796a3d59b3aed817_09682266', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_3350287196a3e27561be9a0_74576208', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_693332506a3d59b3ae9c53_12191064 extends \Smarty\Runtime\Block
+class Block_3957743616a3e27561bcd67_80827838 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -51,7 +51,7 @@ Il mio profilo — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_13692777676a3d59b3aecd98_07051507 extends \Smarty\Runtime\Block
+class Block_16498268306a3e27561be473_75246954 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_18334624796a3d59b3aed817_09682266 extends \Smarty\Runtime\Block
+class Block_3350287196a3e27561be9a0_74576208 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/profilo';
@@ -76,13 +76,13 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 
                         <div class="im-profilo-avatar">
                 <?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('data')['nome'], (int) 0, (int) 1) ?? '', 'UTF-8');
-echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('data')['cognome'], (int) 0, (int) 1) ?? '', 'UTF-8');?>
+echo mb_strtoupper((string) substr((string) (($tmp = $_smarty_tpl->getValue('data')['cognome'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), (int) 0, (int) 1) ?? '', 'UTF-8');?>
 
             </div>
             <div class="im-profilo-ruolo"><?php echo $_smarty_tpl->getValue('data')['ruolo'];?>
 </div>
             <div class="im-profilo-nome"><?php echo $_smarty_tpl->getValue('data')['nome'];?>
- <?php echo $_smarty_tpl->getValue('data')['cognome'];?>
+ <?php echo (($tmp = $_smarty_tpl->getValue('data')['cognome'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 </div>
 
                         <div class="im-profilo-section-title">Dati personali</div>
@@ -95,28 +95,32 @@ echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('data')['cogn
                                value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('data')['nome'], ENT_QUOTES, 'UTF-8', true);?>
 " required>
                     </div>
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('data')['cognome'] ?? null)))) {?>
                     <div class="im-form-group">
                         <label class="im-label" for="cognome">Cognome</label>
                         <input type="text" id="cognome" name="cognome" class="im-input"
                                value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('data')['cognome'], ENT_QUOTES, 'UTF-8', true);?>
 " required>
                     </div>
+                    <?php }?>
                     <div class="im-form-group">
                         <label class="im-label" for="email">Email</label>
                         <input type="email" id="email" name="email" class="im-input"
-                               value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('data')['email'], ENT_QUOTES, 'UTF-8', true);?>
+                               value="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('data')['email'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
 " required>
                     </div>
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('data')['data_nascita'] ?? null)))) {?>
                     <div class="im-form-group">
                         <label class="im-label" for="data_nascita">Data di nascita</label>
                         <input type="date" id="data_nascita" name="data_nascita" class="im-input"
                                value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('data')['data_nascita'], ENT_QUOTES, 'UTF-8', true);?>
 ">
                     </div>
+                    <?php }?>
                     <div class="im-form-group">
                         <label class="im-label" for="posizione">Città</label>
                         <input type="text" id="posizione" name="posizione" class="im-input"
-                               value="<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('data')['posizione'], ENT_QUOTES, 'UTF-8', true);?>
+                               value="<?php echo htmlspecialchars((string)(($tmp = $_smarty_tpl->getValue('data')['posizione'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp), ENT_QUOTES, 'UTF-8', true);?>
 " placeholder="es. Roma">
                     </div>
                     <div class="im-form-group">

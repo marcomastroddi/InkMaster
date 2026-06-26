@@ -443,7 +443,7 @@ switch ($page) {
             if ($dati['status'] === 'success') {
                 $destinazioni = [
                     'cliente'        => '/home',
-                    'studio'         => '/dashboard_studio',
+                    'studio' => '/dashboardStudio',
                     'amministratore' => '/dashboard_moderatore',
                 ];
                 header('Location: ' . ($destinazioni[$dati['ruolo']] ?? '/home'));

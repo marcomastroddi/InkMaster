@@ -14,10 +14,10 @@
 
             {* ── Avatar e intestazione ── *}
             <div class="im-profilo-avatar">
-                {$data.nome|substr:0:1|upper}{$data.cognome|substr:0:1|upper}
+                {$data.nome|substr:0:1|upper}{$data.cognome|default:''|substr:0:1|upper}
             </div>
             <div class="im-profilo-ruolo">{$data.ruolo}</div>
-            <div class="im-profilo-nome">{$data.nome} {$data.cognome}</div>
+            <div class="im-profilo-nome">{$data.nome} {$data.cognome|default:''}</div>
 
             {* ── Form dati personali ── *}
             <div class="im-profilo-section-title">Dati personali</div>
@@ -29,25 +29,29 @@
                         <input type="text" id="nome" name="nome" class="im-input"
                                value="{$data.nome|escape}" required>
                     </div>
+                    {if isset($data.cognome)}
                     <div class="im-form-group">
                         <label class="im-label" for="cognome">Cognome</label>
                         <input type="text" id="cognome" name="cognome" class="im-input"
                                value="{$data.cognome|escape}" required>
                     </div>
+                    {/if}
                     <div class="im-form-group">
                         <label class="im-label" for="email">Email</label>
                         <input type="email" id="email" name="email" class="im-input"
-                               value="{$data.email|escape}" required>
+                               value="{$data.email|default:''|escape}" required>
                     </div>
+                    {if isset($data.data_nascita)}
                     <div class="im-form-group">
                         <label class="im-label" for="data_nascita">Data di nascita</label>
                         <input type="date" id="data_nascita" name="data_nascita" class="im-input"
                                value="{$data.data_nascita|escape}">
                     </div>
+                    {/if}
                     <div class="im-form-group">
                         <label class="im-label" for="posizione">Città</label>
                         <input type="text" id="posizione" name="posizione" class="im-input"
-                               value="{$data.posizione|escape}" placeholder="es. Roma">
+                               value="{$data.posizione|default:''|escape}" placeholder="es. Roma">
                     </div>
                     <div class="im-form-group">
                         <label class="im-label" for="username">Username</label>
