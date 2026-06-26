@@ -599,6 +599,10 @@ switch ($page) {
         $gt->eliminaTatuatore((int)($_POST['id'] ?? 0));
         header('Location: /gestisci_team');
         exit;
+
+    case 'storico_appuntamenti':
+        View::render('studio/StoricoAppuntamenti', $controller10->visualizzaStorico());
+        break;
         
     // ===== 404 =====
     default:

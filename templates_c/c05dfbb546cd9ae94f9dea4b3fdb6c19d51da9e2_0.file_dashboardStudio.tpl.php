@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 10:08:53
+/* Smarty version 5.8.0, created on 2026-06-26 11:17:26
   from 'file:pages/studio/dashboardStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e3395586782_96921125',
+  'unifunc' => 'content_6a3e43a6538938_91346903',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c05dfbb546cd9ae94f9dea4b3fdb6c19d51da9e2' => 
     array (
       0 => 'pages/studio/dashboardStudio.tpl',
-      1 => 1782461151,
+      1 => 1782465365,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e3395586782_96921125 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e43a6538938_91346903 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16793982656a3e3395582af9_74656319', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11405446736a3e43a6534ca8_99719859', "title");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10737720236a3e3395583f80_36729547', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12911154786a3e43a6536160_56538250', "extra_css");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20737222456a3e3395584493_95021363', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13538939836a3e43a6536666_68438383', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_16793982656a3e3395582af9_74656319 extends \Smarty\Runtime\Block
+class Block_11405446736a3e43a6534ca8_99719859 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -50,7 +50,7 @@ Dashboard — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_10737720236a3e3395583f80_36729547 extends \Smarty\Runtime\Block
+class Block_12911154786a3e43a6536160_56538250 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -62,7 +62,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_20737222456a3e3395584493_95021363 extends \Smarty\Runtime\Block
+class Block_13538939836a3e43a6536666_68438383 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/studio';
@@ -109,7 +109,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
         <h1 class="im-dash-title">Bentornato, <?php echo $_smarty_tpl->getValue('_sessione')['username'];?>
 </h1>
         <div class="im-dash-grid">
-                        <a href="/visualizza_clienti" class="im-dash-card">
+                        <a href="/storico_appuntamenti" class="im-dash-card">
                 <div class="im-dash-card-icon">
                     <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
                 </div>

@@ -57,7 +57,7 @@
         {else}
             <div class="im-richieste-lista">
                 {foreach $data as $app}
-                    {if $app->getStato() === 'in_attesa'}
+                    {if $app->getStato() === 'IN_ATTESA'}
                     <div class="im-richiesta-card" id="card-{$app->getId()}">
 
                         <div class="im-richiesta-avatar">

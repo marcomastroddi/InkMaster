@@ -77,4 +77,11 @@ class GestioneClienti
             'interfaccia' => 'Pagamenti aggiornati'
         ];
     }
+
+    public function visualizzaStorico(): array
+    {
+        $idStudio = SessionManager::get('id_studio');
+        $appuntamenti = $this->pm->findAppuntamentiByStudioId($idStudio);
+        return ['status' => 'success', 'data' => $appuntamenti];
+    }
 }
