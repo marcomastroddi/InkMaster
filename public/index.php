@@ -109,7 +109,13 @@ switch ($page) {
         break;
 
     case 'avvia_ricerca':
-        View::render('ricerca/ElencoTatuatori', $controller->avvia_ricerca());        break;
+        $risultatoRicerca = $controller->avvia_ricerca();
+        if (($risultatoRicerca['status'] ?? '') === 'not_found') {
+            View::render('errori/404', []);
+        } else {
+            View::render('ricerca/ElencoTatuatori', $risultatoRicerca);
+        }
+        break;
 
     case 'scegli_studio':
         View::render('ricerca/studio', $controller->scegli_studio((int)($_GET['id'] ?? 0)));

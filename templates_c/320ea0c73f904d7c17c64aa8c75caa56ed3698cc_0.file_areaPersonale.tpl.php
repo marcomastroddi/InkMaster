@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 21:21:23
+/* Smarty version 5.8.0, created on 2026-06-26 21:53:10
   from 'file:pages/profilo/areaPersonale.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3eed531cf787_76546983',
+  'unifunc' => 'content_6a3ef4c6d146f6_53741205',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '320ea0c73f904d7c17c64aa8c75caa56ed3698cc' => 
     array (
       0 => 'pages/profilo/areaPersonale.tpl',
-      1 => 1782508770,
+      1 => 1782510123,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3eed531cf787_76546983 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ef4c6d146f6_53741205 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11344301966a3eed52d8c664_79752968', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13056485126a3ef4c6b45e99_55663402', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_156977636a3eed52d99796_86171848', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20954548946a3ef4c6b75e00_45905700', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4278938746a3eed52d9a0c7_80181304', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19169032976a3ef4c6b78e21_43825054', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_11344301966a3eed52d8c664_79752968 extends \Smarty\Runtime\Block
+class Block_13056485126a3ef4c6b45e99_55663402 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
@@ -51,7 +51,7 @@ Area Personale — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_156977636a3eed52d99796_86171848 extends \Smarty\Runtime\Block
+class Block_20954548946a3ef4c6b75e00_45905700 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_4278938746a3eed52d9a0c7_80181304 extends \Smarty\Runtime\Block
+class Block_19169032976a3ef4c6b78e21_43825054 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\profilo';
@@ -125,19 +125,22 @@ $foreach0DoElse = false;
         <?php $_smarty_tpl->assign('stato', $_smarty_tpl->getValue('app')->getStato(), false, NULL);?>
         <div class="im-ap-card" id="apcard-<?php echo $_smarty_tpl->getValue('app')->getId();?>
 ">
-            <div class="im-ap-card-avatar"><?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');?>
-</div>
+            <div class="im-ap-card-avatar"><?php if ($_smarty_tpl->getValue('app')->getStudio()) {
+echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('app')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');
+} else { ?>?<?php }?></div>
             <div class="im-ap-card-info">
-                <div class="im-ap-card-name"><?php echo $_smarty_tpl->getValue('app')->getStudio()->getNome();?>
-</div>
+                <div class="im-ap-card-name"><?php if ($_smarty_tpl->getValue('app')->getStudio()) {
+echo $_smarty_tpl->getValue('app')->getStudio()->getNome();
+} else { ?>—<?php }?></div>
                 <div class="im-ap-card-meta"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('app')->getNote(),60,'…');?>
 </div>
             </div>
             <div class="im-ap-card-date">
                 <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('app')->getData(),'%d/%m/%Y');?>
 
-                <span class="im-ap-card-city"><?php echo $_smarty_tpl->getValue('app')->getStudio()->getPosizione()->value;?>
-</span>
+                <span class="im-ap-card-city"><?php if ($_smarty_tpl->getValue('app')->getStudio() && $_smarty_tpl->getValue('app')->getStudio()->getPosizione()) {
+echo $_smarty_tpl->getValue('app')->getStudio()->getPosizione()->value;
+}?></span>
             </div>
             <div class="im-ap-card-actions">
                 <?php if ($_smarty_tpl->getValue('stato') === 'IN_ATTESA') {?>
@@ -182,11 +185,13 @@ $foreach1DoElse = false;
 ?>
         <div class="im-ap-rec-card">
             <div class="im-ap-rec-header">
-                <div class="im-ap-rec-avatar"><?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('rec')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');?>
-</div>
+                <div class="im-ap-rec-avatar"><?php if ($_smarty_tpl->getValue('rec')->getStudio()) {
+echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('rec')->getStudio()->getNome(), (int) 0, (int) 1) ?? '', 'UTF-8');
+} else { ?>?<?php }?></div>
                 <div>
-                    <div class="im-ap-rec-studio"><?php echo $_smarty_tpl->getValue('rec')->getStudio()->getNome();?>
-</div>
+                    <div class="im-ap-rec-studio"><?php if ($_smarty_tpl->getValue('rec')->getStudio()) {
+echo $_smarty_tpl->getValue('rec')->getStudio()->getNome();
+} else { ?>—<?php }?></div>
                     <div class="im-ap-rec-date"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('rec')->getData(),'%b %Y');?>
 </div>
                 </div>

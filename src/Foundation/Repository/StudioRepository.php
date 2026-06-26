@@ -32,8 +32,12 @@ class StudioRepository extends EntityRepository
             $qb->where('s.nome LIKE :testo OR s.descrizione LIKE :testo')
             ->setParameter('testo', '%' . $criteri['testo'] . '%');
         } else {
+            $citta = \InkMaster\Enum\Citta::tryFrom($criteri['citta'] ?? '');
+            if ($citta === null) {
+                return [];
+            }
             $qb->where('s.posizione = :citta')
-            ->setParameter('citta', \InkMaster\Enum\Citta::from($criteri['citta']));
+            ->setParameter('citta', $citta);
 
             if (!empty($criteri['stile'])) {
                 $qb->join('s.tatuatori', 't')

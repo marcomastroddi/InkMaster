@@ -129,6 +129,11 @@ class RicercaVisualizzaStudi
         $stile = !empty($_GET['stile']) ? trim($_GET['stile']) : '';
         $testo = !empty($_GET['testo']) ? trim($_GET['testo']) : '';
 
+        // Validazione: se la ricerca è per città, deve essere un valore enum valido
+        if ($testo === '' && Citta::tryFrom($citta) === null) {
+            return ['status' => 'not_found'];
+        }
+
         // Pulisce i filtri vecchi dalla sessione
         SessionManager::set('filtri_ricerca', []);
 
