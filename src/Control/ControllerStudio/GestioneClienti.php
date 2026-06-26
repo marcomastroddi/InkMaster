@@ -78,10 +78,19 @@ class GestioneClienti
         ];
     }
 
-    public function visualizzaStorico(): array
+    public function visualizzaStorico(?string $stato = null): array
     {
         $idStudio = SessionManager::get('id_studio');
+
+        if (!$idStudio) {
+            return ['status' => 'error', 'message' => 'Devi essere loggato come studio.'];
+        }
+
         $appuntamenti = $this->pm->findAppuntamentiByStudioId($idStudio);
-        return ['status' => 'success', 'data' => $appuntamenti];
+
+        return [
+            'status' => 'success',
+            'data'   => $appuntamenti,
+        ];
     }
 }
