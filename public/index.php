@@ -122,7 +122,22 @@ switch ($page) {
         break;
 
     case 'visualizza_recensioni':
-        View::render('ricerca/recensioni', $controller->visualizza_recensioni((int)($_GET['id'] ?? 0)));
+        $studioId = (int)($_GET['id'] ?? 0);
+        $page     = max(1, (int)($_GET['page'] ?? 1));
+        $perPage  = 10;
+        $result   = $controller->visualizza_recensioni($studioId);
+        $tutteRec = $result['data'] ?? [];
+        $totale   = count($tutteRec);
+        $totPagine = (int)ceil($totale / $perPage);
+        $recPagina = array_slice($tutteRec, ($page - 1) * $perPage, $perPage);
+        View::render('ricerca/recensioni', [
+            'studio'    => $result['studio'],
+            'recensioni'=> $recPagina,
+            'pagina'    => $page,
+            'totPagine' => $totPagine,
+            'studioId'  => $studioId,
+            'totale'    => $totale,
+        ]);
         break;
 
     // ===== INTERFACCIA 2 - PRENOTAZIONE E PAGAMENTO =====

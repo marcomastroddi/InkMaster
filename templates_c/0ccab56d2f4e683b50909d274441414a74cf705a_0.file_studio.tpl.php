@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 01:21:11
+/* Smarty version 5.8.0, created on 2026-06-26 16:43:00
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3db7e7b91f36_11946495',
+  'unifunc' => 'content_6a3e8ff4267753_81733231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ccab56d2f4e683b50909d274441414a74cf705a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782429536,
+      1 => 1782483722,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3db7e7b91f36_11946495 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e8ff4267753_81733231 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_15058510716a3db7e7b6bf77_36418141', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7227546586a3e8ff41ff463_24942520', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13830135516a3db7e7b6e508_85096073', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5535626276a3e8ff4206408_88414582', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19890258656a3db7e7b6eb07_38678906', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11090726346a3e8ff4206e98_93260995', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_15058510716a3db7e7b6bf77_36418141 extends \Smarty\Runtime\Block
+class Block_7227546586a3e8ff41ff463_24942520 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_13830135516a3db7e7b6e508_85096073 extends \Smarty\Runtime\Block
+class Block_5535626276a3e8ff4206408_88414582 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_19890258656a3db7e7b6eb07_38678906 extends \Smarty\Runtime\Block
+class Block_11090726346a3e8ff4206e98_93260995 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -236,6 +236,16 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <a href="/prenota?id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
 " class="st-cta">Prenota</a>
             </div>
+
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] == 'cliente') {?>
+            <div class="st-divider"></div>
+            <a href="/form_segnalazione?tipo=studio&id=<?php echo $_smarty_tpl->getValue('data')->getId();?>
+"
+               style="display:block;text-align:center;font-size:11px;font-weight:700;color:#4b534f;text-decoration:none;padding:6px 0;letter-spacing:.05em;transition:color .2s;"
+               onmouseover="this.style.color='#e05252'" onmouseout="this.style.color='#4b534f'">
+                ⚑ Segnala questo studio
+            </a>
+            <?php }?>
         </div>
     </aside>
 
