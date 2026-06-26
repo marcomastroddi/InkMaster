@@ -41,7 +41,10 @@ class GestioneProfilo
         if (method_exists($utente, 'getCognome'))    $data['cognome']     = $utente->getCognome();
         if (method_exists($utente, 'getEmail'))      $data['email']       = $utente->getEmail();
         if (method_exists($utente, 'getTelefono'))   $data['telefono']    = $utente->getTelefono();
-        if (method_exists($utente, 'getPosizione'))  $data['posizione']   = $utente->getPosizione()->value;
+        if (method_exists($utente, 'getPosizione')) {
+        $pos = $utente->getPosizione();
+        $data['posizione'] = ($pos instanceof \InkMaster\Enum\Citta) ? $pos->value : (string)$pos;
+        }
         if (method_exists($utente, 'getDescrizione'))$data['descrizione'] = $utente->getDescrizione();
         if (method_exists($utente, 'getPartitaIva')) $data['partita_iva'] = $utente->getPartitaIva();
         if (method_exists($utente, 'getTatuatori'))  $data['tatuatori']   = $utente->getTatuatori();
@@ -81,7 +84,7 @@ class GestioneProfilo
         if (!empty($dati['username']) && method_exists($utente, 'setUsername')) {
         $utente->setUsername($dati['username']);
         SessionManager::set('username', $dati['username']);
-}
+        }
 
         $this->pm->update();
 
