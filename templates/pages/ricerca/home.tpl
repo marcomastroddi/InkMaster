@@ -80,7 +80,6 @@
   <div class="im-section">
     <div class="im-section-head">
       <h2 class="im-h2">Tatuatori suggeriti</h2>
-      <a href="/avvia_ricerca" class="im-link">Vedi tutti →</a>
     </div>
     <div class="im-grid-wrap">
         <div class="im-grid">

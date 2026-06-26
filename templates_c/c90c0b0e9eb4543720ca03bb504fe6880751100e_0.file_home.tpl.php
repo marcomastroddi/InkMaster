@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 11:27:04
+/* Smarty version 5.8.0, created on 2026-06-26 19:40:42
   from 'file:pages/ricerca/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3d1088548516_01142896',
+  'unifunc' => 'content_6a3ed5ba116b57_83868409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c90c0b0e9eb4543720ca03bb504fe6880751100e' => 
     array (
       0 => 'pages/ricerca/home.tpl',
-      1 => 1782386769,
+      1 => 1782502836,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3d1088548516_01142896 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ed5ba116b57_83868409 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7133230256a3d1087ed0f78_96831339', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5702808376a3ed5b9de9651_45464201', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20094848746a3d1087ee9cb2_41160672', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16273291746a3ed5b9df18d3_53423949', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7189270626a3d1087eec056_50817295', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20838897336a3ed5b9df3324_94963377', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_7133230256a3d1087ed0f78_96831339 extends \Smarty\Runtime\Block
+class Block_5702808376a3ed5b9de9651_45464201 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -51,7 +51,7 @@ Home — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_20094848746a3d1087ee9cb2_41160672 extends \Smarty\Runtime\Block
+class Block_16273291746a3ed5b9df18d3_53423949 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_7189270626a3d1087eec056_50817295 extends \Smarty\Runtime\Block
+class Block_20838897336a3ed5b9df3324_94963377 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\ricerca';
@@ -168,7 +168,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);
     <div class="im-section">
     <div class="im-section-head">
       <h2 class="im-h2">Tatuatori suggeriti</h2>
-      <a href="/avvia_ricerca" class="im-link">Vedi tutti →</a>
     </div>
     <div class="im-grid-wrap">
         <div class="im-grid">
