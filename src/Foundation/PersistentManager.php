@@ -203,10 +203,13 @@ class PersistentManager
         return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
     }
 
-    /** Recensioni scritte da un cliente (area personale). */
+    /** Recensioni di un cliente (area personale). */
     public function findRecensioniByClienteId(int $idCliente): array
     {
-        return $this->recensioneRepository->findByClienteId($idCliente);
+        return $this->em->getRepository(\InkMaster\Entity\Recensione::class)->findBy(
+            ['cliente' => $idCliente],
+            ['id' => 'DESC']
+        );
     }
 
         /** Appuntamenti di uno studio filtrati per stato. */
@@ -389,6 +392,7 @@ class PersistentManager
             && $this->findStudioByUsername($username) === null
             && $this->findAmministratoreByUsername($username) === null;
     }
+
 
 
 }
