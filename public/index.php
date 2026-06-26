@@ -58,7 +58,7 @@ $pagineProtette = [
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
-    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale',
+    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale', 'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento', 'abilita_pagamento',
 ];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
@@ -649,6 +649,15 @@ switch ($page) {
     // ===== INTERFACCIA 12 - GESTIONE PAGAMENTI =====
     case 'visualizza_pagamenti':
         View::render('studio/pagamenti', $controller12->visualizzaPagamenti());
+        break;
+    
+    case 'abilita_pagamento':
+        $dati = $controller12->abilitaPagamento(
+            (int)($_POST['id_appuntamento'] ?? 0),
+            (float)($_POST['costo'] ?? 0)
+        );
+        header('Content-Type: application/json');
+        echo json_encode($dati);
         break;
 
     // ===== DASHBOARD STUDIO (landing dopo il login dello studio) =====

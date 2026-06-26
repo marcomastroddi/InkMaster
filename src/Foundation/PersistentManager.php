@@ -203,6 +203,31 @@ class PersistentManager
         return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
     }
 
+    /** Appuntamenti di uno studio filtrati per stato. */
+    public function findAppuntamentiByStudioIdAndStato(int $idStudio, string $stato): array
+    {
+        return $this->em->getRepository(\InkMaster\Entity\Appuntamento::class)
+            ->findBy(['studio' => $idStudio, 'stato' => $stato], ['data' => 'ASC']);
+    }
+
+    /** KPI pagamenti: totale da sempre. */
+    public function totalePagatiByStudio(int $idStudio): float
+    {
+        return $this->pagamentoRepository->totalePagatiByStudio($idStudio);
+    }
+
+    /** KPI pagamenti: totale mese corrente. */
+    public function totalePagatiByStudioMese(int $idStudio): float
+    {
+        return $this->pagamentoRepository->totalePagatiByStudioMese($idStudio);
+    }
+
+    /** KPI pagamenti: totale anno corrente. */
+    public function totalePagatiByStudioAnno(int $idStudio): float
+    {
+        return $this->pagamentoRepository->totalePagatiByStudioAnno($idStudio);
+    }
+
     /** Prenotazioni di un cliente (area personale). */
     public function findAppuntamentiByClienteId(int $idCliente): array
     {

@@ -22,7 +22,7 @@
         <div class="im-storico-filtri">
             <a href="/storico_appuntamenti" class="im-filtro{if !isset($smarty.get.stato)} im-filtro-attivo{/if}">Tutti</a>
             <a href="/storico_appuntamenti?stato=CONFERMATO" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'CONFERMATO'} im-filtro-attivo{/if}">Confermati</a>
-            <a href="/storico_appuntamenti?stato=IN_CORSO" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'IN_CORSO'} im-filtro-attivo{/if}">In corso</a>
+            <a href="/storico_appuntamenti?stato=DA_PAGARE" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'DA_PAGARE'} im-filtro-attivo{/if}">Da pagare</a>
             <a href="/storico_appuntamenti?stato=COMPLETATO" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'COMPLETATO'} im-filtro-attivo{/if}">Completati</a>
             <a href="/storico_appuntamenti?stato=ANNULLATO" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'ANNULLATO'} im-filtro-attivo{/if}">Annullati</a>
             <a href="/storico_appuntamenti?stato=IN_ATTESA" class="im-filtro{if isset($smarty.get.stato) && $smarty.get.stato === 'IN_ATTESA'} im-filtro-attivo{/if}">In attesa</a>
@@ -63,7 +63,7 @@
 
                     <div class="im-storico-stato im-stato-{$stato|lower}">
                         {if $stato === 'CONFERMATO'}Confermato
-                        {elseif $stato === 'IN_CORSO'}In corso
+                        {elseif $stato === 'DA_PAGARE'}Da pagare
                         {elseif $stato === 'COMPLETATO'}Completato
                         {elseif $stato === 'ANNULLATO'}Annullato
                         {elseif $stato === 'IN_ATTESA'}In attesa
