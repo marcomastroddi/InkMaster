@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 15:20:28
+/* Smarty version 5.8.0, created on 2026-06-26 22:17:23
   from 'file:pages/portfolio/portfolioLatoStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e98bc6b1ef1_10110522',
+  'unifunc' => 'content_6a3efa73679fb3_26903026',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '017e2c5b0af24360847db7d7eedcc3d67e29bd31' => 
     array (
       0 => 'pages/portfolio/portfolioLatoStudio.tpl',
-      1 => 1782483458,
+      1 => 1782510227,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e98bc6b1ef1_10110522 (\Smarty\Template $_smarty_tpl) {
+function content_6a3efa73679fb3_26903026 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_19688509396a3e98bc68afb6_38159248', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11555962746a3efa735c13a7_04646612', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2428364916a3e98bc697448_91012593', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1758992586a3efa73624a22_71530702', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9008599496a3e98bc697d21_41636394', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11635421156a3efa73625f99_10738905', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_19688509396a3e98bc68afb6_38159248 extends \Smarty\Runtime\Block
+class Block_11555962746a3efa735c13a7_04646612 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
@@ -55,7 +55,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('nome_studio'), ENT_QUOTES,
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_2428364916a3e98bc697448_91012593 extends \Smarty\Runtime\Block
+class Block_1758992586a3efa73624a22_71530702 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
@@ -67,7 +67,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_9008599496a3e98bc697d21_41636394 extends \Smarty\Runtime\Block
+class Block_11635421156a3efa73625f99_10738905 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\portfolio';
@@ -116,8 +116,9 @@ $foreach0DoElse = false;
                     <div class="im-pub-desc"><?php echo htmlspecialchars((string)$_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('pub')->getDescrizione(),80,'...'), ENT_QUOTES, 'UTF-8', true);?>
 </div>
                     <?php }?>
-                    <div class="im-pub-data"><?php echo $_smarty_tpl->getValue('pub')->getData()->format('d/m/Y');?>
-</div>
+                    <div class="im-pub-data"><?php if ($_smarty_tpl->getValue('pub')->getData()) {
+echo $_smarty_tpl->getValue('pub')->getData()->format('d/m/Y');
+} else { ?>—<?php }?></div>
                 </div>
             </div>
             <?php

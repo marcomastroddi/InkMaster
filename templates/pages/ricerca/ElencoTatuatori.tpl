@@ -71,7 +71,18 @@
 
             <div class="el-meta">
               <div class="el-rating">
-                <div class="el-stars">★★★★★</div>
+                {assign var=sid value=$studio->getId()}
+                {assign var=media value=($medie_voti[$sid] ?? 0)}
+                <div class="el-stars">
+                  {if $media > 0}
+                    {for $i=1 to 5}
+                      {if $i <= $media}★{else}<span style="opacity:.25">★</span>{/if}
+                    {/for}
+                    <span class="el-rating-num">{$media}</span>
+                  {else}
+                    <span style="opacity:.3">★★★★★</span>
+                  {/if}
+                </div>
                 <div class="el-rating-label">Valutazione</div>
               </div>
               <div class="el-location">

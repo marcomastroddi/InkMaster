@@ -131,10 +131,14 @@ class RicercaVisualizzaStudi
         $criteri = $this->prepara_criteri_ricerca($citta, $stile, $testo);
         $tatuatori = $this->pm->findAvailableStudios($criteri);
 
+        $ids = array_map(fn(Studio $s) => $s->getId(), $tatuatori);
+        $medie = $this->pm->findMediaVotiByStudiIds($ids);
+
         return [
             'status'          => 'success',
             'interfaccia'     => 'Lista tatuatori',
             'data'            => $tatuatori,
+            'medie_voti'      => $medie,
             'stili'           => $this->pm->findAvailableStyles(),
             'filtri_correnti' => ['citta' => $citta, 'stile' => $stile, 'testo' => $testo],
         ];

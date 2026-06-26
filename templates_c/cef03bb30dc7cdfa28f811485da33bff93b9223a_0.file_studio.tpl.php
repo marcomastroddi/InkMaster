@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 14:33:14
+/* Smarty version 5.8.0, created on 2026-06-26 22:42:44
   from 'file:pages/ricerca/studio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e8daa2f0375_92834596',
+  'unifunc' => 'content_6a3f006488cfa5_62352365',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cef03bb30dc7cdfa28f811485da33bff93b9223a' => 
     array (
       0 => 'pages/ricerca/studio.tpl',
-      1 => 1782483833,
+      1 => 1782510203,
       2 => 'file',
     ),
   ),
@@ -21,28 +21,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/overlay_recensione.tpl' => 1,
   ),
 ))) {
-function content_6a3e8daa2f0375_92834596 (\Smarty\Template $_smarty_tpl) {
+function content_6a3f006488cfa5_62352365 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4335374386a3e8daa22bd45_59686704', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_432015676a3f0063b4dde1_95140471', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10081082956a3e8daa23be10_86880250', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12038081136a3f0063b663f6_24919321', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1439114356a3e8daa23c732_33759884', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_177493756a3f0063b68d62_25941818', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_4335374386a3e8daa22bd45_59686704 extends \Smarty\Runtime\Block
+class Block_432015676a3f0063b4dde1_95140471 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -52,7 +52,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('data')->getNome(), ENT_QUO
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_10081082956a3e8daa23be10_86880250 extends \Smarty\Runtime\Block
+class Block_12038081136a3f0063b663f6_24919321 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -65,7 +65,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_1439114356a3e8daa23c732_33759884 extends \Smarty\Runtime\Block
+class Block_177493756a3f0063b68d62_25941818 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\pages\\ricerca';
@@ -397,8 +397,9 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
 ?>
                                         </div>
                                     </div>
-                                    <span class="st-rev-date"><?php echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');?>
-</span>
+                                    <span class="st-rev-date"><?php if ($_smarty_tpl->getValue('rec')->getData()) {
+echo $_smarty_tpl->getValue('rec')->getData()->format('M Y');
+} else { ?>—<?php }?></span>
                                 </div>
                                 <div class="st-rev-title"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTitolo(), ENT_QUOTES, 'UTF-8', true);?>
 </div>
@@ -407,9 +408,10 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
                                 <div class="st-rev-footer">
                                     <span class="st-rev-stile"><?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getStile(), ENT_QUOTES, 'UTF-8', true);?>
 </span>
-                                    · <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
- <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), ENT_QUOTES, 'UTF-8', true);?>
-
+                                    · <?php if ($_smarty_tpl->getValue('rec')->getTatuatore()) {
+echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), ENT_QUOTES, 'UTF-8', true);?>
+ <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), ENT_QUOTES, 'UTF-8', true);
+} else { ?>—<?php }?>
                                 </div>
                             </div>
                             <div class="st-rev-photo-box">
@@ -422,9 +424,10 @@ if ($_smarty_tpl->getValue('i') <= $_smarty_tpl->getValue('rec')->getVoto()) {?>
 </span>
                                     <?php }?>
                                 <?php } else { ?>
-                                    <span class="st-rev-photo-ph"><?php echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
-echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);?>
-</span>
+                                    <span class="st-rev-photo-ph"><?php if ($_smarty_tpl->getValue('rec')->getTatuatore()) {
+echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getNome(), (int) 0, (int) 1);
+echo substr((string) $_smarty_tpl->getValue('rec')->getTatuatore()->getCognome(), (int) 0, (int) 1);
+} else { ?>?<?php }?></span>
                                 <?php }?>
                             </div>
                         </a>

@@ -1,139 +1,349 @@
 /* ==========================================================================
-   DASHBOARD STUDIO — sfondo: Grande Onda Irezumi (singola forma fullpage)
+   1. STRUTTURA WRAPPER GLOBALE E AUTENTICAZIONE
    ========================================================================== */
-.im-page { 
-    min-height: 100vh; 
-    background: #0a0c0d; 
-}
 
-.im-dash-wrap {
+.im-auth-wrapper {
     position: relative;
-    min-height: calc(100vh - 80px);
-    background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d; 
-    overflow: hidden;
-}
-
-.im-dash-bg {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.07;
-}
-
-.im-dash-wave-group {
-    animation: im-wave-drift 18s ease-in-out infinite alternate;
-    transform-origin: 720px 450px;
-}
-
-@keyframes im-wave-drift {
-    0%   { transform: translateY(0px) translateX(0px) scaleY(1); }
-    50%  { transform: translateY(-18px) translateX(12px) scaleY(1.03); }
-    100% { transform: translateY(8px) translateX(-10px) scaleY(0.98); }
-}
-
-.im-dash-content {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 40px 80px;
-}
-
-.im-dash-eyebrow {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: #2fd8aa;
-    margin-bottom: 10px;
-}
-
-.im-dash-title {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 900;
-    letter-spacing: -.02em;
-    color: #eef1f0;
-    margin-bottom: 56px;
-}
-
-/* Griglia card */
-.im-dash-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.im-dash-grid .im-dash-card:nth-child(4) { grid-column: 1; }
-.im-dash-grid .im-dash-card:nth-child(5) { grid-column: 2; }
-
-@media (max-width: 860px) { .im-dash-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px) { .im-dash-grid { grid-template-columns: 1fr; } }
-
-/* Singola card */
-.im-dash-card {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 16px;
-    padding: 28px 26px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s, border-color 0.2s, transform 0.18s;
-    cursor: pointer;
-}
-
-.im-dash-card:hover {
-    background: rgba(47,216,170,.07);
-    border-color: rgba(47,216,170,.3);
-    transform: translateY(-3px);
-}
-
-.im-dash-card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(47,216,170,.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    min-height: calc(100vh - 100px);
+    padding: 60px 20px;
+    overflow: hidden;
+    background-color: #0a0c0d;
+    /* Texture di sfondo puntinata delicata (Dotwork) */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
-.im-dash-card-icon svg {
-    width: 22px;
-    height: 22px;
-    stroke: #2fd8aa;
-    fill: none;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.im-auth-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 760px;
 }
 
-.im-dash-card-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: #9aa3a0;
-    text-transform: uppercase;
-    letter-spacing: .08em;
+/* Struttura solida della card di login/registrazione */
+.im-auth-card {
+    background: #101417; 
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.im-dash-card-value {
-    font-size: 15px;
-    font-weight: 600;
+.im-auth-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.im-title-auth {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
     color: #eef1f0;
-    margin-top: auto;
 }
 
-.im-dash-card-arrow {
-    font-size: 18px;
+.im-subtitle {
+    font-size: 15px;
+    color: #8a9592;
+}
+
+
+/* ==========================================================================
+   2. ELEMENTI DEI FORM (INPUT, SELEZIONI, BOTTONI)
+   ========================================================================== */
+
+.im-form {
+    margin-top: 20px;
+}
+
+/* Griglia standard a 2 colonne per i campi di registrazione */
+.im-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.im-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.im-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cdd3d1;
+}
+
+.im-input {
+    background: #14191c;
+    border: 1px solid #232b30;
+    color: #eef1f0;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.im-input::placeholder {
+    color: #4b534f;
+}
+
+.im-input:focus {
+    border-color: #2fd8aa;
+    background: #161c20;
+}
+
+.im-input option {
+    background: #14191c;
+    color: #eef1f0;
+}
+
+.im-input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.5);
+    cursor: pointer;
+}
+
+/* Pulsante di invio principale */
+.im-btn-submit {
+    width: 100%;
+    padding: 16px;
+    margin-top: 32px;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+}
+
+.im-btn-submit:hover {
+    background: #37eec0;
+}
+
+.im-btn-submit:active {
+    transform: scale(0.99);
+}
+
+/* Footer della card con rimandi ipertestuali ad altre viste di autenticazione */
+.im-auth-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: #8a9592;
+}
+
+.im-link-auth {
     color: #2fd8aa;
-    margin-top: 4px;
-    transition: transform 0.2s;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
 }
 
-.im-dash-card:hover .im-dash-card-arrow { transform: translateX(4px); }
+.im-link-auth:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   3. WEBKIT AUTOFILL UTILITIES
+   ========================================================================== */
+
+/* Forza lo sfondo scuro e il testo chiaro quando i campi vengono auto-compilati dal browser */
+.im-input:-webkit-autofill,
+.im-input:-webkit-autofill:hover, 
+.im-input:-webkit-autofill:focus, 
+.im-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #eef1f0 !important;
+    transition: background-color 5000000s ease-in-out 0s;
+    box-shadow: inset 0 0 0 1000px #14191c !important;
+}
+
+/* Gestisce l'autofill quando l'input riceve anche il focus attivo */
+.im-input:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 1000px #161c20 !important;
+    border-color: #2fd8aa !important;
+}
+
+
+/* ==========================================================================
+   4. TEMA 1: REGISTRAZIONE CLIENTE (Twin Bouquet Fineline)
+   ========================================================================== */
+
+/* Decorazione Sinistra: Ramo Fineline Specchiato */
+.im-cliente-theme.im-auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -12%;
+    transform: translateY(-50%) scaleX(-1);
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.12;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-left 160s linear infinite;
+}
+
+/* Decorazione Destra: Ramo Fineline Originale */
+.im-cliente-theme.im-auth-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -12%;
+    transform: translateY(-50%);
+    width: 750px;
+    height: 750px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 90 C42 75, 48 55, 62 30 M50 58 C42 50, 28 45, 24 35 M56 42 C65 38, 74 28, 70 18' opacity='0.7'/%3E%3Ccircle cx='70' cy='18' r='1.5' stroke-dasharray='0.4 0.4'/%3E%3Cpath d='M70 16 C73 11, 78 14, 72 17 C76 18, 75 23, 71 20 C69 23, 64 21, 68 18 Z'/%3E%3Ccircle cx='50' cy='58' r='2.5'/%3E%3Cpath d='M50 55 C52 45, 60 48, 52 56 C62 52, 64 60, 52 59 C54 69, 46 66, 48 60 C38 61, 40 53, 47 56 C44 46, 50 48, 50 55 Z' stroke-width='0.3'/%3E%3Cpath d='M50 56 C51 51, 55 53, 51 56 C56 54, 57 58, 52 58 M49 59 C44 60, 45 56, 48 57' opacity='0.5' stroke-width='0.15'/%3E%3Cpath d='M55 38 C60 32, 58 28, 54 33 C51 36, 53 39, 55 38 Z M44 66 C38 71, 33 68, 39 64 C42 61, 44 63, 44 66 Z M28 47 C22 45, 20 39, 25 41 C28 43, 28 45, 28 47 Z'/%3E%3Cpath d='M59 28 C64 24, 65 27, 61 31 M42 53 C37 50, 36 53, 40 55' opacity='0.5' stroke-width='0.15'/%3E%3Ccircle cx='24' cy='35' r='0.6' fill='%232fd8aa'/%3E%3Ccircle cx='68' cy='34' r='0.4'/%3E%3Ccircle cx='58' cy='52' r='0.3'/%3E%3Ccircle cx='36' cy='57' r='0.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.14;
+    z-index: 1;
+    pointer-events: none;
+    animation: im-tattoo-drift-right 140s linear infinite;
+}
+
+/* Animazioni differenziate per asimmetria artistica nei movimenti */
+@keyframes im-tattoo-drift-left {
+    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
+    to   { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
+}
+
+@keyframes im-tattoo-drift-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+
+/* ==========================================================================
+   5. TEMA 2: REGISTRAZIONE STUDIO (Tribale Fullback)
+   ========================================================================== */
+
+/* Applica il macro-disegno tribale fineline sullo sfondo dello studio */
+.im-studio-theme::before,
+.im-studio-theme::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 1000px;
+    height: 1000px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.2' stroke-linecap='round'%3E%3Cpath d='M50 5 L50 95 M45 10 L55 10 M40 15 L60 15 M35 20 L65 20' opacity='0.4'/%3E%3Cpath d='M50 20 C20 25, 10 45, 25 70 C35 85, 45 90, 50 95 C55 90, 65 85, 75 70 C90 45, 80 25, 50 20 Z' stroke-width='0.3'/%3E%3Cpath d='M50 30 C30 35, 22 50, 32 68 C40 80, 48 85, 50 88 C52 85, 60 80, 68 68 C78 50, 70 35, 50 30 Z' opacity='0.8'/%3E%3Cpath d='M50 42 C40 45, 35 55, 40 65 C44 72, 48 76, 50 78 C52 76, 56 72, 60 65 C65 55, 60 45, 50 42 Z'/%3E%3Cpath d='M25 40 L35 45 L28 50 L38 55 L30 60 L40 65 L32 70 M75 40 L65 45 L72 50 L62 55 L70 60 L60 65 L68 70'/%3E%3Cpath d='M50 20 L50 30 M32 32 L40 37 M68 32 L60 37' stroke-width='0.4'/%3E%3Cpath d='M18 45 C12 55, 15 70, 28 82 M82 45 C88 55, 85 70, 72 82' opacity='0.5'/%3E%3Ccircle cx='50' cy='55' r='4' stroke-dasharray='0.5 0.5'/%3E%3Ccircle cx='50' cy='55' r='1.5' fill='%232fd8aa'/%3E%3Ccircle cx='35' cy='30' r='0.8'/%3E%3Ccircle cx='65' cy='30' r='0.8'/%3E%3Ccircle cx='20' cy='60' r='0.5' fill='%232fd8aa'/%3E%3Ccircle cx='80' cy='60' r='0.5' fill='%232fd8aa'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.11;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.im-studio-theme::before {
+    left: -18%;
+    top: 45%;
+    transform: translateY(-50%) scaleX(-1);
+    animation: im-tribal-drift-left 180s linear infinite;
+}
+
+.im-studio-theme::after {
+    right: -18%;
+    top: 45%;
+    transform: translateY(-50%);
+    animation: im-tribal-drift-right 150s linear infinite;
+}
+
+/* Animazioni di rotazione iper-lente dedicate per i grandi pezzi tribali */
+@keyframes im-tribal-drift-left {
+    from { transform: translateY(-50%) scaleX(-1) rotate(0deg); }
+    to   { transform: translateY(-50%) scaleX(-1) rotate(-360deg); }
+}
+
+@keyframes im-tribal-drift-right {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Regolazione altezza textarea descrizione interna al form Studio */
+.im-studio-theme .textarea.im-input {
+    min-height: 100px;
+    padding-top: 12px;
+}
+
+
+/* ==========================================================================
+   6. TEMA 3: SCHERMATA LOGIN (Drago Tradizionale Orientale Irezumi)
+   ========================================================================== */
+
+/* Ripristino larghezza contenuta specifica per la card di login */
+.im-login-card {
+    max-width: 480px !important;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Background con Drago serpentino yakuza e onde tradizionali */
+.im-login-theme.im-auth-wrapper::before,
+.im-login-theme.im-auth-wrapper::after {
+    content: ''; 
+    width: 750px;
+    height: 950px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cg fill='none' stroke='%232fd8aa' stroke-width='0.35' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Onde e Nuvole di sfondo (Irezumi Background) --%3E%3Cpath d='M20 140 C 30 135, 40 145, 50 140 C 60 135, 70 145, 80 140' opacity='0.4'/%3E%3Cpath d='M10 110 C 25 105, 30 120, 45 115 C 60 110, 75 125, 90 115' opacity='0.4'/%3E%3Cpath d='M15 30 C 30 25, 40 35, 55 30' opacity='0.3'/%3E%3C!-- Corpo Serpentino del Drago (Spirale Yakuza) --%3E%3Cpath d='M50 20 C65 15, 85 25, 75 45 C65 65, 35 40, 25 65 C12 90, 45 105, 70 95 C95 85, 85 120, 60 135 C45 145, 25 135, 30 120' stroke-width='0.5'/%3E%3Cpath d='M53 23 C66 19, 81 27, 72 44 C63 61, 37 44, 28 66 C16 88, 44 101, 67 92 C91 83, 81 116, 58 131 C45 139, 29 131, 33 121' opacity='0.7'/%3E%3C!-- Testa del Drago con Corna e Baffi --%3E%3Cpath d='M50 20 L46 15 L40 18 L44 22 L38 24 L45 27 Z' fill='%232fd8aa' fill-opacity='0.1'/%3E%3Cpath d='M48 18 C40 15, 35 22, 28 20' stroke-width='0.5' /%3E%3C!-- Baffo Lungo --%3E%3Cpath d='M52 19 C58 12, 65 10, 75 12' stroke-width='0.5' /%3E%3C!-- Secondo Baffo --%3E%3C!-- Artigli e Zampe (Stile Giapponese a 3 artigli) --%3E%3Cpath d='M68 46 L74 49 M74 49 L78 46 M74 49 L76 54' /%3E%3Cpath d='M28 66 L22 64 M22 64 L18 67 M22 64 L20 59' /%3E%3Cpath d='M72 95 L78 98 L82 95' /%3E%3C!-- Fiamma della Coda --%3E%3Cpath d='M30 120 C20 115, 15 125, 10 122 C12 128, 20 130, 28 123' fill='%232fd8aa' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.18;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.im-login-theme.im-auth-wrapper::before {
+    left: -8%;
+    transform: translateY(-50%) scaleX(-1);
+    animation: im-yakuza-drift-left 25s ease-in-out infinite;
+}
+
+.im-login-theme.im-auth-wrapper::after {
+    right: -8%;
+    transform: translateY(-50%);
+    animation: im-yakuza-drift-right 22s ease-in-out infinite;
+}
+
+/* Movimento organico e sinuoso (Respiro/Fumo) per il layout a Draghi */
+@keyframes im-yakuza-drift-left {
+    0%   { transform: translateY(-50%) scaleX(-1) rotate(0deg) translateX(0); }
+    50%  { transform: translateY(-48%) scaleX(-1) rotate(-4deg) translateX(15px); }
+    100% { transform: translateY(-50%) scaleX(-1) rotate(0deg) translateX(0); }
+}
+
+@keyframes im-yakuza-drift-right {
+    0%   { transform: translateY(-50%) rotate(0deg) translateX(0); }
+    50%  { transform: translateY(-52%) rotate(4deg) translateX(-15px); }
+    100% { transform: translateY(-50%) rotate(0deg) translateX(0); }
+}
+
+
+/* ==========================================================================
+   7. MEDIA QUERIES (RESPONSIVE LAYOUT)
+   ========================================================================== */
+
+@media (max-width: 680px) {
+    /* La griglia collassa su colonna singola per schermi mobile */
+    .im-form-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Ridotto il padding interno della card per massimizzare l'area di input */
+    .im-auth-card {
+        padding: 32px 20px;
+    }
+}
