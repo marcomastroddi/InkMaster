@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 19:53:48
+/* Smarty version 5.8.0, created on 2026-06-26 23:18:57
   from 'file:partials/header_ricerca.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ebcacefd652_94241563',
+  'unifunc' => 'content_6a3eecc101a879_20612668',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f91807c50892db222234a2d53b0fe8690493a76d' => 
     array (
       0 => 'partials/header_ricerca.tpl',
-      1 => 1782496297,
+      1 => 1782508016,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ebcacefd652_94241563 (\Smarty\Template $_smarty_tpl) {
+function content_6a3eecc101a879_20612668 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 ?><div class="im-nav im-nav--search">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
@@ -39,6 +39,9 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
     <div class="im-nav-right">
         <a href="/cerca">Per gli artisti</a>
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
+                <a href="/area_personale" class="im-btn-outline im-btn-prenotazioni">Le mie prenotazioni</a>
+            <?php }?>
             <a href="/visualizza_profilo" class="im-nav-user">
                 <div class="im-nav-avatar"><?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('_sessione')['username'], (int) 0, (int) 2) ?? '', 'UTF-8');?>
 </div>
@@ -48,7 +51,6 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
         <?php } else { ?>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-        
     </div>
-</div><?php }
+    </div><?php }
 }

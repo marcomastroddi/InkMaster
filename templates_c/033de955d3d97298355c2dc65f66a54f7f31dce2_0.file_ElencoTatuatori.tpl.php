@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 11:52:54
+/* Smarty version 5.8.0, created on 2026-06-26 23:18:57
   from 'file:pages/ricerca/ElencoTatuatori.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3cfa76cddff9_41727315',
+  'unifunc' => 'content_6a3eecc10143e1_69397058',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '033de955d3d97298355c2dc65f66a54f7f31dce2' => 
     array (
       0 => 'pages/ricerca/ElencoTatuatori.tpl',
-      1 => 1782381163,
+      1 => 1782504575,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3cfa76cddff9_41727315 (\Smarty\Template $_smarty_tpl) {
+function content_6a3eecc10143e1_69397058 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17683931616a3cfa76cc8755_90627552', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9049570876a3eecc10044a6_44522566', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12223090386a3cfa76ccb154_98649322', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6943557016a3eecc1005d31_69508603', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_13876489926a3cfa76ccb695_92000223', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_816327746a3eecc1006279_22521130', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base_ricerca.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_17683931616a3cfa76cc8755_90627552 extends \Smarty\Runtime\Block
+class Block_9049570876a3eecc10044a6_44522566 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -51,7 +51,7 @@ Risultati ricerca — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_12223090386a3cfa76ccb154_98649322 extends \Smarty\Runtime\Block
+class Block_6943557016a3eecc1005d31_69508603 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -63,7 +63,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_13876489926a3cfa76ccb695_92000223 extends \Smarty\Runtime\Block
+class Block_816327746a3eecc1006279_22521130 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -188,8 +188,13 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
 
             <div class="el-map-wrap">
-  <div class="el-map-head">I nostri studi in Italia</div>
-  <div class="el-map">
+    <div class="el-map-card">
+    <div class="el-map-head">
+      <span class="el-map-eyebrow">La nostra rete</span>
+      <h2 class="el-map-title">Inchiostro in tutta <span class="el-accent">Italia</span></h2>
+      <p class="el-map-sub">Studi verificati da Nord a Sud</p>
+    </div>
+    <div class="el-map">
     <svg class="el-map-svg" viewBox="0 0 220 275" xmlns="http://www.w3.org/2000/svg">
 
       <!-- PENISOLA ~280 punti -->
@@ -346,8 +351,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       "/>
 
       <!-- Roma -->
-      <circle class="el-map-city-dot el-map-city-dot--main" cx="105" cy="138" r="4"/>
-      <circle class="el-map-city-ring"                       cx="105" cy="138" r="7"/>
+      <circle class="el-map-city-dot" cx="105" cy="138" r="4"/>
       <!-- altre città -->
       <circle class="el-map-city-dot" cx="57"  cy="58"  r="3"/>
       <circle class="el-map-city-dot" cx="35"  cy="67"  r="3"/>
@@ -364,7 +368,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <circle class="el-map-city-dot" cx="54"  cy="199" r="3"/>
       <circle class="el-map-city-dot" cx="85"  cy="43"  r="3"/>
 
-      <text class="el-map-lbl el-map-lbl--main" x="108" y="136">Roma</text>
+      <text class="el-map-lbl" x="108" y="136">Roma</text>
       <text class="el-map-lbl" x="60"  y="56" >Milano</text>
       <text class="el-map-lbl" x="15"  y="65" >Torino</text>
       <text class="el-map-lbl" x="105" y="60" >Venezia</text>
@@ -380,28 +384,19 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <text class="el-map-lbl" x="57"  y="197">Cagliari</text>
       <text class="el-map-lbl" x="88"  y="41" >Trento</text>
 
-    </svg>
+      </svg>
+    </div>
   </div>
 </div>
 
   </div>
-    <?php if ($_smarty_tpl->getValue('totale') > 10) {?>
-  <div class="el-pagination">
-    <a href="#" class="el-pag-btn">‹</a>
-    <a href="#" class="el-pag-btn active">1</a>
-    <a href="#" class="el-pag-btn">2</a>
-    <a href="#" class="el-pag-btn">3</a>
-    <a href="#" class="el-pag-btn">›</a>
-  </div>
-  <?php } else { ?>
-  <div class="el-pagination-single">
+    <div class="el-pagination-single">
     <span class="el-pag-chip">
       <span class="el-pag-chip-dot"></span>
       <?php echo $_smarty_tpl->getValue('totale');?>
  <?php if ($_smarty_tpl->getValue('totale') == 1) {?>risultato trovato<?php } else { ?>risultati trovati<?php }?>
     </span>
   </div>
-  <?php }?>
 
 </div>
 
