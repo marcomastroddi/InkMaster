@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 16:08:53
+/* Smarty version 5.8.0, created on 2026-06-26 20:13:24
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e87f5978883_31670007',
+  'unifunc' => 'content_6a3ec144ccb030_65804295',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b9331ff3296944963a8ea8e96c380336ccb4b48' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782482167,
+      1 => 1782497601,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e87f5978883_31670007 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ec144ccb030_65804295 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
-        <a href="/registrazioneStudio">Per gli artisti</a>
+        <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'studio') {?>
+            <a href="/registrazioneStudio">Per gli artisti</a>
+        <?php }?>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
+                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+            <?php }?>
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     <?php echo mb_strtoupper((string) $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('_sessione')['username'],1,'',true) ?? '', 'UTF-8');?>
@@ -42,10 +47,8 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-
-        <span class="im-lang">🌐 <strong>ITA</strong></span>
-    </div>
-</div>
+        </div>
+        </div>
 
 <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
 <div class="im-logout-overlay" id="im-logout-overlay">
@@ -59,7 +62,16 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
         </div>
     </div>
 </div>
+<?php }?>
+
+<?php } else { ?>
+<div class="im-nav im-nav--admin">
+    <a href="/home" class="im-logo">INK<span>MASTER</span></a>
+    <div class="im-nav-right">
+        <a href="/dashboard_moderatore" class="im-btn-outline">Dashboard Admin</a>
+        <a href="/logout" class="im-btn-outline">Esci</a>
+    </div>
+</div>
 <?php }
-}
 }
 }

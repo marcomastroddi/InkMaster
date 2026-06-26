@@ -29,4 +29,12 @@ class AppuntamentoRepository
         // Aggiusta 'CONFERMATO' a ciò che per te significa "prenotazione attiva"
         return $this->em->getRepository(Appuntamento::class)->count(['stato' => 'CONFERMATO']);
     }
+
+    public function findByClienteId(int $idCliente): array
+    {
+        return $this->em->getRepository(Appuntamento::class)->findBy(
+            ['cliente' => $idCliente],
+            ['data' => 'DESC']
+        );
+    }
 }

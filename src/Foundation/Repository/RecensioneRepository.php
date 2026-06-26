@@ -32,4 +32,12 @@ class RecensioneRepository
         shuffle($recensioni);
         return array_slice($recensioni, 0, $limit);
     }
+
+    public function findByClienteId(int $idCliente): array
+    {
+        return $this->em->getRepository(Recensione::class)->findBy(
+            ['cliente' => $idCliente],
+            ['data' => 'DESC']
+        );
+    }
 }

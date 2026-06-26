@@ -224,31 +224,39 @@ class PrenotazionePagamento {
     }
 
 
-    public function avvia_Pagamento(): array
-{
-    $appuntamentoId = SessionManager::get('prenotazione', [])['appuntamento_id'] ?? null;
+    public function avvia_Pagamento(int $appuntamentoId = 0): array
+    {
+        if ($appuntamentoId === 0) {
+            $appuntamentoId = (int)(SessionManager::get('prenotazione', [])['appuntamento_id'] ?? 0);
+        }
 
-    if ($appuntamentoId === null) {
-        return ['status' => 'error', 'message' => 'Nessun appuntamento in corso'];
+        if ($appuntamentoId === 0) {
+            return ['status' => 'error', 'message' => 'Nessun appuntamento specificato'];
+        }
+
+        $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
+
+        if ($appuntamento === null) {
+            return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
+        }
+
+        if ($appuntamento->getStato() !== 'DA_PAGARE') {
+            return ['status' => 'error', 'message' => 'Il tatuaggio non è ancora pronto per il pagamento'];
+        }
+
+        // Salva in sessione per il passo successivo (form carta)
+        $pren = SessionManager::get('prenotazione', []);
+        $pren['appuntamento_id'] = $appuntamento->getId();
+        SessionManager::set('prenotazione', $pren);
+
+        return [
+            'status'          => 'success',
+            'interfaccia'     => 'Form dati pagamento',
+            'costo'           => $appuntamento->getCosto(),
+            'appuntamento_id' => $appuntamento->getId(),
+            'message'         => 'Inserisci i dati della carta per procedere al pagamento',
+        ];
     }
-
-    $appuntamento = $this->pm->read(Appuntamento::class, $appuntamentoId);
-
-    if ($appuntamento === null) {
-        return ['status' => 'error', 'message' => 'Appuntamento non trovato'];
-    }
-
-    if ($appuntamento->getStato() !== 'COMPLETATO') {
-        return ['status' => 'error', 'message' => 'Il tatuaggio non è ancora completato'];
-    }
-
-    return [
-        'status'      => 'success',
-        'interfaccia' => 'Form dati pagamento',
-        'costo'       => $appuntamento->getCosto(),
-        'message'     => 'Inserisci i dati della carta per procedere al pagamento'
-    ];
-}
 
 
     public function inserisci_Dati_Pagamento(array $datiCarta): array
@@ -299,7 +307,8 @@ class PrenotazionePagamento {
             cartaDiCredito: $carta
         );
 
-        $this->pm->create($pagamento);
+        $appuntamento->setStato('COMPLETATO');
+        $this->pm->update();
         SessionManager::remove('prenotazione');
 
         return [

@@ -203,6 +203,17 @@ class PersistentManager
         return $this->pagamentoRepository->findPagamentiByStudioId($idStudio);
     }
 
+    /** Prenotazioni di un cliente (area personale). */
+    public function findAppuntamentiByClienteId(int $idCliente): array
+    {
+        return $this->appuntamentoRepository->findByClienteId($idCliente);
+    }
+
+    /** Recensioni scritte da un cliente (area personale). */
+    public function findRecensioniByClienteId(int $idCliente): array
+    {
+        return $this->recensioneRepository->findByClienteId($idCliente);
+    }
     // ==================================================================
     // MODERAZIONE — ModerazionePiattaforma (segnalazioni + KPI dashboard)
     // ==================================================================

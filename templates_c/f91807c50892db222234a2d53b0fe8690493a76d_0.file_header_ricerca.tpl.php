@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-24 23:10:41
+/* Smarty version 5.8.0, created on 2026-06-26 19:53:48
   from 'file:partials/header_ricerca.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3c47d1b84608_95757198',
+  'unifunc' => 'content_6a3ebcacefd652_94241563',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f91807c50892db222234a2d53b0fe8690493a76d' => 
     array (
       0 => 'partials/header_ricerca.tpl',
-      1 => 1782334511,
+      1 => 1782496297,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3c47d1b84608_95757198 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ebcacefd652_94241563 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/partials';
 ?><div class="im-nav im-nav--search">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
@@ -48,7 +48,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
         <?php } else { ?>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-        <span class="im-lang">🌐 <strong>ITA</strong></span>
+        
     </div>
 </div><?php }
 }

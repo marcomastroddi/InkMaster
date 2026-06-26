@@ -7,6 +7,9 @@
         {/if}
 
         {if $_sessione.username}
+            {if $_sessione.ruolo === 'cliente'}
+                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+            {/if}
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     {$_sessione.username|truncate:1:'':true|upper}
@@ -18,8 +21,8 @@
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         {/if}
-    </div>
-</div>
+        </div>
+        </div>
 
 {if $_sessione.username}
 <div class="im-logout-overlay" id="im-logout-overlay">

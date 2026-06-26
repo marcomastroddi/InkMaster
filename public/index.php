@@ -20,6 +20,7 @@ use InkMaster\Control\ControllerComune\Autenticazione;
 use InkMaster\Control\ControllerComune\Registrazione;
 use InkMaster\Control\ControllerAmministratore\ModerazionePiattaforma;
 use InkMaster\Control\ControllerStudio\GestioneTeam;
+use InkMaster\Control\ControllerCliente\AreaPersonale;
 
 use InkMaster\Foundation\SessionManager;
 use InkMaster\Foundation\PersistentManager;
@@ -57,7 +58,7 @@ $pagineProtette = [
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
-    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti',
+    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale',
 ];
 
 if (in_array($page, $pagineProtette) && !SessionManager::has('username')) {
@@ -73,7 +74,7 @@ $pagineVietateStudio = [
     'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData',
     'mostraRiepilogo', 'richiediAppuntamento', 'avvia_pagamento',
     'inserisci_dati_pagamento', 'avviaRecensione', 'compilaRecensione',
-    'visualizzaRecensione',
+    'visualizzaRecensione', 'area_personale',
 ];
 
 if (in_array($page, $pagineVietateStudio) && SessionManager::get('ruolo') === 'studio') {
@@ -250,7 +251,13 @@ switch ($page) {
         break;
 
     case 'avvia_pagamento':
-        View::render('prenotazione/form_pagamento', $controller2->avvia_pagamento());
+        $appId = (int)($_GET['id'] ?? 0);
+        $dati  = $controller2->avvia_Pagamento($appId);
+        if ($dati['status'] === 'error') {
+            header('Location: /area_personale');
+            exit;
+        }
+        View::render('prenotazione/form_pagamento', $dati);
         break;
 
     case 'inserisci_dati_pagamento':
@@ -592,6 +599,12 @@ switch ($page) {
         );
         header('Content-Type: application/json');
         echo json_encode($dati);
+        break;
+
+    // ===== INTERFACCIA — AREA PERSONALE CLIENTE =====
+    case 'area_personale':
+        $apController = new AreaPersonale();
+        View::render('profilo/areaPersonale', $apController->visualizza());
         break;
 
     // ===== INTERFACCIA 10 - GESTIONE CLIENTI =====

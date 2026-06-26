@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 09:00:52
+/* Smarty version 5.8.0, created on 2026-06-26 20:05:31
   from 'file:pages/auth/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e23a405d041_05204098',
+  'unifunc' => 'content_6a3ebf6bee7cc6_50302844',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9968a0de5db30c78b2d23aa0f017ce3ee9075116' => 
     array (
       0 => 'pages/auth/login.tpl',
-      1 => 1782457247,
+      1 => 1782496297,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e23a405d041_05204098 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ebf6bee7cc6_50302844 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/auth';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11796811786a3e23a4059c89_01912697', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14881087016a3ebf6bedcb51_79707806', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7395445046a3e23a405c4c0_87909160', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11743136026a3ebf6bee1048_06630922', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20336349516a3e23a405cba7_31209758', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21284066026a3ebf6bee1e57_39752167', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_11796811786a3e23a4059c89_01912697 extends \Smarty\Runtime\Block
+class Block_14881087016a3ebf6bedcb51_79707806 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/auth';
@@ -51,7 +51,7 @@ Accedi — InkMaster<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_7395445046a3e23a405c4c0_87909160 extends \Smarty\Runtime\Block
+class Block_11743136026a3ebf6bee1048_06630922 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/auth';
@@ -64,7 +64,7 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_20336349516a3e23a405cba7_31209758 extends \Smarty\Runtime\Block
+class Block_21284066026a3ebf6bee1e57_39752167 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/auth';
@@ -83,6 +83,13 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
                 <h1 class="im-title-auth">Accedi</h1>
                 <p class="im-subtitle">Inserisci le tue credenziali per entrare nel mondo di InkMaster.</p>
             </div>
+
+            <?php if ((true && ($_smarty_tpl->hasVariable('message') && null !== ($_smarty_tpl->getValue('message') ?? null))) && $_smarty_tpl->getValue('message')) {?>
+            <div style="background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);border-radius:10px;padding:12px 16px;font-size:13px;color:#e05252;margin-bottom:20px;">
+                <?php echo htmlspecialchars((string)$_smarty_tpl->getValue('message'), ENT_QUOTES, 'UTF-8', true);?>
+
+            </div>
+            <?php }?>
 
             <form action="/login" method="POST" class="im-form">
                 <div class="im-form-group">

@@ -1,0 +1,326 @@
+/* ==========================================================================
+   AREA PERSONALE CLIENTE
+   ========================================================================== */
+
+.im-ap-page {
+    min-height: calc(100vh - 100px);
+    background: #0a0c0d;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding: 48px 24px 80px;
+}
+
+.im-ap-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ── Header profilo ── */
+.im-ap-header {
+    background: #101417;
+    border-radius: 16px;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.im-ap-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-size: 1.8rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.im-ap-header-info { flex: 1; }
+
+.im-ap-welcome {
+    font-size: 20px;
+    font-weight: 800;
+    color: #eef1f0;
+    margin-bottom: 6px;
+}
+
+.im-ap-meta {
+    font-size: 13px;
+    color: #8a9490;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.im-ap-meta span { display: flex; align-items: center; gap: 6px; }
+
+.im-ap-gestisci {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2fd8aa;
+    text-decoration: none;
+    border: 1px solid rgba(47,216,170,.3);
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.im-ap-gestisci:hover { background: rgba(47,216,170,.1); }
+
+/* ── Titoli sezione ── */
+.im-ap-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #4b534f;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+/* ── Card prenotazione ── */
+.im-ap-bookings { margin-bottom: 48px; }
+
+.im-ap-booking-card {
+    background: #101417;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 52px 1fr auto auto auto;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: box-shadow 0.2s;
+}
+
+.im-ap-booking-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+
+.im-ap-studio-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #1a2228;
+    border: 1px solid #232b30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2fd8aa;
+    flex-shrink: 0;
+}
+
+.im-ap-booking-info { min-width: 0; }
+
+.im-ap-studio-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #eef1f0;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.im-ap-booking-note {
+    font-size: 12px;
+    color: #6b7a75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.im-ap-booking-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.im-ap-booking-date {
+    font-size: 12px;
+    color: #8a9490;
+    font-weight: 600;
+}
+
+.im-ap-booking-city {
+    font-size: 11px;
+    color: #4b534f;
+}
+
+/* Status badges */
+.im-ap-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.im-ap-badge--attesa    { background: rgba(255,193,7,.12);  color: #ffc107; }
+.im-ap-badge--confermato{ background: rgba(47,216,170,.12); color: #2fd8aa; }
+.im-ap-badge--pagare    { background: rgba(99,102,241,.12); color: #818cf8; }
+.im-ap-badge--completato{ background: rgba(34,197,94,.12);  color: #22c55e; }
+.im-ap-badge--annullato { background: rgba(230,57,70,.12);  color: #e63946; }
+
+/* Azioni */
+.im-ap-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.im-ap-btn-pay {
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.im-ap-btn-pay:hover { background: #37eec0; }
+
+.im-ap-btn-paid {
+    background: rgba(34,197,94,.12);
+    color: #22c55e;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 18px;
+    border: 1px solid rgba(34,197,94,.2);
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.im-ap-btn-chat {
+    font-size: 12px;
+    color: #8a9490;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+}
+
+.im-ap-btn-chat:hover { color: #2fd8aa; }
+
+/* Empty state */
+.im-ap-empty {
+    text-align: center;
+    padding: 40px 24px;
+    color: #4b534f;
+    font-size: 14px;
+    background: #101417;
+    border-radius: 12px;
+}
+
+/* ── Card recensione ── */
+.im-ap-reviews { margin-bottom: 48px; }
+
+.im-ap-review-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.im-ap-review-card {
+    background: #101417;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.im-ap-review-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.im-ap-review-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #2fd8aa;
+    color: #0a0c0d;
+    font-size: .75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.im-ap-review-meta { flex: 1; min-width: 0; }
+
+.im-ap-review-studio {
+    font-size: 13px;
+    font-weight: 700;
+    color: #eef1f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.im-ap-review-date {
+    font-size: 11px;
+    color: #4b534f;
+}
+
+.im-ap-stars { color: #ffc107; font-size: 13px; margin-bottom: 8px; }
+
+.im-ap-review-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #cdd3d1;
+    margin-bottom: 4px;
+}
+
+.im-ap-review-desc {
+    font-size: 13px;
+    color: #6b7a75;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.im-ap-review-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #2fd8aa;
+    background: rgba(47,216,170,.1);
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+@media (max-width: 700px) {
+    .im-ap-booking-card {
+        grid-template-columns: 48px 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    .im-ap-booking-meta { grid-column: 2; }
+    .im-ap-actions { grid-column: 1 / -1; }
+    .im-ap-review-grid { grid-template-columns: 1fr; }
+    .im-ap-header { flex-direction: column; text-align: center; }
+}
