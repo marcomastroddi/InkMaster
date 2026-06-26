@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-25 22:39:19
+/* Smarty version 5.8.0, created on 2026-06-26 12:50:31
   from 'file:pages/studio/dashboardStudio.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3dae17e94db5_43213092',
+  'unifunc' => 'content_6a3e7597d7b687_93092965',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a958622ad20670d673f7efde6a5053ade6fe022e' => 
     array (
       0 => 'pages/studio/dashboardStudio.tpl',
-      1 => 1782427153,
+      1 => 1782466507,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3dae17e94db5_43213092 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e7597d7b687_93092965 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_14530333056a3dae17e6fb81_09148416', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17282524206a3e7597cb75e0_37274346', "title");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7259131136a3dae17e79e45_33570777', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_4302126306a3e7597cc0df6_47079305', "extra_css");
 ?>
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2254992456a3dae17e7bb88_76429193', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_8019533456a3e7597cc1fc1_42021729', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_14530333056a3dae17e6fb81_09148416 extends \Smarty\Runtime\Block
+class Block_17282524206a3e7597cb75e0_37274346 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -50,7 +50,7 @@ Dashboard — InkMaster Studio<?php
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_7259131136a3dae17e79e45_33570777 extends \Smarty\Runtime\Block
+class Block_4302126306a3e7597cc0df6_47079305 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -62,7 +62,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_2254992456a3dae17e7bb88_76429193 extends \Smarty\Runtime\Block
+class Block_8019533456a3e7597cc1fc1_42021729 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
@@ -109,7 +109,7 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
         <h1 class="im-dash-title">Bentornato, <?php echo $_smarty_tpl->getValue('_sessione')['username'];?>
 </h1>
         <div class="im-dash-grid">
-                        <a href="/visualizza_clienti" class="im-dash-card">
+                        <a href="/storico_appuntamenti" class="im-dash-card">
                 <div class="im-dash-card-icon">
                     <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
                 </div>
@@ -148,6 +148,14 @@ $_smarty_current_dir = 'D:\\InkMaster\\templates\\pages\\studio';
                 </div>
                 <div class="im-dash-card-label">Pagamenti</div>
                 <div class="im-dash-card-value">Storico e incassi</div>
+                <div class="im-dash-card-arrow">→</div>
+            </a>
+                        <a href="/gestisci_team" class="im-dash-card">
+                <div class="im-dash-card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.85"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="im-dash-card-label">Team</div>
+                <div class="im-dash-card-value">Gestisci il tuo team</div>
                 <div class="im-dash-card-arrow">→</div>
             </a>
         </div>

@@ -251,7 +251,7 @@ switch ($page) {
 
     // ===== INTERFACCIA 3 - GESTIONE PORTFOLIO (studio loggato) =====
     case 'portfolio_studio':
-        View::render('portfolio/portfolio', $controller3->apriPortfolio());
+        View::render('portfolio/portfolioLatoStudio', $controller3->apriPortfolio());
         break;
 
     case 'form_pubblicazione':
@@ -259,15 +259,53 @@ switch ($page) {
         break;
 
     case 'pubblica_pubblicazione':
-        $dati = $controller3->pubblicaPubblicazione([
-            'titolo'        => $_POST['titolo']        ?? '',
-            'descrizione'   => $_POST['descrizione']   ?? '',
-            'percorso_foto' => $_POST['percorso_foto'] ?? '',
-            'stile'         => $_POST['stile']         ?? ''
-        ]);
-        header('Content-Type: application/json');
-        echo json_encode($dati);
+    $errorMsg = null;
+    $percorsoFoto = '';
+
+    if (!isset($_FILES['percorso_foto']) || $_FILES['percorso_foto']['error'] !== UPLOAD_ERR_OK) {
+        $errorMsg = 'Immagine obbligatoria.';
+    } elseif (!in_array($_FILES['percorso_foto']['type'], ['image/jpeg','image/png','image/webp'])) {
+        $errorMsg = 'Formato non supportato (usa JPG, PNG o WebP).';
+    } elseif ($_FILES['percorso_foto']['size'] > 5 * 1024 * 1024) {
+        $errorMsg = 'Immagine troppo grande (max 5 MB).';
+    } else {
+        $file = $_FILES['percorso_foto'];
+        $estensione = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $nomeFile   = uniqid('tattoo_', true) . '.' . $estensione;
+        $destDir    = __DIR__ . '/img/tatuaggi/';
+        if (!is_dir($destDir)) {
+            mkdir($destDir, 0755, true);
+        }
+        if (!move_uploaded_file($file['tmp_name'], $destDir . $nomeFile)) {
+            $errorMsg = 'Errore nel salvataggio dell\'immagine.';
+        } else {
+            $percorsoFoto = '/img/tatuaggi/' . $nomeFile;
+        }
+    }
+
+    if ($errorMsg !== null) {
+        $datiForm = $controller3->mostraFormPubblicazione();
+        $datiForm['error'] = $errorMsg;
+        View::render('portfolio/form_pubblicazione', $datiForm);
         break;
+    }
+
+    $dati = $controller3->pubblicaPubblicazione([
+        'titolo'        => $_POST['titolo']      ?? '',
+        'descrizione'   => $_POST['descrizione'] ?? '',
+        'percorso_foto' => $percorsoFoto,
+        'stile'         => $_POST['stile']       ?? ''
+    ]);
+
+    if ($dati['status'] === 'success') {
+        header('Location: /portfolio_studio');
+        exit;
+    }
+
+    $datiForm = $controller3->mostraFormPubblicazione();
+    $datiForm['error'] = $dati['message'] ?? 'Errore nel salvataggio.';
+    View::render('portfolio/form_pubblicazione', $datiForm);
+    break;
 
     case 'elimina_pubblicazione':
         $dati = $controller3->eliminaPubblicazione((int)($_POST['id'] ?? 0));
