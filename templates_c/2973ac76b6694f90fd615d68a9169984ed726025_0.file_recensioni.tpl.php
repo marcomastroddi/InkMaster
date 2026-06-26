@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 16:43:02
+/* Smarty version 5.8.0, created on 2026-06-26 16:49:20
   from 'file:pages/ricerca/recensioni.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e8ff67c41e0_21852153',
+  'unifunc' => 'content_6a3e91707fec04_25169319',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2973ac76b6694f90fd615d68a9169984ed726025' => 
     array (
       0 => 'pages/ricerca/recensioni.tpl',
-      1 => 1782484937,
+      1 => 1782485319,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e8ff67c41e0_21852153 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e91707fec04_25169319 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7685582616a3e8ff678dc46_39710114', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6359858866a3e91707c9751_03017848', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11670040056a3e8ff67956b4_86611476', "extra_css");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11883334716a3e91707d1285_76406541', "extra_css");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11075722276a3e8ff6796174_11871212', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20105161246a3e91707d2066_27885089', "content");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, 'layouts/base.tpl', $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_7685582616a3e8ff678dc46_39710114 extends \Smarty\Runtime\Block
+class Block_6359858866a3e91707c9751_03017848 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -53,7 +53,7 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('studio')->getNome(), ENT_Q
 }
 /* {/block "title"} */
 /* {block "extra_css"} */
-class Block_11670040056a3e8ff67956b4_86611476 extends \Smarty\Runtime\Block
+class Block_11883334716a3e91707d1285_76406541 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
@@ -66,11 +66,57 @@ $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaste
 }
 /* {/block "extra_css"} */
 /* {block "content"} */
-class Block_11075722276a3e8ff6796174_11871212 extends \Smarty\Runtime\Block
+class Block_20105161246a3e91707d2066_27885089 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/marco-mastroddi/Documenti/P_Web/InkMaster/InkMaster/templates/pages/ricerca';
 ?>
+
+
+<div class="rec-bg">
+    <div class="rec-blob rec-blob-1"></div>
+    <div class="rec-blob rec-blob-2"></div>
+    <div class="rec-blob rec-blob-3"></div>
+    <svg class="rec-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+                <g class="rec-fish rec-f1">
+            <path d="M 70,0 C 65,-30 15,-30 0,0 C 15,30 65,30 70,0"/>
+            <path d="M 2,0 L -22,-18 L -8,0 L -22,18 Z"/>
+            <circle cx="52" cy="-7" r="3.5"/>
+            <path d="M 35,-29 C 44,-46 60,-41 64,-28"/>
+        </g>
+        <g class="rec-fish rec-f2">
+            <path d="M 0,0 C 5,-38 55,-38 70,0 C 55,38 5,38 0,0"/>
+            <path d="M 68,0 L 92,-22 L 78,0 L 92,22 Z"/>
+            <circle cx="18" cy="-9" r="4.5"/>
+        </g>
+        <g class="rec-fish rec-f3">
+            <path d="M 50,0 C 46,-20 10,-20 0,0 C 10,20 46,20 50,0"/>
+            <path d="M 1,0 L -16,-13 L -6,0 L -16,13 Z"/>
+            <circle cx="37" cy="-5" r="2.5"/>
+        </g>
+        <g class="rec-fish rec-f4">
+            <path d="M 42,0 C 38,-17 8,-17 0,0 C 8,17 38,17 42,0"/>
+            <path d="M 1,0 L -13,-11 L -5,0 L -13,11 Z"/>
+            <circle cx="31" cy="-4" r="2"/>
+        </g>
+                <path class="rec-w1" d="M-100,180 C 200,100 450,280 750,160 S 1150,80 1540,200"/>
+        <path class="rec-w2" d="M-100,340 C 180,240 480,440 780,300 S 1180,200 1540,360"/>
+        <path class="rec-w3" d="M-100,500 C 220,400 500,580 800,460 S 1200,360 1540,520"/>
+        <path class="rec-w4" d="M-100,680 C 160,580 460,740 760,640 S 1160,540 1540,700"/>
+                <g class="rec-sparkle rec-sp1">
+            <text x="0" y="0" font-size="18" fill="rgba(245,185,66,.18)" font-family="sans-serif">★</text>
+        </g>
+        <g class="rec-sparkle rec-sp2">
+            <text x="0" y="0" font-size="14" fill="rgba(47,216,170,.14)" font-family="sans-serif">★</text>
+        </g>
+        <g class="rec-sparkle rec-sp3">
+            <text x="0" y="0" font-size="22" fill="rgba(245,185,66,.10)" font-family="sans-serif">★</text>
+        </g>
+        <g class="rec-sparkle rec-sp4">
+            <text x="0" y="0" font-size="12" fill="rgba(47,216,170,.12)" font-family="sans-serif">★</text>
+        </g>
+    </svg>
+</div>
 
 <div class="rec-page">
 
