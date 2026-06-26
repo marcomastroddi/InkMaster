@@ -2,7 +2,7 @@
 .adm-page { min-height: 100vh; background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.10), transparent 60%), #0a0c0d; color: #eef1f0; font-family: 'Archivo', sans-serif; position: relative; }
 
 /* ── topbar ── */
-.adm-topbar { position: relative; z-index: 10; display: flex; align-items: center; gap: 20px; padding: 0 48px; height: 68px; border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(10,12,13,.85); backdrop-filter: blur(12px); }
+.adm-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; gap: 20px; padding: 0 48px; height: 68px; border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(10,12,13,.92); backdrop-filter: blur(14px); }
 .adm-topbar-logo { font-size: 18px; font-weight: 900; letter-spacing: -.02em; color: #2fd8aa; white-space: nowrap; }
 .adm-topbar-title { font-size: 14px; font-weight: 700; color: #2fd8aa; letter-spacing: .12em; text-transform: uppercase; flex: 1; }
 .adm-topbar-right { display: flex; align-items: center; gap: 18px; }
@@ -17,7 +17,7 @@
 .adm-topbar-logout:hover { color: #e05252; }
 
 /* ── body ── */
-.adm-body { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 40px 48px 80px; }
+.adm-body { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 108px 48px 80px; }
 
 /* ── welcome ── */
 .adm-welcome { margin-bottom: 32px; }

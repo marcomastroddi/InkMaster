@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 07:11:58
+/* Smarty version 5.8.0, created on 2026-06-26 12:51:31
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e263eca1b24_09948964',
+  'unifunc' => 'content_6a3e75d3adc603_24530058',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9897b6a1b832c60055ee0f150949afbc102db3c4' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782457823,
+      1 => 1782478190,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,16 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e263eca1b24_09948964 (\Smarty\Template $_smarty_tpl) {
+function content_6a3e75d3adc603_24530058 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
-?><div class="im-nav">
+if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
+<div class="im-nav">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
     <div class="im-nav-right">
         <a href="/registrazioneStudio">Per gli artisti</a>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
-                        <a href="/visualizza_profilo" class="im-nav-profilo">
+            <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     <?php echo mb_strtoupper((string) $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('_sessione')['username'],1,'',true) ?? '', 'UTF-8');?>
 
@@ -38,7 +39,7 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
             </a>
             <a href="#" class="im-btn-outline" id="im-logout-btn">Esci</a>
         <?php } else { ?>
-                        <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
+            <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
 
@@ -59,5 +60,6 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
     </div>
 </div>
 <?php }
+}
 }
 }
