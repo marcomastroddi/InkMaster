@@ -41,7 +41,7 @@
 
 /* sezioni */
 .im-section { max-width: 1320px; margin: 0 auto; padding: 70px 60px 30px; }
-.im-section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 34px; }
+.im-section-head { display: flex; align-items: baseline; justify-content: center; margin-bottom: 34px; }
 .im-h2 { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
 .im-link { font-size: 14px; font-weight: 600; color: #2fd8aa; }
 
