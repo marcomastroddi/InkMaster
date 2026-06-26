@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 15:43:47
+/* Smarty version 5.8.0, created on 2026-06-26 21:08:31
   from 'file:partials/header_ricerca.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e9e33af6283_46506796',
+  'unifunc' => 'content_6a3eea4f3fbe76_01881099',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73e3291837744244703457a09ff9181c115ea481' => 
     array (
       0 => 'partials/header_ricerca.tpl',
-      1 => 1782488112,
+      1 => 1782507509,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e9e33af6283_46506796 (\Smarty\Template $_smarty_tpl) {
+function content_6a3eea4f3fbe76_01881099 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 ?><div class="im-nav im-nav--search">
     <a href="/home" class="im-logo">INK<span>MASTER</span></a>
@@ -39,6 +39,9 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
     <div class="im-nav-right">
         <a href="/cerca">Per gli artisti</a>
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
+                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+            <?php }?>
             <a href="/visualizza_profilo" class="im-nav-user">
                 <div class="im-nav-avatar"><?php echo mb_strtoupper((string) substr((string) $_smarty_tpl->getValue('_sessione')['username'], (int) 0, (int) 2) ?? '', 'UTF-8');?>
 </div>
@@ -48,7 +51,6 @@ $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMast
         <?php } else { ?>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-        
     </div>
-</div><?php }
+    </div><?php }
 }

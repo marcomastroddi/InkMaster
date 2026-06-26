@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 15:43:22
+/* Smarty version 5.8.0, created on 2026-06-26 21:00:10
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3e9e1ab078b0_96962010',
+  'unifunc' => 'content_6a3ee85a40a797_03726552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9897b6a1b832c60055ee0f150949afbc102db3c4' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782488599,
+      1 => 1782507509,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3e9e1ab078b0_96962010 (\Smarty\Template $_smarty_tpl) {
+function content_6a3ee85a40a797_03726552 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\fbcru\\Programmazione Web\\INkMaster\\InkMaster\\templates\\partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
@@ -31,6 +31,9 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
         <?php }?>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
+            <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
+                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+            <?php }?>
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
                     <?php echo mb_strtoupper((string) $_smarty_tpl->getSmarty()->getModifierCallback('truncate')($_smarty_tpl->getValue('_sessione')['username'],1,'',true) ?? '', 'UTF-8');?>
@@ -44,8 +47,8 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
             <a href="/registrazioneCliente" class="im-btn-outline">Registrati</a>
             <a href="/login" class="im-btn-outline">Accedi</a>
         <?php }?>
-    </div>
-</div>
+        </div>
+        </div>
 
 <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
 <div class="im-logout-overlay" id="im-logout-overlay">
