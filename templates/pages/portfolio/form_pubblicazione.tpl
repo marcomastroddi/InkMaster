@@ -53,17 +53,10 @@
                            placeholder="Es. Avambraccio sinistro, schiena, collo…">
                 </div>
 
-                <div class="im-form-group im-form-row">
-                    <div>
-                        <label class="im-label" for="grandezza">Dimensione</label>
-                        <input type="text" id="grandezza" name="grandezza" class="im-input"
-                               placeholder="Es. 10×10 cm, manica intera…">
-                    </div>
-                    <div>
-                        <label class="im-label" for="costo">Costo (€)</label>
-                        <input type="number" id="costo" name="costo" class="im-input"
-                               min="0" step="0.01" placeholder="Es. 150.00">
-                    </div>
+                <div class="im-form-group">
+                    <label class="im-label" for="grandezza">Dimensione</label>
+                    <input type="text" id="grandezza" name="grandezza" class="im-input"
+                           placeholder="Es. 10×10 cm, manica intera…">
                 </div>
 
                 <div class="im-form-group">
