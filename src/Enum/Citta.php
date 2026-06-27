@@ -4,19 +4,14 @@ namespace InkMaster\Enum;
 
 enum Citta: string
 {
-    case Milano = 'Milano';
-    case Roma = 'Roma';
-    case Napoli = 'Napoli';
-    case Torino = 'Torino';
+    case Milano  = 'Milano';
+    case Roma    = 'Roma';
+    case Napoli  = 'Napoli';
+    case Torino  = 'Torino';
     case Palermo = 'Palermo';
-    case Genova = 'Genova';
+    case Genova  = 'Genova';
     case Bologna = 'Bologna';
     case Firenze = 'Firenze';
-    case Bari = 'Bari';
-    case Catania = 'Catania';
+    case Bari    = 'Bari';
     case Venezia = 'Venezia';
-    case Pescara = 'Pescara';
-    case Avezzano = 'Avezzano';
-    case Popoli = 'Popoli';
-    case Catanzaro = 'Catanzaro';
 }
