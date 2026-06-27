@@ -13,7 +13,11 @@
 .pdet-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #2fd8aa; margin-bottom: 14px; }
 .pdet-title { font-size: 2rem; font-weight: 900; letter-spacing: -.02em; margin-bottom: 20px; }
 .pdet-desc { font-size: 15px; color: #9aa3a0; line-height: 1.7; flex: 1; }
-.pdet-date { margin-top: 28px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #6b736f; }
+.pdet-meta { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.pdet-meta-row { display: flex; gap: 12px; font-size: 13px; }
+.pdet-meta-label { font-weight: 700; color: #6b736f; min-width: 80px; flex-shrink: 0; }
+.pdet-meta-value { color: #cdd3d1; }
+.pdet-date { margin-top: 20px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #6b736f; }
 .pdet-empty { text-align: center; padding: 80px 0; color: #6b736f; font-size: 15px; }
 @media (max-width: 680px) {
     .pdet-card { grid-template-columns: 1fr; }
@@ -38,6 +42,28 @@
                 <p class="pdet-desc">
                     {if $data->getDescrizione()}{$data->getDescrizione()|escape}{else}Nessuna descrizione disponibile.{/if}
                 </p>
+                <div class="pdet-meta">
+                    {if $data->getStili()|count > 0}
+                    <div class="pdet-meta-row">
+                        <span class="pdet-meta-label">Stile</span>
+                        <span class="pdet-meta-value">
+                            {foreach $data->getStili() as $st}{$st->getNome()|escape}{if !$st@last}, {/if}{/foreach}
+                        </span>
+                    </div>
+                    {/if}
+                    {if $data->getPosizione()}
+                    <div class="pdet-meta-row">
+                        <span class="pdet-meta-label">Posizione</span>
+                        <span class="pdet-meta-value">{$data->getPosizione()|escape}</span>
+                    </div>
+                    {/if}
+                    {if $data->getGrandezza()}
+                    <div class="pdet-meta-row">
+                        <span class="pdet-meta-label">Dimensione</span>
+                        <span class="pdet-meta-value">{$data->getGrandezza()|escape}</span>
+                    </div>
+                    {/if}
+                </div>
                 <div class="pdet-date">📅 {$data->getData()->format('d/m/Y')}</div>
             </div>
         </div>
