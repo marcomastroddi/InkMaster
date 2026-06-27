@@ -175,6 +175,17 @@
     border-color: #2fd8aa !important; /* Mantiene il bordo brand color */
 }
 
+/* password toggle */
+.im-pwd-wrap { position: relative; }
+.im-pwd-wrap .im-input { padding-right: 48px; }
+.im-pwd-eye {
+    position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer; font-size: 18px;
+    padding: 0; line-height: 1; user-select: none; color: #6b736f;
+    transition: color .2s;
+}
+.im-pwd-eye:hover { color: #2fd8aa; }
+
 .im-input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1) opacity(0.5);
     cursor: pointer;

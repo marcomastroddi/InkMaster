@@ -42,6 +42,13 @@
     transition: border-color .18s;
 }
 .pr-input:focus { border-color: #2fd8aa; }
+.pr-input:-webkit-autofill,
+.pr-input:-webkit-autofill:hover,
+.pr-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #0e1215 inset !important;
+    -webkit-text-fill-color: #eef1f0 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
 .pr-input[readonly] { color: #6b736f; cursor: not-allowed; }
 .pr-textarea { resize: vertical; min-height: 90px; }
 .pr-select { appearance: none; cursor: pointer; }

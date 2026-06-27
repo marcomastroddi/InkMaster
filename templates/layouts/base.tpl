@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/CSS/layout.css">
     {block name="extra_css"}{/block}</head>
 <body>
@@ -19,6 +20,19 @@
     </main>
 
     {include file='partials/footer.tpl'}
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.im-pwd-eye').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var inp = document.getElementById(btn.dataset.target);
+                if (!inp) return;
+                inp.type = inp.type === 'password' ? 'text' : 'password';
+                btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+            });
+        });
+    });
+    </script>
 
     {* Apertura/chiusura del popup di logout (presente solo da loggati) *}
     <script>

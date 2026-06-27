@@ -77,12 +77,18 @@
 
                     <div class="im-form-group">
                         <label class="im-label" for="password">Password</label>
-                        <input type="password" id="password" name="password" class="im-input" required placeholder="Crea una password sicura">
+                        <div class="im-pwd-wrap">
+                            <input type="password" id="password" name="password" class="im-input" required placeholder="Crea una password sicura">
+                            <button type="button" class="im-pwd-eye" data-target="password">👁</button>
+                        </div>
                     </div>
-                    
+
                     <div class="im-form-group">
                         <label class="im-label" for="conferma_password">Conferma password</label>
-                        <input type="password" id="conferma_password" name="conferma_password" class="im-input" required placeholder="Ripeti la password">
+                        <div class="im-pwd-wrap">
+                            <input type="password" id="conferma_password" name="conferma_password" class="im-input" required placeholder="Ripeti la password">
+                            <button type="button" class="im-pwd-eye" data-target="conferma_password">👁</button>
+                        </div>
                     </div>
 
                     <div class="im-form-group" style="grid-column: span 2;">
