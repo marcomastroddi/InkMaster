@@ -66,12 +66,7 @@
                             <option value="Bologna">Bologna</option>
                             <option value="Firenze">Firenze</option>
                             <option value="Bari">Bari</option>
-                            <option value="Catania">Catania</option>
                             <option value="Venezia">Venezia</option>
-                            <option value="Pescara">Pescara</option>
-                            <option value="Avezzano">Avezzano</option>
-                            <option value="Popoli">Popoli</option>
-                            <option value="Catanzaro">Catanzaro</option>
                         </select>
                     </div>
 

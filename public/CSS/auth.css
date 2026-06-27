@@ -176,13 +176,17 @@
 }
 
 /* password toggle */
-.im-pwd-wrap { position: relative; }
-.im-pwd-wrap .im-input { padding-right: 48px; }
+.im-pwd-wrap { display: block; position: relative; }
+.im-pwd-wrap .im-input { padding-right: 50px; }
 .im-pwd-eye {
-    position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; cursor: pointer; font-size: 18px;
-    padding: 0; line-height: 1; user-select: none; color: #6b736f;
-    transition: color .2s;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; line-height: 1;
+    user-select: none; color: #6b736f;
+    transition: color .2s; padding: 0;
 }
 .im-pwd-eye:hover { color: #2fd8aa; }
 
