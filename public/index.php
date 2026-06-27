@@ -384,7 +384,11 @@ switch ($page) {
                 if ($_FILES['foto']['error'][$i] === 0) {
                     $ext = pathinfo($_FILES['foto']['name'][$i], PATHINFO_EXTENSION);
                     $nomeFile = uniqid('foto_') . '.' . $ext;
-                    $destinazione = __DIR__ . '/img/recensioni/' . $nomeFile;
+                    $destDir = __DIR__ . '/img/recensioni/';
+                    if (!is_dir($destDir)) {
+                        mkdir($destDir, 0755, true);
+                    }
+                    $destinazione = $destDir . $nomeFile;
                     if (move_uploaded_file($tmp, $destinazione)) {
                         $percorsi[] = '/img/recensioni/' . $nomeFile;
                     }
@@ -657,22 +661,22 @@ switch ($page) {
         break;
 
     case 'gestisci_team':
-        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $gt = new GestioneTeam((int)(SessionManager::get('id_studio') ?? SessionManager::get('idUtente')));
         $result = $gt->visualizzaTeam();
         View::render('studio/GestisciTeam', [
-            'tatuatori' => $result['tatuatori'],
-            'stili'     => $result['stili'],
+            'tatuatori' => $result['tatuatori'] ?? [],
+            'stili'     => $result['stili'] ?? [],
         ]);
         break;
-    
+
     case 'aggiungi_tatuatore':
-        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $gt = new GestioneTeam((int)(SessionManager::get('id_studio') ?? SessionManager::get('idUtente')));
         $gt->aggiungiTatuatore($_POST);
         header('Location: /gestisci_team');
         exit;
 
     case 'elimina_tatuatore':
-        $gt = new GestioneTeam((int)SessionManager::get('id_studio'));
+        $gt = new GestioneTeam((int)(SessionManager::get('id_studio') ?? SessionManager::get('idUtente')));
         $gt->eliminaTatuatore((int)($_POST['id'] ?? 0));
         header('Location: /gestisci_team');
         exit;

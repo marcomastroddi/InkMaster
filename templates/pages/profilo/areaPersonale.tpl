@@ -238,15 +238,14 @@ function confermaPagamento() {
                     if (actions) {
                         actions.innerHTML =
                             '<span class="im-ap-badge im-ap-badge--completato">Completato</span>' +
-                            '<span class="im-ap-badge-paid">\u2713 Pagato</span>' +
-                            '<a href="#" class="im-ap-chat-link">\uD83D\uDCAC Chat</a>';
+                            '<span class="im-ap-badge-paid">\u2713 Pagato</span>';
                     }
                 }
                 document.getElementById('im-pay-step-form').style.display = 'none';
                 document.getElementById('im-pay-step-success').style.display = '';
-            } else {
-                errEl.textContent = data.message || 'Errore durante il pagamento.';
-            }
+                } else {
+                    errEl.textContent = data.message || 'Errore durante il pagamento.';
+                }
         })
         .catch(function(e){
             btn.textContent = 'Paga ora';

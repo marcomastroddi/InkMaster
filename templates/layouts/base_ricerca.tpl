@@ -17,5 +17,27 @@
     </main>
 
     {include file='partials/footer.tpl'}
+        {* Apertura/chiusura del popup di logout (presente solo da loggati) *}
+    <script>
+    (function () {
+        var btn = document.getElementById('im-logout-btn');
+        var overlay = document.getElementById('im-logout-overlay');
+        var cancel = document.getElementById('im-logout-cancel');
+        if (!btn || !overlay) return;
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            overlay.classList.add('aperto');
+        });
+        if (cancel) {
+            cancel.addEventListener('click', function () {
+                overlay.classList.remove('aperto');
+            });
+        }
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) overlay.classList.remove('aperto');
+        });
+    })();
+    </script>
 </body>
 </html>
