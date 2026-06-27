@@ -43,7 +43,7 @@
                     {if $data->getDescrizione()}{$data->getDescrizione()|escape}{else}Nessuna descrizione disponibile.{/if}
                 </p>
                 <div class="pdet-meta">
-                    {if $data->getStili()|count > 0}
+                    {if $data->getStili()->count() > 0}
                     <div class="pdet-meta-row">
                         <span class="pdet-meta-label">Stile</span>
                         <span class="pdet-meta-value">

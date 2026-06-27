@@ -5,6 +5,11 @@
 {block name="extra_css"}
     <link rel="stylesheet" href="/CSS/home.css">
     <link rel="stylesheet" href="/CSS/auth.css">
+    <style>
+    .im-iva-hint { font-size: 12px; color: #6b736f; margin-top: 6px; display: flex; align-items: center; gap: 10px; }
+    #partita_iva:invalid:not(:placeholder-shown) { border-color: #e05252; }
+    #partita_iva.valid { border-color: #2fd8aa; }
+    </style>
 {/block}
 
 {block name="content"}
@@ -41,7 +46,14 @@
                         <label class="im-label" for="partita_iva">Partita IVA</label>
                         <input type="text" id="partita_iva" name="partita_iva" class="im-input" required
                                placeholder="11 cifre numeriche"
+                               maxlength="11" pattern="\d{11}"
+                               inputmode="numeric"
                                value="{$old.partita_iva|default:''|escape}">
+                        <div class="im-iva-hint">
+                            <span id="iva-count">0</span>/11 cifre
+                            <span id="iva-ok" style="display:none;color:#2fd8aa;font-weight:700;">✓ Formato corretto</span>
+                            <span id="iva-err" style="display:none;color:#e05252;font-weight:700;">⚠ Devono essere esattamente 11 cifre numeriche</span>
+                        </div>
                     </div>
 
                     <div class="im-form-group">
@@ -77,14 +89,20 @@
 
                     <div class="im-form-group">
                         <label class="im-label" for="password">Password</label>
-                        <input type="password" id="password" name="password" class="im-input" required
-                               placeholder="Crea una password sicura">
+                        <div class="im-pwd-wrap">
+                            <input type="password" id="password" name="password" class="im-input" required
+                                   placeholder="Crea una password sicura">
+                            <button type="button" class="im-pwd-eye" data-target="password">👁</button>
+                        </div>
                     </div>
 
                     <div class="im-form-group">
                         <label class="im-label" for="conferma_password">Conferma password</label>
-                        <input type="password" id="conferma_password" name="conferma_password" class="im-input" required
-                               placeholder="Ripeti la password">
+                        <div class="im-pwd-wrap">
+                            <input type="password" id="conferma_password" name="conferma_password" class="im-input" required
+                                   placeholder="Ripeti la password">
+                            <button type="button" class="im-pwd-eye" data-target="conferma_password">👁</button>
+                        </div>
                     </div>
 
                     <div class="im-form-group" style="grid-column: span 2;">
@@ -105,4 +123,23 @@
         </div>
     </div>
 </div>
+{literal}
+<script>
+(function() {
+    var inp = document.getElementById('partita_iva');
+    var count = document.getElementById('iva-count');
+    var ok = document.getElementById('iva-ok');
+    var err = document.getElementById('iva-err');
+    if (!inp) return;
+    inp.addEventListener('input', function() {
+        inp.value = inp.value.replace(/\D/g, '').slice(0, 11);
+        var len = inp.value.length;
+        count.textContent = len;
+        if (len === 0) { ok.style.display='none'; err.style.display='none'; inp.classList.remove('valid'); }
+        else if (len === 11) { ok.style.display='inline'; err.style.display='none'; inp.classList.add('valid'); }
+        else { err.style.display='inline'; ok.style.display='none'; inp.classList.remove('valid'); }
+    });
+})();
+</script>
+{/literal}
 {/block}
