@@ -1,10 +1,10 @@
 <?php
-ini_set('display_errors', 0);
-error_reporting(0);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
-require_once __DIR__ . '/../vendor/autoload.php';
-$entityManager = require_once __DIR__ . '/../config/bootstrap-doctrine.php';
-require_once __DIR__ . '/../config/bootstrap-smarty.php';
+require_once __DIR__ . '/vendor/autoload.php';
+$entityManager = require_once __DIR__ . '/config/bootstrap-doctrine.php';
+require_once __DIR__ . '/config/bootstrap-smarty.php';
 
 use InkMaster\Control\ControllerCliente\RicercaVisualizzaStudi;
 use InkMaster\Control\ControllerCliente\PrenotazionePagamento;

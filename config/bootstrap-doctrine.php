@@ -5,6 +5,7 @@
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
+use Doctrine\ORM\Proxy\ProxyFactory;
 
 // Includiamo l'autoloader di Composer
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -15,11 +16,14 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
     isDevMode: false,
 );
 
+// Su hosting condiviso /tmp non è scrivibile: genera i proxy in memoria
+$config->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
+
 $connectionParams = [
-    'dbname'   => 'inkmaster_db',
-    'user'     => 'root',
-    'password' => '',
-    'host'     => '127.0.0.1',
+    'dbname'   => 'if0_42279462_db_inkmaster',
+    'user'     => 'if0_42279462',
+    'password' => 'AMeo3hPLj7q',
+    'host'     => 'sql302.infinityfree.com',
     'driver'   => 'pdo_mysql',
 ];
 
