@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-26 19:30:22
+/* Smarty version 5.8.0, created on 2026-06-26 21:27:29
   from 'file:partials/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a3ed34e70eb69_83880445',
+  'unifunc' => 'content_6a3eeec16c2096_06716522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1d3cbdfd2bfe3d6a07797051fb325e1d5498ba04' => 
     array (
       0 => 'partials/header.tpl',
-      1 => 1782502153,
+      1 => 1782508704,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a3ed34e70eb69_83880445 (\Smarty\Template $_smarty_tpl) {
+function content_6a3eeec16c2096_06716522 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\InkMaster\\templates\\partials';
 if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 <div class="im-nav">
@@ -32,7 +32,7 @@ if ($_smarty_tpl->getValue('_sessione')['ruolo'] != 'amministratore') {?>
 
         <?php if ($_smarty_tpl->getValue('_sessione')['username']) {?>
             <?php if ($_smarty_tpl->getValue('_sessione')['ruolo'] === 'cliente') {?>
-                <a href="/area_personale" class="im-btn-outline">Le mie prenotazioni</a>
+                <a href="/area_personale" class="im-btn-outline im-btn-prenotazioni">Le mie prenotazioni</a>
             <?php }?>
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">

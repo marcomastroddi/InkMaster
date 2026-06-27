@@ -138,7 +138,7 @@
       <div class="pr-group">
         <label class="pr-label">Città</label>
         <select class="pr-input pr-select" id="pr-posizione">
-          {foreach ['Milano','Roma','Napoli','Torino','Palermo','Genova','Bologna','Firenze','Bari','Catania','Venezia','Pescara','Avezzano','Popoli','Catanzaro'] as $citta}
+          {foreach ['Roma','Milano','Napoli','Torino','Bologna','Firenze','Palermo','Genova','Venezia','Bari'] as $citta}
             <option value="{$citta}" {if $data.posizione === $citta}selected{/if}>{$citta}</option>
           {/foreach}
         </select>
