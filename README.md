@@ -66,7 +66,6 @@ L'applicazione è progettata secondo un'architettura a livelli (pattern **MVC** 
 | Dashboard | Pannello di controllo con accesso rapido alle sezioni |
 | Gestione portfolio | Pubblicazione ed eliminazione delle opere (con upload immagini) |
 | Gestione richieste | Accettazione/rifiuto delle richieste di appuntamento |
-| Calendario | Visualizzazione degli appuntamenti per giorno/mese |
 | Gestione pagamenti | Abilitazione pagamento e storico incassi |
 | Gestione team | Aggiunta/rimozione tatuatori e relativi stili |
 | Storico appuntamenti | Elenco completo filtrabile per stato |
