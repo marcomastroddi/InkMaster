@@ -86,7 +86,6 @@ L'applicazione è progettata secondo un'architettura a livelli (pattern **MVC** 
 | **Linguaggio** | PHP 8.1+ (enum, typed properties, attributi) |
 | **ORM** | Doctrine ORM 3.x + DBAL 4 |
 | **Template engine** | Smarty 5.x |
-| **Cache** | Symfony Cache 7 |
 | **Database** | MySQL |
 | **Dependency manager** | Composer (autoload PSR-4) |
 | **Front-end** | HTML5, CSS3 (vanilla, un foglio per pagina), grafica SVG |
