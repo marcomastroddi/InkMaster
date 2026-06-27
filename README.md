@@ -66,7 +66,6 @@ L'applicazione è progettata secondo un'architettura a livelli (pattern **MVC** 
 | Dashboard | Pannello di controllo con accesso rapido alle sezioni |
 | Gestione portfolio | Pubblicazione ed eliminazione delle opere (con upload immagini) |
 | Gestione richieste | Accettazione/rifiuto delle richieste di appuntamento |
-| Calendario | Visualizzazione degli appuntamenti per giorno/mese |
 | Gestione pagamenti | Abilitazione pagamento e storico incassi |
 | Gestione team | Aggiunta/rimozione tatuatori e relativi stili |
 | Storico appuntamenti | Elenco completo filtrabile per stato |
@@ -87,7 +86,6 @@ L'applicazione è progettata secondo un'architettura a livelli (pattern **MVC** 
 | **Linguaggio** | PHP 8.1+ (enum, typed properties, attributi) |
 | **ORM** | Doctrine ORM 3.x + DBAL 4 |
 | **Template engine** | Smarty 5.x |
-| **Cache** | Symfony Cache 7 |
 | **Database** | MySQL |
 | **Dependency manager** | Composer (autoload PSR-4) |
 | **Front-end** | HTML5, CSS3 (vanilla, un foglio per pagina), grafica SVG |
@@ -256,18 +254,6 @@ L'applicazione sarà raggiungibile su **http://localhost:8000**.
 
 ---
 
-## 🌱 Popolamento del database (seed)
-
-Lo script `scripts/seed.php` popola il database con dati realistici (studi, tatuatori, stili, recensioni e pubblicazioni distribuiti su più città):
-
-```bash
-php scripts/seed.php
-```
-
-> Lo script include una protezione contro la doppia esecuzione: se il DB contiene già più di 5 studi, l'operazione viene interrotta.
-
----
-
 ## 🔑 Account di test
 
 Gli account demo generati dal seed (password con hash bcrypt):
@@ -277,16 +263,15 @@ Gli account demo generati dal seed (password con hash bcrypt):
 | 🧑 Cliente | `mario_rossi` *(o `laura_verdi`, `chiara_blu`, …)* | `Beta@1234` |
 | 🎨 Studio | `studio_milano_0` *(schema `studio_<città>_<n>`)* | `Studio@1234` |
 
-> L'account amministratore non è incluso nel seed e va creato separatamente.
-
 ---
 
 ## 👥 Autori
 
 Progetto realizzato per il corso di **Programmazione Web**.
 
-- _[Nome Cognome]_ — [@lorenzolika29](https://github.com/lorenzolika29)
-- _[Nome Cognome]_
+- _[Lorenzo Lika]_
+- _[Fabio Crudeli]_
+- _[Marco Mastroddi]_
 
 ---
 
