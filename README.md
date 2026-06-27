@@ -269,9 +269,9 @@ Gli account demo generati dal seed (password con hash bcrypt):
 
 Progetto realizzato per il corso di **Programmazione Web**.
 
-- _[Lorenzo Lika]_ —
-- _[Fabio Crudeli]_-
-- _[Marco Mastroddi]_- 
+- _[Lorenzo Lika]_
+- _[Fabio Crudeli]_
+- _[Marco Mastroddi]_
 
 ---
 
