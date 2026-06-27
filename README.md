@@ -26,7 +26,6 @@ Mette in contatto i clienti con gli studi: ricerca per città e stile, esplorazi
 - [Modello dei dati](#-modello-dei-dati)
 - [Requisiti](#-requisiti)
 - [Installazione e avvio in locale](#-installazione-e-avvio-in-locale)
-- [Popolamento del database](#-popolamento-del-database-seed)
 - [Account di test](#-account-di-test)
 - [Autori](#-autori)
 
