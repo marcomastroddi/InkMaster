@@ -50,7 +50,7 @@
     {* ── Contenuto ── *}
     <div class="im-dash-content">
         <div class="im-dash-eyebrow">Dashboard Studio</div>
-        <h1 class="im-dash-title">Bentornato, {$_sessione.username}</h1>
+        <h1 class="im-dash-title">Bentornato, {if !empty($_sessione.nome_studio)}{$_sessione.nome_studio|escape}{else}{$_sessione.username|escape}{/if}</h1>
         <div class="im-dash-grid">
         {* Card 1 — Clienti *}
         <a href="/storico_appuntamenti" class="im-dash-card">

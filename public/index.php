@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 error_reporting(E_ALL);
 // Carichiamo l'EntityManager reale dal file di configurazione di Doctrine
 require_once __DIR__ . '/vendor/autoload.php';
@@ -274,7 +274,16 @@ switch ($page) {
         echo json_encode($dati);
         break;
 
-    // ===== INTERFACCIA 3 - GESTIONE PORTFOLIO (studio loggato) =====
+    // ===== INTERFACCIA 3 - DASHBOARD + PORTFOLIO STUDIO =====
+    case 'dashboardStudio':
+        $studioId = (int)(SessionManager::get('id_studio') ?? SessionManager::get('idUtente'));
+        $studioObj = PersistentManager::getInstance()->read(\InkMaster\Entity\Studio::class, $studioId);
+        if ($studioObj && $studioObj->getNome()) {
+            SessionManager::set('nome_studio', $studioObj->getNome());
+        }
+        View::render('studio/dashboardStudio', []);
+        break;
+
     case 'portfolio_studio':
         View::render('portfolio/portfolioLatoStudio', $controller3->apriPortfolio());
         break;
@@ -443,10 +452,12 @@ switch ($page) {
 
     case 'conferma_ban':
         $controller6->conferma_ban(
-            $_POST['motivazione'] ?? '',
-            $_POST['gravita']     ?? '',
-            $_POST['descrizione'] ?? '',
-            (int)($_POST['seg_id'] ?? 0)
+            $_POST['motivazione']  ?? '',
+            $_POST['gravita']      ?? '',
+            $_POST['descrizione']  ?? '',
+            (int)($_POST['seg_id']     ?? 0),
+            (int)($_POST['utente_id']  ?? 0),
+            $_POST['utente_tipo']  ?? ''
         );
         header('Location: /accedi_segnalazioni');
         exit;
@@ -510,6 +521,7 @@ switch ($page) {
         SessionManager::set('username', $_POST['username']);
         SessionManager::set('ruolo', 'studio');
         SessionManager::set('id_studio', $dati['idStudio']);
+        SessionManager::set('nome_studio', $_POST['nome']);
         header('Location: /dashboardStudio');
         exit;
     }

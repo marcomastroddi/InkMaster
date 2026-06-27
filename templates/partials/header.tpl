@@ -13,9 +13,9 @@
             {/if}
             <a href="/visualizza_profilo" class="im-nav-profilo">
                 <div class="im-avatar">
-                    {$_sessione.username|truncate:1:'':true|upper}
+                    {if !empty($_sessione.nome_studio)}{$_sessione.nome_studio|truncate:1:'':true|upper}{else}{$_sessione.username|truncate:1:'':true|upper}{/if}
                 </div>
-                <span class="im-nav-username">{$_sessione.username}</span>
+                <span class="im-nav-username">{if !empty($_sessione.nome_studio)}{$_sessione.nome_studio|escape}{else}{$_sessione.username|escape}{/if}</span>
             </a>
             <a href="#" class="im-btn-outline" id="im-logout-btn">Esci</a>
         {else}

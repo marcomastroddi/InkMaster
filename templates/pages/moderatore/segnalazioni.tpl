@@ -173,7 +173,9 @@
         </div>
 
         <form id="banForm" method="POST" action="/conferma_ban">
-            <input type="hidden" name="seg_id" id="banSegId">
+            <input type="hidden" name="seg_id"     id="banSegId">
+            <input type="hidden" name="utente_id"  id="banUtenteId">
+            <input type="hidden" name="utente_tipo" id="banUtenteTipo">
 
             <div class="adm-modal-field">
                 <label class="adm-modal-label">CATEGORIA MOTIVAZIONE</label>
@@ -298,11 +300,12 @@ document.querySelectorAll('.adm-grav-btn').forEach(btn => {
 
 document.querySelectorAll('.adm-btn-ban').forEach(btn => {
     btn.addEventListener('click', function() {
-        document.getElementById('banAvatar').textContent  = this.dataset.iniziali;
-        document.getElementById('banNome').textContent    = this.dataset.nome;
-        document.getElementById('banEmail').textContent   = this.dataset.email;
-        document.getElementById('banSegId').value         = this.dataset.segId;
-        fetch('/seleziona_utente?id=' + this.dataset.id + '&tipo=' + this.dataset.tipo);
+        document.getElementById('banAvatar').textContent   = this.dataset.iniziali;
+        document.getElementById('banNome').textContent     = this.dataset.nome;
+        document.getElementById('banEmail').textContent    = this.dataset.email;
+        document.getElementById('banSegId').value          = this.dataset.segId;
+        document.getElementById('banUtenteId').value       = this.dataset.id;
+        document.getElementById('banUtenteTipo').value     = this.dataset.tipo;
         modal.classList.add('adm-overlay--open');
     });
 });

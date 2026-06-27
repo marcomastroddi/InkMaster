@@ -69,8 +69,8 @@ class Autenticazione
                 break;
 
             case 'studio':
-                // Essendo uno studio, l'id_utente corrisponde all'id_studio necessario per le dashboard
                 SessionManager::set('id_studio', $utente->getId());
+                SessionManager::set('nome_studio', $utente->getNome());
                 $interfaccia = 'DashboardStudio';
                 break;
 

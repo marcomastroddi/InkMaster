@@ -26,8 +26,8 @@ class bootstrapSmarty
             $smarty->setConfigDir($rootDir . '/configs/');
 
             // Impostazioni di sviluppo
-            $smarty->setCompileCheck(true); // Controlla se hai modificato i .tpl
-            $smarty->setCaching(Smarty::CACHING_OFF); // Tieni la cache spenta mentre sviluppi
+            $smarty->setForceCompile(true); // Ricompila sempre — non serve svuotare templates_c
+            $smarty->setCaching(Smarty::CACHING_OFF);
 
             self::$instance = $smarty;
         }

@@ -58,12 +58,9 @@ class ModerazionePiattaforma
         ];
     }
 
-    public function conferma_ban(string $motivazione, string $gravita, string $descrizione, int $segId): array
+    public function conferma_ban(string $motivazione, string $gravita, string $descrizione, int $segId, int $utenteId, string $utenteTipo): array
     {
-        $utenteId   = SessionManager::get('utente_selezionato');
-        $utenteTipo = SessionManager::get('tipo_utente_selezionato', 'cliente');
-
-        if ($utenteId === null) {
+        if ($utenteId === 0 || $utenteTipo === '') {
             return ['status' => 'error', 'message' => 'Nessun utente selezionato'];
         }
 
