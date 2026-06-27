@@ -494,33 +494,27 @@ switch ($page) {
     View::render('auth/registrazioneCliente', $dati);
     break;
 
-    case 'registraStudio':
-        $dati = $controllerRegistrazione->registraStudio([
-            'nome'              => $_POST['nome']              ?? '',
-            'partita_iva'       => $_POST['partita_iva']       ?? '',
-            'posizione'         => $_POST['posizione']         ?? '',
-            'email'             => $_POST['email']             ?? '',
-            'username'          => $_POST['username']          ?? '',
-            'password'          => $_POST['password']          ?? '',
-            'conferma_password' => $_POST['conferma_password'] ?? '',
-            'descrizione'       => $_POST['descrizione']       ?? '',
-            'telefono'          => $_POST['telefono']          ?? '',
-        ]);
-
-        if ($dati['status'] === 'success') {
-            SessionManager::set('username', $_POST['username']);
-            SessionManager::set('ruolo', 'studio');
-            SessionManager::set('id_studio', $dati['idStudio']);
-            header('Location: /dashboardStudio');
-            exit;
-        }
-        View::render('auth/registrazioneStudio', $dati);
-        break;
-
-    case 'dashboardStudio':
-        // Carica la vista della dashboard (adatta il percorso se necessario)
-        View::render('studio/dashboardStudio', []); 
-        break;
+   case 'registraStudio':
+    $dati = $controllerRegistrazione->registraStudio([
+        'nome'              => $_POST['nome']              ?? '',
+        'partita_iva'       => $_POST['partita_iva']       ?? '',
+        'posizione'         => $_POST['posizione']         ?? '',
+        'email'             => $_POST['email']             ?? '',
+        'username'          => $_POST['username']          ?? '',
+        'password'          => $_POST['password']          ?? '',
+        'conferma_password' => $_POST['conferma_password'] ?? '',
+        'descrizione'       => $_POST['descrizione']       ?? '',
+        'telefono'          => $_POST['telefono']          ?? '',
+    ]);
+    if ($dati['status'] === 'success') {
+        SessionManager::set('username', $_POST['username']);
+        SessionManager::set('ruolo', 'studio');
+        SessionManager::set('id_studio', $dati['idStudio']);
+        header('Location: /dashboardStudio');
+        exit;
+    }
+    View::render('auth/registrazioneStudio', $dati);
+    break;
 
     // ===== INTERFACCIA 7.1 - LOGIN / LOGOUT =====
     case 'login':
