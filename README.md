@@ -149,8 +149,6 @@ InkMaster/
 │   ├── layouts/                   # Layout base
 │   ├── partials/                  # Header, footer, overlay riusabili
 │   └── pages/                     # Pagine raggruppate per area funzionale
-├── scripts/
-│   └── seed.php                   # Popolamento del DB con dati realistici
 ├── templates_c/                   # Cache dei template compilati (auto-generata)
 ├── composer.json
 └── doctrine.php                   # Entry point della console Doctrine
