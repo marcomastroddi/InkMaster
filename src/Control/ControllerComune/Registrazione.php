@@ -109,7 +109,7 @@ class Registrazione
         );
         $this->pm->create($studio);
     } catch (\Throwable $e) {
-        return ['status' => 'error', 'message' => 'Email o Partita IVA già registrata'];
+        return ['status' => 'error', 'message' => 'Email già registrata o dati non validi'];
     }
 
     return [

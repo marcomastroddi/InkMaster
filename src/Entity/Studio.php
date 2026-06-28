@@ -25,7 +25,7 @@ class Studio
     #[ORM\Column(type: 'string', length: 255)]
     private string $password;
 
-    #[ORM\Column(type: 'string', length: 11, unique: true)]
+    #[ORM\Column(type: 'string', length: 11)]
     private string $partitaIva;
 
     #[ORM\Column(type: 'string', enumType: Citta::class)]

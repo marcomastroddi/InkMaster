@@ -58,7 +58,7 @@ $pagineProtette = [
     'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento',
     'visualizza_calendario', 'appuntamenti_del_giorno', 'visualizza_pagamenti',
     'dashboardStudio', 'prenota', 'scegliTatuatore', 'scegliStile', 'scegliData', 'mostraRiepilogo', 'richiediAppuntamento',
-    'avvia_recensione', 'compila_recensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale', 'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento', 'abilita_pagamento',
+    'avviaRecensione', 'compilaRecensione', 'gestisci_team', 'storico_appuntamenti', 'area_personale', 'visualizza_clienti', 'aggiorna_stato', 'aggiungi_pagamento', 'abilita_pagamento',
     'avvia_pagamento' , 'inserisci_dati_pagamento'
 ];
 

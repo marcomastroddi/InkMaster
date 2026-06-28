@@ -46,7 +46,7 @@
                         <label class="im-label" for="partita_iva">Partita IVA</label>
                         <input type="text" id="partita_iva" name="partita_iva" class="im-input" required
                                placeholder="11 cifre numeriche"
-                               maxlength="11" pattern="\d{11}"
+                               maxlength="11" pattern="\d{ldelim}11{rdelim}"
                                inputmode="numeric"
                                value="{$old.partita_iva|default:''|escape}">
                         <div class="im-iva-hint">
