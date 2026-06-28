@@ -1,3 +1,20 @@
+/* ============================================================
+   PAGAMENTI.CSS — Gestione pagamenti (lato Studio)
+   Pagina: templates/pages/studio/pagamenti.tpl
+   KPI incassi + tab (Da pagare / Confermati) + lista appuntamenti.
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Reset e base
+     - Sfondo fisso e decorazione SVG
+     - Contenuto, eyebrow e titolo
+     - Griglia KPI
+     - Tab switcher (CSS :target, senza JS)
+     - Sezioni :target
+     - Lista appuntamenti e card
+     - Form "abilita pagamento"
+     - Badge DA_PAGARE e stato vuoto
+   ============================================================ */
+
 /* ── Reset e base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 

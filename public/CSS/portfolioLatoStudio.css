@@ -1,3 +1,20 @@
+/* ============================================================
+   PORTFOLIOLATOSTUDIO.CSS — Portfolio gestito dallo Studio
+   Pagine: templates/pages/portfolio/portfolioLatoStudio.tpl
+           templates/pages/portfolio/form_pubblicazione.tpl
+   Griglia opere (con elimina) + form di pubblicazione opera.
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Sfondo comune e decorazione geometrica
+     - Container e header
+     - Griglia opere
+     - Card opera (immagine, elimina, info)
+     - Stato vuoto
+     - Pagina form (card, header)
+     - Form pubblicazione (campi, select, feedback)
+     - Azioni form e upload immagine
+   ============================================================ */
+
 /* ================================================================
    PORTFOLIO STUDIO
    ================================================================ */

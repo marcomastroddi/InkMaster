@@ -1,3 +1,27 @@
+/* ============================================================
+   STUDIO.CSS — Scheda pubblica dello Studio
+   Pagina: templates/pages/ricerca/studio.tpl
+   Profilo studio (sidebar, descrizione, team, orari,
+   recensioni) + sfondo animato + overlay di prenotazione.
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Pagina e blob di sfondo
+     - Strip portfolio in alto
+     - Layout a due colonne
+     - Sidebar (avatar, rating, contatti)
+     - Main: descrizione, team, orari, recensioni
+     - Sfondo SVG (pesci, onde) + keyframes
+     - Overlay prenotazione (wizard a step)
+     - Recensioni con foto e strip portfolio (extra)
+
+   NOTE (cose da sapere mentre studi, NON le ho modificate):
+     - alla sez. "SVG container" il commento è scritto
+       "* ── ... ── */" senza la "/" iniziale: è così
+       nell'originale, lasciato intatto.
+     - il blocco ".pb-..." (overlay prenotazione) è ripetuto
+       due volte quasi identico: ridondante ma innocuo.
+   ============================================================ */
+
 /* ── pagina ── */
 .st-page { min-height: 100vh; background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.12), transparent 60%), #0a0c0d; color: #eef1f0; font-family: 'Archivo', sans-serif; position: relative; overflow-x: hidden; }
 

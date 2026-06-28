@@ -1,7 +1,22 @@
-/* ==========================================================================
-   PROFILO CLIENTE
-   ========================================================================== */
+/* ============================================================
+   PROFILOCLIENTE.CSS — Profilo Cliente / Studio (visualizza+modifica)
+   Pagina: templates/pages/profilo/profiloCliente.tpl
+   Card centrale con i dati dell'utente, sfondo a mandala.
 
+   INDICE
+     1. Wrapper e sfondo a puntini
+     2. Mandala decorativo + animazioni
+     3. Container e card
+     4. Avatar e intestazione
+     5. Separatore di sezione
+     6. Form (label, input, autofill)
+     7. Bottone di invio
+     8. Password con occhietto
+     9. Feedback inline (ok / errore)
+   ============================================================ */
+
+
+/* ── 1. Wrapper e sfondo a puntini ────────────────────────── */
 .im-auth-wrapper {
     position: relative;
     display: flex;
@@ -15,6 +30,8 @@
     background-size: 24px 24px;
 }
 
+
+/* ── 2. Mandala decorativo + animazioni ───────────────────── */
 /* Mandala Blackwork — decorazione sinistra e destra */
 .im-profilo-theme.im-auth-wrapper::before,
 .im-profilo-theme.im-auth-wrapper::after {
@@ -53,6 +70,8 @@
     to   { transform: translateY(-50%) rotate(360deg); }
 }
 
+
+/* ── 3. Container e card ──────────────────────────────────── */
 .im-auth-container {
     position: relative;
     z-index: 2;
@@ -67,6 +86,8 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
+
+/* ── 4. Avatar e intestazione ─────────────────────────────── */
 /* Avatar e intestazione */
 .im-profilo-avatar {
     width: 80px;
@@ -101,6 +122,8 @@
     margin-bottom: 32px;
 }
 
+
+/* ── 5. Separatore di sezione ─────────────────────────────── */
 /* Separatore sezioni */
 .im-profilo-section-title {
     font-size: 12px;
@@ -113,6 +136,8 @@
     border-bottom: 1px solid rgba(255,255,255,.07);
 }
 
+
+/* ── 6. Form (label, input, autofill) ─────────────────────── */
 /* Form */
 .im-form { margin-top: 4px; }
 
@@ -175,6 +200,8 @@
     cursor: pointer;
 }
 
+
+/* ── 7. Bottone di invio ──────────────────────────────────── */
 .im-btn-submit {
     width: 100%;
     padding: 16px;
@@ -193,6 +220,8 @@
 .im-btn-submit:hover { background: #37eec0; }
 .im-btn-submit:active { transform: scale(0.99); }
 
+
+/* ── 8. Password con occhietto ────────────────────────────── */
 /* Password con occhietto */
 .im-input-eye-wrap { position: relative; }
 .im-input-eye-wrap .im-input { padding-right: 48px; }
@@ -214,6 +243,8 @@
 
 .im-eye-btn:hover { color: #2fd8aa; }
 
+
+/* ── 9. Feedback inline (ok / errore) ─────────────────────── */
 /* Feedback inline */
 .im-feedback {
     display: none;

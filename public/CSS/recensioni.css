@@ -1,3 +1,21 @@
+/* ============================================================
+   RECENSIONI.CSS — Elenco recensioni di uno studio
+   Pagina: templates/pages/ricerca/recensioni.tpl
+   Lista recensioni + modale dettaglio + lightbox foto +
+   sfondo animato (pesci/onde stile giapponese).
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Pagina e header
+     - Lista recensioni
+     - Paginazione
+     - Modale recensione
+     - Lightbox foto
+     - Sfondo animato (blob, pesci, onde, stelle)
+
+   NOTA: .rec-page è ridefinita in fondo (aggiunge colore/font):
+   l'ordine NON va cambiato.
+   ============================================================ */
+
 /* ── Pagina recensioni ── */
 .rec-page {
     max-width: 860px;

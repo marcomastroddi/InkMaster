@@ -1,3 +1,19 @@
+/* ============================================================
+   AUTH.CSS — Login e Registrazioni (cliente / studio)
+   Pagine: templates/pages/auth/login.tpl
+           templates/pages/auth/registrazioneCliente.tpl
+           templates/pages/auth/registrazioneStudio.tpl
+   Card centrale + form, con sfondi decorativi a tema diversi.
+
+   INDICE (vedi i banner "===" qui sotto)
+     1. Wrapper e card (comune a tutte le pagine auth)
+     2. Decorazione registrazione CLIENTE (rami fineline)
+     3. Form: header, input, fix autofill, password toggle
+     4. Bottone invio, footer e link
+     5. Decorazione registrazione STUDIO (tribale)
+     6. Decorazione LOGIN (drago Irezumi/Yakuza)
+   ============================================================ */
+
 /* ==========================================================================
    CSS SPECIFICO: REGISTRAZIONE CLIENTE (Tema: Twin Bouquet Fineline Layout)
    ========================================================================== */

@@ -1,3 +1,19 @@
+/* ============================================================
+   ACCETTAZIONECLIENTI.CSS — Richieste di appuntamento (lato Studio)
+   Pagina: templates/pages/studio/AccettazioneClienti.tpl
+   Lista delle richieste con bottoni Accetta / Rifiuta / Segnala.
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Pagina base
+     - Blob di sfondo + disegno decorativo
+     - Contenuto, eyebrow e titolo
+     - Lista richieste e card
+     - Avatar, info cliente e campi
+     - Bottoni (accetta / rifiuta / segnala)
+     - Stato vuoto e link "Indietro"
+     - Responsive
+   ============================================================ */
+
 /* ── Pagina base ── */
 .im-richieste-page {
     position: relative;

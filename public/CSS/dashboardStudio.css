@@ -1,15 +1,27 @@
-/* ==========================================================================
-   DASHBOARD STUDIO — sfondo: Grande Onda Irezumi (singola forma fullpage)
-   ========================================================================== */
-.im-page { 
-    min-height: 100vh; 
-    background: #0a0c0d; 
+/* ============================================================
+   DASHBOARDSTUDIO.CSS — Dashboard dello Studio
+   Pagina: templates/pages/studio/dashboardStudio.tpl
+   Schermata iniziale dello studio: sfondo a onda + griglia
+   di card che portano alle varie sezioni.
+
+   INDICE
+     1. Sfondo a onda (Irezumi) + pagina
+     2. Contenuto (titolo)
+     3. Griglia delle card
+     4. Singola card
+   ============================================================ */
+
+
+/* ── 1. Sfondo a onda (Irezumi) + pagina ──────────────────── */
+.im-page {
+    min-height: 100vh;
+    background: #0a0c0d;
 }
 
 .im-dash-wrap {
     position: relative;
     min-height: calc(100vh - 80px);
-    background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d; 
+    background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d;
     overflow: hidden;
 }
 
@@ -34,6 +46,8 @@
     100% { transform: translateY(8px) translateX(-10px) scaleY(0.98); }
 }
 
+
+/* ── 2. Contenuto (titolo) ────────────────────────────────── */
 .im-dash-content {
     position: relative;
     z-index: 1;
@@ -59,7 +73,8 @@
     margin-bottom: 56px;
 }
 
-/* Griglia card */
+
+/* ── 3. Griglia delle card ────────────────────────────────── */
 .im-dash-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -72,7 +87,8 @@
 @media (max-width: 860px) { .im-dash-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .im-dash-grid { grid-template-columns: 1fr; } }
 
-/* Singola card */
+
+/* ── 4. Singola card ──────────────────────────────────────── */
 .im-dash-card {
     display: flex;
     flex-direction: column;

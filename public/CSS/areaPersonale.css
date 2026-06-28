@@ -1,3 +1,21 @@
+/* ============================================================
+   AREAPERSONALE.CSS — Area personale del Cliente
+   Pagina: templates/pages/profilo/areaPersonale.tpl
+   Storico prenotazioni + recensioni del cliente + overlay
+   di pagamento.
+
+   INDICE (vedi i divisori "── ... ──" qui sotto)
+     - Sfondo animato (blob + SVG)
+     - Layout e header card (avatar, nome)
+     - Titoli di sezione
+     - Lista prenotazioni e card
+     - Badge di stato e bottoni azione
+     - Stato vuoto
+     - Griglia recensioni
+     - Overlay pagamento (modale + form carta)
+     - Responsive
+   ============================================================ */
+
 /* ==========================================================================
    AREA PERSONALE CLIENTE
    ========================================================================== */

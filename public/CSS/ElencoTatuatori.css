@@ -1,3 +1,24 @@
+/* ============================================================
+   ELENCOTATUATORI.CSS — Risultati ricerca tatuatori
+   Pagina: templates/pages/ricerca/ElencoTatuatori.tpl
+   Barra di ricerca, lista card tatuatore e mappa decorativa.
+
+   INDICE (vedi i divisori qui sotto)
+     - Barra di ricerca nella navbar
+     - Pagina e sfondo animato
+     - Toolbar e chip stili
+     - Layout a due colonne
+     - Lista e card tatuatore
+     - Colonna meta (rating, città, CTA)
+     - Mappa decorativa (+ versioni SVG)
+     - Paginazione
+     - Animazioni e media query
+
+   NOTA: alcune regole (.el-map, .el-map-wrap, .el-page) sono
+   ridefinite più volte di proposito (rifiniture successive):
+   l'ordine NON va cambiato, vince l'ultima.
+   ============================================================ */
+
 /* nav search — sfondo e bordo gestiti da .im-topbar in layout.css */
 .im-nav-search { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 580px; margin: 0 40px; }
 .im-nav-search-box { display: flex; align-items: center; gap: 12px; background: #13171a; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 0 20px; height: 44px; flex: 1; }

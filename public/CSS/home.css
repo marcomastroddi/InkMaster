@@ -1,6 +1,28 @@
+/* ============================================================
+   HOME.CSS — Home page pubblica (ricerca tatuatori)
+   Pagina: templates/pages/ricerca/home.tpl
+   Contiene hero con ricerca, chip stili, carosello tatuatori
+   e recensioni in evidenza.
+
+   INDICE
+     1. Pagina
+     2. Hero (sfondo animato, titolo)
+     3. Barra di ricerca
+     4. Chip degli stili
+     5. Banda scorrevole (ticker)
+     6. Sezioni generiche
+     7. Griglia/carosello tatuatori
+     8. Recensioni in evidenza
+     9. Animazioni (@keyframes)
+    10. Dropdown selezione città
+   ============================================================ */
+
+
+/* ── 1. Pagina ────────────────────────────────────────────── */
 .im-page { min-height: 100vh; background: radial-gradient(1100px 560px at 50% -6%, rgba(47,216,170,.13), transparent 60%), #0a0c0d; }
 
-/* hero */
+
+/* ── 2. Hero (sfondo animato, titolo) ─────────────────────── */
 .im-hero { padding: 78px 60px 70px; text-align: center; position: relative; }
 .im-hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
 .im-blob { position: absolute; border-radius: 50%; filter: blur(24px); }
@@ -19,7 +41,8 @@
 .im-caret { font-size: 38px; vertical-align: middle; }
 .im-underline { position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: rgba(47,216,170,.28); z-index: -1; border-radius: 2px; }
 
-/* search */
+
+/* ── 3. Barra di ricerca ──────────────────────────────────── */
 .im-search { position: relative; max-width: 780px; margin: 42px auto 0; }
 .im-search-row { display: flex; align-items: stretch; gap: 10px; }
 .im-search-field { position: relative; flex: 1; }
@@ -29,23 +52,27 @@
 .im-search-box input::placeholder { color: #6b736f; }
 .im-search-submit { display: flex; align-items: center; justify-content: center; padding: 0 38px; background: #2fd8aa; color: #0a0c0d; border: none; border-radius: 999px; font-size: 17px; font-weight: 800; cursor: pointer; font-family: inherit; }
 
-/* stili */
+
+/* ── 4. Chip degli stili ──────────────────────────────────── */
 .im-styles { margin-top: 34px; }
 .im-styles-label { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #6b736f; margin-bottom: 16px; }
 .im-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 860px; margin: 0 auto; }
 .im-chip { font-size: 14px; font-weight: 600; color: #cdd3d1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); padding: 9px 17px; border-radius: 999px; cursor: pointer; }
 
-/* ticker */
+
+/* ── 5. Banda scorrevole (ticker) ─────────────────────────── */
 .im-band { background: #000; border-top: 1px solid rgba(47,216,170,.25); border-bottom: 1px solid rgba(47,216,170,.25); overflow: hidden; white-space: nowrap; }
 .im-ticker { display: inline-flex; gap: 46px; padding: 14px 0; font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: .18em; color: #3f4a47; animation: im-marquee 30s linear infinite; }
 
-/* sezioni */
+
+/* ── 6. Sezioni generiche ─────────────────────────────────── */
 .im-section { max-width: 1320px; margin: 0 auto; padding: 70px 60px 30px; }
 .im-section-head { display: flex; align-items: baseline; justify-content: center; margin-bottom: 34px; }
 .im-h2 { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
 .im-link { font-size: 14px; font-weight: 600; color: #2fd8aa; }
 
-/* griglia tatuatori */
+
+/* ── 7. Griglia/carosello tatuatori ───────────────────────── */
 .im-grid-wrap { overflow: hidden; }
 .im-grid { display: flex; gap: 18px; transition: transform .45s cubic-bezier(.4,0,.2,1); }
 .im-card { flex: 0 0 calc((100% - 72px) / 5); min-width: 0; }
@@ -58,7 +85,8 @@
 .im-more-wrap { text-align: center; margin-top: 26px; }
 .im-more { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #cdd3d1; border: 1px solid rgba(255,255,255,.18); padding: 12px 26px; border-radius: 999px; background: transparent; cursor: pointer; font-family: inherit; }
 
-/* recensioni */
+
+/* ── 8. Recensioni in evidenza ────────────────────────────── */
 .im-reviews { padding: 56px 0 80px; }
 .im-reviews-title { font-size: 30px; font-weight: 800; letter-spacing: -.01em; text-align: center; margin-bottom: 34px; }
 .im-revscroll { display: flex; gap: 20px; overflow-x: auto; padding: 6px 60px 22px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: rgba(47,216,170,.4) transparent; }
@@ -82,7 +110,8 @@
 .im-scroll-hint { text-align: center; margin-top: 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #6b736f; }
 .im-hatch { background-color: #15191b; background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 1px, transparent 1px 9px); }
 
-/* animazioni */
+
+/* ── 9. Animazioni (@keyframes) ───────────────────────────── */
 @keyframes im-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes im-dash { to { stroke-dashoffset: -280; } }
 @keyframes im-drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px,40px); } }
@@ -91,10 +120,10 @@
 
 .im-chip--attivo { color: #0a0c0d; background: #2fd8aa; border-color: #2fd8aa; }
 
-/* city dropdown */
+
+/* ── 10. Dropdown selezione città ─────────────────────────── */
 .im-city { cursor: pointer; display: inline-block; position: relative; }
 .im-city-dropdown { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: #13171a; border: 1px solid rgba(47,216,170,.35); border-radius: 14px; min-width: 200px; z-index: 100; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
 .im-city-dropdown.aperto { display: block; }
 .im-city-option { padding: 13px 22px; font-size: 16px; font-weight: 600; color: #cdd3d1; cursor: pointer; transition: background .15s; }
 .im-city-option:hover, .im-city-option.selezionata { background: rgba(47,216,170,.12); color: #2fd8aa; }
-

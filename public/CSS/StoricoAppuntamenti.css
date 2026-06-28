@@ -1,7 +1,26 @@
+/* ============================================================
+   STORICOAPPUNTAMENTI.CSS — Storico appuntamenti (lato Studio)
+   Pagina: templates/pages/studio/StoricoAppuntamenti.tpl
+   Elenco filtrabile degli appuntamenti con il loro stato.
+
+   INDICE
+     1. Reset e <body>
+     2. Pagina e contenitore
+     3. Filtri (per stato)
+     4. Lista e card appuntamento
+     5. Avatar e info richiesta
+     6. Badge di stato (confermato / in corso / ...)
+     7. Bottone "Indietro"
+   ============================================================ */
+
+
+/* ── 1. Reset e body ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif; }
 
+
+/* ── 2. Pagina e contenitore ──────────────────────────────── */
 .im-storico-page {
     position: relative;
     min-height: calc(100vh - 80px);
@@ -17,6 +36,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
     padding: 60px 40px 80px;
 }
 
+
+/* ── 3. Filtri (per stato) ────────────────────────────────── */
 .im-storico-filtri {
     display: flex;
     gap: 10px;
@@ -40,6 +61,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 
 .im-nessuna { color: #9aa3a0; font-style: italic; }
 
+
+/* ── 4. Lista e card appuntamento ─────────────────────────── */
 .im-storico-lista { display: flex; flex-direction: column; gap: 14px; }
 
 .im-storico-card {
@@ -55,6 +78,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 }
 .im-storico-card:hover { background: rgba(47,216,170,.05); border-color: rgba(47,216,170,.2); }
 
+
+/* ── 5. Avatar e info richiesta ───────────────────────────── */
 .im-richiesta-avatar {
     width: 46px; height: 46px; border-radius: 50%;
     background: rgba(47,216,170,.12);
@@ -72,6 +97,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 .im-richiesta-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #9aa3a0; }
 .im-richiesta-valore { font-size: 0.88rem; color: #eef1f0; }
 
+
+/* ── 6. Badge di stato (confermato / in corso / ...) ──────── */
 .im-storico-stato {
     margin-left: auto;
     padding: 6px 16px;
@@ -88,5 +115,7 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 .im-stato-completato { background: rgba(100,200,100,.12); border: 1px solid rgba(100,200,100,.3); color: #81c784; }
 .im-stato-annullato  { background: rgba(255,80,80,.10);  border: 1px solid rgba(255,80,80,.25); color: #ff5252; }
 
+
+/* ── 7. Bottone "Indietro" ────────────────────────────────── */
 .im-btn-back { display: inline-block; margin-top: 32px; color: #9aa3a0; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
 .im-btn-back:hover { color: #2fd8aa; }

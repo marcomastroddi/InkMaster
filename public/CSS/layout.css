@@ -1,8 +1,26 @@
+/* ============================================================
+   LAYOUT.CSS — Stili globali comuni a TUTTE le pagine
+   Caricato dal layout base (templates/layouts/base.tpl).
+   Contiene: reset, navbar fissa, footer e i componenti
+   condivisi (profilo in alto, popup di logout).
+
+   INDICE
+     1. Reset globale e <body>
+     2. Topbar / navbar fissa
+     3. Profilo utente nella topbar
+     4. Popup di logout
+     5. Footer
+     6. Bottone "Le mie prenotazioni" (cliente)
+   ============================================================ */
+
+
+/* ── 1. Reset globale e body ──────────────────────────────── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #0a0c0d; color: #eef1f0; padding-top: 76px; }
 a { text-decoration: none; color: inherit; }
 
-/* topbar */
+
+/* ── 2. Topbar / navbar fissa ─────────────────────────────── */
 .im-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: rgba(10,12,13,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.06); }
 .im-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 60px; max-width: 1320px; margin: 0 auto; min-height: 76px; }
 .im-logo { font-weight: 900; letter-spacing: -.02em; font-size: 22px; }
@@ -12,7 +30,8 @@ a { text-decoration: none; color: inherit; }
 .im-btn-outline { font-weight: 700; color: #eef1f0; border: 1px solid rgba(255,255,255,.22); padding: 9px 20px; border-radius: 999px; transition: background .15s, border-color .15s; }
 .im-lang { display: flex; align-items: center; gap: 6px; color: #cdd3d1; }
 
-/* Profilo nella topbar */
+
+/* ── 3. Profilo utente nella topbar ───────────────────────── */
 .im-nav-profilo {
     display: flex;
     align-items: center;
@@ -42,7 +61,8 @@ a { text-decoration: none; color: inherit; }
     line-height: 1;
 }
 
-/* Popup di logout */
+
+/* ── 4. Popup di logout ───────────────────────────────────── */
 .im-logout-overlay {
     display: none;
     position: fixed;
@@ -69,7 +89,8 @@ a { text-decoration: none; color: inherit; }
 .im-logout-stay { flex: 1; background: #2fd8aa; color: #0a0c0d; font-weight: 700; padding: 12px 24px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-family: inherit; }
 .im-logout-confirm { flex: 1; background: transparent; color: #eef1f0; font-weight: 700; padding: 12px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); font-size: 15px; text-align: center; }
 
-/* footer */
+
+/* ── 5. Footer ────────────────────────────────────────────── */
 .im-footer { border-top: 1px solid rgba(255,255,255,.1); background: #08090a; }
 .im-footer-top { max-width: 1320px; margin: 0 auto; padding: 50px 60px; display: flex; align-items: flex-start; justify-content: space-between; }
 .im-footer-logo { font-weight: 900; letter-spacing: -.02em; font-size: 20px; margin-bottom: 10px; }
@@ -79,6 +100,8 @@ a { text-decoration: none; color: inherit; }
 .im-footer-col-title { color: #cdd3d1; font-weight: 700; margin-bottom: 3px; }
 .im-copyright { border-top: 1px solid rgba(255,255,255,.06); padding: 20px 60px; font-size: 12px; color: #4b534f; text-align: center; }
 
+
+/* ── 6. Bottone "Le mie prenotazioni" (cliente) ───────────── */
 .im-btn-prenotazioni {
     background: #2fd8aa !important;
     color: #080e0c !important;

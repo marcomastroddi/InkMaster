@@ -1,3 +1,21 @@
+/* ============================================================
+   PORTFOLIO.CSS — Portfolio pubblico (griglia opere)
+   Pagina: templates/pages/portfolio/portfolio_pubblico.tpl
+   Griglia delle pubblicazioni + sfondo animato decorativo.
+
+   NOTA: la classe .pf-page compare due volte (sez. 1 e sez. 4):
+   la seconda estende la prima — l'ordine NON va cambiato.
+
+   INDICE
+     1. Pagina e header
+     2. Griglia e slot opera
+     3. Paginazione
+     4. Sfondo animato (blob + geometrie)
+     5. Animazioni (@keyframes)
+   ============================================================ */
+
+
+/* ── 1. Pagina e header ───────────────────────────────────── */
 .pf-page {
     max-width: 1100px;
     margin: 0 auto;
@@ -27,6 +45,8 @@
     margin: 0;
 }
 
+
+/* ── 2. Griglia e slot opera ──────────────────────────────── */
 .pf-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -70,6 +90,8 @@
     grid-column: 1 / -1;
 }
 
+
+/* ── 3. Paginazione ───────────────────────────────────────── */
 .pf-pagination {
     display: flex;
     justify-content: center;
@@ -100,6 +122,8 @@
     font-weight: 700;
 }
 
+
+/* ── 4. Sfondo animato (blob + geometrie) ─────────────────── */
 .pf-page {
     max-width: 1100px;
     margin: 0 auto;
@@ -152,6 +176,8 @@
 .pf-geo-5 { fill: none; stroke: #2fd8aa18; stroke-width: 1; animation: pf-pulse 6s ease-in-out infinite; }
 .pf-geo-6 { fill: none; stroke: #2fd8aa20; stroke-width: 1.5; animation: pf-spin 18s linear infinite; transform-origin: 320px 80px; }
 
+
+/* ── 5. Animazioni (@keyframes) ───────────────────────────── */
 @keyframes pf-drift1 {
     0%, 100% { transform: translate(0, 0); }
     50% { transform: translate(-40px, 40px); }

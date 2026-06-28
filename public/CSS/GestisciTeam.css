@@ -1,7 +1,27 @@
+/* ============================================================
+   GESTISCITEAM.CSS — Gestione team tatuatori (lato Studio)
+   Pagina: templates/pages/studio/GestisciTeam.tpl
+   Elenco dei tatuatori dello studio + form di aggiunta.
+
+   INDICE
+     1. Reset e <body>
+     2. Wrapper, sfondo e contenuto
+     3. Titolo, eyebrow e messaggi
+     4. Lista team e card tatuatore
+     5. Chip degli stili
+     6. Bottoni rimuovi / mostra form
+     7. Form aggiunta tatuatore
+     8. Bottone "Indietro"
+   ============================================================ */
+
+
+/* ── 1. Reset e body ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
 
+
+/* ── 2. Wrapper, sfondo e contenuto ───────────────────────── */
 .im-team-wrap {
     position: relative;
     min-height: calc(100vh - 80px);
@@ -26,6 +46,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
     padding: 60px 40px 80px;
 }
 
+
+/* ── 3. Titolo, eyebrow e messaggi ────────────────────────── */
 .im-team-title {
     font-size: clamp(28px, 4vw, 44px);
     font-weight: 900;
@@ -55,6 +77,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 
 .im-team-empty { color: #9aa3a0; font-style: italic; margin-bottom: 24px; }
 
+
+/* ── 4. Lista team e card tatuatore ───────────────────────── */
 .im-team-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
 
 .im-team-card {
@@ -88,6 +112,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 
 .im-team-dob { font-size: 0.8rem; color: #9aa3a0; }
 
+
+/* ── 5. Chip degli stili ──────────────────────────────────── */
 .im-team-stili { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 
 .im-team-chip {
@@ -99,6 +125,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
     color: #2fd8aa;
 }
 
+
+/* ── 6. Bottoni rimuovi / mostra form ─────────────────────── */
 .im-team-remove {
     background: rgba(255,80,80,.08);
     border: 1px solid rgba(255,80,80,.25);
@@ -131,6 +159,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
     border-color: rgba(47,216,170,.5);
 }
 
+
+/* ── 7. Form aggiunta tatuatore ───────────────────────────── */
 .im-team-form {
     background: rgba(255,255,255,.035);
     border: 1px solid rgba(255,255,255,.08);
@@ -189,6 +219,8 @@ body { background: #0a0c0d; color: #eef1f0; font-family: 'Segoe UI', sans-serif;
 }
 .im-team-submit:hover { background: rgba(47,216,170,.22); }
 
+
+/* ── 8. Bottone "Indietro" ────────────────────────────────── */
 .im-team-back {
     display: inline-block;
     margin-top: 20px;
