@@ -253,7 +253,7 @@ L'applicazione sarà raggiungibile su **http://localhost:8000**.
 
 ## 🔑 Account di test
 
-Gli account demo generati dal seed (password con hash bcrypt):
+Gli account demo generati (password con hash bcrypt):
 
 | Ruolo | Username | Password |
 |---|---|---|
