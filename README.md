@@ -149,8 +149,6 @@ InkMaster/
 │   ├── layouts/                   # Layout base
 │   ├── partials/                  # Header, footer, overlay riusabili
 │   └── pages/                     # Pagine raggruppate per area funzionale
-├── scripts/
-│   └── seed.php                   # Popolamento del DB con dati realistici
 ├── templates_c/                   # Cache dei template compilati (auto-generata)
 ├── composer.json
 └── doctrine.php                   # Entry point della console Doctrine
@@ -255,7 +253,7 @@ L'applicazione sarà raggiungibile su **http://localhost:8000**.
 
 ## 🔑 Account di test
 
-Gli account demo generati dal seed (password con hash bcrypt):
+Gli account demo generati (password con hash bcrypt):
 
 | Ruolo | Username | Password |
 |---|---|---|
